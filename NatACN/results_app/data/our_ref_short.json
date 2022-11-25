@@ -1,0 +1,235 @@
+{
+  "date": "Thu, 24 Nov 2022 14:21:49 GMT",
+  "qald10": [
+    {
+      "id": 0,
+      "question": "After whom is the Riemannian geometry named?",
+      "query": "SELECT DISTINCT ?result WHERE { wd:Q761383 wdt:P138 ?result. }",
+      "answer": {
+        "our": [
+          [
+            {
+              "type": "uri",
+              "uri": "http://www.wikidata.org/entity/Q42299"
+            }
+          ]
+        ],
+        "qald": [
+          {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q42299"
+          }
+        ]
+      },
+      "labeled_question": {
+        "question": "",
+        "labels": [
+          {
+            "wikidataID": "Q761383",
+            "label": "Riemannian geometry"
+          },
+          {
+            "wikidataID": "P138",
+            "label": "named after"
+          }
+        ]
+      }
+    },
+    {
+      "id": 1,
+      "question": "Which animal participated in a military operation with the Australian Defence Force?",
+      "query": "SELECT DISTINCT ?result WHERE {?result wdt:P31 wd:Q16521. ?mop wdt:P31 wd:Q645883; wdt:P710 ?result, wd:Q625657.}",
+      "answer": {
+        "our": [
+          [
+            {
+              "type": "uri",
+              "uri": "http://www.wikidata.org/entity/Q93208"
+            }
+          ]
+        ],
+        "qald": [
+          {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q93208"
+          }
+        ]
+      },
+      "squall": {
+        "question": "",
+        "labels": [
+          {
+            "wikidataID": "P31",
+            "label": "instance of"
+          },
+          {
+            "wikidataID": "P31",
+            "label": "instance of"
+          },
+          {
+            "wikidataID": "Q16521",
+            "label": "taxon"
+          },
+          {
+            "wikidataID": "P31",
+            "label": "instance of"
+          },
+          {
+            "wikidataID": "P31",
+            "label": "instance of"
+          },
+          {
+            "wikidataID": "Q645883",
+            "label": "military operation"
+          },
+          {
+            "wikidataID": "P710",
+            "label": "participant"
+          },
+          {
+            "wikidataID": "Q625657",
+            "label": "Australian Defence Force"
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "question": "among the characters in the witcher, who has two unmarried partners, Yennefer of Vengerberg and Triss Merigold?",
+      "query": "SELECT DISTINCT ?result WHERE {wd:Q11835640 wdt:P674 ?result. ?result wdt:P451 ?p1, ?p2. FILTER(?p1 != ?p2 &&(?result IN (wd:Q4205826, wd:Q4463198)))}",
+      "answer": {
+        "our": [
+          [
+            {
+              "type": "uri",
+              "uri": "http://www.wikidata.org/entity/Q4205826"
+            }
+          ]
+        ],
+        "qald": [
+          {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q4205826"
+          }
+        ]
+      },
+      "squall": {
+        "question": "",
+        "labels": [
+          {
+            "wikidataID": "Q11835640",
+            "label": "The Witcher"
+          },
+          {
+            "wikidataID": "P674",
+            "label": "characters"
+          },
+          {
+            "wikidataID": "P451",
+            "label": "unmarried partner"
+          },
+          {
+            "wikidataID": "Q4205826",
+            "label": "Yennefer of Vengerberg"
+          },
+          {
+            "wikidataID": "Q4463198",
+            "label": "Triss Merigold"
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "question": "among the founders of tencent company, who has been member of national people’s congress?",
+      "query": "SELECT DISTINCT ?result WHERE {wd:Q860580 wdt:P112 ?result. ?result wdt:P39 wd:Q10891456.}",
+      "answer": {
+        "our": [
+          [
+            {
+              "type": "uri",
+              "uri": "http://www.wikidata.org/entity/Q1739008"
+            }
+          ]
+        ],
+        "qald": [
+          {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1739008"
+          }
+        ]
+      },
+      "squall": {
+        "question": "",
+        "labels": [
+          {
+            "wikidataID": "Q860580",
+            "label": "Tencent"
+          },
+          {
+            "wikidataID": "P112",
+            "label": "founded by"
+          },
+          {
+            "wikidataID": "P39",
+            "label": "position held"
+          },
+          {
+            "wikidataID": "Q10891456",
+            "label": "National People's Congress deputy"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "question": "among the other representative work of the author of hunter x hunter, which one is talking about middle school student?",
+      "query": "SELECT DISTINCT ?result WHERE {wd:Q696071 wdt:P50 ?author. ?author wdt:P800 ?result. ?result wdt:P921 wd:Q16003532 FILTER(?result != wd:Q69071)}",
+      "answer": {
+        "our": [
+          [
+            {
+              "type": "uri",
+              "uri": "http://www.wikidata.org/entity/Q18225473"
+            }
+          ]
+        ],
+        "qald": [
+          {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q18225473"
+          }
+        ]
+      },
+      "squall": {
+        "question": "",
+        "labels": [
+          {
+            "wikidataID": "Q696071",
+            "label": "Hunter × Hunter"
+          },
+          {
+            "wikidataID": "P50",
+            "label": "author"
+          },
+          {
+            "wikidataID": "P800",
+            "label": "notable work"
+          },
+          {
+            "wikidataID": "P921",
+            "label": "main subject"
+          },
+          {
+            "wikidataID": "Q16003532",
+            "label": "middle school student"
+          },
+          {
+            "wikidataID": "Q69071",
+            "label": "Münchenbuchsee"
+          }
+        ]
+      }
+    }
+  ]
+}
