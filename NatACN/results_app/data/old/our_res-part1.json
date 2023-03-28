@@ -1,0 +1,2501 @@
+{
+  "id": 89,
+  "question": "How many people did Oscar Pistorius kill?",
+  "query": "SELECT (COUNT (DISTINCT ?people) AS ?result) WHERE {?people wdt:P31 wd:Q5;wdt:P157 wd:Q201377}",
+  "answer": {
+    "our_ref": [
+      [
+        {
+          "type": "number",
+          "number": 1,
+          "str": "1",
+          "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+        }
+      ]
+    ]
+  },
+  "labeled_question": {
+    "question": "How many human was killed by Oscar Pistorius?",
+    "labels": [
+      {
+        "uri": "P31",
+        "label": "instance of"
+      },
+      {
+        "uri": "Q5",
+        "label": "human"
+      },
+      {
+        "uri": "P157",
+        "label": "killed by"
+      },
+      {
+        "uri": "Q201377",
+        "label": "Oscar Pistorius"
+      }
+    ]
+  },
+  "NatACN_info": {
+    "qald": [
+      {
+        "NLQuestion": "How many people did Oscar Pistorius kill?",
+        "answer": {
+          "columns": [],
+          "rows": []
+        },
+        "HistoryResults": [
+          {
+            "navstate": {
+              "_id": 0,
+              "_NLQuestion": "How many people did Oscar Pistorius kill?",
+              "_keywordList": {
+                "_list": [
+                  {
+                    "_string": "Oscar Pistorius",
+                    "_type": "NE"
+                  },
+                  {
+                    "_string": "people"
+                  },
+                  {
+                    "_string": "kill"
+                  }
+                ],
+                "length": 3
+              },
+              "_currentKeywordList": {
+                "_list": [
+                  {
+                    "_string": "people"
+                  },
+                  {
+                    "_string": "kill"
+                  }
+                ],
+                "length": 2
+              },
+              "_currentKeyword": {
+                "_string": "Oscar Pistorius",
+                "_type": "NE"
+              },
+              "_currentKeywordSynonyms": {
+                "_list": [
+                  {
+                    "_string": "Oscar Pistorius",
+                    "_type": "NE"
+                  }
+                ],
+                "length": 1
+              },
+              "_end": false,
+              "_QTPath": {
+                "_list": [],
+                "length": 0
+              },
+              "_longestQTPath": {
+                "_list": [
+                  {
+                    "type": "IncrConstr",
+                    "constr": {
+                      "type": "ExternalSearch",
+                      "searchQuery": {
+                        "type": "WikidataSearch",
+                        "kwds": [
+                          "Oscar Pistorius"
+                        ]
+                      },
+                      "resultTerms": [
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q201377"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q16328520"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q55698496"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q6804597"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58274689"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59191251"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56095781"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q25692472"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58274982"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q112899835"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58175776"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q21663918"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59326577"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58175720"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q47375029"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17599463"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q16814268"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56519510"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17602525"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q89027585"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q82712172"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768894"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768893"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q24717218"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768887"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17874774"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17877992"
+                        }
+                      ]
+                    },
+                    "filterType": "Mixed"
+                  }
+                ],
+                "length": 1
+              },
+              "_constraint": "",
+              "_candidatesQT": {
+                "_list": [
+                  {
+                    "type": "IncrConstr",
+                    "constr": {
+                      "type": "ExternalSearch",
+                      "searchQuery": {
+                        "type": "WikidataSearch",
+                        "kwds": [
+                          "Oscar Pistorius"
+                        ]
+                      },
+                      "resultTerms": [
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q201377"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q16328520"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q55698496"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q6804597"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58274689"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59191251"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56095781"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q25692472"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58274982"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q112899835"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58175776"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q21663918"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59326577"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58175720"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q47375029"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17599463"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q16814268"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56519510"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17602525"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q89027585"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q82712172"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768894"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768893"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q24717218"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768887"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17874774"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17877992"
+                        }
+                      ]
+                    },
+                    "filterType": "Mixed"
+                  }
+                ],
+                "length": 1
+              }
+            }
+          },
+          {
+            "navstate": {
+              "_id": 1,
+              "_NLQuestion": "How many people did Oscar Pistorius kill?",
+              "_keywordList": {
+                "_list": [
+                  {
+                    "_string": "Oscar Pistorius",
+                    "_type": "NE"
+                  },
+                  {
+                    "_string": "people"
+                  },
+                  {
+                    "_string": "kill"
+                  }
+                ],
+                "length": 3
+              },
+              "_currentKeywordList": {
+                "_list": [
+                  {
+                    "_string": "kill"
+                  }
+                ],
+                "length": 1
+              },
+              "_currentKeyword": {
+                "_string": "people"
+              },
+              "_currentKeywordSynonyms": {
+                "_list": [
+                  {
+                    "_string": "multitude"
+                  },
+                  {
+                    "_string": "citizenry"
+                  },
+                  {
+                    "_string": "peeps"
+                  },
+                  {
+                    "_string": "fans"
+                  },
+                  {
+                    "_string": "people"
+                  }
+                ],
+                "length": 5
+              },
+              "_end": false,
+              "_QTPath": {
+                "_list": [
+                  {
+                    "type": "IncrConstr",
+                    "constr": {
+                      "type": "ExternalSearch",
+                      "searchQuery": {
+                        "type": "WikidataSearch",
+                        "kwds": [
+                          "Oscar Pistorius"
+                        ]
+                      },
+                      "resultTerms": [
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q201377"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q16328520"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q55698496"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q6804597"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58274689"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59191251"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56095781"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q25692472"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58274982"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q112899835"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58175776"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q21663918"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59326577"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58175720"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q47375029"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17599463"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q16814268"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56519510"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17602525"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q89027585"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q82712172"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768894"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768893"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q24717218"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768887"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17874774"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17877992"
+                        }
+                      ]
+                    },
+                    "filterType": "Mixed"
+                  }
+                ],
+                "length": 1
+              },
+              "_longestQTPath": {
+                "_list": [
+                  {
+                    "type": "IncrConstr",
+                    "constr": {
+                      "type": "ExternalSearch",
+                      "searchQuery": {
+                        "type": "WikidataSearch",
+                        "kwds": [
+                          "Oscar Pistorius"
+                        ]
+                      },
+                      "resultTerms": [
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q201377"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q16328520"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q55698496"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q6804597"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58274689"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59191251"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56095781"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q25692472"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58274982"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q112899835"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58175776"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q21663918"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59326577"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58175720"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q47375029"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17599463"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q16814268"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56519510"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17602525"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q89027585"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q82712172"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768894"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768893"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q24717218"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768887"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17874774"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17877992"
+                        }
+                      ]
+                    },
+                    "filterType": "Mixed"
+                  },
+                  {
+                    "type": "IncrType",
+                    "uri": "http://www.wikidata.org/entity/Q5"
+                  }
+                ],
+                "length": 2
+              },
+              "_constraint": "",
+              "_candidatesQT": {
+                "_list": [
+                  {
+                    "type": "IncrType",
+                    "uri": "http://www.wikidata.org/entity/Q5"
+                  }
+                ],
+                "length": 1
+              }
+            }
+          },
+          {
+            "navstate": {
+              "_id": 2,
+              "_NLQuestion": "How many people did Oscar Pistorius kill?",
+              "_keywordList": {
+                "_list": [
+                  {
+                    "_string": "Oscar Pistorius",
+                    "_type": "NE"
+                  },
+                  {
+                    "_string": "people"
+                  },
+                  {
+                    "_string": "kill"
+                  }
+                ],
+                "length": 3
+              },
+              "_currentKeywordList": {
+                "_list": [],
+                "length": 0
+              },
+              "_currentKeyword": {
+                "_string": "kill"
+              },
+              "_currentKeywordSynonyms": {
+                "_list": [
+                  {
+                    "_string": "toss off"
+                  },
+                  {
+                    "_string": "killing"
+                  },
+                  {
+                    "_string": "stamp out"
+                  },
+                  {
+                    "_string": "annihilate"
+                  },
+                  {
+                    "_string": "kill"
+                  }
+                ],
+                "length": 5
+              },
+              "_end": false,
+              "_QTPath": {
+                "_list": [
+                  {
+                    "type": "IncrConstr",
+                    "constr": {
+                      "type": "ExternalSearch",
+                      "searchQuery": {
+                        "type": "WikidataSearch",
+                        "kwds": [
+                          "Oscar Pistorius"
+                        ]
+                      },
+                      "resultTerms": [
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q201377"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q16328520"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q55698496"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q6804597"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58274689"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59191251"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56095781"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q25692472"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58274982"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q112899835"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58175776"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q21663918"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59326577"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58175720"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q47375029"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17599463"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q16814268"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56519510"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17602525"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q89027585"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q82712172"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768894"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768893"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q24717218"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768887"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17874774"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17877992"
+                        }
+                      ]
+                    },
+                    "filterType": "Mixed"
+                  },
+                  {
+                    "type": "IncrType",
+                    "uri": "http://www.wikidata.org/entity/Q5"
+                  }
+                ],
+                "length": 2
+              },
+              "_longestQTPath": {
+                "_list": [],
+                "length": 0
+              },
+              "_constraint": "",
+              "_candidatesQT": {
+                "_list": [],
+                "length": 0
+              }
+            }
+          }
+        ],
+        "NE": [
+          "Oscar Pistorius"
+        ],
+        "navStateRes": {
+          "_id": 0,
+          "_NLQuestion": "How many people did Oscar Pistorius kill?",
+          "_keywordList": {
+            "_list": [
+              {
+                "_string": "Oscar Pistorius",
+                "_type": "NE"
+              },
+              {
+                "_string": "people"
+              },
+              {
+                "_string": "kill"
+              }
+            ],
+            "length": 3
+          },
+          "_currentKeywordList": {
+            "_list": [
+              {
+                "_string": "people"
+              },
+              {
+                "_string": "kill"
+              }
+            ],
+            "length": 2
+          },
+          "_currentKeyword": {
+            "_string": "Oscar Pistorius",
+            "_type": "NE"
+          },
+          "_currentKeywordSynonyms": {
+            "_list": [
+              {
+                "_string": "Oscar Pistorius",
+                "_type": "NE"
+              }
+            ],
+            "length": 1
+          },
+          "_end": false,
+          "_QTPath": {
+            "_list": [],
+            "length": 0
+          },
+          "_longestQTPath": {
+            "_list": [
+              {
+                "type": "IncrConstr",
+                "constr": {
+                  "type": "ExternalSearch",
+                  "searchQuery": {
+                    "type": "WikidataSearch",
+                    "kwds": [
+                      "Oscar Pistorius"
+                    ]
+                  },
+                  "resultTerms": [
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q201377"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q16328520"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q55698496"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q6804597"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q58274689"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q59191251"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q56095781"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q25692472"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q58274982"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q112899835"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q58175776"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q21663918"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q59326577"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q58175720"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q47375029"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q17599463"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q16814268"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q56519510"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q17602525"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q89027585"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q82712172"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q19768894"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q19768893"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q24717218"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q19768887"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q17874774"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q17877992"
+                    }
+                  ]
+                },
+                "filterType": "Mixed"
+              }
+            ],
+            "length": 1
+          },
+          "_constraint": "",
+          "_candidatesQT": {
+            "_list": [
+              {
+                "type": "IncrConstr",
+                "constr": {
+                  "type": "ExternalSearch",
+                  "searchQuery": {
+                    "type": "WikidataSearch",
+                    "kwds": [
+                      "Oscar Pistorius"
+                    ]
+                  },
+                  "resultTerms": [
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q201377"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q16328520"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q55698496"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q6804597"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q58274689"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q59191251"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q56095781"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q25692472"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q58274982"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q112899835"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q58175776"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q21663918"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q59326577"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q58175720"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q47375029"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q17599463"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q16814268"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q56519510"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q17602525"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q89027585"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q82712172"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q19768894"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q19768893"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q24717218"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q19768887"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q17874774"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q17877992"
+                    }
+                  ]
+                },
+                "filterType": "Mixed"
+              }
+            ],
+            "length": 1
+          }
+        },
+        "millis": 32816
+      }
+    ],
+    "labeled_question": [
+      {
+        "NLQuestion": "How many human was killed by Oscar Pistorius?",
+        "answer": {
+          "columns": [
+            "Q5_1",
+            "thing_6"
+          ],
+          "rows": [
+            [
+              {
+                "type": "uri",
+                "uri": "http://www.wikidata.org/entity/Q201377"
+              },
+              {
+                "type": "uri",
+                "uri": "http://www.wikidata.org/entity/Q4584302"
+              }
+            ]
+          ]
+        },
+        "HistoryResults": [
+          {
+            "navstate": {
+              "_id": 0,
+              "_NLQuestion": "How many human was killed by Oscar Pistorius?",
+              "_keywordList": {
+                "_list": [
+                  {
+                    "_string": "Oscar Pistorius",
+                    "_type": "NE"
+                  },
+                  {
+                    "_string": "human"
+                  },
+                  {
+                    "_string": "killed"
+                  }
+                ],
+                "length": 3
+              },
+              "_currentKeywordList": {
+                "_list": [
+                  {
+                    "_string": "human"
+                  },
+                  {
+                    "_string": "killed"
+                  }
+                ],
+                "length": 2
+              },
+              "_currentKeyword": {
+                "_string": "Oscar Pistorius",
+                "_type": "NE"
+              },
+              "_currentKeywordSynonyms": {
+                "_list": [
+                  {
+                    "_string": "Oscar Pistorius",
+                    "_type": "NE"
+                  }
+                ],
+                "length": 1
+              },
+              "_end": false,
+              "_QTPath": {
+                "_list": [],
+                "length": 0
+              },
+              "_longestQTPath": {
+                "_list": [
+                  {
+                    "type": "IncrConstr",
+                    "constr": {
+                      "type": "ExternalSearch",
+                      "searchQuery": {
+                        "type": "WikidataSearch",
+                        "kwds": [
+                          "Oscar Pistorius"
+                        ]
+                      },
+                      "resultTerms": [
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q201377"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q16328520"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q55698496"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q6804597"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58274689"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59191251"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56095781"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q25692472"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58274982"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q112899835"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58175776"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q21663918"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59326577"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58175720"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q47375029"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17599463"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q16814268"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56519510"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17602525"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q89027585"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q82712172"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768894"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768893"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q24717218"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768887"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17874774"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17877992"
+                        }
+                      ]
+                    },
+                    "filterType": "Mixed"
+                  }
+                ],
+                "length": 1
+              },
+              "_constraint": "",
+              "_candidatesQT": {
+                "_list": [
+                  {
+                    "type": "IncrConstr",
+                    "constr": {
+                      "type": "ExternalSearch",
+                      "searchQuery": {
+                        "type": "WikidataSearch",
+                        "kwds": [
+                          "Oscar Pistorius"
+                        ]
+                      },
+                      "resultTerms": [
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q201377"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q16328520"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q55698496"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q6804597"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58274689"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59191251"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56095781"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q25692472"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58274982"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q112899835"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58175776"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q21663918"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59326577"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58175720"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q47375029"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17599463"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q16814268"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56519510"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17602525"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q89027585"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q82712172"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768894"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768893"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q24717218"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768887"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17874774"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17877992"
+                        }
+                      ]
+                    },
+                    "filterType": "Mixed"
+                  }
+                ],
+                "length": 1
+              }
+            }
+          },
+          {
+            "navstate": {
+              "_id": 1,
+              "_NLQuestion": "How many human was killed by Oscar Pistorius?",
+              "_keywordList": {
+                "_list": [
+                  {
+                    "_string": "Oscar Pistorius",
+                    "_type": "NE"
+                  },
+                  {
+                    "_string": "human"
+                  },
+                  {
+                    "_string": "killed"
+                  }
+                ],
+                "length": 3
+              },
+              "_currentKeywordList": {
+                "_list": [
+                  {
+                    "_string": "killed"
+                  }
+                ],
+                "length": 1
+              },
+              "_currentKeyword": {
+                "_string": "human"
+              },
+              "_currentKeywordSynonyms": {
+                "_list": [
+                  {
+                    "_string": "homo"
+                  },
+                  {
+                    "_string": "mannish"
+                  },
+                  {
+                    "_string": "human being"
+                  },
+                  {
+                    "_string": "human"
+                  }
+                ],
+                "length": 4
+              },
+              "_end": false,
+              "_QTPath": {
+                "_list": [
+                  {
+                    "type": "IncrConstr",
+                    "constr": {
+                      "type": "ExternalSearch",
+                      "searchQuery": {
+                        "type": "WikidataSearch",
+                        "kwds": [
+                          "Oscar Pistorius"
+                        ]
+                      },
+                      "resultTerms": [
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q201377"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q16328520"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q55698496"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q6804597"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58274689"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59191251"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56095781"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q25692472"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58274982"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q112899835"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58175776"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q21663918"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59326577"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58175720"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q47375029"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17599463"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q16814268"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56519510"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17602525"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q89027585"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q82712172"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768894"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768893"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q24717218"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768887"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17874774"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17877992"
+                        }
+                      ]
+                    },
+                    "filterType": "Mixed"
+                  }
+                ],
+                "length": 1
+              },
+              "_longestQTPath": {
+                "_list": [
+                  {
+                    "type": "IncrConstr",
+                    "constr": {
+                      "type": "ExternalSearch",
+                      "searchQuery": {
+                        "type": "WikidataSearch",
+                        "kwds": [
+                          "Oscar Pistorius"
+                        ]
+                      },
+                      "resultTerms": [
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q201377"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q16328520"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q55698496"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q6804597"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58274689"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59191251"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56095781"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q25692472"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58274982"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q112899835"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58175776"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q21663918"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59326577"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58175720"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q47375029"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17599463"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q16814268"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56519510"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17602525"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q89027585"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q82712172"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768894"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768893"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q24717218"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768887"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17874774"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17877992"
+                        }
+                      ]
+                    },
+                    "filterType": "Mixed"
+                  },
+                  {
+                    "type": "IncrType",
+                    "uri": "http://www.wikidata.org/entity/Q5"
+                  }
+                ],
+                "length": 2
+              },
+              "_constraint": "",
+              "_candidatesQT": {
+                "_list": [
+                  {
+                    "type": "IncrType",
+                    "uri": "http://www.wikidata.org/entity/Q5"
+                  },
+                  {
+                    "type": "IncrType",
+                    "uri": "http://www.wikidata.org/entity/Q5"
+                  },
+                  {
+                    "type": "IncrType",
+                    "uri": "http://www.wikidata.org/entity/Q5"
+                  }
+                ],
+                "length": 3
+              }
+            }
+          },
+          {
+            "navstate": {
+              "_id": 2,
+              "_NLQuestion": "How many human was killed by Oscar Pistorius?",
+              "_keywordList": {
+                "_list": [
+                  {
+                    "_string": "Oscar Pistorius",
+                    "_type": "NE"
+                  },
+                  {
+                    "_string": "human"
+                  },
+                  {
+                    "_string": "killed"
+                  }
+                ],
+                "length": 3
+              },
+              "_currentKeywordList": {
+                "_list": [],
+                "length": 0
+              },
+              "_currentKeyword": {
+                "_string": "killed"
+              },
+              "_currentKeywordSynonyms": {
+                "_list": [
+                  {
+                    "_string": "killed"
+                  }
+                ],
+                "length": 1
+              },
+              "_end": false,
+              "_QTPath": {
+                "_list": [
+                  {
+                    "type": "IncrConstr",
+                    "constr": {
+                      "type": "ExternalSearch",
+                      "searchQuery": {
+                        "type": "WikidataSearch",
+                        "kwds": [
+                          "Oscar Pistorius"
+                        ]
+                      },
+                      "resultTerms": [
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q201377"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q16328520"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q55698496"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q6804597"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58274689"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59191251"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56095781"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q25692472"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58274982"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q112899835"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58175776"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q21663918"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59326577"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58175720"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q47375029"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17599463"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q16814268"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56519510"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17602525"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q89027585"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q82712172"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768894"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768893"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q24717218"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768887"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17874774"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17877992"
+                        }
+                      ]
+                    },
+                    "filterType": "Mixed"
+                  },
+                  {
+                    "type": "IncrType",
+                    "uri": "http://www.wikidata.org/entity/Q5"
+                  }
+                ],
+                "length": 2
+              },
+              "_longestQTPath": {
+                "_list": [
+                  {
+                    "type": "IncrConstr",
+                    "constr": {
+                      "type": "ExternalSearch",
+                      "searchQuery": {
+                        "type": "WikidataSearch",
+                        "kwds": [
+                          "Oscar Pistorius"
+                        ]
+                      },
+                      "resultTerms": [
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q201377"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q16328520"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q55698496"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q6804597"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58274689"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59191251"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56095781"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q25692472"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58274982"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q112899835"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58175776"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q21663918"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59326577"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58175720"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q47375029"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17599463"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q16814268"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56519510"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17602525"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q89027585"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q82712172"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768894"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768893"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q24717218"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768887"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17874774"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17877992"
+                        }
+                      ]
+                    },
+                    "filterType": "Mixed"
+                  },
+                  {
+                    "type": "IncrType",
+                    "uri": "http://www.wikidata.org/entity/Q5"
+                  },
+                  {
+                    "type": "IncrRel",
+                    "uri": "http://www.wikidata.org/prop/direct/P157",
+                    "orientation": "Bwd"
+                  }
+                ],
+                "length": 3
+              },
+              "_constraint": "",
+              "_candidatesQT": {
+                "_list": [
+                  {
+                    "type": "IncrRel",
+                    "uri": "http://www.wikidata.org/prop/direct/P157",
+                    "orientation": "Bwd"
+                  }
+                ],
+                "length": 1
+              }
+            }
+          },
+          {
+            "navstate": {
+              "_id": 3,
+              "_NLQuestion": "How many human was killed by Oscar Pistorius?",
+              "_keywordList": {
+                "_list": [
+                  {
+                    "_string": "Oscar Pistorius",
+                    "_type": "NE"
+                  },
+                  {
+                    "_string": "human"
+                  },
+                  {
+                    "_string": "killed"
+                  }
+                ],
+                "length": 3
+              },
+              "_currentKeywordList": {
+                "_list": [],
+                "length": 0
+              },
+              "_currentKeyword": {
+                "_string": "killed"
+              },
+              "_currentKeywordSynonyms": null,
+              "_end": true,
+              "_QTPath": {
+                "_list": [
+                  {
+                    "type": "IncrConstr",
+                    "constr": {
+                      "type": "ExternalSearch",
+                      "searchQuery": {
+                        "type": "WikidataSearch",
+                        "kwds": [
+                          "Oscar Pistorius"
+                        ]
+                      },
+                      "resultTerms": [
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q201377"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q16328520"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q55698496"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q6804597"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58274689"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59191251"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56095781"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q25692472"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58274982"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q112899835"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58175776"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q21663918"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59326577"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58175720"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q47375029"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17599463"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q16814268"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56519510"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17602525"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q89027585"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q82712172"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768894"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768893"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q24717218"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q19768887"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17874774"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q17877992"
+                        }
+                      ]
+                    },
+                    "filterType": "Mixed"
+                  },
+                  {
+                    "type": "IncrType",
+                    "uri": "http://www.wikidata.org/entity/Q5"
+                  },
+                  {
+                    "type": "IncrRel",
+                    "uri": "http://www.wikidata.org/prop/direct/P157",
+                    "orientation": "Bwd"
+                  }
+                ],
+                "length": 3
+              },
+              "_longestQTPath": {
+                "_list": [],
+                "length": 0
+              }
+            }
+          }
+        ],
+        "NE": [
+          "Oscar Pistorius"
+        ],
+        "navStateRes": {
+          "_id": 3,
+          "_NLQuestion": "How many human was killed by Oscar Pistorius?",
+          "_keywordList": {
+            "_list": [
+              {
+                "_string": "Oscar Pistorius",
+                "_type": "NE"
+              },
+              {
+                "_string": "human"
+              },
+              {
+                "_string": "killed"
+              }
+            ],
+            "length": 3
+          },
+          "_currentKeywordList": {
+            "_list": [],
+            "length": 0
+          },
+          "_currentKeyword": {
+            "_string": "killed"
+          },
+          "_currentKeywordSynonyms": null,
+          "_end": true,
+          "_QTPath": {
+            "_list": [
+              {
+                "type": "IncrConstr",
+                "constr": {
+                  "type": "ExternalSearch",
+                  "searchQuery": {
+                    "type": "WikidataSearch",
+                    "kwds": [
+                      "Oscar Pistorius"
+                    ]
+                  },
+                  "resultTerms": [
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q201377"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q16328520"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q55698496"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q6804597"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q58274689"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q59191251"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q56095781"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q25692472"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q58274982"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q112899835"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q58175776"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q21663918"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q59326577"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q58175720"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q47375029"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q17599463"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q16814268"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q56519510"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q17602525"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q89027585"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q82712172"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q19768894"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q19768893"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q24717218"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q19768887"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q17874774"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q17877992"
+                    }
+                  ]
+                },
+                "filterType": "Mixed"
+              },
+              {
+                "type": "IncrType",
+                "uri": "http://www.wikidata.org/entity/Q5"
+              },
+              {
+                "type": "IncrRel",
+                "uri": "http://www.wikidata.org/prop/direct/P157",
+                "orientation": "Bwd"
+              }
+            ],
+            "length": 3
+          },
+          "_longestQTPath": {
+            "_list": [],
+            "length": 0
+          }
+        },
+        "millis": 4958
+      }
+    ]
+  }
+},

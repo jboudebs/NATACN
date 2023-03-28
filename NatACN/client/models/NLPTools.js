@@ -1,5 +1,3 @@
-import KeywordList from "./KeywordList.js";
-import CoreNLP from "../services/NLP/CoreNLP.js";
 
 /**
  * Interface
@@ -22,6 +20,11 @@ class NLPTools
 	static async getSynonyms(keyword)
 	{
 		throw new Error("Method 'getSynonyms' must be implemented.");
+	}
+	
+	static async getRelatedness(word1, word2)
+	{
+		throw new Error("Method 'getRelatedness' must be implemented.");
 	}
 	
 }

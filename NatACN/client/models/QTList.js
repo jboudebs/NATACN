@@ -3,16 +3,17 @@ import { QT } from './QT.js'
 class QTList
 {
 
-	constructor(list)
+	constructor(list=[])
 	{
 		this._list = [];
         this.length = 0;
-		for(let i = 0; i < list.length; i++) 
+		
+		for(let i = 0; i < list.length; i++)
 		{
 			let e = list[i];
 			
 			this.add(e);
-		};
+		}
 	}
 	
 	add(qt)
@@ -20,21 +21,31 @@ class QTList
 		if(typeof qt === 'string')
 		{
 			let sqt = new QT(qt);
+			
 			this._list.push(sqt);
+			this.length++;
 		}
 		else if( qt instanceof QT )
 		{
 			this._list.push(qt);
+			this.length++;
+		}
+		else if ( qt instanceof Array)
+		{
+			for (let qtElement of qt)
+			{
+				this.add(qtElement);
+			}
 		}
 		else if (typeof qt === 'object')
 		{
-			this._list.push(qt);
+			this._list.push(new QT(qt));
+			this.length++;
 		}
 		else
 		{
 			throw new Error("Erreur lors de l'ajout de " + qt + " dans une QTList.");
 		}
-		this.length++;
 	}
 
 	static copy(qtList)
@@ -61,6 +72,10 @@ class QTList
 	{
 		return this._list[i];
 	}
+	getList()
+	{
+		return this._list;
+	}
 
 	isEmpty()
 	{
@@ -75,6 +90,32 @@ class QTList
 	includes(a)
 	{
 		return this._list.includes(a);
+	}
+	
+	_getScoreOrder(prop)
+	{
+		return function (qt1,qt2)
+		{
+			if (qt1[prop] > qt2[prop])
+			{
+				return -1
+			}
+			else if(qt1[prop] < qt2[prop])
+			{
+				return 1
+			}
+			return 0;
+		}
+	}
+	
+	filterByScore(mu)
+	{
+		this._list = this._list.filter(qt=>qt._score>=0.2)
+	}
+	rankByScore()
+	{
+		return new QTList(this._list.sort(this._getScoreOrder("_score")));
+		//console.warn(this._list);//ajouter un map pour borne inf
 	}
 
 	static toQTList(stringList)
@@ -102,11 +143,13 @@ class QTList
 				
 				qtList.add(string);
 				
-			};
+			}
 		}
 		return qtList;
 		
 	}
+	
+	
 }
 
 export { QTList };

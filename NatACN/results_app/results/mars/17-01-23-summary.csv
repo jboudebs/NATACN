@@ -1,0 +1,382 @@
+QALD; Keywords Extracted; Longest QT-Path; Precision; Recall; F1-Score
+After whom is the Riemannian geometry named?;Riemannian geometry (NE),named;Riemannian geometry (match),named after;0.2;1;0.33333333333333337
+Which animal participated in a military operation with the Australian Defence Force?;Australian Defence Force (NE),animal,participated,operation;Australian Defence Force (match);0;0;null
+among the characters in the witcher, who has two unmarried partners, Yennefer of Vengerberg and Triss Merigold?;Yennefer (NE),Vengerberg (NE),character,witcher,partner,Triss Merigold;Yennefer (match),Vengerberg (match),video game character;1;1;1
+among the founders of tencent company, who has been member of national people’s congress?;founder,tencent company,member,people,congress;founded by;0;0;null
+among the other representative work of the author of hunter x hunter, which one is talking about middle school student?;author (NE),hunter x (NE),hunter (NE),school student (NE),work,talking;author (match);0;0;null
+On which stock exchanges are Siemens AG shares traded?;Siemens AG (NE),stock,exchange,share,traded;Siemens AG (match),rolling stock class;0;0;null
+Apart from the book series the witcher, name all of the author’s notable work.;author (NE),book series,witcher,name,work;author (match);0;0;null
+are brooke raboutou and colin duffy from same state of the usa?;usa (NE),raboutou,colin,duffy,state;usa (match);0;null;null
+What is the boiling point of water?;boiling point,water;;null;0;null
+At which school was Yayoi Kusama educated at?;Yayoi Kusama (NE),school,educated;Yayoi Kusama (match);0;0;null
+Which High School did Allen Ginsberg attend?;Allen Ginsberg (NE),High School,attend;Allen Ginsberg (match);0;0;null
+On which island is the Indonesian capital located?;island,capital,located;island,capital,located in the statistical territorial entity;0;0;null
+can i play don't starve on play station 4?;play,starve,play station;play;0;null;null
+How many General Secretaries of the CPSU were there before Leonid Brezhnev?;General Secretaries (NE),CPSU (NE),Leonid Brezhnev (NE);General Secretaries (match);0;0;null
+How many different presidents of Russia have there been that took the position after 1990?;Russia (NE),president,took,position;Russia (match),chairperson;0;0;null
+Did adam ondra win a medal in the 2020 summer olympics?;adam ondra,win,medal,summer olympics;;null;null;null
+Did the Chicago Bulls win at least two seasons of the NBA championship?;Chicago Bulls (NE),NBA championship (NE),win,season;Chicago Bulls (match);0;null;null
+Did Haruki Murakami receive the Nobel Prize in Literature?;Haruki Murakami (NE),receive,Nobel Prize,Literature;Haruki Murakami (match);0;null;null
+Did Kobe Bryant leave the Lakers when LeBron James joined that team?;Kobe Bryant (NE),Lakers (NE),LeBron James (NE),leave,joined,team;Kobe Bryant (match);0;null;null
+Did Rawson Marshall Thurber, the director of Red Notice also direct Titanic?;Rawson Marshall Thurber (NE),director (NE),Red Notice (NE),Titanic;Rawson Marshall Thurber (match);0;null;null
+Did Venice at any point belong to the Austrian Empire?;Venice (NE),Austrian Empire (NE),point,belong;Venice (match);0;null;null
+Were at least two of the founders of tencent educated at the same university?;founder,tencent,educated,university;founded by;0;null;null
+Do all of batman’s partner speak english as native language?;batman (NE),english (NE),partner,speak,language;batman (match);0;null;null
+How many spouses do head of states have on average?;spouse,head,state;spouse,head of state,country;0;0;null
+Was there at least one Formula 1 event on the AVUS?;formula,event,AVUS;Formula One,significant event;0;null;null
+Find all Turkish verbs ending with “uş” with their lemma.;verb,ending,uş,lemma;predicate for,end cause;0;0;null
+From which country are the beagles originally from?;country,beagle;country;0;0;null
+From which country came the 2nd most winners of the Emmy Award ?;country,came,winner,Emmy Award;country;0;0;null
+Does the music style of Helloween belong to rock music?;music style,Helloween,belong,rock music;musical style;0;null;null
+Does the postal code 32423 belong to Minden?;Minden (NE),code,belong;Minden (match);0;null;null
+has adam ondra been a winner of IFSC climbing world cup?;IFSC (NE),adam,winner,climbing,world cup;IFSC (match);0;null;null
+has life expectancy in iran grown in any year after 1999?;iran (NE),life expectancy,grown,year;iran (match),life expectancy;0;null;null
+has population of Isfahan increased at any point after 2006?;Isfahan (NE),population,increased,point;Isfahan (match),population;0;null;null
+Did Joe Cocker play at the Woodstock festival?;Joe Cocker (NE),Woodstock festival (NE),play;Joe Cocker (match);0;null;null
+Did Udo Bölts participate in the Tour de France?;Udo Bölts (NE),Tour de France (NE),participate;Udo Bölts (match);0;null;null
+How many of Reinhold Messner's brothers still live?;Reinhold Messner (NE),brother,live;Reinhold Messner (match),sibling,TMDB person ID;0;0;null
+In which manner did Hemingway die?;Hemingway (NE),manner,die;Hemingway (match);0;0;null
+In which industry does the House of Medici own a business?;industry,House,Medici,own,business;industry,family;0;0;null
+How do people from Turkey call the official name of the united states of america?;Turkey (NE),people,call,name,state,america;Turkey (match),people;0;0;null
+How high is the Cologne Cathedral ?;Cologne Cathedral;;null;0;null
+How is the Harz called in Mandarin Chinese?;Harz (NE),Mandarin Chinese (NE),called;Harz (match);0;0;null
+How many international airports are located within the city of Hamburg ?;Hamburg (NE),airport,located,city;Hamburg (match),airport,location;0;0;null
+On how many albums does Madonna perform?;Madonna (NE),album,perform;Madonna (match),album;0;0;null
+On how many albums does Mariah Carey perform?;Mariah Carey (NE),album,perform;Mariah Carey (match),album;0;0;null
+How many studio albums has Lana Del Rey have?;Lana Del Rey (NE),studio,album;Lana Del Rey (match);0;0;null
+How many ancient civilizations are there?;civilization;civilization;0;0;null
+In how many years did Kobe Bryant receive an NBA All-Defensive Team award?;Kobe Bryant (NE),NBA (NE),year,receive,All Defensive,Team,award;Kobe Bryant (match),NBA (match);0;0;null
+How many All-NBA Team awards have Shaquille O'Neal and Kobe Bryant received in the same year?;Shaquille O'Neal (NE),Kobe Bryant (NE),NBA,Team,award,received,year;Shaquille O'Neal (match);0;0;null
+How many literary works did Richard Bachman write?;Richard Bachman (NE),work,write;Richard Bachman (match),occupation,position;0;0;null
+How many notable works does Sarah J. Maas have?;Sarah J. Maas (NE),work;Sarah J. Maas (match),occupation;0;0;null
+Did Bryan Evenson work for at least one university where he was educated at?;Bryan Evenson (NE),work,university,educated;Bryan Evenson (match);0;null;null
+How many children (including apopted ones) does Jeff Bezos have with his ex-wife?;Jeff Bezos (NE),child,including,apopted,one,ex-wife;Jeff Bezos (match),child;0;0;null
+How many children had Paul McCartney together with his ex-wife Linda McCartney?;child,Paul,McCartney,ex-wife,Linda,McCartney;child;0;0;null
+How many Chinese zodiac animals are there in total?;zodiac,animal;zodiac;0;0;null
+How many cities are part of the Pearl River Delta?;Pearl River Delta (NE),city,part;Pearl River Delta (match);0;0;null
+How many city-states are currently in the world?;city,state,world;city,country,world championship;0;0;null
+How many businesses did Steve Jobs found?;Steve Jobs (NE),business,found;Steve Jobs (match),occupation,discoverer or inventor;0;0;null
+How many countries have a democracy index higher than 7 and drive on the left side ?;democracy index (NE),country,drive,side;democracy index (match),country;0;0;null
+How many countries have never been members of the UN?;UN (NE),country,member;;null;0;null
+How many countries are on the continent of South America ?;South America (NE),country,continent;South America (match),country;0;0;null
+How many countries have mountains whose peaks are higher than 2000m above sea level?;country,mountain,peak,sea level;country,mountain range,elevation above sea level,elevation above sea level;0;0;null
+How many fictional dragons are present in Game of Thrones?;dragon,game,throne;dragon;0;0;null
+How many films are derived from the original Ghost in the Shell Manga?;Shell Manga (NE),film,derived,ghost;Shell Manga (match),3D film,derivative work;0;0;null
+How many French kings didn't die of natural causes?;king,die,cause;king;0;0;null
+How many given names has Queen Elizabeth II ?;Queen Elizabeth II (NE),given,name;Queen Elizabeth II (match);0;0;null
+How many different female mayors did Hamburg have?;Hamburg (NE),mayor;Hamburg (match);0;0;null
+how many head of the state does iran have?;iran (NE),head,state;iran (match),main subject,country;0;0;null
+How many scholary articles have ImageNet as a subject?;article,ImageNet,subject;article;0;0;null
+How many inhabitants does the birthplace of Cristiano Ronaldo have?;Cristiano Ronaldo (NE),inhabitant,birthplace;Cristiano Ronaldo (match),occupant;0;0;null
+How many Japanese writers received the Nobel Prize?;Nobel Prize (NE),writer,received;Nobel Prize (match),author,nominated for;0;0;null
+How many languages are widely used in India?;India (NE),language,used;India (match),languages spoken, written or signed,uses;0;0;null
+How many different colors can water take?;color,water,take;color,located in or next to body of water,protected area;0;0;null
+How many locations has Georges Braque worked at (work location)?;Georges Braque (NE),location,worked,work location;Georges Braque (match),location,employer,work location;0;0;null
+How many months does winter consist of in Germany?;winter (NE),Germany (NE),month,consist;winter (match);0;0;null
+How many movies does the Scream franchise have?;movie,Scream franchise;film;0;0;null
+How many movies has James Cameron directed prior to the year 2010?;James Cameron (NE),movie,directed,year;James Cameron (match);0;0;null
+How many movies were directed by Akira Kurosawa ?;Akira Kurosawa (NE),movie,directed;Akira Kurosawa (match),film;0;0;null
+How many musical scales are there?;scale;scale;0;0;null
+How many public holidays does the state Bavaria have in a year?;state Bavaria (NE),holiday,year;state Bavaria (match),public holiday;0;0;null
+How many literary works besides The Picture of Dorian Gray did its author write?;Dorian Gray (NE),author (NE),work,picture,write;Dorian Gray (match);0;0;null
+How many literary works did Mark Twain write in his lifetime?;Mark Twain (NE),work,write,lifetime;Mark Twain (match),occupation,position;0;0;null
+How many occupations did Mark Twain have?;Mark Twain (NE),occupation;Mark Twain (match),occupation;0;0;null
+how many of spiderman perfomers are citizens of the united kingdom?;spiderman,perfomer,citizen,kingdom;;null;0;null
+how many official languages does the united states of america have?;language,state,america;languages spoken, written or signed,country,U.S. state;0;0;null
+How many official languages has Pakistan ?;Pakistan (NE),language;Pakistan (match);0;0;null
+How many Oscars did all the movies directed by Hayao Miyazaki combined win?;Oscars (NE),Hayao Miyazaki (NE),movie,directed,combined,win;Oscars (match);0;0;null
+How many paintings of Pablo Picasso were ever in a museum?;Pablo Picasso (NE),painting,museum;Pablo Picasso (match),painting;0;0;null
+How many people can play "Mensch ärgere dich nicht" at most?;people,play,mensch,ärgere,dich,nicht;human,suicide;0;0;null
+How many people did Oscar Pistorius kill?;Oscar Pistorius (NE),people,kill;Oscar Pistorius (match),human;0;0;null
+How many people died due to the Great Leap Forward according to the highest estimate?;people,died,Great Leap Forward,according,estimate;people,category for people who died here;0;0;null
+How many people have won the Nobel Prize in Literature since its inception?;people,won,Nobel Prize,Literature,inception;OnlyFans ID,victory;0;0;null
+How many people live in cities in the vicinity of the Nile ?;people,live,city,vicinity,Nile;quantity,quantity,city,neighborhood;0;0;null
+How many pitch classes are part of the chromatic scale?;pitch,class,part,scale;slope rating,golf course;0;0;null
+how many plays has William Shakespeare written in the 16th century.;William Shakespeare (NE),play,written,century;William Shakespeare (match);0;0;null
+How many poems did Allen Ginsberg published?;Allen Ginsberg (NE),poem,published;Allen Ginsberg (match),poem,publication date;0;0;null
+How many political parties have ever had seats in the German Bundestag ?;Bundestag (NE),party,seat;Bundestag (match);0;0;null
+How many positions did Kobe Bryant play in his team?;Kobe Bryant (NE),position,play,team;Kobe Bryant (match),position played on team / speciality;0;0;null
+How many prizes are there established by Alfred Nobel ?;Alfred Nobel (NE),prize,established;Alfred Nobel (match),award;0;0;null
+Did SpaceX ever operate a space mission that was a failed launch?;SpaceX,operate,space mission,failed,launch;SpaceX offshore launch platform;0;null;null
+How many people nominated for the nobel prize in chemistry didn't ever win it?;people,nominated,prize,chemistry,win;human,nominee,award;0;0;null
+How many seasons does Pose have?;season,Pose;season;0;0;null
+How many seats are there in the current German Bundestag ?;seat,bundestag;seat;0;0;null
+How many siblings had the author of “Little Women” ?;author (NE),sibling,Little Women;author (match);0;0;null
+How many ski resorts were there ever in France?;France (NE),ski,resort;France (match);0;0;null
+How many songs were composed by Jay Chou but not released in his own albums?;Jay Chou (NE),song,composed,released,album;Jay Chou (match);0;0;null
+How many spouses had Rama V (one of the former Kings of Siam)?;Rama V (NE),spouse,king,Siam;Rama V (match),spouse;0;0;null
+Does Switzerland have a place north of the Point (8.57 47.8)?;Switzerland (NE),place,north,point;Switzerland (match),location;0;null;null
+how many times has Giorgio Moroder won golden globe award?;Giorgio Moroder (NE),time,won,globe award;Giorgio Moroder (match),Wikimedia category;0;0;null
+How many Olympic Games has Kobe Bryant taken part in?;Olympic Games (NE),Kobe Bryant (NE),taken,part;Olympic Games (match);0;0;null
+How many times was Oskar Lafontaine elected Member of the Landtag of Saarland?;Oskar Lafontaine (NE),Saarland (NE),time,elected,Member,Landtag;Oskar Lafontaine (match);0;0;null
+How many wars did the Empire of Japan participate in?;Japan (NE),war,empire,participate;Japan (match);0;0;null
+How many women were amongst the founding members of “The Bridge” (“Die Brücke”)?;woman,founding,member,Bridge,Die,Brücke;wife;0;0;null
+Who has a higher observed lifespan out of the common bottlenose dolphin and the brown bear?;observed,lifespan,bottlenose dolphin,bear;observed in,life expectancy;0;0;null
+What is TNFAIP1 ?;tnfaip1;;null;0;null
+How often did Naomi Novik win the nebula award?;Naomi Novik (NE),win,nebula award;Naomi Novik (match);0;0;null
+How often did the Mongols try to invade Japan?;Mongols (NE),Japan (NE),try;Mongols (match);0;0;null
+How often was Naomi Novik nominated for a Hugo Award?;Naomi Novik (NE),nominated,Hugo Award;Naomi Novik (match);0;0;null
+if someone died in 1969, is there any chance they heard of queen’s music?;queen (NE),someone,died,chance,heard,music;queen (match),TMDB person ID;0;null;null
+Is Dr. Pepper named after its inventor?;inventor (NE),Dr. Pepper,named;inventor (match);0;null;null
+In how many movies did Carey Mulligan and Ryan Gosling star together?;Carey Mulligan (NE),Ryan Gosling (NE),movie,star;Carey Mulligan (match);0;0;null
+in the country where ghost in the shell is born, who is the current head of the state?;country,ghost,shell,born,head,state;country,ghost town,licence plate code;0;0;null
+How many rivers are in or next to the U.S. state where cage the elephant is from?;U.S. state (NE),river,cage,elephant;U.S. state (match);0;0;null
+In which federal state is the Veltins brewery headquarter?;state,Veltins brewery;state;0;0;null
+In which stadium do the New York Yankees play?;stadium,New York,Yankees,play;stadium;0;0;null
+In which countries is the Himalayas located?;Himalayas (NE),country,located;Himalayas (match),country,located in the present-day administrative territorial entity;0;0;null
+Was Isfahan a capital in the year 934?;Isfahan (NE),capital,year;Isfahan (match),capital;0;null;null
+In how many countries has IKEA been established?;IKEA (NE),country,established;IKEA (match),country;0;0;null
+In which country did the United Fruit Company have their headquarters?;United Fruit Company (NE),country,headquarters;United Fruit Company (match),country,headquarters location;0;0;null
+In how many countries is pysanka practiced?;country,pysanka,practiced;country;0;0;null
+In which country is Oberirrach ?;Oberirrach (NE),country;Oberirrach (match),country;1;1;1
+In which country was Spotify created?;Spotify (NE),country,created;Spotify (match),country,inception;0;0;null
+What is the song Vogue by Madonna named after?;Madonna (NE),song,vogue,named;Madonna (match);0;0;null
+in which language does the united stated have the shortest short name?;language,united,stated,name;language,start time;0;0;null
+Does Bremerhaven's local dialing code start with 4?;Bremerhaven (NE),dialing code,start;Bremerhaven (match),local dialing code;0;null;null
+In which year did ABBA publish their album The Visitors ?;year (NE),ABBA (NE),publish,album,Visitors;year (match);0;0;null
+In which year was the author of “The Vanishing Half” born?;year (NE),author (NE),Vanishing,half,born;year (match);0;0;null
+Is After Eight manufactured by Unilever?;Unilever (NE),manufactured;Unilever (match);0;null;null
+Is ALDI also in Italy?;ALDI (NE),Italy (NE);ALDI (match);0;null;null
+is Isfahan a big city?;Isfahan (NE),city;Isfahan (match);0;null;null
+Is math related to science ?;math,related,science;zbMATH author ID,related category;0;null;null
+Is Python a kind of Programming languages?;python,kind,programming,language;Python;0;null;null
+Is samurai champloo a piece of original work or an adaptation?;samurai champloo,piece,work,adaptation;;null;0;null
+Was the first female chancellor in Germany ever married?;chancellor (NE),Germany (NE),married;chancellor (match);0;null;null
+Is the Mariana Trench deeper than Mount Everest is high (above sea level)?;Mariana Trench (NE),Mount Everest (NE),sea level;Mariana Trench (match);0;null;null
+Is the number of countries in Europe larger than that in Asia?;Europe (NE),Asia (NE),number,country;Europe (match);0;null;null
+Is the production company of samurai champloo still existing?;production company,samurai champloo,existing;production company;0;null;null
+is there female main character in hunter x hunter?;hunter x hunter (NE),character;hunter x hunter (match);0;null;null
+Is water colorless?;water colorless;nitric oxide metabolic process;0;null;null
+Is Axel Rose a member of Guns N' Roses?;Axel Rose (NE),member,gun,n,Roses;Axel Rose (match);0;null;null
+Is the capital of Iran bigger than that of Germany?;Iran (NE),Germany (NE),capital;Iran (match);0;null;null
+Is the Weser longer than the Rhine?;Weser (NE),Rhine (NE);Weser (match);0;null;null
+Is Tony Blair taller than Tiger Woods?;Tony Blair (NE),Tiger Woods;Tony Blair (match);0;null;null
+Is Chicago located at Lake Michigan?;Chicago (NE),Lake Michigan (NE),located;Chicago (match);0;null;null
+Is the district of Höxter next to the district of Paderborn?;Höxter (NE),Paderborn (NE),district,district;Höxter (match);0;null;null
+Are part of the Harz mountains in the district of Nordhausen?;Nordhausen (NE),part,Harz,mountain,district;Nordhausen (match);0;null;null
+How many people won the Nobel Prize in Literature or Physics since 2000?;people,won,Nobel Prize,Literature,Physics;OnlyFans ID,victory;0;0;null
+How many african-american people got a star on the Hollywood Walk of Fame?;people,got,star,Hollywood Walk,Fame;human,mummy;0;0;null
+With how many countries does Australia share a border?;Australia (NE),country,share,border;Australia (match),country,stock market;0;0;null
+How many female Chinese Empresses have there been?;Empresses (NE);Empresses (match);0;0;null
+Of which political party was Joseph Beuys a member?;Joseph Beuys (NE),party,member;Joseph Beuys (match),member of political party,member of political party;0;0;null
+In what year did the Hollywood Walk of Fame open?;year (NE),Hollywood Walk,Fame;year (match);0;0;null
+on which video streaming services can i watch hunter x hunter anime series?;hunter x (NE),hunter (NE),video,streaming,service,watch,anime,series;hunter x (match),hunter (match);0;0;null
+People of what age belong to the Silent Generation ?;people,age,belong,Silent Generation;people,historical period;0;null;null
+In what year did the district of Höxter come into existence?;year (NE),district,Höxter,come,existence;year (match);0;0;null
+Is the Linux Foundation verified on Twitter?;Linux Foundation (NE),Twitter (NE),verified;Linux Foundation (match);0;null;null
+Were Angela Merkel and Tony Blair born in the same year?;Angela Merkel (NE),Tony Blair (NE),born,year;Angela Merkel (match);0;null;null
+Do more than 100000000 people speak Japanese?;Japanese (NE),people,speak;Japanese (match);0;null;null
+Tell me all the cast members of the film Red Notice directed by Rawson Marshall Thurber ?;Rawson Marshall Thurber (NE),cast,member,film Red Notice,directed;Rawson Marshall Thurber (match);0;0;null
+The first album of Jay Chou;Jay Chou (NE),album;Jay Chou (match),album;0.05;1;0.09523809523809523
+Through which countries does the Danube go?;Danube (NE),country,go;Danube (match),country;0.5882352941176471;1;0.7407407407407407
+What do sperm whales mainly eat?;sperm,whale,eat;Physeter macrocephalus,Physeter macrocephalus,food;0;0;null
+Was Frida Kahlo a surrealist?;Frida Kahlo (NE),surrealist;Frida Kahlo (match);0;null;null
+Was Funny Games and its remake directed by different persons?;Funny Games (NE),remake,directed,person;Funny Games (match);0;null;null
+Was Google founded by Bill Gates?;Google (NE),Bill Gates (NE),founded;Google (match);0;null;null
+What is the second letter in the Greek alphabet?;letter,alphabet;letter;0;0;null
+Was it the cancer that caused the death of Steve Jobs who was the CEO of Apple?;cancer (NE),Steve Jobs (NE),Apple (NE),caused,death,ceo;cancer (match);0;null;null
+Was Shaquille O'Neal the teammate of Kobe Bryant in the year of 2000?;Shaquille O'Neal (NE),Kobe Bryant (NE),teammate,year;Shaquille O'Neal (match);0;null;null
+Was Shaquille O'Neal, as the basketball player, also an film actor?;Shaquille O'Neal (NE),basketball player (NE),film actor (NE);Shaquille O'Neal (match);0;null;null
+Was the first album of the band Darkside released in 2012?;Darkside (NE),album,band,released;Darkside (match),album;0;null;null
+What are the spin-offs of Breaking Bad?;spin,off,Breaking;spin-off,spin-off,Breaking Bad character;0;0;null
+Which river flows through the Grand Canyon?;river (NE),Grand Canyon (NE),flows;river (match);0;0;null
+What was the key event related to Salvador Dalí?;Salvador Dalí (NE),event,related;Salvador Dalí (match),significant event;1;1;1
+Who passed the German Occupational Safety and Health Act?;passed,Occupational Safety,Health,Act;legislated by;0;0;null
+What are the German names of academic disciplines containing “linguistik”?;name,discipline,containing,linguistik;given name,field of work,mountain range;0;0;null
+What are the names of the head of states of Germany and France ?;Germany (NE),France (NE),name,head,state;Germany (match);0;0;null
+What are the professions of John Lennon’s sons?;John Lennon (NE),profession,son;John Lennon (match),occupation;0.36363636363636365;0.7272727272727273;0.4848484848484849
+What came first: the TV show The Flintstones or the end of racial discrimination in voting in the US ?;Flintstones (NE),US (NE),came,tv,show,end,discrimination,voting;Flintstones (match);0.03333333333333333;1;0.06451612903225806
+What colors does the German national flag have?;color,flag;color,primary color;0.2;0.3333333333333333;0.25
+What did the suffragettes stand for?;suffragette,stand;;null;0;null
+What do you call a female form of an emperor in English?;emperor (NE),English (NE),form;emperor (match);0;0;null
+Does the ATI Company still exist?;ATI Company (NE),exist;ATI Company (match);0;null;null
+What happened to the dinosaurs ?;happened,dinosaur;;null;null;null
+What instruments did Louis Armstrong play?;Louis Armstrong (NE),instrument,play;Louis Armstrong (match),instrument;1;1;1
+what did the author of the phrase: "Alea iacta est" die of?;author (NE),phrase,Alea,die;author (match);0;0;null
+What is the binary gender of the partner of Allen Ginsberg ?;Allen Ginsberg (NE),gender,partner;Allen Ginsberg (match),sex or gender;0.5;1;0.6666666666666666
+What is the capital of the prefecture Tokyo ?;Tokyo (NE),capital,prefecture;Tokyo (match),capital;1;1;1
+What is the Chinese zodiac animal that follows the ox?;zodiac animal,follows,ox;animal from the Chinese zodiac,follows;0.08333333333333333;1;0.15384615384615385
+What is the combined total revenue of three largest Big Tech companies ordered by number of employees?;combined,revenue,tech,company,ordered,number,employee;combines lexemes;0;0;null
+What is the coordinate location of Shenzhen ?;Shenzhen (NE),coordinate location;Shenzhen (match),coordinate location;0;0;null
+What is the Erlangen program ?;Erlangen program (NE);Erlangen program (match);0;0;null
+Did the Roland Corporation produce synthesizers?;Roland Corporation (NE),produce,synthesizer;Roland Corporation (match);0;null;null
+How many perople do the Port of Rotterdam employ?;Rotterdam (NE),perople,Port,employ;Rotterdam (match);0;0;null
+what is the main subject of the manga "your lie in april": primary school, middle school or high school student?;april (NE),school student (NE),subject,manga,lie,school,school;april (match);0;0;null
+What is the mother tongue of the author Chimamanda Ngozi Adichie ?;author (NE),Chimamanda Ngozi Adichie (NE),mother tongue;author (match);0;0;null
+Who was the partner of Allen Ginsberg?;Allen Ginsberg (NE),partner;Allen Ginsberg (match),spouse;0;0;null
+What is the second game developed by Piranha Bytes?;Piranha Bytes (NE),game,developed;Piranha Bytes (match),video game,developer;0;0;null
+What is the TV-show that starred Rowan Atkinson , had 4 seasons and started in 1983?;Rowan Atkinson (NE),tv,show,starred,season,started;Rowan Atkinson (match);0;0;null
+What is the english nickname of Ella Fitzgerald?;english nickname (NE),Ella Fitzgerald (NE);english nickname (match);0;0;null
+What are the occupations of Kazuo Ishiguro’s daughter?;Kazuo Ishiguro (NE),occupation,daughter;Kazuo Ishiguro (match),occupation;0.25;0.5;0.3333333333333333
+What are the occupations of Nat King Cole?;King Cole (NE),occupation;King Cole (match),occupation;0.8571428571428571;1;0.923076923076923
+what is the official language of iran?;iran (NE),language;iran (match),languages spoken, written or signed;0;0;null
+What is the population in Freiburg ?;Freiburg (NE),population;Freiburg (match),population;0;0;null
+What is the title of the 2020 released movie in which Carey Mulligan was the main actress?;Carey Mulligan (NE),actress (NE),title,released,movie;Carey Mulligan (match);0;0;null
+What does Ray-Ban produce primarily?;Ray Ban,produce;parent;0;0;null
+What language did the famous king, who was also a student of Aristotle's , speak?;king (NE),student (NE),Aristotle (NE),language,speak;king (match);0;0;null
+What language do they speak in Poland ?;Poland (NE),language,speak;Poland (match),languages spoken, written or signed;0;0;null
+How many different languages are spoken in West Europe?;West Europe (NE),language,spoken;West Europe (match),language of work or name,spoken text audio;0;0;null
+Is Germany bigger than Poland?;Germany (NE),Poland (NE);Germany (match);0;null;null
+What notes does a C major chord consist of?;note,c,chord,consist;note;0.015;1;0.02955665024630542
+How many other video games began the same year as Dead by Daylight?;Daylight (NE),video,game,began,year;Daylight (match),video game,video game;0;0;null
+What other civilizations existed during the Aztecs ?;Aztecs (NE),civilization,existed;Aztecs (match),civilization;0;0;null
+What brand uses petroleum jelly?;brand,uses,petroleum jelly;brand,uses;0;0;null
+How many other musical films were launched the same year as Grease?;film,launched,year,grease;short film,date of official opening;0;0;null
+Which creator of The OA also acted in it?;creator (NE),OA (NE),acted;creator (match);0;0;null
+What albums has Atif Aslam been on?;Atif Aslam (NE),album;Atif Aslam (match),album;1;1;1
+What was Ada Lovelace’s noble title?;Ada Lovelace (NE),title;Ada Lovelace (match),title;0;0;null
+What was Janus the god of?;Janus,god;;null;0;null
+Who was the fellow Hobbit who was an enemy of Frodo?;Hobbit (NE),Frodo (NE),enemy;Hobbit (match);0;0;null
+What was the last painting that Van Gogh painted?;Van Gogh (NE),painting,painted;Van Gogh (match),painting,painting;0;0;null
+What was the main subject addressed in the Deep Purple song “Smoke on the water”?;Deep Purple (NE),subject,addressed,song,smoke,water;Deep Purple (match),category's main topic;0;0;null
+When did the first sperm whales exist?;sperm,whale,exist;Physeter macrocephalus,Physeter macrocephalus,lost film;0;0;null
+What year did the Berlin Wall fall?;year (NE),Berlin Wall (NE),fall;year (match);0;0;null
+What year was Riverdale first aired?;year (NE),Riverdale (NE),aired;year (match);0;0;null
+When did Allen Ginsberg die?;Allen Ginsberg (NE),die;Allen Ginsberg (match);0;0;null
+When did Ella Fitzgerald die?;Ella Fitzgerald (NE),die;Ella Fitzgerald (match);0;0;null
+when did human first start to bouldering?;start,bouldering;beginning;0;0;null
+When did Pakistan become independent?;Pakistan (NE),become;Pakistan (match);0;0;null
+When did Rumi die?;Rumi (NE),die;Rumi (match);0;0;null
+When did the brother of the author of Slaughterhouse Five die?;author (NE),brother,slaughterhouse,die;author (match);0;0;null
+when was the creator of saturday night live born?;creator (NE),saturday night (NE),born;creator (match);0;0;null
+When did The OA was first released?;OA,released;;null;0;null
+How many casualties were a result of the Troubles?;casualty,result,trouble;disaster,earthquake,disaster;0;0;null
+When did the Weimar Republic start?;Weimar Republic (NE),start;Weimar Republic (match);0;0;null
+When did World War II officially end?;World War II (NE),end;World War II (match),end cause;0;0;null
+when is the first ironman world championship?;world championship;world championship;0;0;null
+when was the magazine in which hunter x hunter is published established?;hunter x hunter (NE),magazine,published,established;hunter x hunter (match);0;0;null
+When the film Red Notice was released?;film Red Notice,released;;null;0;null
+When was Cologne Cathedral built?;Cologne Cathedral (NE),built;Cologne Cathedral (match);0;0;null
+What can be done against gout?;gout;;null;0;null
+When was HIV first identified?;HIV (NE),identified;HIV (match);0;0;null
+When was the first article about Liquid State Machines published?;Liquid State Machines (NE),article,published;Liquid State Machines (match),review article,published in;0;0;null
+When was Marlene Dietrich born?;Marlene Dietrich (NE),born;Marlene Dietrich (match),date of birth;1;1;1
+When was Penicillin discovered?;penicillin,discovered;penicillin;0;0;null
+When was Rumi born?;Rumi (NE),born;Rumi (match),date of birth;0;0;null
+When was the beginning of Romanticism ?;beginning;beginning;0;0;null
+When was the Echo Music Prize abolished?;Echo Music Prize,abolished;;null;0;null
+When was the first album of the American band Typhoon released?;band Typhoon (NE),album,released;band Typhoon (match),published in;0;0;null
+When was the Hamburg Airport inaugurated?;Hamburg Airport (NE),inaugurated;Hamburg Airport (match),date of official opening;0;0;null
+When was the Hamburg S-Bahn officially opened?;Hamburg S Bahn (NE),opened;Hamburg S Bahn (match),officially opened by;0;0;null
+When was the jazz club Birdland in Hamburg founded?;Birdland (NE),Hamburg (NE),jazz club,founded;Birdland (match);0;0;null
+When was the poem Howl written?;poem,howl,written;poem;0;0;null
+When was the university of Cambridge founded?;Cambridge (NE),university,founded;Cambridge (match);0;0;null
+When was the University of Hamburg founded?;University,Hamburg,founded;university;0;0;null
+When was the University of Saskatchewan founded?;University,Saskatchewan,founded;university;0;0;null
+When was the Vatican City created?;Vatican City (NE),created;Vatican City (match),inception;1;1;1
+When was United Fruit Company founded?;United Fruit Company (NE),founded;United Fruit Company (match),founded by;0;0;null
+Where did Trotzky die?;Trotzky (NE),die;Trotzky (match);0;0;null
+Where are both The Call of the Wild and White Fang set, the most two famous works of Jack London?;White Fang (NE),Jack London (NE),call,Wild,set,work;White Fang (match);0;0;null
+Where did the Hambach Festival happen?;Hambach Festival,happen;;null;0;null
+Where do the novels of the franchise The Lord of the Rings take place?;novel,franchise,Lord,Rings,take,place;novel,media franchise;0;0;null
+Where does the Nutri-Score originate from?;nutri,score,originate;;null;0;null
+Are there at least two winners of the Academy Award for Best Actress who have been educated at the same institution?;winner,Academy Award,actress,educated,institution;winner,Academy Awards;0;null;null
+Where was K-pop star Lisa Manoban born?;pop star Lisa Manoban (NE),k,born;;null;0;null
+What is the highest point of Norway?;Norway (NE),point;Norway (match),location;0;0;null
+Where did the psychedelic band “Khruangbin” form?;band,Khruangbin form;concert band;0;0;null
+Where was Caesar murdered?;Caesar (NE),murdered;Caesar (match);0;0;null
+Where was Goethe’s unmarried partner born ?;Goethe (NE),partner,born;Goethe (match),spouse,date of birth;0;0;null
+Where was Roland Corporation founded?;Roland Corporation (NE),founded;Roland Corporation (match),founded by;0;0;null
+Where was the author of The Catcher in the Rye born ?;author (NE),catcher,Rye,born;author (match);0;0;null
+Who developed the Erlangen program?;Erlangen program (NE),developed;Erlangen program (match);0.125;1;0.2222222222222222
+Which actor starring in Free Guy also starred in Deadpool?;actor (NE),Free Guy (NE),Deadpool (NE),starring,starred;actor (match);0;0;null
+Which American presidents followed in their father‘s step and also became the president?;president (NE),followed,father ‘s,step,became;president (match),followed by;0;0;null
+which animal can possibly live longer, panda or koala?;animal,live,panda,koala;dog,TMDB person ID;0;0;null
+Which archipelago has more islands: the Galápagos Islands or the Hawaiian Islands ?;archipelago,island,Galápagos,Islands,Hawaiian,Islands;archipelago,island;0;0;null
+Which art movement was Yoko Ono part of?;Yoko Ono (NE),art movement,part;Yoko Ono (match),movement;1;1;1
+which band is created earlier, queen or pink floyd?;queen (NE),band,created,floyd;queen (match);0;0;null
+What caused Kobe Bryant's Death?;Kobe Bryant (NE),caused,death;Kobe Bryant (match);0;0;null
+What are the opposites of zero?;opposite;opposite;0;0;null
+Which businesses are founded by the person in charge of Tesla?;Tesla (NE),business,founded,person,charge;Tesla (match),business,founded by;0;0;null
+Did Germany have a population growth of at least 1% since 2010?;Germany (NE),population growth,%;Germany (match);0;null;null
+Which aircraft did Howard Hughes build?;Howard Hughes (NE),aircraft,build;Howard Hughes (match),aircraft model;0;0;null
+Which country has more official languages: South Africa (​​Q258) or Ethiopia ?;South Africa (NE),Ethiopia (NE),country,language,q258;South Africa (match);0.03333333333333333;1;0.06451612903225806
+Is throat singing a tradition?;throat,singing,tradition;;null;null;null
+Which disease caused the death of Mark Twain?;disease (NE),Mark Twain (NE),caused,death;disease (match);0;0;null
+Which diseases can be caused by smoking ?;disease,caused,smoking;genetic disease,genetic disease,smoke;0;0;null
+Which genre that Cage the Elephant belongs to has the fewest english characters?;english (NE),genre,cage,Elephant,belongs,character;english (match),genre;0;0;null
+Which takes less space? 1kg of lead or 1kg of iron.;takes,space;airport,MusicBrainz place ID;0;0;null
+Which kingdom preceded the Thonburi Kingdom ?;Thonburi Kingdom (NE),kingdom,preceded;Thonburi Kingdom (match);0;0;null
+How many mountains are located in Germany?;Germany (NE),mountain,located;Germany (match);0;0;null
+Which movements is the painting “Les Demoiselles d'Avignon” assigned to?;Les Demoiselles d'Avignon (NE),movement,painting,assigned;Les Demoiselles d'Avignon (match),movement;1;1;1
+Which movies belong to the Cornetto trilogy ?;movie,belong,cornetto,trilogy;film;0;0;null
+During what event was the Four Policemen Council proposed?;event,policeman,Council,proposed;event;0;0;null
+Which NBA teams have won the most seasons?;NBA (NE),team,won,season;NBA (match),member of sports team;0;0;null
+Which of the dragons in Game of Thrones died?;dragon,game,Thrones,died;dragon;0;0;null
+Which other movies by the director of Another Round also starred Mads Mikkelsen ?;director (NE),Mads Mikkelsen (NE),movie,Round,starred;director (match);0;0;null
+Which egyptian pyramid is the tallest?;pyramid;pyramid;0;0;null
+What is the offical language of Taipei?;Taipei (NE),language;Taipei (match),language of work or name;0;0;null
+Which shows aired for the first time the same year as Saturday Night Live ?;Saturday Night (NE),shows,aired,time,year,Live;Saturday Night (match),television series;0;0;null
+Which songs made up the album Fijación Oral vol. 1 ?;song,made,album,fijación,vol.;song;0;0;null
+Which started first: impressionism or expressionism (art movements)?;started,impressionism,expressionism,art,movement;Santa Casa da Misericórdia;0;0;null
+which state inside USA is batman living in?;USA (NE),batman (NE),state,living;USA (match);0;0;null
+which swordfighter in the lord of the rings marry a half-elven and belong to rangers of the north?;swordfighter,lord,ring,marry,half elven,belong,ranger,north;European Fencing Confederation fencer ID;0;0;null
+Which egyptian pyramid is the tallest?;pyramid;pyramid;0;0;null
+Who are the actresses in Portrait of a Lady on Fire?;actress,portrait,lady,fire;FANZA AV actress ID,Portrait Archive ID;0;0;null
+Did Michael Jordan and Kobe Bryant play for the same team?;Michael Jordan (NE),Kobe Bryant (NE),play,team;Michael Jordan (match);0;null;null
+Who created the Turing machine?;created,Turing machine;creator;0;0;null
+When was the Hambach Castle built?;Hambach Castle (NE),built;Hambach Castle (match),château;0;0;null
+Who died at the North Pole?;North Pole (NE),died;North Pole (match),place of death;0.5;1;0.6666666666666666
+Who directed Anne with an E ?;Anne (NE),directed,e;Anne (match);0;0;null
+Who wrote "Prototypical Networks for Few-shot Learning"?;wrote,network,shot,learning;scribe;0;0;null
+Who founded “The Blue Rider”?;founded,Blue Rider;founded by;0;0;null
+Who founded the Worpswede artist colony ?;Worpswede artist colony (NE),founded;Worpswede artist colony (match),founded by;1;1;1
+Who is the author of “Convenience Store Woman” ?;author (NE),Convenience Store Woman;author (match);0;0;null
+Who is the soccer player with the most goals in their career?;soccer player (NE),goal,career;soccer player (match);0;0;null
+Who is the creator of the Dinosaurs tv show ?;creator (NE),Dinosaurs tv show;creator (match);0;0;null
+Who is the current president of the German Bundestag currently?;president (NE),Bundestag (NE);president (match);0;0;null
+Who is the most wealthy entrepreneur?;entrepreneur (NE);entrepreneur (match);0;0;null
+Who is the oldest cast member of the Netflix show “Queer Eye” ?;Netflix show (NE),cast member,Queer Eye;Netflix show (match),cast member;0.007462686567164179;1;0.014814814814814815
+Who is the publisher of Smite ?;publisher (NE),Smite;publisher (match);0;0;null
+Who wrote the Erlangen program?;Erlangen program (NE),wrote;Erlangen program (match);0.125;1;0.2222222222222222
+In which country is the Nanga Parbat located?;country,Nanga Parbat,located;country;0;0;null
+Who was an actor in more movies, Daniel Day Lewis or Paul Dano ?;actor (NE),Paul Dano (NE),movie,Daniel Day,Lewis;actor (match);0;0;null
+For what literature prize was Simone de Beauvoir nominated?;Simone de Beauvoir (NE),literature prize,nominated;Simone de Beauvoir (match);0;0;null
+What is the website of NPR's “Tiny Desk Concert”?;NPR (NE),website,desk,concert;NPR (match),official website;0;0;null
+Who was the creator of Boo-Boo Bear ?;creator (NE),Boo Boo Bear;creator (match);0;0;null
+Who was the creator of Unbreakable Kimmy Schmidt ?;creator (NE),Kimmy Schmidt (NE);creator (match);0;0;null
+Who was the director of Llamas with Hats ?;director (NE),Llamas (NE),Hats;director (match);0;0;null
+Who founded the Roland Corporation?;Roland Corporation (NE),founded;Roland Corporation (match),founded by;0;0;null
+Who was the original actor who played Pinhead ?;actor (NE),played,Pinhead;actor (match);0;0;null
+Who were the parents of Socrates ?;Socrates (NE),parent;Socrates (match),mother;1;0.5;0.6666666666666666
+Who wrote Anne of Green Gables ?;Anne (NE),Green Gables (NE),wrote;Anne (match);0;0;null
+Who wrote the poem Howl ?;wrote,poem,howl;scribe;0;0;null
+Who's the author of The Hellbound Heart ?;author (NE),Hellbound Heart;author (match);0;0;null
+Whom did Clara Westhoff marry?;Clara Westhoff (NE),marry;Clara Westhoff (match);0;0;null
+what is the oldest film festival?;film festival;film festival;0.005;1;0.009950248756218907
+When was Athens founded?;Athens (NE),founded;Athens (match),founded by;0;0;null
+which river is longer, the Seine or Elbe？;river (NE),Seine (NE),Elbe;river (match),Seine (match);0;0;null
+which game is created earlier, super mario bros or Pac-Man?;game,created,mario bros,Pac Man;game,creator;0;0;null
+who is the youngested member in g-idle?;member,g idle;member;0;0;null
+who is older, Lionel Messi or Cristiano Ronaldo？;Lionel Messi (NE),Cristiano Ronaldo;Lionel Messi (match);0;0;null
+Is heidelberg university or university hamburg founded earlier?;heidelberg university,university hamburg,founded;;null;0;null
+which forest is bigger, Amazon Rainforest or Congo Basin?;Amazon Rainforest (NE),Congo Basin (NE),forest;Amazon Rainforest (match);0.03333333333333333;1;0.06451612903225806
+Does Samsung Electronics or Apple have more employees?;Samsung Electronics (NE),Apple (NE),employee;Samsung Electronics (match);0;0;null
+who is taller, Lionel Messi or Cristiano Ronaldo？;Lionel Messi (NE),Cristiano Ronaldo;Lionel Messi (match);0;0;null
+who has won more NBA awards, Michael Jordan or Kobe Bean Bryant？;NBA (NE),Michael Jordan (NE),Kobe Bean Bryant (NE),won,award;NBA (match);0;0;null
+Did Michael Jordan ever weigh more than Kobe Bean Bryant？;Michael Jordan (NE),Kobe Bean Bryant (NE),weigh;Michael Jordan (match);0;null;null
+Who is older, Sebastian Vettel or Lewis Hamilton?;Sebastian Vettel (NE),Lewis Hamilton (NE);Sebastian Vettel (match),Lewis Hamilton (match);0;0;null
+which city is more populated, copenhagen or amsterdam?;copenhagen (NE),city,populated,amsterdam;copenhagen (match);0;0;null
+How many things are part of the "One Piece" Franchise?;thing,part,piece,Franchise;item for this sense,part,part,licence plate code;0;0;null
+How many fictional female swordfighters are there?;swordfighter;European Fencing Confederation fencer ID;0;0;null
+which company started earlier, Black Diamond Equipment or la sportiva?;Black Diamond Equipment (NE),company,started,la sportiva;Black Diamond Equipment (match),enterprise;0;0;null
+which desert is bigger, sahara desert or arabian desert?;desert,sahara desert desert;desert,Hamada;0;0;null
+who lives longer, series black or bellatrix Lestrange?;lives,series Lestrange;Lives of WWI ID;0;0;null
+What is the area of the great lakes?;area,lake;area,lake;0;0;null
+What is native name of the composer of the Japanese national anthem?;composer (NE),name,anthem;composer (match),official name;0;0;null
+Who is the founder of the capital of Vietnam?;founder (NE),Vietnam (NE),capital;founder (match);0;0;null
+Who is the manager of the operator of Neumayer III?;manager (NE),operator (NE),Neumayer III (NE);manager (match);0;0;null
+How high is the mountain on which Günther Messner died?;Günther Messner (NE),mountain,died;Günther Messner (match);0;0;null
+What is the twitter name of Running Wild?;twitter name,Running;Twitter username,marathon;0;0;null
+How many times did the Italian national soccer team win the Fifa World Cup?;Fifa World Cup (NE),time,soccer team,win;Fifa World Cup (match);0;0;null
+What is the area of the capital of Spitsbergen?;Spitsbergen (NE),area,capital;Spitsbergen (match),area;0;0;null
+What percentage of Andorra is covered with water?;Andorra (NE),percentage,covered,water;Andorra (match),water as percent of area;1;1;1
+How many countries are located around the euorpean Lake Constance?;euorpean Lake Constance (NE),country,located;;null;0;null
+With how many persons was Richard Burton married?;Richard Burton (NE),person,married;Richard Burton (match),TMDB person ID;0;0;null
+At what coordinates was the "Sender Teutoburger Wald" erected?;Sender Teutoburger Wald (NE),coordinate,erected;Sender Teutoburger Wald (match);0;0;null
+Where is the poet Alexander Pope buried?;poet (NE),Alexander Pope (NE),buried;poet (match);0;0;null
+In what country is the Kandahar-downhill?;country,Kandahar;country;0;0;null
+Who founded the architectural firm who planned the Elbphilharmonie?;Elbphilharmonie (NE),founded,firm,planned;Elbphilharmonie (match),founded by;0;0;null
+Where are the founders of the band Metallica from?;Metallica (NE),founder,band;Metallica (match),founded by;0;0;null
+Where does the Granny Smith apple variety come from?;Granny Smith (NE),apple,variety,come;Granny Smith (match),apple cultivar;0;0;null
+What is the Fujiyama made of?;Fujiyama (NE),made;Fujiyama (match);0;0;null

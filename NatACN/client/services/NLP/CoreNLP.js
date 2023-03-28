@@ -163,7 +163,6 @@ class CoreNLP
 				if((ne === w || w.includes(ne)) && (!first.includes(w)))
 				{
 					first.push(w);
-					;
 				}	
 			}
 		}
@@ -244,7 +243,6 @@ class CoreNLP
 	static extract()
 	{
 		let extracted_words = CoreNLP._fetch.sentences[0].tokens.map(e=>{
-																		console.log("fzenmk");
 																		if(e.pos.startsWith("NN"))
 																		{
 																			return e.lemma

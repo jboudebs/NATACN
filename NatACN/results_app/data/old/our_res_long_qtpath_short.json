@@ -1,0 +1,1291 @@
+{
+  "id": 0,
+  "question": "After whom is the Riemannian geometry named?",
+  "query": "SELECT DISTINCT ?result WHERE { wd:Q761383 wdt:P138 ?result. }",
+  "answer": {
+    "our_ref": [
+      [
+        {
+          "type": "uri",
+          "uri": "http://www.wikidata.org/entity/Q42299"
+        }
+      ]
+    ],
+    "qald": [
+      {
+        "type": "uri",
+        "value": "http://www.wikidata.org/entity/Q42299"
+      }
+    ],
+    "QTList+_res": {
+      "columns": [
+        "thing_1",
+        "thing_6"
+      ],
+      "rows": [
+        [
+          {
+            "type": "uri",
+            "uri": "http://www.wikidata.org/entity/Q761383"
+          },
+          {
+            "type": "uri",
+            "uri": "http://www.wikidata.org/entity/Q42299"
+          }
+        ],
+        [
+          {
+            "type": "uri",
+            "uri": "http://www.wikidata.org/entity/Q7433029"
+          },
+          {
+            "type": "uri",
+            "uri": "http://www.wikidata.org/entity/Q72599"
+          }
+        ],
+        [
+          {
+            "type": "uri",
+            "uri": "http://www.wikidata.org/entity/Q7825061"
+          },
+          {
+            "type": "uri",
+            "uri": "http://www.wikidata.org/entity/Q4460816"
+          }
+        ],
+        [
+          {
+            "type": "uri",
+            "uri": "http://www.wikidata.org/entity/Q15844076"
+          },
+          {
+            "type": "uri",
+            "uri": "http://www.wikidata.org/entity/Q274639"
+          }
+        ],
+        [
+          {
+            "type": "uri",
+            "uri": "http://www.wikidata.org/entity/Q15844076"
+          },
+          {
+            "type": "uri",
+            "uri": "http://www.wikidata.org/entity/Q7585560"
+          }
+        ]
+      ]
+    },
+    "NatACN_qald": {
+      "columns": [
+        "thing_1",
+        "thing_6"
+      ],
+      "rows": [
+        [
+          {
+            "type": "uri",
+            "uri": "http://www.wikidata.org/entity/Q761383"
+          },
+          {
+            "type": "uri",
+            "uri": "http://www.wikidata.org/entity/Q42299"
+          }
+        ],
+        [
+          {
+            "type": "uri",
+            "uri": "http://www.wikidata.org/entity/Q7433029"
+          },
+          {
+            "type": "uri",
+            "uri": "http://www.wikidata.org/entity/Q72599"
+          }
+        ],
+        [
+          {
+            "type": "uri",
+            "uri": "http://www.wikidata.org/entity/Q7825061"
+          },
+          {
+            "type": "uri",
+            "uri": "http://www.wikidata.org/entity/Q4460816"
+          }
+        ],
+        [
+          {
+            "type": "uri",
+            "uri": "http://www.wikidata.org/entity/Q15844076"
+          },
+          {
+            "type": "uri",
+            "uri": "http://www.wikidata.org/entity/Q274639"
+          }
+        ],
+        [
+          {
+            "type": "uri",
+            "uri": "http://www.wikidata.org/entity/Q15844076"
+          },
+          {
+            "type": "uri",
+            "uri": "http://www.wikidata.org/entity/Q7585560"
+          }
+        ]
+      ]
+    }
+  },
+  "score": {
+    "recall": 1,
+    "precision": 0.2,
+    "F1-score": 0.33333333333333337
+  },
+  "NatACN_info": {
+    "qald": [
+      {
+        "NLQuestion": "After whom is the Riemannian geometry named?",
+        "answer": {
+          "columns": [
+            "thing_1",
+            "thing_6"
+          ],
+          "rows": [
+            [
+              {
+                "type": "uri",
+                "uri": "http://www.wikidata.org/entity/Q761383"
+              },
+              {
+                "type": "uri",
+                "uri": "http://www.wikidata.org/entity/Q42299"
+              }
+            ],
+            [
+              {
+                "type": "uri",
+                "uri": "http://www.wikidata.org/entity/Q7433029"
+              },
+              {
+                "type": "uri",
+                "uri": "http://www.wikidata.org/entity/Q72599"
+              }
+            ],
+            [
+              {
+                "type": "uri",
+                "uri": "http://www.wikidata.org/entity/Q7825061"
+              },
+              {
+                "type": "uri",
+                "uri": "http://www.wikidata.org/entity/Q4460816"
+              }
+            ],
+            [
+              {
+                "type": "uri",
+                "uri": "http://www.wikidata.org/entity/Q15844076"
+              },
+              {
+                "type": "uri",
+                "uri": "http://www.wikidata.org/entity/Q274639"
+              }
+            ],
+            [
+              {
+                "type": "uri",
+                "uri": "http://www.wikidata.org/entity/Q15844076"
+              },
+              {
+                "type": "uri",
+                "uri": "http://www.wikidata.org/entity/Q7585560"
+              }
+            ]
+          ]
+        },
+        "lQTRes": {
+          "longest": false,
+          "res": {
+            "columns": [
+              "thing_1",
+              "thing_6"
+            ],
+            "rows": [
+              [
+                {
+                  "type": "uri",
+                  "uri": "http://www.wikidata.org/entity/Q761383"
+                },
+                {
+                  "type": "uri",
+                  "uri": "http://www.wikidata.org/entity/Q42299"
+                }
+              ],
+              [
+                {
+                  "type": "uri",
+                  "uri": "http://www.wikidata.org/entity/Q7433029"
+                },
+                {
+                  "type": "uri",
+                  "uri": "http://www.wikidata.org/entity/Q72599"
+                }
+              ],
+              [
+                {
+                  "type": "uri",
+                  "uri": "http://www.wikidata.org/entity/Q7825061"
+                },
+                {
+                  "type": "uri",
+                  "uri": "http://www.wikidata.org/entity/Q4460816"
+                }
+              ],
+              [
+                {
+                  "type": "uri",
+                  "uri": "http://www.wikidata.org/entity/Q15844076"
+                },
+                {
+                  "type": "uri",
+                  "uri": "http://www.wikidata.org/entity/Q274639"
+                }
+              ],
+              [
+                {
+                  "type": "uri",
+                  "uri": "http://www.wikidata.org/entity/Q15844076"
+                },
+                {
+                  "type": "uri",
+                  "uri": "http://www.wikidata.org/entity/Q7585560"
+                }
+              ]
+            ]
+          }
+        },
+        "HistoryResults": [
+          {
+            "navstate": {
+              "_id": 0,
+              "_NLQuestion": "After whom is the Riemannian geometry named?",
+              "_keywordList": {
+                "_list": [
+                  {
+                    "_string": "Riemannian geometry",
+                    "_type": "NE"
+                  },
+                  {
+                    "_string": "named"
+                  }
+                ],
+                "length": 2
+              },
+              "_currentKeywordList": {
+                "_list": [
+                  {
+                    "_string": "named"
+                  }
+                ],
+                "length": 1
+              },
+              "_currentKeyword": {
+                "_string": "Riemannian geometry",
+                "_type": "NE"
+              },
+              "_currentKeywordSynonyms": {
+                "_list": [
+                  {
+                    "_string": "elliptic geometry"
+                  },
+                  {
+                    "_string": "riemannian geometry"
+                  },
+                  {
+                    "_string": "Riemannian geometry",
+                    "_type": "NE"
+                  }
+                ],
+                "length": 3
+              },
+              "_end": false,
+              "_QTPath": {
+                "_list": [],
+                "length": 0
+              },
+              "_longestQTPath": {
+                "_list": [
+                  {
+                    "type": "IncrConstr",
+                    "constr": {
+                      "type": "ExternalSearch",
+                      "searchQuery": {
+                        "type": "WikidataSearch",
+                        "kwds": [
+                          "Riemannian geometry"
+                        ]
+                      },
+                      "resultTerms": [
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q761383"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q7433029"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59585134"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q25344559"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q7104842"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q5454260"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q15844076"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q7240883"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q2185349"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q60133667"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q7825061"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q2945370"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q115158804"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56608683"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q104067910"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56679816"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56552637"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58131925"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q61834752"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q1674514"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59486041"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q112902780"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q44549222"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q97672564"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56852639"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q99577062"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q78054911"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q94957612"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q77807996"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58123260"
+                        }
+                      ]
+                    },
+                    "filterType": "Mixed"
+                  },
+                  {
+                    "type": "IncrRel",
+                    "uri": "http://www.wikidata.org/prop/direct/P138",
+                    "orientation": "Fwd"
+                  }
+                ],
+                "length": 2
+              },
+              "_constraint": "",
+              "_candidatesQT": {
+                "_list": [
+                  {
+                    "type": "IncrConstr",
+                    "constr": {
+                      "type": "ExternalSearch",
+                      "searchQuery": {
+                        "type": "WikidataSearch",
+                        "kwds": [
+                          "Riemannian geometry"
+                        ]
+                      },
+                      "resultTerms": [
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q761383"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q7433029"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59585134"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q25344559"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q7104842"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q5454260"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q15844076"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q7240883"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q2185349"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q60133667"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q7825061"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q2945370"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q115158804"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56608683"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q104067910"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56679816"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56552637"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58131925"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q61834752"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q1674514"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59486041"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q112902780"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q44549222"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q97672564"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56852639"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q99577062"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q78054911"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q94957612"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q77807996"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58123260"
+                        }
+                      ]
+                    },
+                    "filterType": "Mixed"
+                  }
+                ],
+                "length": 1
+              }
+            }
+          },
+          {
+            "navstate": {
+              "_id": 1,
+              "_NLQuestion": "After whom is the Riemannian geometry named?",
+              "_keywordList": {
+                "_list": [
+                  {
+                    "_string": "Riemannian geometry",
+                    "_type": "NE"
+                  },
+                  {
+                    "_string": "named"
+                  }
+                ],
+                "length": 2
+              },
+              "_currentKeywordList": {
+                "_list": [],
+                "length": 0
+              },
+              "_currentKeyword": {
+                "_string": "named"
+              },
+              "_currentKeywordSynonyms": {
+                "_list": [
+                  {
+                    "_string": "named"
+                  }
+                ],
+                "length": 1
+              },
+              "_end": false,
+              "_QTPath": {
+                "_list": [
+                  {
+                    "type": "IncrConstr",
+                    "constr": {
+                      "type": "ExternalSearch",
+                      "searchQuery": {
+                        "type": "WikidataSearch",
+                        "kwds": [
+                          "Riemannian geometry"
+                        ]
+                      },
+                      "resultTerms": [
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q761383"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q7433029"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59585134"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q25344559"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q7104842"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q5454260"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q15844076"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q7240883"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q2185349"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q60133667"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q7825061"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q2945370"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q115158804"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56608683"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q104067910"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56679816"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56552637"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58131925"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q61834752"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q1674514"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59486041"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q112902780"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q44549222"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q97672564"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56852639"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q99577062"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q78054911"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q94957612"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q77807996"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58123260"
+                        }
+                      ]
+                    },
+                    "filterType": "Mixed"
+                  }
+                ],
+                "length": 1
+              },
+              "_longestQTPath": {
+                "_list": [
+                  {
+                    "type": "IncrConstr",
+                    "constr": {
+                      "type": "ExternalSearch",
+                      "searchQuery": {
+                        "type": "WikidataSearch",
+                        "kwds": [
+                          "Riemannian geometry"
+                        ]
+                      },
+                      "resultTerms": [
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q761383"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q7433029"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59585134"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q25344559"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q7104842"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q5454260"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q15844076"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q7240883"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q2185349"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q60133667"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q7825061"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q2945370"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q115158804"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56608683"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q104067910"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56679816"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56552637"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58131925"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q61834752"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q1674514"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59486041"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q112902780"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q44549222"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q97672564"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56852639"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q99577062"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q78054911"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q94957612"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q77807996"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58123260"
+                        }
+                      ]
+                    },
+                    "filterType": "Mixed"
+                  },
+                  {
+                    "type": "IncrRel",
+                    "uri": "http://www.wikidata.org/prop/direct/P138",
+                    "orientation": "Fwd"
+                  }
+                ],
+                "length": 2
+              },
+              "_constraint": "",
+              "_candidatesQT": {
+                "_list": [
+                  {
+                    "type": "IncrRel",
+                    "uri": "http://www.wikidata.org/prop/direct/P138",
+                    "orientation": "Fwd"
+                  }
+                ],
+                "length": 1
+              }
+            }
+          },
+          {
+            "navstate": {
+              "_id": 2,
+              "_NLQuestion": "After whom is the Riemannian geometry named?",
+              "_keywordList": {
+                "_list": [
+                  {
+                    "_string": "Riemannian geometry",
+                    "_type": "NE"
+                  },
+                  {
+                    "_string": "named"
+                  }
+                ],
+                "length": 2
+              },
+              "_currentKeywordList": {
+                "_list": [],
+                "length": 0
+              },
+              "_currentKeyword": {
+                "_string": "named"
+              },
+              "_currentKeywordSynonyms": null,
+              "_end": true,
+              "_QTPath": {
+                "_list": [
+                  {
+                    "type": "IncrConstr",
+                    "constr": {
+                      "type": "ExternalSearch",
+                      "searchQuery": {
+                        "type": "WikidataSearch",
+                        "kwds": [
+                          "Riemannian geometry"
+                        ]
+                      },
+                      "resultTerms": [
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q761383"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q7433029"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59585134"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q25344559"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q7104842"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q5454260"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q15844076"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q7240883"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q2185349"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q60133667"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q7825061"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q2945370"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q115158804"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56608683"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q104067910"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56679816"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56552637"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58131925"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q61834752"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q1674514"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q59486041"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q112902780"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q44549222"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q97672564"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q56852639"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q99577062"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q78054911"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q94957612"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q77807996"
+                        },
+                        {
+                          "type": "uri",
+                          "uri": "http://www.wikidata.org/entity/Q58123260"
+                        }
+                      ]
+                    },
+                    "filterType": "Mixed"
+                  },
+                  {
+                    "type": "IncrRel",
+                    "uri": "http://www.wikidata.org/prop/direct/P138",
+                    "orientation": "Fwd"
+                  }
+                ],
+                "length": 2
+              },
+              "_longestQTPath": {
+                "_list": [],
+                "length": 0
+              }
+            }
+          }
+        ],
+        "NE": [
+          "Riemannian geometry"
+        ],
+        "navStateRes": {
+          "_id": 2,
+          "_NLQuestion": "After whom is the Riemannian geometry named?",
+          "_keywordList": {
+            "_list": [
+              {
+                "_string": "Riemannian geometry",
+                "_type": "NE"
+              },
+              {
+                "_string": "named"
+              }
+            ],
+            "length": 2
+          },
+          "_currentKeywordList": {
+            "_list": [],
+            "length": 0
+          },
+          "_currentKeyword": {
+            "_string": "named"
+          },
+          "_currentKeywordSynonyms": null,
+          "_end": true,
+          "_QTPath": {
+            "_list": [
+              {
+                "type": "IncrConstr",
+                "constr": {
+                  "type": "ExternalSearch",
+                  "searchQuery": {
+                    "type": "WikidataSearch",
+                    "kwds": [
+                      "Riemannian geometry"
+                    ]
+                  },
+                  "resultTerms": [
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q761383"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q7433029"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q59585134"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q25344559"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q7104842"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q5454260"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q15844076"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q7240883"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q2185349"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q60133667"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q7825061"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q2945370"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q115158804"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q56608683"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q104067910"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q56679816"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q56552637"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q58131925"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q61834752"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q1674514"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q59486041"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q112902780"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q44549222"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q97672564"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q56852639"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q99577062"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q78054911"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q94957612"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q77807996"
+                    },
+                    {
+                      "type": "uri",
+                      "uri": "http://www.wikidata.org/entity/Q58123260"
+                    }
+                  ]
+                },
+                "filterType": "Mixed"
+              },
+              {
+                "type": "IncrRel",
+                "uri": "http://www.wikidata.org/prop/direct/P138",
+                "orientation": "Fwd"
+              }
+            ],
+            "length": 2
+          },
+          "_longestQTPath": {
+            "_list": [],
+            "length": 0
+          }
+        },
+        "millis": 3813
+      }
+    ]
+  }
+}{"id":0,"question":"After whom is the Riemannian geometry named?","query":"SELECT DISTINCT ?result WHERE { wd:Q761383 wdt:P138 ?result. }","answer":{"our_ref":[[{"type":"uri","uri":"http://www.wikidata.org/entity/Q42299"}]],"qald":[{"type":"uri","value":"http://www.wikidata.org/entity/Q42299"}],"QTList+_res":{"columns":["thing_1","thing_6"],"rows":[[{"type":"uri","uri":"http://www.wikidata.org/entity/Q761383"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q42299"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q7433029"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q72599"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q7825061"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q4460816"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q15844076"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q274639"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q15844076"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7585560"}]]},"NatACN_qald":{"columns":["thing_1","thing_6"],"rows":[[{"type":"uri","uri":"http://www.wikidata.org/entity/Q761383"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q42299"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q7433029"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q72599"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q7825061"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q4460816"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q15844076"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q274639"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q15844076"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7585560"}]]}},"score":{"recall":1,"precision":0.2,"F1score":0.33333333333333337},"NatACN_info":{"qald":[{"NLQuestion":"After whom is the Riemannian geometry named?","answer":{"columns":["thing_1","thing_6"],"rows":[[{"type":"uri","uri":"http://www.wikidata.org/entity/Q761383"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q42299"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q7433029"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q72599"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q7825061"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q4460816"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q15844076"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q274639"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q15844076"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7585560"}]]},"lQTRes":{"longest":false,"res":{"columns":["thing_1","thing_6"],"rows":[[{"type":"uri","uri":"http://www.wikidata.org/entity/Q761383"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q42299"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q7433029"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q72599"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q7825061"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q4460816"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q15844076"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q274639"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q15844076"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7585560"}]]}},"HistoryResults":[{"navstate":{"_id":0,"_NLQuestion":"After whom is the Riemannian geometry named?","_keywordList":{"_list":[{"_string":"Riemannian geometry","_type":"NE"},{"_string":"named"}],"length":2},"_currentKeywordList":{"_list":[{"_string":"named"}],"length":1},"_currentKeyword":{"_string":"Riemannian geometry","_type":"NE"},"_currentKeywordSynonyms":{"_list":[{"_string":"elliptic geometry"},{"_string":"riemannian geometry"},{"_string":"Riemannian geometry","_type":"NE"}],"length":3},"_end":false,"_QTPath":{"_list":[],"length":0},"_longestQTPath":{"_list":[{"type":"IncrConstr","constr":{"type":"ExternalSearch","searchQuery":{"type":"WikidataSearch","kwds":["Riemannian geometry"]},"resultTerms":[{"type":"uri","uri":"http://www.wikidata.org/entity/Q761383"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7433029"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q59585134"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q25344559"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7104842"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q5454260"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7240883"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q2185349"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q15844076"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q60133667"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q2945370"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7825061"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q115158804"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56608683"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q104067910"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q58131925"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56552637"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56679816"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q61834752"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q59486041"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q112902780"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q44549222"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q97672564"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q1674514"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q99577062"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q78054911"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q94957612"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q57497703"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q58123260"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q109931063"}]},"filterType":"Mixed"},{"type":"IncrRel","uri":"http://www.wikidata.org/prop/direct/P138","orientation":"Fwd"}],"length":2},"_constraint":"","_candidatesQT":{"_list":[{"type":"IncrConstr","constr":{"type":"ExternalSearch","searchQuery":{"type":"WikidataSearch","kwds":["Riemannian geometry"]},"resultTerms":[{"type":"uri","uri":"http://www.wikidata.org/entity/Q761383"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7433029"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q59585134"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q25344559"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7104842"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q5454260"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7240883"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q2185349"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q15844076"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q60133667"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q2945370"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7825061"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q115158804"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56608683"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q104067910"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q58131925"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56552637"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56679816"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q61834752"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q59486041"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q112902780"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q44549222"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q97672564"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q1674514"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q99577062"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q78054911"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q94957612"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q57497703"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q58123260"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q109931063"}]},"filterType":"Mixed"}],"length":1}}},{"navstate":{"_id":1,"_NLQuestion":"After whom is the Riemannian geometry named?","_keywordList":{"_list":[{"_string":"Riemannian geometry","_type":"NE"},{"_string":"named"}],"length":2},"_currentKeywordList":{"_list":[],"length":0},"_currentKeyword":{"_string":"named"},"_currentKeywordSynonyms":{"_list":[{"_string":"named"}],"length":1},"_end":false,"_QTPath":{"_list":[{"type":"IncrConstr","constr":{"type":"ExternalSearch","searchQuery":{"type":"WikidataSearch","kwds":["Riemannian geometry"]},"resultTerms":[{"type":"uri","uri":"http://www.wikidata.org/entity/Q761383"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7433029"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q59585134"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q25344559"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7104842"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q5454260"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7240883"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q2185349"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q15844076"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q60133667"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q2945370"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7825061"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q115158804"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56608683"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q104067910"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q58131925"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56552637"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56679816"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q61834752"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q59486041"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q112902780"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q44549222"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q97672564"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q1674514"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q99577062"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q78054911"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q94957612"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q57497703"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q58123260"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q109931063"}]},"filterType":"Mixed"}],"length":1},"_longestQTPath":{"_list":[{"type":"IncrConstr","constr":{"type":"ExternalSearch","searchQuery":{"type":"WikidataSearch","kwds":["Riemannian geometry"]},"resultTerms":[{"type":"uri","uri":"http://www.wikidata.org/entity/Q761383"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7433029"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q59585134"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q25344559"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7104842"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q5454260"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7240883"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q2185349"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q15844076"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q60133667"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q2945370"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7825061"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q115158804"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56608683"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q104067910"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q58131925"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56552637"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56679816"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q61834752"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q59486041"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q112902780"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q44549222"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q97672564"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q1674514"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q99577062"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q78054911"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q94957612"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q57497703"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q58123260"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q109931063"}]},"filterType":"Mixed"},{"type":"IncrRel","uri":"http://www.wikidata.org/prop/direct/P138","orientation":"Fwd"}],"length":2},"_constraint":"","_candidatesQT":{"_list":[{"type":"IncrRel","uri":"http://www.wikidata.org/prop/direct/P138","orientation":"Fwd"}],"length":1}}},{"navstate":{"_id":2,"_NLQuestion":"After whom is the Riemannian geometry named?","_keywordList":{"_list":[{"_string":"Riemannian geometry","_type":"NE"},{"_string":"named"}],"length":2},"_currentKeywordList":{"_list":[],"length":0},"_currentKeyword":{"_string":"named"},"_currentKeywordSynonyms":null,"_end":true,"_QTPath":{"_list":[{"type":"IncrConstr","constr":{"type":"ExternalSearch","searchQuery":{"type":"WikidataSearch","kwds":["Riemannian geometry"]},"resultTerms":[{"type":"uri","uri":"http://www.wikidata.org/entity/Q761383"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7433029"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q59585134"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q25344559"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7104842"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q5454260"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7240883"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q2185349"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q15844076"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q60133667"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q2945370"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7825061"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q115158804"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56608683"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q104067910"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q58131925"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56552637"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56679816"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q61834752"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q59486041"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q112902780"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q44549222"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q97672564"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q1674514"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q99577062"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q78054911"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q94957612"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q57497703"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q58123260"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q109931063"}]},"filterType":"Mixed"},{"type":"IncrRel","uri":"http://www.wikidata.org/prop/direct/P138","orientation":"Fwd"}],"length":2},"_longestQTPath":{"_list":[],"length":0}}}],"NE":["Riemannian geometry"],"navStateRes":{"_id":2,"_NLQuestion":"After whom is the Riemannian geometry named?","_keywordList":{"_list":[{"_string":"Riemannian geometry","_type":"NE"},{"_string":"named"}],"length":2},"_currentKeywordList":{"_list":[],"length":0},"_currentKeyword":{"_string":"named"},"_currentKeywordSynonyms":null,"_end":true,"_QTPath":{"_list":[{"type":"IncrConstr","constr":{"type":"ExternalSearch","searchQuery":{"type":"WikidataSearch","kwds":["Riemannian geometry"]},"resultTerms":[{"type":"uri","uri":"http://www.wikidata.org/entity/Q761383"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7433029"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q59585134"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q25344559"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7104842"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q5454260"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7240883"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q2185349"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q15844076"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q60133667"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q2945370"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7825061"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q115158804"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56608683"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q104067910"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q58131925"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56552637"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56679816"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q61834752"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q59486041"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q112902780"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q44549222"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q97672564"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q1674514"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q99577062"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q78054911"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q94957612"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q57497703"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q58123260"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q109931063"}]},"filterType":"Mixed"},{"type":"IncrRel","uri":"http://www.wikidata.org/prop/direct/P138","orientation":"Fwd"}],"length":2},"_longestQTPath":{"_list":[],"length":0}},"millis":3906}]}},
+{"id":1,"question":"Which animal participated in a military operation with the Australian Defence Force?","query":"SELECT DISTINCT ?result WHERE {?result wdt:P31 wd:Q16521. ?mop wdt:P31 wd:Q645883; wdt:P710 ?result, wd:Q625657.}","answer":{"our_ref":[[{"type":"uri","uri":"http://www.wikidata.org/entity/Q93208"}]],"qald":[{"type":"uri","value":"http://www.wikidata.org/entity/Q93208"}],"QTList+_res":{"columns":["thing_1"],"rows":[[{"type":"uri","uri":"http://www.wikidata.org/entity/Q371370"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q625657"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q660076"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q2985706"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q3113099"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q3453492"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q3519453"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824070"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824075"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824073"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824077"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q5028129"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q5251185"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q5378773"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q5467436"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q7058258"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q7133934"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q7458806"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q7925024"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q12409908"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q15746503"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q28220428"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q39055589"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q48817728"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q55611758"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q56758972"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q56759479"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q104871821"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q105759464"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q106145656"}]]},"NatACN_qald":{"columns":[],"rows":[]}},"score":{"recall":0,"precision":0,"F1score":null},"NatACN_info":{"qald":[{"NLQuestion":"Which animal participated in a military operation with the Australian Defence Force?","answer":{"columns":[],"rows":[]},"lQTRes":{"longest":false,"res":{"columns":["thing_1"],"rows":[[{"type":"uri","uri":"http://www.wikidata.org/entity/Q371370"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q625657"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q660076"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q2985706"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q3113099"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q3453492"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q3519453"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824070"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824075"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824073"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824077"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q5028129"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q5251185"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q5378773"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q5467436"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q7058258"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q7133934"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q7458806"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q7925024"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q12409908"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q15746503"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q28220428"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q39055589"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q48817728"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q55611758"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q56758972"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q56759479"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q104871821"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q105759464"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q106145656"}]]}},"HistoryResults":[{"navstate":{"_id":0,"_NLQuestion":"Which animal participated in a military operation with the Australian Defence Force?","_keywordList":{"_list":[{"_string":"Australian Defence Force","_type":"NE"},{"_string":"animal"},{"_string":"participated"},{"_string":"operation"}],"length":4},"_currentKeywordList":{"_list":[{"_string":"animal"},{"_string":"participated"},{"_string":"operation"}],"length":3},"_currentKeyword":{"_string":"Australian Defence Force","_type":"NE"},"_currentKeywordSynonyms":{"_list":[{"_string":"Australian Defence Force","_type":"NE"}],"length":1},"_end":false,"_QTPath":{"_list":[],"length":0},"_longestQTPath":{"_list":[{"type":"IncrConstr","constr":{"type":"ExternalSearch","searchQuery":{"type":"WikidataSearch","kwds":["Australian Defence Force"]},"resultTerms":[{"type":"uri","uri":"http://www.wikidata.org/entity/Q625657"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q12409908"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824075"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q371370"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q15746503"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7133934"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q48817728"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q55611758"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q104871821"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q3113099"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824073"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824077"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56758972"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q106145656"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q2985706"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56759479"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7925024"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q5251185"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q5467436"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q660076"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q105759464"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7058258"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q3519453"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q5028129"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q3453492"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7458806"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q28220428"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824070"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q5378773"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q39055589"}]},"filterType":"Mixed"}],"length":1},"_constraint":"","_candidatesQT":{"_list":[{"type":"IncrConstr","constr":{"type":"ExternalSearch","searchQuery":{"type":"WikidataSearch","kwds":["Australian Defence Force"]},"resultTerms":[{"type":"uri","uri":"http://www.wikidata.org/entity/Q625657"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q12409908"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824075"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q371370"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q15746503"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7133934"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q48817728"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q55611758"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q104871821"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q3113099"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824073"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824077"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56758972"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q106145656"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q2985706"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56759479"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7925024"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q5251185"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q5467436"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q660076"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q105759464"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7058258"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q3519453"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q5028129"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q3453492"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7458806"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q28220428"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824070"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q5378773"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q39055589"}]},"filterType":"Mixed"}],"length":1}}},{"navstate":{"_id":1,"_NLQuestion":"Which animal participated in a military operation with the Australian Defence Force?","_keywordList":{"_list":[{"_string":"Australian Defence Force","_type":"NE"},{"_string":"animal"},{"_string":"participated"},{"_string":"operation"}],"length":4},"_currentKeywordList":{"_list":[{"_string":"participated"},{"_string":"operation"}],"length":2},"_currentKeyword":{"_string":"animal"},"_currentKeywordSynonyms":{"_list":[{"_string":"fleshly"},{"_string":"beastly"},{"_string":"brute"},{"_string":"beast"},{"_string":"creature"},{"_string":"animal"},{"_string":"animalistic"},{"_string":"beast"},{"_string":"animal"},{"_string":"animal"}],"length":10},"_end":false,"_QTPath":{"_list":[{"type":"IncrConstr","constr":{"type":"ExternalSearch","searchQuery":{"type":"WikidataSearch","kwds":["Australian Defence Force"]},"resultTerms":[{"type":"uri","uri":"http://www.wikidata.org/entity/Q625657"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q12409908"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824075"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q371370"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q15746503"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7133934"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q48817728"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q55611758"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q104871821"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q3113099"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824073"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824077"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56758972"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q106145656"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q2985706"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56759479"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7925024"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q5251185"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q5467436"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q660076"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q105759464"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7058258"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q3519453"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q5028129"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q3453492"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7458806"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q28220428"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824070"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q5378773"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q39055589"}]},"filterType":"Mixed"}],"length":1},"_longestQTPath":{"_list":[],"length":0},"_constraint":"","_candidatesQT":{"_list":[],"length":0}}}],"NE":["Australian Defence Force"],"navStateRes":{"_id":0,"_NLQuestion":"Which animal participated in a military operation with the Australian Defence Force?","_keywordList":{"_list":[{"_string":"Australian Defence Force","_type":"NE"},{"_string":"animal"},{"_string":"participated"},{"_string":"operation"}],"length":4},"_currentKeywordList":{"_list":[{"_string":"animal"},{"_string":"participated"},{"_string":"operation"}],"length":3},"_currentKeyword":{"_string":"Australian Defence Force","_type":"NE"},"_currentKeywordSynonyms":{"_list":[{"_string":"Australian Defence Force","_type":"NE"}],"length":1},"_end":false,"_QTPath":{"_list":[],"length":0},"_longestQTPath":{"_list":[{"type":"IncrConstr","constr":{"type":"ExternalSearch","searchQuery":{"type":"WikidataSearch","kwds":["Australian Defence Force"]},"resultTerms":[{"type":"uri","uri":"http://www.wikidata.org/entity/Q625657"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q12409908"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824075"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q371370"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q15746503"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7133934"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q48817728"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q55611758"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q104871821"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q3113099"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824073"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824077"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56758972"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q106145656"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q2985706"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56759479"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7925024"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q5251185"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q5467436"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q660076"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q105759464"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7058258"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q3519453"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q5028129"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q3453492"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7458806"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q28220428"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824070"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q5378773"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q39055589"}]},"filterType":"Mixed"}],"length":1},"_constraint":"","_candidatesQT":{"_list":[{"type":"IncrConstr","constr":{"type":"ExternalSearch","searchQuery":{"type":"WikidataSearch","kwds":["Australian Defence Force"]},"resultTerms":[{"type":"uri","uri":"http://www.wikidata.org/entity/Q625657"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q12409908"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824075"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q371370"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q15746503"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7133934"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q48817728"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q55611758"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q104871821"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q3113099"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824073"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824077"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56758972"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q106145656"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q2985706"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q56759479"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7925024"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q5251185"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q5467436"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q660076"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q105759464"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7058258"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q3519453"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q5028129"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q3453492"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q7458806"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q28220428"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q4824070"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q5378773"},{"type":"uri","uri":"http://www.wikidata.org/entity/Q39055589"}]},"filterType":"Mixed"}],"length":1}},"millis":11816}]}},

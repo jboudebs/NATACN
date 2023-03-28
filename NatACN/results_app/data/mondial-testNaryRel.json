@@ -1,0 +1,39 @@
+{
+  "dataset": {
+    "id": "mondial"
+  },
+  "questions": [
+    {
+      "id": 0,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Which are the members of the United Nations?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q42299"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql" : "PREFIX n1: <http://www.semwebtech.org/mondial/10/meta#>\nSELECT DISTINCT ?ofMember_8\nWHERE { [ n1:inOrganization <http://www.semwebtech.org/mondial/10/organization/UN/> ; n1:ofMember ?ofMember_8 ] . }"
+      }
+    }
+  ]
+}

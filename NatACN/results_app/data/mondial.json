@@ -1,0 +1,679 @@
+{
+  "dataset": {
+    "id": "mondial"
+  },
+  "questions": [
+    {
+      "id": 0,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What is the length of Rhone ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q42299"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql" : "PREFIX n1: <http://www.semwebtech.org/mondial/10/meta#>\nSELECT DISTINCT ?length_11\nWHERE { ?thing_1 n1:length ?length_11 .\n        FILTER ( ?thing_1 = <http://www.semwebtech.org/mondial/10/river/Rhone/> ) }"
+      }
+    },
+    {
+      "id": 1,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What is the length of the Rhone ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q42299"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql" : "PREFIX n1: <http://www.semwebtech.org/mondial/10/meta#>\nSELECT DISTINCT ?length_11\nWHERE { ?thing_1 n1:length ?length_11 .\n        FILTER ( ?thing_1 = <http://www.semwebtech.org/mondial/10/river/Rhone/> ) }"
+      }
+    },
+    {
+      "id": 2,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What is the length of Rhone river?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q42299"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql" : "PREFIX n1: <http://www.semwebtech.org/mondial/10/meta#>\nSELECT DISTINCT ?length_11\nWHERE { ?thing_1 n1:length ?length_11 .\n        FILTER ( ?thing_1 = <http://www.semwebtech.org/mondial/10/river/Rhone/> ) }"
+      }
+    },
+    {
+      "id": 3,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What is Rhone's length?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q42299"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql" : "PREFIX n1: <http://www.semwebtech.org/mondial/10/meta#>\nSELECT DISTINCT ?length_11\nWHERE { ?thing_1 n1:length ?length_11 .\n        FILTER ( ?thing_1 = <http://www.semwebtech.org/mondial/10/river/Rhone/> ) }"
+      }
+    },
+    {
+      "id": 4,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Which are the members of the United Nations?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q42299"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql" : "PREFIX n1: <http://www.semwebtech.org/mondial/10/meta#>\nSELECT DISTINCT ?ofMember_8\nWHERE { [ n1:inOrganization <http://www.semwebtech.org/mondial/10/organization/UN/> ; n1:ofMember ?ofMember_8 ] . }"
+      }
+    },
+    {
+      "id": 5,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What is the population expansion of Germany?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q42299"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql" : "SELECT DISTINCT ?populationGrowth_8\nWHERE { <http://www.semwebtech.org/mondial/10/country/D/> n1:populationGrowth ?populationGrowth_8 . }"
+      }
+    },
+    {
+      "id": 6,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What is the population growth of Germany?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q42299"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql" : "SELECT DISTINCT ?populationGrowth_8\nWHERE { <http://www.semwebtech.org/mondial/10/country/D/> n1:populationGrowth ?populationGrowth_8 . }"
+      }
+    },
+    {
+      "id": 7,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What is the population growth rate of Germany?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q42299"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql" : "SELECT DISTINCT ?populationGrowth_8\nWHERE { <http://www.semwebtech.org/mondial/10/country/D/> n1:populationGrowth ?populationGrowth_8 . }"
+      }
+    },
+    {
+      "id": 8,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What is the population increase of Germany?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q42299"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql" : "SELECT DISTINCT ?populationGrowth_8\nWHERE { <http://www.semwebtech.org/mondial/10/country/D/> n1:populationGrowth ?populationGrowth_8 . }"
+      }
+    },
+    {
+      "id": 9,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What is Paris the capital of?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q42299"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql" : "SELECT DISTINCT ?thing_8\nWHERE { ?thing_8 n1:capital <http://www.semwebtech.org/mondial/10/country/F/province/Île-de-France/city/Paris/> . }"
+      }
+    },
+    {
+      "id": 10,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Which mountain range does Kilimanjaro belong to?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q42299"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql" : "SELECT DISTINCT ?thing_8 ?inMountains_12\nWHERE { ?thing_8 n1:inMountains ?inMountains_12 .\n        FILTER ( ?thing_8 = <http://www.semwebtech.org/mondial/10/mountain/Kilimanjaro/> ) }"
+      }
+    },
+    {
+      "id": 11,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Which mountains does Kilimanjaro belong to?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q42299"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql" : "SELECT DISTINCT ?thing_8 ?inMountains_12\nWHERE { ?thing_8 n1:inMountains ?inMountains_12 .\n        FILTER ( ?thing_8 = <http://www.semwebtech.org/mondial/10/mountain/Kilimanjaro/> ) }"
+      }
+    },
+    {
+      "id": 12,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What is the mountain range of Kilimanjaro?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q42299"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql" : "SELECT DISTINCT ?thing_8 ?inMountains_12\nWHERE { ?thing_8 n1:inMountains ?inMountains_12 .\n        FILTER ( ?thing_8 = <http://www.semwebtech.org/mondial/10/mountain/Kilimanjaro/> ) }"
+      }
+    },
+    {
+      "id": 13,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Which cities are situated along the coast?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q42299"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql" : "SELECT DISTINCT ?City_8 ?locatedAt_45\nWHERE { ?City_8 a n1:City .\n        ?locatedAt_45 a n1:Sea .\n        ?City_8 n1:locatedAt ?locatedAt_45 . }"
+      }
+    },
+    {
+      "id": 14,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Which cities are located along the coast?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q42299"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql" : "SELECT DISTINCT ?City_8 ?locatedAt_45\nWHERE { ?City_8 a n1:City .\n        ?locatedAt_45 a n1:Sea .\n        ?City_8 n1:locatedAt ?locatedAt_45 . }"
+      }
+    },
+    {
+      "id": 15,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Which cities are located near the sea?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q42299"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql" : "SELECT DISTINCT ?City_8 ?locatedAt_45\nWHERE { ?City_8 a n1:City .\n        ?locatedAt_45 a n1:Sea .\n        ?City_8 n1:locatedAt ?locatedAt_45 . }"
+      }
+    },
+    {
+      "id": 16,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Which cities are located next to the sea?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q42299"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql" : "PREFIX n1: <http://www.semwebtech.org/mondial/10/meta#>\nSELECT DISTINCT ?River_1\nWHERE { ?River_1 a n1:River .\n        ?River_1 n1:flowsInto <http://www.semwebtech.org/mondial/10/sea/AtlanticOcean/> . }"
+      }
+    },
+    {
+      "id": 17,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "When was founded the African Union?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q42299"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql" : "SELECT DISTINCT ?established_8\nWHERE { <http://www.semwebtech.org/mondial/10/organization/AU/> n1:established ?established_8 . }"
+      }
+    },
+    {
+      "id": 18,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "When was the African Union founded?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q42299"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql" : "SELECT DISTINCT ?established_8\nWHERE { <http://www.semwebtech.org/mondial/10/organization/AU/> n1:established ?established_8 . }"
+      }
+    },
+    {
+      "id": 19,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "When was the African Union established?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q42299"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql" : "SELECT DISTINCT ?established_8\nWHERE { <http://www.semwebtech.org/mondial/10/organization/AU/> n1:established ?established_8 . }"
+      }
+    },
+    {
+      "id": 20,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What is the establishment date of the African Union?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q42299"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql" : "SELECT DISTINCT ?established_8\nWHERE { <http://www.semwebtech.org/mondial/10/organization/AU/> n1:established ?established_8 . }"
+      }
+    }
+  ]
+}

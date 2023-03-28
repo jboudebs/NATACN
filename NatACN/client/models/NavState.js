@@ -16,7 +16,9 @@ class NavState
 		this._currentKeywordSynonyms = null;
 		this._end = false;
 		this._QTPath = new QTList([]);
-		this._longestQTPath = new QTList([]);
+		this._longestQTPath = {
+			QTPath: QTList.copy(this._QTPath), Res: []
+		}
 		
 	}
 
@@ -47,6 +49,9 @@ class NavState
 		copy._currentKeyword = Keyword.copy(navstate.getCurrentKeyword());
 		copy._end = navstate.isEnd();
 		copy._QTPath = QTList.copy(navstate.getQTPath());
+		copy._longestQTPath = {
+			QTPath: QTList.copy(navstate._longestQTPath.QTPath), Res: navstate._longestQTPath.Res
+		}
 		return copy;
 	}
 
@@ -62,7 +67,16 @@ class NavState
 		let syn = (await NLPToolsParameters.getSynonyms(this._currentKeyword)).concat([this._currentKeyword]);
 		this._currentKeywordSynonyms = KeywordList.toKeywordList(syn);
 	}
+	
+	getId()
+	{
+		return this._id;
+	}
 
+	setConstraint(constr)
+	{
+		this._constraint = constr;
+	}
 	setEnd()
 	{
 		this._end = true;
@@ -92,15 +106,45 @@ class NavState
 	{
 		this._QTPath = QTPath;
 	}
-
-	setLongestQTPath(QTPath)
+	
+	
+	/**
+	 * Between the current nav state and the resulting navstate
+	 * @param navstateRes
+	 */
+	setLongestQTPath(navstateRes)
 	{
-		this._longestQTPath = QTPath.length>this._longestQTPath?QTPath:this._longestQTPath;
+		console.log(navstateRes._longestQTPath);
+		console.log(this._longestQTPath);
+		if (navstateRes._longestQTPath.QTPath.length>this._longestQTPath.QTPath.length)
+		{
+			//y a un truc qui bug : ça recupère les resultats en cours, pas ce qui correspondent au plus long chemin :/
+			console.warn("longest change")
+			this._longestQTPath = {
+				QTPath: QTList.copy(navstateRes._longestQTPath.QTPath), Res: navstateRes._longestQTPath.Res
+			}
+			console.warn(this._longestQTPath)
+		}
 	}
 
-	addQT(qt)
+	async addQT(qt, acn)
 	{
 		this._QTPath.add(qt);
+		if(this._longestQTPath.QTPath.length)
+		{
+			this._longestQTPath = {
+				QTPath: QTList.copy(this._QTPath), Res: await acn.getResults()
+			}
+		}
+		else
+		{
+			if(this._longestQTPath.QTPath.length<this._QTPath.length)
+			{
+				this._longestQTPath = {
+					QTPath: QTList.copy(this._QTPath), Res: await acn.getResults()
+				}
+			}
+		}
 	}
 
 	getKeywordList()
@@ -131,6 +175,11 @@ class NavState
 	getNLQuestion()
 	{
 		return this._NLQuestion;
+	}
+	
+	getConstraint()
+	{
+		return this._constraint;
 	}
 
 	setCurrentKeywordSynonyms(kwList)

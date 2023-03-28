@@ -3,6 +3,7 @@ import { ACN } from "./ACN.js"
 import { KeywordList } from "./KeywordList.js"
 import { NavState } from "./NavState.js";
 import { NLPToolsParameters } from "./NLToolsParameters.js"
+import Utils from "./Utils.js";
 
 class NatACN
 {
@@ -22,16 +23,33 @@ class NatACN
 
 	async natNavigate(NLQuestion, results)
 	{
+		if(NLQuestion === '')
+		{
+			return this.navState;
+		}
 		let qResults = [];
+		
+		
 		this.navState = new NavState(NLQuestion);
-		//await this.navstate.init();
+		console.warn(this.navState);
+		//await this.navState.init();
+		
 		const startq = Date.now();
 		await this.NLpreprocessing();
-		
 		this.navState = await this.natNavigateRec(this.navState, qResults);
 		const millis = Date.now() - startq;
-		console.log(await this.acn.getResults());
-		results.push({"NLQuestion" : NLQuestion, "answer": await this.acn.getResults(), "HistoryResults" : qResults, "NE" : CoreNLP._NE_fetch, "navStateRes" : this.navState , "millis" : millis});
+		
+		const res = {
+			"NLQuestion" : NLQuestion,
+			"answer": await this.acn.getResults(),
+			"lQTRes": this.navState.getLongestQTPath().Res,
+			"HistoryResults" : qResults,
+			"NE" : CoreNLP._NE_fetch,
+			"navStateRes" : this.navState ,
+			"millis" : millis
+		};
+		//console.warn(res);
+		results.push(res);
 		return this.navState;
 	}
 	
@@ -41,10 +59,14 @@ class NatACN
  */
 	async natNavigateRec(navState, qResults)
 	{
+		//navState.setLongestQTPath(navState.getQTPath());
 		console.log("input navState :", (await navState).toString());
+		//controle des resultats
 		qResults.push({"navstate" : navState});
+		
 		if (!navState.hasNextKeyword())
 		{
+			console.warn("End");
 			navState.setEnd();
 			return navState;
 		}
@@ -52,23 +74,32 @@ class NatACN
 		{
 			await navState.updateNextKeyword();
 			navState._candidatesQT = await this.acn.getFilteredQT(navState);
-
+			if(navState._candidatesQT === 'error')
+			{
+				return 'error';
+			}
+			navState.setConstraint("");
+			
 			for (let i = 0; i < navState._candidatesQT.length; i++)
 			{
+				console.log(navState._candidatesQT);
 				let qt = navState._candidatesQT.get(i);
-				
 				await this.acn.navigate(qt);
-
 				let currentNavState = NavState.copy(navState);
-				currentNavState.addQT(qt);
+				await currentNavState.addQT(qt, this.acn);
 				
-				navState.setLongestQTPath(currentNavState.getQTPath());
 				console.log("currentNavState :", currentNavState.toString());
 				console.log("navState :", navState.toString());
 				
 				let navStateRes = await this.natNavigateRec(currentNavState, qResults);
-				navState.setLongestQTPath(navStateRes.getQTPath());
+				if (navStateRes === 'error')
+				{
+					console.error("Error");
+					return navStateRes;
+				}
 				console.log("navStateRes :", navStateRes.toString());
+				navState.setLongestQTPath(navStateRes);
+				
 				
 				if (!navStateRes.isEnd())
 				{
@@ -79,7 +110,7 @@ class NatACN
 				{
 					return navStateRes;
 				}
-			};
+			}
 			return navState;
 		}
 	}

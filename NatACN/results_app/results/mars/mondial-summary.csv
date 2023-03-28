@@ -1,0 +1,22 @@
+QALD; Keywords Extracted; Longest QT-Path; Precision; Recall; F1-Score
+What is the length of Rhone ?;Rhone (NE),length;Rhone (match),length;1;1;1
+What is the length of the Rhone ?;length,Rhone;length;0;0;null
+What is the length of Rhone river?;Rhone river (NE),length;;null;0;null
+How long is the Rhone ?;Rhone;;null;0;null
+Which are the members of the United Nation?;United Nation (NE),member;United Nation (match);0;0;null
+What is the population expansion of Germany?;Germany (NE),population expansion;Germany (match);0;0;null
+What is the population growth of Germany?;Germany (NE),population growth;Germany (match),populationGrowth;1;1;1
+What is the population growth rate of Germany?;Germany (NE),population growth rate;Germany (match);0;0;null
+What is the population increase of Germany?;Germany (NE),population increase;Germany (match);0;0;null
+What is Paris the capital of?;Paris (NE),capital;Paris (match),capital;1;1;1
+Which mountain range does Kilimanjaro belong to?;Kilimanjaro (NE),mountain range,belong;Kilimanjaro (match),inMountains;1;1;1
+Which mountains does Kilimanjaro belong to?;mountain,Kilimanjaro,belong;Mountain;0;0;null
+What is the mountain range of Kilimanjaro?;Kilimanjaro (NE),mountain range;Kilimanjaro (match),inMountains;1;1;1
+Which cities are situated along the coast?;city,situated,coast;City;0;0;null
+Which cities are located along the coast?;city,located,coast;City;0;0;null
+Which cities are located near the sea?;city,located,sea;City;0;0;null
+Which cities are located next to the sea?;city,located,sea;City;0;0;null
+When was founded the African Union?;African Union (NE),founded;African Union (match);0;0;null
+When was the African Union founded?;African Union (NE),founded;African Union (match);0;0;null
+When was the African Union established?;African Union (NE),established;African Union (match);0;0;null
+What is the establishment date of the African Union?;African Union (NE),establishment date;African Union (match),established;0;0;null
