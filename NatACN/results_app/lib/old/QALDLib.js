@@ -1,6 +1,6 @@
 const fs = require("fs");
 const {deepParseJson} = require("deep-parse-json");
-const resultsLib = require("./results");
+const resultsLib = require("NatACN/results_app/lib/old/results");
 
 
 let i = 0;

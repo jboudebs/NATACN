@@ -20,21 +20,21 @@ class Constraint
 	async create(word)
 	{
 		return await this._constraint.create(word);
-	} 
-
+	}
+	
 }
 
 class WikidataConstraint
 {
 	/**
 	 * Si word contient plusieurs mot, split de word en liste de mots
-	 * @param {String} word 
+	 *
 	 * @returns 
 	 */
 	async create(word)
 	{
 		const constr = await sparklis.externalSearchConstr({ type: "WikidataSearch",
-			kwds: [(typeof word === 'string')?word:word.toString().replaceAll(',',' ')] }); //word.includes(" ")?word.split(" "):[word]
+			kwds: (typeof word === 'string')?[word]:word }); //word.includes(" ")?word.split(" "):[word]
 		if (constr == null)
 		{
 			throw new Error("No match found for " + word + " in Wikidata External Search.");
@@ -43,14 +43,14 @@ class WikidataConstraint
 	}
 }
 
+
+
 class DefaultConstraint
 {
-	async create(wordList)
+	async create(word)
 	{
-		return await new Promise(resolve=>{ 
-			resolve({ type: "MatchesAny", kwds: wordList});/////////
-		});
-	} 
+		return {type: "MatchesAny", kwds: (typeof word === 'string')?[word]:word };
+	}
 }
 
 export { Constraint, WikidataConstraint, DefaultConstraint }

@@ -1,20 +1,37 @@
 const express = require('express')
-const {deepParseJson} = require("deep-parse-json");
-const fs = require("fs");
 const bodyParser = require("express");
-const resultsLib = require("./lib/results");
-const QALDLib = require("./lib/QALDLib");
+//const QALDLib = require("NatACN/results_app/lib/old/QALDLib");
 const NatACNLib = require("./lib/NatACNLib");
+
 const app = express();
 const port = 3000;
 
-NatACNLib.i = 0;
+NatACNLib.i = 18;
 
 //get settings
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ limit: '200mb', extended: false }));
+app.use(bodyParser.json({limit: '200mb'}));
 
-app.get('/', (req, res)=>NatACNLib.getSimple(req, res))
+//app.get('/score', (req, res)=>NatACNLib.score(req,res))
+
+app.get('/', (req, res)=>{
+	try
+	{
+		//Recalcul du score sans les doublons
+		//NatACNLib.majscore();
+		
+		NatACNLib.verif();
+		NatACNLib.removeDuplicates();
+		NatACNLib.score();
+		NatACNLib.resJSON2resCSV();
+		
+	}
+	catch (e)
+	{
+		console.error(e);
+	}
+
+})
 
 app.post('/', (req, res)=>NatACNLib.post(req, res))
 

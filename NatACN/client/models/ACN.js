@@ -9,7 +9,7 @@ class ACN
 	{
 		if (this.constructor === ACN)
 		{
-		throw new Error("Abstract classes can't be instantiated.");
+			throw new Error("Abstract classes can't be instantiated.");
 		}
 	}
 

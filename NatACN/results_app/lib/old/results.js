@@ -5,6 +5,7 @@ const fs = require("fs");
  * Functions
  */
 
+const refFile = "/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/data/mondial-testNaryRel.json"
 function testWritingOnAServeurFile()
 {
 	console.log("wrote on a serveur");
@@ -36,22 +37,22 @@ function extractPureWikidataQuestions()
 
 exports.getQuery = function getQuery(i)
 {
-	const qald10 = deepParseJson(fs.readFileSync('/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/data/ref.json').toString());
-	console.log("getQuery",qald10.qald10[i].query);
-	return qald10.qald10[i].query;
+	const qald10 = deepParseJson(fs.readFileSync(refFile).toString());
+	console.log("getQuery",qald10.questions[i].query);
+	return qald10.questions[i].query;
 }
 
 exports.getQALD = function getQALD(ln)
 {
-	const qald10 = deepParseJson(fs.readFileSync('/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/data/ref.json').toString());
-	console.log("getQALD",qald10.qald10[ln]);
-	return qald10.qald10[ln];
+	const qald10 = deepParseJson(fs.readFileSync(refFile).toString());
+	console.log("getQALD ",qald10.questions[ln]);
+	return qald10.questions[ln];
 }
 
 // TODO : find answers and wiki labels
 exports.getAnswers = async function getAnswers()
 {
-	const qald10 = deepParseJson(fs.readFileSync('/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/resultsv2/ref_short.json').toString());
+	const qald10 = deepParseJson(fs.readFileSync(refFile).toString());
 	console.log(qald10);
 	// fs.writeFileSync("test-answers.json", '{"qald10" : [', {
 	// 	encoding: "utf8", flag: "w+", mode: 0o666

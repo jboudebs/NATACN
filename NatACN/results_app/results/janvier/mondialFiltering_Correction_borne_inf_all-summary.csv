@@ -1,0 +1,22 @@
+ID;QALD;Keywords Extracted;Longest QT-Path;Precision;Recall;F1-Score
+0;What is the length of Rhone ?;Rhone (NE),length;Rhone (match),length;1;1;1
+1;What is the length of the Rhone ?;length,Rhone;length,River;0;0;null
+2;What is the length of Rhone river?;Rhone river (NE),length;;null;0;null
+3;What is Rhone's length?;Rhone (NE),length;Rhone (match),length;1;1;1
+4;Which are the members of the United Nations?;United Nations (NE),member;United Nations (match),ofMember;1;0.8195876288659794;0.9008498583569405
+5;What is the population expansion of Germany?;Germany (NE),population expansion;Germany (match),populationGrowth;1;1;1
+6;What is the population growth of Germany?;Germany (NE),population growth;Germany (match),populationGrowth;1;1;1
+7;What is the population growth rate of Germany?;Germany (NE),population growth rate;Germany (match),populationGrowth;1;1;1
+8;What is the population increase of Germany?;Germany (NE),population increase;Germany (match),populationGrowth;1;1;1
+9;What is Paris the capital of?;Paris (NE),capital;Paris (match),capital;1;1;1
+10;Which mountain range does Kilimanjaro belong to?;Kilimanjaro (NE),mountain range,belong;Kilimanjaro (match),inMountains;1;1;1
+11;Which mountains does Kilimanjaro belong to?;mountain,Kilimanjaro,belong;Mountain,Volcano,locatedIn;0;0;null
+12;What is the mountain range of Kilimanjaro?;Kilimanjaro (NE),mountain range;Kilimanjaro (match),inMountains;1;1;1
+13;Which cities are situated along the coast?;city,situated,coast;City,locatedOnIsland,Island;0;0;null
+14;Which cities are located along the coast?;city,located,coast;City,locatedOnIsland,Island;0;0;null
+15;Which cities are located near the sea?;city,located,sea;City,locatedOnIsland,Island;0;0;null
+16;Which cities are located next to the sea?;city,located,sea;City,locatedOnIsland,Island;0;0;null
+17;When was founded the African Union?;African Union (NE),founded;African Union (match),established;0;0;null
+18;When was the African Union founded?;African Union (NE),founded;African Union (match),established;0;0;null
+19;When was the African Union established?;African Union (NE),established;African Union (match),established;0;0;null
+20;What is the establishment date of the African Union?;African Union (NE),establishment date;African Union (match),established;0;0;null

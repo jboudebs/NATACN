@@ -1,0 +1,2 @@
+ID;QALD;Keywords Extracted;Longest QT-Path;Precision;Recall;F1-Score
+0;Which mountain range does Kilimanjaro belong to?;Kilimanjaro (NE),mountain range,belong;Kilimanjaro (match),inMountains;1;1;1
