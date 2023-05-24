@@ -1,0 +1,3587 @@
+{
+  "dataset": {
+    "id": "qald-X-simple_question"
+  },
+  "questions": [
+    {
+      "id": 0,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "After whom is the Riemannian geometry named?"
+        },
+        {
+          "language": "zh",
+          "string": "黎曼几何是以谁命名的？"
+        },
+        {
+          "language": "de",
+          "string": "Nach wem ist die Riemannsche Geometrie benannt?"
+        },
+        {
+          "language": "ru",
+          "string": "В честь кого названа риманова геометрия ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q42299"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE { wd:Q761383 wdt:P138 ?result. }"
+      }
+    },
+    {
+      "id": 8,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What is the boiling point of water?"
+        },
+        {
+          "language": "zh",
+          "string": "水的沸点是什么？"
+        },
+        {
+          "language": "de",
+          "string": "Wo liegt der Siedepunkt von Wasser?"
+        },
+        {
+          "language": "ru",
+          "string": "Какая температура кипения воды?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "datatype": "http://www.w3.org/2001/XMLSchema#decimal",
+                  "type": "literal",
+                  "value": "+100"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE{wd:Q283 wdt:P2102 ?result}"
+      }
+    },
+    {
+      "id": 26,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "From which country are the beagles originally from?"
+        },
+        {
+          "language": "zh",
+          "string": "米格魯獵兔犬源自于哪一个国家？"
+        },
+        {
+          "language": "de",
+          "string": "Aus welchem Land stammen Beagles ursprünglich?"
+        },
+        {
+          "language": "ru",
+          "string": "Страна происхождения породы \"Бигль\" ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q145"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q21102 wdt:P495 ?result}"
+      }
+    },
+    {
+      "id": 36,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "In which manner did Hemingway die?"
+        },
+        {
+          "language": "zh",
+          "string": "欧内斯特·海明威是怎么死的？"
+        },
+        {
+          "language": "de",
+          "string": "Auf welche Weise ist Hemingway gestorben?"
+        },
+        {
+          "language": "ru",
+          "string": "Как умер Хемингуэй?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q10737"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q23434 wdt:P1196 ?result.}"
+      }
+    },
+    {
+      "id": 39,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "How high is the Cologne Cathedral ?"
+        },
+        {
+          "language": "zh",
+          "string": "科隆大教堂有多高？"
+        },
+        {
+          "language": "de",
+          "string": "Wie hoch ist der Kölner Dom?"
+        },
+        {
+          "language": "ru",
+          "string": "Какова высота Кельнского собора ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "datatype": "http://www.w3.org/2001/XMLSchema#decimal",
+                  "type": "literal",
+                  "value": "+157"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT ?result WHERE {wd:Q4176 wdt:P2048 ?result}"
+      }
+    },
+    {
+      "id": 115,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What is TNFAIP1 ?"
+        },
+        {
+          "language": "zh",
+          "string": "TNFAIP1是什么？"
+        },
+        {
+          "language": "de",
+          "string": "Was ist TNFAIP1?"
+        },
+        {
+          "language": "ru",
+          "string": "Что такое TNFAIP1 ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q7187"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT ?result WHERE {wd:Q18032040 wdt:P31 ?result}"
+      }
+    },
+    {
+      "id": 132,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "In which country is Oberirrach ?"
+        },
+        {
+          "language": "de",
+          "string": "In welchem Land befindet sich Oberirrach?"
+        },
+        {
+          "language": "ru",
+          "string": "В какой стране находится Обериррах ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q40"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT ?result WHERE {wd:Q98138090 wdt:P17 ?result}"
+      }
+    },
+    {
+      "id": 183,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What are the spin-offs of Breaking Bad?"
+        },
+        {
+          "language": "zh",
+          "string": "绝命毒师系列衍生作品有哪些？"
+        },
+        {
+          "language": "de",
+          "string": "Welche Spin-offs von Breaking Bad gibt es?"
+        },
+        {
+          "language": "ru",
+          "string": "Какие есть спин-оффы сериала Во все тяжкие?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q14925221"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q61741521"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q1079 wdt:P2512 ?result}"
+      }
+    },
+    {
+      "id": 185,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What was the key event related to Salvador Dalí?"
+        },
+        {
+          "language": "zh",
+          "string": "与萨尔瓦多·达利有关的关键事件是什么？"
+        },
+        {
+          "language": "de",
+          "string": "Welches Schlüsselereignis gab es im Zusammenhang mit Salvador Dalí?"
+        },
+        {
+          "language": "ru",
+          "string": "Какое ключевое событие было связано с Сальвадором Дали?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q1898510"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q5577 wdt:P793 ?result}"
+      }
+    },
+    {
+      "id": 193,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What did the suffragettes stand for?"
+        },
+        {
+          "language": "zh",
+          "string": "妇女参政论者的意思是？"
+        },
+        {
+          "language": "de",
+          "string": "Wofür standen die Suffragetten?"
+        },
+        {
+          "language": "ru",
+          "string": "За что выступали суфражистки ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q205204"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q322170 wdt:P279/wdt:P425/wdt:P3712 ?result}"
+      }
+    },
+    {
+      "id": 197,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What happened to the dinosaurs ?"
+        },
+        {
+          "language": "zh",
+          "string": "恐龙发生经历了什么？"
+        },
+        {
+          "language": "de",
+          "string": "Was geschah mit den Dinosauriern?"
+        },
+        {
+          "language": "ru",
+          "string": "Что случилось с динозаврами ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q123509"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q430 wdt:P793 ?result}"
+      }
+    },
+    {
+      "id": 204,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What is the coordinate location of Shenzhen ?"
+        },
+        {
+          "language": "zh",
+          "string": "深圳市的地理坐标系是？"
+        },
+        {
+          "language": "de",
+          "string": "Wie lauten die Koordinaten von Shenzhen?"
+        },
+        {
+          "language": "ru",
+          "string": "Каково координатны Шэньчжэня ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "datatype": "http://www.opengis.net/ont/geosparql#wktLiteral",
+                  "type": "literal",
+                  "value": "Point(114.054 22.535)"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT  DISTINCT ?result WHERE {wd:Q15174 wdt:P625 ?result}"
+      }
+    },
+    {
+      "id": 205,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What is the Erlangen program ?"
+        },
+        {
+          "language": "zh",
+          "string": "什么是《爱尔兰根纲领》？"
+        },
+        {
+          "language": "de",
+          "string": "Was ist das Erlangen Programm?"
+        },
+        {
+          "language": "ru",
+          "string": "Что такое программа Эрлангена ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q42240"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q315296 wdt:P31 ?result}"
+      }
+    },
+    {
+      "id": 210,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Who was the partner of Allen Ginsberg?"
+        },
+        {
+          "language": "zh",
+          "string": "艾伦·金斯堡的伴侣叫什么名字？"
+        },
+        {
+          "language": "de",
+          "string": "Wer war der Partner von Allen Ginsberg?"
+        },
+        {
+          "language": "ru",
+          "string": "Как был партнером Аллена Гинзберга?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q1983102"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE{wd:Q6711 wdt:P451 ?result}"
+      }
+    },
+    {
+      "id": 213,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What is the english nickname of Ella Fitzgerald?"
+        },
+        {
+          "language": "zh",
+          "string": "埃拉·菲茨杰拉德的英文昵称是？"
+        },
+        {
+          "language": "de",
+          "string": "Wie lautet der englische Spitzname von Ella Fitzgerald?"
+        },
+        {
+          "language": "ru",
+          "string": "Какое прозвище у Эллы Фицджеральд на английском языке?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "xml:lang": "en",
+                  "type": "literal",
+                  "value": "Lady Ella"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q1768 wdt:P1449 ?result. FILTER(langMatches(lang(?result),\"en\"))}"
+      }
+    },
+    {
+      "id": 215,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What are the occupations of Nat King Cole?"
+        },
+        {
+          "language": "zh",
+          "string": "纳·京·高的职业是什么？"
+        },
+        {
+          "language": "de",
+          "string": "Welche Berufe hatte Nat King Cole?"
+        },
+        {
+          "language": "ru",
+          "string": "Чем занимался Нат Кинг Коул ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q10798782"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q15981151"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q33999"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q486748"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q488205"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q6168364"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q137042 wdt:P106 ?result}"
+      }
+    },
+    {
+      "id": 216,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "what is the official language of iran?"
+        },
+        {
+          "language": "zh",
+          "string": "伊朗的官方语言是什么？"
+        },
+        {
+          "language": "de",
+          "string": "Was ist die offizielle Landessprache in Iran?"
+        },
+        {
+          "language": "ru",
+          "string": "какой язык является официальным языком ирана?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q13955"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q9168"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q794 wdt:P37 ?result}"
+      }
+    },
+    {
+      "id": 217,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What is the population in Freiburg ?"
+        },
+        {
+          "language": "zh",
+          "string": "弗赖堡的人口数量是？"
+        },
+        {
+          "language": "de",
+          "string": "Wie hoch ist die Bevölkerungszahl von Freiburg?"
+        },
+        {
+          "language": "ru",
+          "string": "какое население во Фрайбурге ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "datatype": "http://www.w3.org/2001/XMLSchema#decimal",
+                  "type": "literal",
+                  "value": "+230241"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q2833 wdt:P1082 ?result}"
+      }
+    },
+    {
+      "id": 219,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What does Ray-Ban produce primarily?"
+        },
+        {
+          "language": "zh",
+          "string": "雷朋公司主要生产什么？"
+        },
+        {
+          "language": "de",
+          "string": "Was produziert Ray-Ban hauptsächlich?"
+        },
+        {
+          "language": "ru",
+          "string": "Каков годовой доход компании Ray-Ban ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q217541"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q653941 wdt:P1056 ?result}"
+      }
+    },
+    {
+      "id": 231,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What albums has Atif Aslam been on?"
+        },
+        {
+          "language": "zh",
+          "string": "阿提夫·阿斯拉姆参与了哪些专辑？"
+        },
+        {
+          "language": "de",
+          "string": "Auf welchen Alben kam Atif Aslam vor?"
+        },
+        {
+          "language": "ru",
+          "string": "На каких альбомах есть Атиф Аслам?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q6125801"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q6819157"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q93077588"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {?result wdt:P31 wd:Q482994; wdt:P175 wd:Q755830}"
+      }
+    },
+    {
+      "id": 232,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What was Ada Lovelace’s noble title?"
+        },
+        {
+          "language": "zh",
+          "string": "埃达·洛夫莱斯的贵族头衔是？"
+        },
+        {
+          "language": "de",
+          "string": "Was war Ada Lovelaces Adelstitel?"
+        },
+        {
+          "language": "ru",
+          "string": "Какой дворянский титул был у Ады Лавлейс ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q1128240"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q7259 wdt:P97 ?result}"
+      }
+    },
+    {
+      "id": 233,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What was Janus the god of?"
+        },
+        {
+          "language": "zh",
+          "string": "雅努斯的保佑領域是？"
+        },
+        {
+          "language": "de",
+          "string": "Wovon war Janus der Gott?"
+        },
+        {
+          "language": "ru",
+          "string": "Богом чего был Янус ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q1135449"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q11471"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q167312"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q21263223"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q529711"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q53060"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q59627780"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q777671"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q167685 wdt:P2925 ?result}"
+      }
+    },
+    {
+      "id": 240,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "When did Allen Ginsberg die?"
+        },
+        {
+          "language": "zh",
+          "string": "艾伦·金斯堡什么时候去世的？"
+        },
+        {
+          "language": "de",
+          "string": "Wann starb Allen Ginsberg?"
+        },
+        {
+          "language": "ru",
+          "string": "Когда умер Аллен Гинзберг ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                  "type": "literal",
+                  "value": "1997-04-05T00:00:00Z"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q6711 wdt:P570 ?result}"
+      }
+    },
+    {
+      "id": 241,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "When did Ella Fitzgerald die?"
+        },
+        {
+          "language": "zh",
+          "string": "埃拉·菲茨杰拉何时去世？"
+        },
+        {
+          "language": "de",
+          "string": "Wann starb Ella Fitzgerald?"
+        },
+        {
+          "language": "ru",
+          "string": "Когда умерла Элла Фицджеральд ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                  "type": "literal",
+                  "value": "1996-06-15T00:00:00Z"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q1768 wdt:P570 ?result}"
+      }
+    },
+    {
+      "id": 244,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "When did Rumi die?"
+        },
+        {
+          "language": "zh",
+          "string": "鲁米何时去世？"
+        },
+        {
+          "language": "de",
+          "string": "Wann starb Rumi?"
+        },
+        {
+          "language": "ru",
+          "string": "Когда умер Руми ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                  "type": "literal",
+                  "value": "1273-12-17T00:00:00Z"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q43347 wdt:P570 ?result}"
+      }
+    },
+    {
+      "id": 250,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "When did the Weimar Republic start?"
+        },
+        {
+          "language": "zh",
+          "string": "魏玛共和国何时开始？"
+        },
+        {
+          "language": "de",
+          "string": "Wann wurde die Weimarer Republik ausgerufen?"
+        },
+        {
+          "language": "ru",
+          "string": "Когда образовалась Веймарская республика ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                  "type": "literal",
+                  "value": "1918-11-09T00:00:00Z"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE{wd:Q41304 wdt:P571 ?result}"
+      }
+    },
+    {
+      "id": 251,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "When did World War II officially end?"
+        },
+        {
+          "language": "zh",
+          "string": "第二次世界大战何时正式结束？"
+        },
+        {
+          "language": "de",
+          "string": "Wann endete der zweite Weltkrieg offiziell?"
+        },
+        {
+          "language": "ru",
+          "string": "Когда официально закончилась Вторая мировая война ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                  "type": "literal",
+                  "value": "1945-09-02T00:00:00Z"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE{wd:Q362 wdt:P582 ?result}"
+      }
+    },
+    {
+      "id": 254,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "When the film Red Notice was released?"
+        },
+        {
+          "language": "zh",
+          "string": "红色通缉令 (电影)出版日期是何时？"
+        },
+        {
+          "language": "de",
+          "string": "Wann erschien der Film Red Notice?"
+        },
+        {
+          "language": "ru",
+          "string": "Когда был выпущен фильм \"Красное уведомление\" ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                  "type": "literal",
+                  "value": "2021-01-01T00:00:00Z"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE{wd:Q58815001 wdt:P577 ?result}"
+      }
+    },
+    {
+      "id": 255,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "When was Cologne Cathedral built?"
+        },
+        {
+          "language": "zh",
+          "string": "科隆大教堂是什么时候建成的？"
+        },
+        {
+          "language": "de",
+          "string": "Wann wurde der Kölner Dom erbaut?"
+        },
+        {
+          "language": "ru",
+          "string": "Когда был построен Кёльнский собор ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                  "type": "literal",
+                  "value": "1248-01-01T00:00:00Z"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE{wd:Q4176 wdt:P571 ?result}"
+      }
+    },
+    {
+      "id": 256,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What can be done against gout?"
+        },
+        {
+          "language": "zh",
+          "string": "痛风的用药是？"
+        },
+        {
+          "language": "de",
+          "string": "Was kann man gegen Gicht machen?"
+        },
+        {
+          "language": "ru",
+          "string": "Что можно сделать против подагры?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q1215575"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q18216"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q186969"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q244408"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q326224"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q3790542"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q409231"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q412486"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q417296"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q7160794"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q900898"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q963093"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE{wd:Q133087 wdt:P2176 ?result}"
+      }
+    },
+    {
+      "id": 259,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "When was Marlene Dietrich born?"
+        },
+        {
+          "language": "zh",
+          "string": "玛莲娜·迪特里茜何时出生？"
+        },
+        {
+          "language": "de",
+          "string": "Wann wurde Marlene Dietrich geboren?"
+        },
+        {
+          "language": "ru",
+          "string": "Когда родилась Марлен Дитрих ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                  "type": "literal",
+                  "value": "1901-12-27T00:00:00Z"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE{wd:Q4612 wdt:P569 ?result}"
+      }
+    },
+    {
+      "id": 260,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "When was Penicillin discovered?"
+        },
+        {
+          "language": "zh",
+          "string": "青霉素首次被发现是什么时候？"
+        },
+        {
+          "language": "de",
+          "string": "Wann wurde Penicillin entdeckt?"
+        },
+        {
+          "language": "ru",
+          "string": "Когда был открыт пенициллин ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                  "type": "literal",
+                  "value": "1928-09-28T00:00:00Z"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE{wd:Q12190 wdt:P575 ?result}"
+      }
+    },
+    {
+      "id": 261,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "When was Rumi born?"
+        },
+        {
+          "language": "zh",
+          "string": "鲁米出生日是？"
+        },
+        {
+          "language": "de",
+          "string": "Wann wurde Rumi geboren?"
+        },
+        {
+          "language": "ru",
+          "string": "Когда родился Руми ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                  "type": "literal",
+                  "value": "1207-09-30T00:00:00Z"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE{wd:Q43347 wdt:P569 ?result}"
+      }
+    },
+    {
+      "id": 262,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "When was the beginning of Romanticism ?"
+        },
+        {
+          "language": "zh",
+          "string": "浪漫主义开始于何时？"
+        },
+        {
+          "language": "de",
+          "string": "Wann begann die Romantik?"
+        },
+        {
+          "language": "ru",
+          "string": "Когда начался романтизм ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                  "type": "literal",
+                  "value": "1800-01-01T00:00:00Z"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE{wd:Q37068 wdt:P580 ?result}"
+      }
+    },
+    {
+      "id": 263,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "When was the Echo Music Prize abolished?"
+        },
+        {
+          "language": "zh",
+          "string": "回声音乐奖何时被废除？"
+        },
+        {
+          "language": "de",
+          "string": "Wann wurde Echo Musikpreis abgeschafft?"
+        },
+        {
+          "language": "ru",
+          "string": "Когда была упразднена музыкальная премия \"Эхо\" ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                  "type": "literal",
+                  "value": "2018-04-25T00:00:00Z"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE{wd:Q703237 wdt:P576 ?result}"
+      }
+    },
+    {
+      "id": 265,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "When was the Hamburg Airport inaugurated?"
+        },
+        {
+          "language": "zh",
+          "string": "汉堡机场何时启用？"
+        },
+        {
+          "language": "de",
+          "string": "Wann wurde der Hamburger Flughafen eingeweiht?"
+        },
+        {
+          "language": "ru",
+          "string": "Когда был открыт аэропорт Гамбурга ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                  "type": "literal",
+                  "value": "1911-01-01T00:00:00Z"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE{wd:Q27706 wdt:P571 ?result}"
+      }
+    },
+    {
+      "id": 266,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "When was the Hamburg S-Bahn officially opened?"
+        },
+        {
+          "language": "zh",
+          "string": "漢堡城市快鐵的正式开放日期是？"
+        },
+        {
+          "language": "de",
+          "string": "Wann wurde die Hamburger S-Bahn offiziell eröffnet?"
+        },
+        {
+          "language": "ru",
+          "string": "Когда была создана линия S-Bahn в Гамбурге?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                  "type": "literal",
+                  "value": "1906-01-01T00:00:00Z"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE{wd:Q693956 wdt:P1619 ?result}"
+      }
+    },
+    {
+      "id": 269,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "When was the university of Cambridge founded?"
+        },
+        {
+          "language": "zh",
+          "string": "剑桥大学是什么时候成立的？"
+        },
+        {
+          "language": "de",
+          "string": "Wann wurde die Universität Cambridge gegründet?"
+        },
+        {
+          "language": "ru",
+          "string": "Когда был основан Кембриджский университет ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                  "type": "literal",
+                  "value": "1209-01-01T00:00:00Z"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE{wd:Q35794 wdt:P571 ?result}"
+      }
+    },
+    {
+      "id": 270,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "When was the University of Hamburg founded?"
+        },
+        {
+          "language": "zh",
+          "string": "汉堡大学是什么时候成立的？"
+        },
+        {
+          "language": "de",
+          "string": "Wann wurde die Universität Hamburg gegründet?"
+        },
+        {
+          "language": "ru",
+          "string": "Когда был основан Гамбургский университет ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                  "type": "literal",
+                  "value": "1919-01-01T00:00:00Z"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE{wd:Q156725 wdt:P571 ?result}"
+      }
+    },
+    {
+      "id": 271,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "When was the University of Saskatchewan founded?"
+        },
+        {
+          "language": "zh",
+          "string": "萨斯喀彻温大学是何时成立的？"
+        },
+        {
+          "language": "de",
+          "string": "Wann wurde die University of Saskatchewan gegründet?"
+        },
+        {
+          "language": "ru",
+          "string": "Когда был основан Саскачеванский университет ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                  "type": "literal",
+                  "value": "1907-01-01T00:00:00Z"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE{wd:Q1514848 wdt:P571 ?result}"
+      }
+    },
+    {
+      "id": 272,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "When was the Vatican City created?"
+        },
+        {
+          "language": "zh",
+          "string": "梵蒂冈城是什么时候创建的？"
+        },
+        {
+          "language": "de",
+          "string": "Wann wurde Vatikan Stadt geschaffen?"
+        },
+        {
+          "language": "ru",
+          "string": "Когда был создан город Ватикан ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                  "type": "literal",
+                  "value": "1929-02-11T00:00:00Z"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE{wd:Q237 wdt:P571 ?result}"
+      }
+    },
+    {
+      "id": 273,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "When was United Fruit Company founded?"
+        },
+        {
+          "language": "zh",
+          "string": "联合果品公司是什么时候成立的？"
+        },
+        {
+          "language": "de",
+          "string": "Wann wurde die United Fruit Company gegründet?"
+        },
+        {
+          "language": "ru",
+          "string": "Когда была основана компания United Fruit Company ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                  "type": "literal",
+                  "value": "1899-01-01T00:00:00Z"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE{wd:Q1771942 wdt:P571 ?result}"
+      }
+    },
+    {
+      "id": 274,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Where did Trotzky die?"
+        },
+        {
+          "language": "zh",
+          "string": "列夫·托洛茨基在哪里去世？"
+        },
+        {
+          "language": "de",
+          "string": "Wo starb Trotzki?"
+        },
+        {
+          "language": "ru",
+          "string": "Где и когда умер Троцкий ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q661315"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE{wd:Q33391 wdt:P20 ?result}"
+      }
+    },
+    {
+      "id": 276,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Where did the Hambach Festival happen?"
+        },
+        {
+          "language": "zh",
+          "string": "哈姆巴赫庆典在哪里举行？"
+        },
+        {
+          "language": "de",
+          "string": "Wo fand das Hambach Festival statt?"
+        },
+        {
+          "language": "ru",
+          "string": "Где проходил фестиваль Гамбахский праздник ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q523286"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE{wd:Q551416 wdt:P276 ?result}"
+      }
+    },
+    {
+      "id": 278,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Where does the Nutri-Score originate from?"
+        },
+        {
+          "language": "zh",
+          "string": "Nutri-Score源自哪里？"
+        },
+        {
+          "language": "de",
+          "string": "Woher stammt der Nutri-Score?"
+        },
+        {
+          "language": "ru",
+          "string": "Откуда берет начало Nutri-Score ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q142"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE{wd:Q46577569 wdt:P495 ?result}"
+      }
+    },
+    {
+      "id": 283,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Where was Caesar murdered?"
+        },
+        {
+          "language": "zh",
+          "string": "凯撒是在哪里被谋杀的？"
+        },
+        {
+          "language": "de",
+          "string": "Wo wurde Cäsar ermordet?"
+        },
+        {
+          "language": "ru",
+          "string": "Где был убит Цезарь ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q944814"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q1048 wdt:P20 ?result}"
+      }
+    },
+    {
+      "id": 285,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Where was Roland Corporation founded?"
+        },
+        {
+          "language": "zh",
+          "string": "乐兰是在哪里成立的？"
+        },
+        {
+          "language": "de",
+          "string": "Wo wurde die Roland Corporation gegründet?"
+        },
+        {
+          "language": "ru",
+          "string": "Где была основана корпорация Roland ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q35765"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q848490 wdt:P740 ?result}"
+      }
+    },
+    {
+      "id": 287,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Who developed the Erlangen program?"
+        },
+        {
+          "language": "zh",
+          "string": "谁是《爱尔兰根纲领》的作者？"
+        },
+        {
+          "language": "de",
+          "string": "Wer hat das Erlangen Programm entwickelt?"
+        },
+        {
+          "language": "ru",
+          "string": "Где была опубликована Эрлангенская программа ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q76641"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {?result wdt:P800 wd:Q315296}"
+      }
+    },
+    {
+      "id": 292,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Which art movement was Yoko Ono part of?"
+        },
+        {
+          "language": "zh",
+          "string": "小野洋子是哪个艺术运动的成员？"
+        },
+        {
+          "language": "de",
+          "string": "Yoko Ono war Teil welcher Kunstbewegung?"
+        },
+        {
+          "language": "ru",
+          "string": "К какому художественному движению принадлежала Йоко Оно ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q108908"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q117012 wdt:P135 ?result. ?result wdt:P31 wd:Q968159 }"
+      }
+    },
+    {
+      "id": 294,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What caused Kobe Bryant's Death?"
+        },
+        {
+          "language": "zh",
+          "string": "科比-布莱恩特的死因是什么？"
+        },
+        {
+          "language": "de",
+          "string": "Wodurch starb Kobe Bryant?"
+        },
+        {
+          "language": "ru",
+          "string": "Что стало причиной смерти Коби Брайанта?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q3002150"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q25369 wdt:P509 ?result}"
+      }
+    },
+    {
+      "id": 295,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What are the opposites of zero?"
+        },
+        {
+          "language": "zh",
+          "string": "零的对立面是什么？"
+        },
+        {
+          "language": "de",
+          "string": "Was sind die Gegenteile von Null?"
+        },
+        {
+          "language": "ru",
+          "string": "Какие существуют противоположности концепции нуля?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q204"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q205"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q204 wdt:P461 ?result}"
+      }
+    },
+    {
+      "id": 314,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What is the offical language of Taipei?"
+        },
+        {
+          "language": "zh",
+          "string": "台北市的官方语言是？"
+        },
+        {
+          "language": "de",
+          "string": "Was ist die offizielle Sprache in Taipeh?"
+        },
+        {
+          "language": "ru",
+          "string": "Какой официальный язык в Тайбэй?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q7850"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q1867 wdt:P37 ?result}"
+      }
+    },
+    {
+      "id": 323,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Who developed WordNet?"
+        },
+        {
+          "language": "zh",
+          "string": "WordNet的开发者是？"
+        },
+        {
+          "language": "de",
+          "string": "Wer entwickelte WordNet?"
+        },
+        {
+          "language": "ru",
+          "string": "Кто разработал WordNet?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q4558744"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q533822 wdt:P178 ?result}"
+      }
+    },
+    {
+      "id": 324,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Who are the actresses in Portrait of a Lady on Fire?"
+        },
+        {
+          "language": "zh",
+          "string": "电影燃烧女子的肖像中的女演员有？"
+        },
+        {
+          "language": "de",
+          "string": "Wer sind die Hauptdarstellerinnen in Porträt einer jungen Frau in Flammen?"
+        },
+        {
+          "language": "ru",
+          "string": "Кто является актрисами из фильма \"Портрет девушки в огне\" ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q230710"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q31353"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q3345735"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q65043586"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q65468168"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q63246568 wdt:P161 ?result. ?result wdt:P21 wd:Q6581072}"
+      }
+    },
+    {
+      "id": 326,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Who created the Turing machine?"
+        },
+        {
+          "language": "zh",
+          "string": "谁创建了图灵机？"
+        },
+        {
+          "language": "de",
+          "string": "Wer erfand die Turingmaschine?"
+        },
+        {
+          "language": "ru",
+          "string": "Кто создал машину Тьюринга?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q7251"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q163310 wdt:P61 ?result}"
+      }
+    },
+    {
+      "id": 327,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "When was the Hambach Castle built?"
+        },
+        {
+          "language": "zh",
+          "string": "哈姆巴赫城堡是谁创建的？"
+        },
+        {
+          "language": "de",
+          "string": "Wann wurde das Hambacher Schloß erbaut?"
+        },
+        {
+          "language": "ru",
+          "string": "Когда был построен Хамбахский замок?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                  "type": "literal",
+                  "value": "1100-01-01T00:00:00Z"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q523286 wdt:P571 ?result}"
+      }
+    },
+    {
+      "id": 328,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Who died at the North Pole?"
+        },
+        {
+          "language": "zh",
+          "string": "哪些人死在了北极？"
+        },
+        {
+          "language": "de",
+          "string": "Wer starb am Nordpol?"
+        },
+        {
+          "language": "ru",
+          "string": "Кто погиб на Северном полюсе ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q1333099"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {?result wdt:P31 wd:Q5; wdt:P20 wd:Q934}"
+      }
+    },
+    {
+      "id": 329,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Who directed Anne with an E ?"
+        },
+        {
+          "language": "zh",
+          "string": "谁导演了《勇敢的安妮》？"
+        },
+        {
+          "language": "de",
+          "string": "Wer führte Regie bei Anne with an E?"
+        },
+        {
+          "language": "ru",
+          "string": "Кто был режиссером «Энн» ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q449163"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q28091065 wdt:P57 ?result.}"
+      }
+    },
+    {
+      "id": 330,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Who wrote \"Prototypical Networks for Few-shot Learning\"?"
+        },
+        {
+          "language": "zh",
+          "string": "《用于小样本学习的原型网络》的作者是？"
+        },
+        {
+          "language": "de",
+          "string": "Wer schrieb \"Prototypical Networks for Few-shot Learning\"?"
+        },
+        {
+          "language": "ru",
+          "string": "Кто написал \"Prototypical Networks for Few-shot Learning\"?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q26702597"
+                }
+              },
+              {
+                "result": {
+                  "type": "literal",
+                  "value": "Jake Snell"
+                }
+              },
+              {
+                "result": {
+                  "type": "literal",
+                  "value": "Kevin Swersky"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {{wd:Q44649835 wdt:P50 ?result.} UNION {wd:Q44649835 wdt:P2093 ?result}}"
+      }
+    },
+    {
+      "id": 331,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Who founded “The Blue Rider”?"
+        },
+        {
+          "language": "zh",
+          "string": "“蓝骑士”的创办者是？"
+        },
+        {
+          "language": "de",
+          "string": "Wer gründete Der Blaue Reiter?"
+        },
+        {
+          "language": "ru",
+          "string": "Кто основал \"Синий всадник\"?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q156426"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q158255"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q321462"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q33981"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q44054"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q463978"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q464016"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q61064"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q117035 wdt:P112 ?result}"
+      }
+    },
+    {
+      "id": 332,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Who founded the Worpswede artist colony ?"
+        },
+        {
+          "language": "de",
+          "string": "Wer hat die Künstlerkolonie Worpswede gegründet? "
+        },
+        {
+          "language": "ru",
+          "string": "Кто основал поселение художников Ворпсведе ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q448400"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q561091"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q71425"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q479361 wdt:P112 ?result}"
+      }
+    },
+    {
+      "id": 333,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Who is the author of “Convenience Store Woman” ?"
+        },
+        {
+          "language": "de",
+          "string": "Wer ist der Autor von \"Die Ladenhüterin\"?"
+        },
+        {
+          "language": "ru",
+          "string": "Кто является автором книги \"Женщина из круглосуточного магазина\" ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q11523472"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q27863945 wdt:P50 ?result}"
+      }
+    },
+    {
+      "id": 339,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Who is the publisher of Smite ?"
+        },
+        {
+          "language": "zh",
+          "string": "谁是游戏《神之浩劫》的出版商？"
+        },
+        {
+          "language": "de",
+          "string": "Wer ist der Herausgeber von Smite?"
+        },
+        {
+          "language": "ru",
+          "string": "Кто является издателем игры Smite ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q5750244"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q2357719 wdt:P123 ?result}"
+      }
+    },
+    {
+      "id": 340,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Who wrote the Erlangen program?"
+        },
+        {
+          "language": "zh",
+          "string": "谁书写了《爱尔兰根纲领》？"
+        },
+        {
+          "language": "de",
+          "string": "Wer schrieb das Erlangen Programm?"
+        },
+        {
+          "language": "ru",
+          "string": "Кто написал Эрлангенскую программу?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q76641"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {?result wdt:P800 wd:Q315296}"
+      }
+    },
+    {
+      "id": 346,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Who was the creator of Boo-Boo Bear ?"
+        },
+        {
+          "language": "zh",
+          "string": "波波熊这个角色的创造者是谁？"
+        },
+        {
+          "language": "de",
+          "string": "Wer war der Schöpfer von Boo-Boo-Bear?"
+        },
+        {
+          "language": "ru",
+          "string": "Кто был создателем медвежонка Бу-Бу ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q263324"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q2394280 wdt:P170 ?result}"
+      }
+    },
+    {
+      "id": 347,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Who was the creator of Unbreakable Kimmy Schmidt ?"
+        },
+        {
+          "language": "zh",
+          "string": "电视剧我本坚强的创作者是谁？"
+        },
+        {
+          "language": "de",
+          "string": "Wer war der Schöpfer von Unbreakable Kimmy Schmidt?"
+        },
+        {
+          "language": "ru",
+          "string": "Кто был создателем \"Несгибаемая Кимми Шмидт\" ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q14540"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q7342763"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q16889037 wdt:P170 ?result}"
+      }
+    },
+    {
+      "id": 349,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Who founded the Roland Corporation?"
+        },
+        {
+          "language": "zh",
+          "string": "乐兰公司的创办者是？"
+        },
+        {
+          "language": "de",
+          "string": "Wer hat die Roland Corporation gegründet?"
+        },
+        {
+          "language": "ru",
+          "string": "Кто основал корпорацию Roland ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q322845"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q848490 wdt:P112 ?result}"
+      }
+    },
+    {
+      "id": 351,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Who were the parents of Socrates ?"
+        },
+        {
+          "language": "zh",
+          "string": "谁是苏格拉底的父母？"
+        },
+        {
+          "language": "de",
+          "string": "Wer waren die Eltern von Sokrates?"
+        },
+        {
+          "language": "ru",
+          "string": "Кто были родители Сократа ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q2263186"
+                }
+              },
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q2303035"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {{wd:Q913 wdt:P25 ?result} UNION {wd:Q913 wdt:P22 ?result}}"
+      }
+    },
+    {
+      "id": 352,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Who wrote Anne of Green Gables ?"
+        },
+        {
+          "language": "zh",
+          "string": "谁写了《绿山墙的安妮》这本小说？"
+        },
+        {
+          "language": "de",
+          "string": "Wer schrieb Anne auf Green Gables?"
+        },
+        {
+          "language": "ru",
+          "string": "Кто написал книгу \"Аня из Зелёных Мезонинов\" ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q273034"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q565911 wdt:P50 ?result}"
+      }
+    },
+    {
+      "id": 354,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Who's the author of The Hellbound Heart ?"
+        },
+        {
+          "language": "zh",
+          "string": "《受地獄羈絆之心》这本小说的作者是谁？"
+        },
+        {
+          "language": "de",
+          "string": "Wer ist der Autor von The Hellbound Heart?"
+        },
+        {
+          "language": "ru",
+          "string": "Кто автор романа \"Восставший из ада\" ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q298761"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q3521239 wdt:P50 ?result}"
+      }
+    },
+    {
+      "id": 355,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Whom did Clara Westhoff marry?"
+        },
+        {
+          "language": "de",
+          "string": "Wen hat Clara Westhoff geheiratet?"
+        },
+        {
+          "language": "ru",
+          "string": "За кого вышла замуж Клара Вестхофф ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q76483"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q462333 wdt:P26 ?result}"
+      }
+    },
+    {
+      "id": 357,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "When was Athens founded?"
+        },
+        {
+          "language": "zh",
+          "string": "雅典的成立或创建时间是？"
+        },
+        {
+          "language": "de",
+          "string": "Wann wurde Athen gegründet?"
+        },
+        {
+          "language": "ru",
+          "string": "Когда были основаны Афины?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                  "type": "literal",
+                  "value": "-7000-01-01T00:00:00Z"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q1524 wdt:P571 ?result}"
+      }
+    },
+    {
+      "id": 381,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What is the twitter name of Running Wild?"
+        },
+        {
+          "language": "zh",
+          "string": "撒野 (樂團)的推特名字是什么？"
+        },
+        {
+          "language": "de",
+          "string": "Wie lautet der Twittername von Running Wild?"
+        },
+        {
+          "language": "ru",
+          "string": "Какой никнейм в твиттере у Running Wild?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q1055"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q163173 wdt:P740 ?result}"
+      }
+    },
+    {
+      "id": 389,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "In what country is the Kandahar-downhill?"
+        },
+        {
+          "language": "zh",
+          "string": "Kandahar Downhill Piste位于哪一个国家？"
+        },
+        {
+          "language": "de",
+          "string": "In welchem Land liegt die Kandahar Abfahrt?"
+        },
+        {
+          "language": "ru",
+          "string": "В какой стране находится Кандагарский спуск?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q183"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q327818 wdt:P17 ?result}"
+      }
+    },
+    {
+      "id": 393,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "What is the Fujiyama made of?"
+        },
+        {
+          "language": "zh",
+          "string": "富士山是由什么制成的？"
+        },
+        {
+          "language": "de",
+          "string": "Woraus besteht der Fudschijama?"
+        },
+        {
+          "language": "ru",
+          "string": "Из чего сделана Фудзияма?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q43338"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q39231 wdt:P186 ?result}"
+      }
+    }
+  ]
+}

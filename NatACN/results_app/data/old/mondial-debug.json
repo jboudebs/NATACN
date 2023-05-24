@@ -1,0 +1,39 @@
+{
+  "dataset": {
+    "id": "mondial"
+  },
+  "questions": [
+    {
+      "id": 0,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "When was the African Union established?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q42299"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql" : "SELECT DISTINCT ?established_8\nWHERE { <http://www.semwebtech.org/mondial/10/organization/AU/> n1:established ?established_8 . }"
+      }
+    }
+  ]
+}

@@ -64,8 +64,16 @@ class NavState
 	{
 		this._currentKeyword = this._currentKeywordList.head();
 		this._currentKeywordList = this._currentKeywordList.tail();
-		let syn = (await NLPToolsParameters.getSynonyms(this._currentKeyword)).concat([this._currentKeyword]);
-		this._currentKeywordSynonyms = KeywordList.toKeywordList(syn);
+		if(!this.NECurrentKeyword())
+		{
+			let syn = (await NLPToolsParameters.getSynonyms(this._currentKeyword)).concat([this._currentKeyword]);
+			this._currentKeywordSynonyms = KeywordList.toKeywordList(syn);
+		}
+	}
+	
+	NECurrentKeyword()
+	{
+		return this._currentKeyword.getType()==='NE';
 	}
 	
 	getId()

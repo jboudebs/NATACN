@@ -20,7 +20,7 @@ class KeywordList
 			{
 				throw new Error('Erreur lors de la creation de ' + list.toString() + ' en KeywordList.');
 			}
-		};
+		}
 	}
 	
 	add(keyword)
@@ -63,7 +63,7 @@ class KeywordList
 
 	get(i)
 	{
-		return this._list[i];
+		return i?this._list[i]:this._list;
 	}
 
 	isEmpty()
@@ -82,24 +82,39 @@ class KeywordList
 
 	/**
 	 * Les kw ne sont pas clonés, parce qu'ils ne sont qu'en lecture.
-	 * @param {*} stringList 
+	 * @param {*} anyList
 	 */
-	static toKeywordList(stringList)
+	static toKeywordList(anyList)
 	{
+		if (anyList instanceof KeywordList)
+		{
+			anyList=anyList._list
+		}
 		let kwList = new KeywordList([]);
-		for(let i = 0; i < stringList.length; i++) 
-		{	
-			let string = stringList[i]; // cas list de string
-			
-			if (string === undefined) // cas list de keyword
-			{
-				string = stringList.get(i);
+		anyList.map(
+			(it) => {
+				try{
+					let kw;
+					if (typeof it === "string")
+					{
+						kw = new Keyword(it)
+					}
+					else if(it instanceof Keyword)
+					{
+						kw = it;
+					}
+					else if(it instanceof Object)
+					{
+						kw = new Keyword(it);
+					}
+					kwList.add(kw);
+					return
+				} catch (e)
+				{
+					console.error(e)
+				}
 			}
-			
-			kwList.add(string);
-			
-		};
-
+		)
 		return kwList;
 	}
 }

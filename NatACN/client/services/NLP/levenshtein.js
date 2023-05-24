@@ -2,7 +2,7 @@
  * code from https://github.com/gustf/js-levenshtein
  */
 
-function levenshtein(s, t) {
+module.exports.calcul = function levenshtein(s, t) {
 	if (s === t) {
 		return 0;
 	}
@@ -112,7 +112,6 @@ function main() {
 	console.log(r);
 }
 
-module.exports = levenshtein;
 if (process.argv[1] == __filename) {
 	main();
 }

@@ -63,25 +63,26 @@ class SparklisAPI extends ACN
 			console.log('Constraint :', navState.getConstraint());
 			//get filtred QT list from Sparklis
 			qtList.add(await (new Suggestions()).createMatch(navState));
+			if(qtList.length){qtList.get(0).setLabel(ne)};
 		}
 		//case current keyword is not a NE
 		else if(navState.getCurrentKeyword().toString().length>2)
 		{
-			const synonyms = navState.getCurrentKeywordSynonyms()
-				.toString().toLowerCase().split(",").filter(e=>e.length>2);
+			const synonyms = navState.getCurrentKeywordSynonyms();
+				//.toString().toLowerCase().split(",").filter(e=>e.length>2);
 			console.log("Current synonyms :",synonyms);
 			
-			for(const syn of synonyms)//nouvelle contrainte pour chaque synonyme
+			for(const syn of synonyms.get())//nouvelle contrainte pour chaque synonyme
 			{
-				navState.setConstraint(await new Constraint.Constraint().create(syn));//A changer avec les syn
+				navState.setConstraint(await new Constraint.Constraint().create(syn.toString().toLowerCase()));//A changer avec les syn
 				console.log('Constraint :', navState.getConstraint());
 				try{
 					//get filtred suggestion list from Sparklis
 					let suggList = await (new Suggestions()).create(navState);
-					if(suggList==='error')
+					if(suggList==='error' || suggList===undefined)
 					{
-						await Utils.sleep(6000);
-						qtList = 'error'; break;
+						//await Utils.sleep(6000);
+						qtList = new QTList([]);
 					}
 					else
 					{
@@ -94,7 +95,7 @@ class SparklisAPI extends ACN
 				catch (e)
 				{
 					console.log(e);
-					qtList = 'error'; break;
+					qtList = new QTList([]);;
 				}
 			}
 			
@@ -119,11 +120,11 @@ class SparklisAPI extends ACN
 		else
 		{
 			console.error("mot clé trop petit")
-			qtList = [];
+			qtList = new QTList([]);
 		}
 		
 		//alternative de filtrage
-		if(qtList.isEmpty())
+		if(qtList.isEmpty()&&!sparklis.endpoint().includes('wikidata'))
 		{
 			console.log("Alternative filtering")
 			qtList = await this._getFilteredQTbyRelatedness(navState);
@@ -195,7 +196,9 @@ class SparklisAPI extends ACN
 	{
 		//const incr = qt.getIncr()
 		const uri = incr.uri?incr.uri:incr.pred["uri"+incr.pred.type[1]];//cas des incrPred
-		const id = uri.replace('http://www.wikidata.org/entity/', '').replace('http://www.wikidata.org/prop/direct/', '')
+		const id = uri.replace('http://www.wikidata.org/entity/', '')
+			.replace('http://www.wikidata.org/prop/direct/', '')
+			.replace('http://www.wikidata.org/prop/statement/', '');
 		
 		//recuperer le label
 		

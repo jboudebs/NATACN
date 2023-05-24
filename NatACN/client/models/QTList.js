@@ -128,21 +128,27 @@ class QTList
 		}
 		else
 		{
-			for(let i = 0; i < stringList.length; i++) 
+			try
 			{
-				console.log(stringList);
-				let string;
-				if (string === undefined) // cas list de qt
+				for (let i = 0; i < stringList.length; i++)
 				{
-					string = stringList.get(i);
+					let string;
+					if (string === undefined) // cas list de qt
+					{
+						string = stringList.get(i);
+					}
+					else
+					{
+						string = stringList[i];
+					}
+					
+					qtList.add(string);
+					
 				}
-				else
-				{
-					string = stringList[i];
-				}
-				
-				qtList.add(string);
-				
+			}
+			catch (e)
+			{
+				console.error(e)
 			}
 		}
 		return qtList;

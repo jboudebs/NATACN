@@ -1,0 +1,77 @@
+ID;QALD;Keywords Extracted;Longest QT-Path;Precision;Recall;F1-Score
+0;After whom is the Riemannian geometry named?;Riemannian geometry,named;exponential map,named after;0;0;null
+8;What is the boiling point of water?;boiling point,water;;null;0;null
+26;From which country are the beagles originally from?;country,beagle;country;0.005;1;0.009950248756218907
+36;In which manner did Hemingway die?;Hemingway (NE),manner,die;Hemingway (match);0;0;null
+39;How high is the Cologne Cathedral ?;the Cologne Cathedral (NE);the Cologne Cathedral (match);0;0;null
+115;What is TNFAIP1 ?;tnfaip1;;null;0;null
+132;In which country is Oberirrach ?;Oberirrach (NE),country;Oberirrach (match),country;1;1;1
+183;What are the spin-offs of Breaking Bad?;Breaking Bad (NE),spin,off;Breaking Bad (match),series spin-off,series spin-off;1;1;1
+185;What was the key event related to Salvador Dalí?;Salvador Dalí (NE),event,related;Salvador Dalí (match);0;0;null
+193;What did the suffragettes stand for?;suffragette,stand;;null;0;null
+197;What happened to the dinosaurs ?;happened,dinosaur;;null;null;null
+204;What is the coordinate location of Shenzhen ?;Shenzhen (NE),coordinate location;Shenzhen (match);0;0;null
+205;What is the Erlangen program ?;Erlangen (NE);Erlangen (match);0;0;null
+210;Who was the partner of Allen Ginsberg?;Allen Ginsberg (NE),partner;Allen Ginsberg (match);0;0;null
+213;What is the english nickname of Ella Fitzgerald?;english (NE),Ella Fitzgerald (NE);english (match);0;0;null
+215;What are the occupations of Nat King Cole?;Nat King Cole (NE),occupation;Nat King Cole (match);0;0;null
+216;what is the official language of iran?;iran (NE),language;iran (match);0.03333333333333333;1;0.06451612903225806
+217;What is the population in Freiburg ?;Freiburg (NE),population;Freiburg (match);0;0;null
+219;What does Ray-Ban produce primarily?;Ray-Ban (NE),Ray Ban,produce;Ray-Ban (match);0;0;null
+231;What albums has Atif Aslam been on?;Atif Aslam (NE),album;Atif Aslam (match);0.1;1;0.18181818181818182
+232;What was Ada Lovelace’s noble title?;Ada Lovelace’s (NE),title;Ada Lovelace’s (match);0;0;null
+233;What was Janus the god of?;Janus (NE),god;Janus (match),worshipped by;0;0;null
+240;When did Allen Ginsberg die?;Allen Ginsberg (NE),die;Allen Ginsberg (match);0;0;null
+241;When did Ella Fitzgerald die?;Ella Fitzgerald (NE),die;Ella Fitzgerald (match);0;0;null
+244;When did Rumi die?;Rumi (NE),die;Rumi (match);0;0;null
+250;When did the Weimar Republic start?;the Weimar Republic (NE),start;the Weimar Republic (match);0;0;null
+251;When did World War II officially end?;World War II (NE),end;World War II (match),end cause;0;0;null
+254;When the film Red Notice was released?;Red Notice (NE),released;Red Notice (match);0;0;null
+255;When was Cologne Cathedral built?;Cologne Cathedral (NE),built;Cologne Cathedral (match);0;0;null
+256;What can be done against gout?;gout;;null;0;null
+259;When was Marlene Dietrich born?;Marlene Dietrich (NE),born;Marlene Dietrich (match);0;0;null
+260;When was Penicillin discovered?;penicillin,discovered;penicillin;0;0;null
+261;When was Rumi born?;Rumi (NE),born;Rumi (match);0;0;null
+262;When was the beginning of Romanticism ?;Romanticism (NE),beginning;Romanticism (match);0;0;null
+263;When was the Echo Music Prize abolished?;the Echo Music Prize (NE),abolished;the Echo Music Prize (match),dissolved, abolished or demolished date;1;1;1
+265;When was the Hamburg Airport inaugurated?;the Hamburg Airport (NE),inaugurated;the Hamburg Airport (match),date of official opening;0;0;null
+266;When was the Hamburg S-Bahn officially opened?;the Hamburg S- (NE),Hamburg S Bahn,opened;the Hamburg S- (match);0;0;null
+269;When was the university of Cambridge founded?;the university of Cambridge (NE),founded;the university of Cambridge (match);0;0;null
+270;When was the University of Hamburg founded?;the University of Hamburg (NE),founded;the University of Hamburg (match);0;0;null
+271;When was the University of Saskatchewan founded?;the University of Saskatchewan (NE),founded;the University of Saskatchewan (match);0;0;null
+272;When was the Vatican City created?;the Vatican City (NE),created;the Vatican City (match);0;0;null
+273;When was United Fruit Company founded?;United Fruit Company (NE),founded;United Fruit Company (match),founded by;0;0;null
+274;Where did Trotzky die?;Trotzky (NE),die;Trotzky (match);0;0;null
+276;Where did the Hambach Festival happen?;the Hambach Festival (NE),happen;the Hambach Festival (match);0;0;null
+278;Where does the Nutri-Score originate from?;nutri,score,originate;;null;0;null
+282;Where did the psychedelic band “Khruangbin” form?;Khruangbin (NE),band;Khruangbin (match),musical group;0;0;null
+283;Where was Caesar murdered?;Caesar (NE),murdered;Caesar (match);0;0;null
+285;Where was Roland Corporation founded?;Roland Corporation (NE),founded;Roland Corporation (match);0;0;null
+287;Who developed the Erlangen program?;Erlangen (NE),developed;Erlangen (match),developer;0;0;null
+292;Which art movement was Yoko Ono part of?;Yoko Ono (NE),art movement,part;Yoko Ono (match),movement;1;1;1
+294;What caused Kobe Bryant's Death?;Kobe Bryant's (NE),caused,death;Kobe Bryant's (match);0;0;null
+295;What are the opposites of zero?;opposite;opposite;0;0;null
+314;What is the offical language of Taipei?;Taipei (NE),language;Taipei (match);0;0;null
+323;Who developed WordNet?;WordNet (NE),developed;WordNet (match),developer;0.5;1;0.6666666666666666
+324;Who are the actresses in Portrait of a Lady on Fire?;Portrait of a Lady on Fire (NE),actress,portrait,lady,fire;Portrait of a Lady on Fire (match);0;0;null
+326;Who created the Turing machine?;Turing (NE),created;Turing (match);0.03333333333333333;1;0.06451612903225806
+327;When was the Hambach Castle built?;the Hambach Castle (NE),built;the Hambach Castle (match),château;0;0;null
+328;Who died at the North Pole?;the North Pole (NE),died;the North Pole (match),place of death;0.5;1;0.6666666666666666
+329;Who directed Anne with an E ?;Anne with an E (NE),directed;Anne with an E (match);0;0;null
+330;Who wrote "Prototypical Networks for Few-shot Learning"?;Prototypical Networks for Few-shot Learning (NE),wrote,network,learning;Prototypical Networks for Few-shot Learning (match);0;0;null
+331;Who founded “The Blue Rider”?;The Blue Rider (NE),founded;The Blue Rider (match);0;0;null
+332;Who founded the Worpswede artist colony ?;Worpswede (NE),founded;Worpswede (match);0;0;null
+333;Who is the author of “Convenience Store Woman” ?;Convenience Store Woman (NE),author;Convenience Store Woman (match);0;0;null
+339;Who is the publisher of Smite ?;Smite (NE),publisher;Smite (match);0;0;null
+340;Who wrote the Erlangen program?;Erlangen (NE),wrote;Erlangen (match);0;0;null
+346;Who was the creator of Boo-Boo Bear ?;Boo-Boo Bear (NE),creator,Boo Boo Bear;Boo-Boo Bear (match);0;0;null
+347;Who was the creator of Unbreakable Kimmy Schmidt ?;Unbreakable Kimmy Schmidt (NE),creator;Unbreakable Kimmy Schmidt (match);0;0;null
+349;Who founded the Roland Corporation?;the Roland Corporation (NE),founded;the Roland Corporation (match);0.03333333333333333;1;0.06451612903225806
+351;Who were the parents of Socrates ?;Socrates (NE),parent;Socrates (match);0;0;null
+352;Who wrote Anne of Green Gables ?;Anne of Green Gables (NE),wrote;Anne of Green Gables (match);0;0;null
+354;Who's the author of The Hellbound Heart ?;The Hellbound Heart (NE),author;The Hellbound Heart (match);0;0;null
+355;Whom did Clara Westhoff marry?;Clara Westhoff (NE),marry;Clara Westhoff (match);0;0;null
+357;When was Athens founded?;Athens (NE),founded;Athens (match);0;0;null
+381;What is the twitter name of Running Wild?;Running Wild (NE),twitter name;Running Wild (match);0;0;null
+389;In what country is the Kandahar-downhill?;the Kandahar-downhill (NE),country;the Kandahar-downhill (match);0;0;null
+393;What is the Fujiyama made of?;Fujiyama (NE),made;Fujiyama (match);0;0;null

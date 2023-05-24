@@ -1,0 +1,58 @@
+ID;QALD;Keywords Extracted;Longest QT-Path;Precision;Recall;F1-Score
+0;After whom is the Riemannian geometry named?;Riemannian geometry,named;exponential map,named after;0;0;null
+1;Which animal participated in a military operation with the Australian Defence Force?;the Australian Defence Force (NE),animal,participated,operation;the Australian Defence Force (match);0;0;null
+2;among the characters in the witcher, who has two unmarried partners, Yennefer of Vengerberg and Triss Merigold?;Yennefer (NE),Vengerberg (NE),Triss Merigold (NE),character,witcher,partner;Yennefer (match),Vengerberg (match);1;1;1
+3;among the founders of tencent company, who has been member of national people’s congress?;tencent company (NE),national people’s congress (NE),founder,member;tencent company (match);0;0;null
+4;among the other representative work of the author of hunter x hunter, which one is talking about middle school student?;hunter x hunter (NE),work,author,talking,school student;hunter x hunter (match);0;0;null
+5;On which stock exchanges are Siemens AG shares traded?;Siemens AG (NE),stock,exchange,share,traded;Siemens AG (match),rolling stock class;0;0;null
+6;Apart from the book series the witcher, name all of the author’s notable work.;book series,witcher,name,author,work;book series;0;0;null
+7;are brooke raboutou and colin duffy from same state of the usa?;brooke raboutou (NE),colin duffy (NE),usa (NE),state;brooke raboutou (match);0;null;null
+8;What is the boiling point of water?;boiling point,water;;null;0;null
+9;At which school was Yayoi Kusama educated at?;Yayoi Kusama (NE),school,educated;Yayoi Kusama (match);0;0;null
+10;Which High School did Allen Ginsberg attend?;Allen Ginsberg (NE),High School,attend;Allen Ginsberg (match);0;0;null
+11;On which island is the Indonesian capital located?;Indonesian (NE),island,capital,located;Indonesian (match);0;0;null
+12;can i play don't starve on play station 4?;play station 4 (NE),starve;play station 4 (match);0;null;null
+13;How many General Secretaries of the CPSU were there before Leonid Brezhnev?;CPSU (NE),Leonid Brezhnev (NE),General Secretaries;CPSU (match);0;0;null
+14;How many different presidents of Russia have there been that took the position after 1990?;Russia (NE),president,took,position;Russia (match);0;0;null
+15;Did adam ondra win a medal in the 2020 summer olympics?;adam ondra (NE),summer olympics (NE),win,medal;adam ondra (match);0;null;null
+16;Did the Chicago Bulls win at least two seasons of the NBA championship?;the Chicago Bulls (NE),NBA (NE),win,season;the Chicago Bulls (match);0;null;null
+17;Did Haruki Murakami receive the Nobel Prize in Literature?;Haruki Murakami (NE),the Nobel Prize in Literature (NE),receive;Haruki Murakami (match);0;null;null
+18;Did Kobe Bryant leave the Lakers when LeBron James joined that team?;Kobe Bryant (NE),Lakers (NE),LeBron James (NE),leave,joined,team;Kobe Bryant (match);0;null;null
+19;Did Rawson Marshall Thurber, the director of Red Notice also direct Titanic?;Rawson Marshall Thurber (NE),Red Notice (NE),Titanic (NE),director;Rawson Marshall Thurber (match),Red Notice (match);0;null;null
+20;Did Venice at any point belong to the Austrian Empire?;Venice (NE),the Austrian Empire (NE),point,belong;Venice (match);0;null;null
+21;Were at least two of the founders of tencent educated at the same university?;tencent (NE),founder,educated,university;tencent (match),founded by;0;null;null
+22;Do all of batman’s partner speak english as native language?;batman (NE),english (NE),partner,speak,language;batman (match);0;null;null
+23;How many spouses do head of states have on average?;spouse,head,state;spouse,head of state;0;0;null
+24;Was there at least one Formula 1 event on the AVUS?;AVUS (NE),formula,event;AVUS (match);0;null;null
+25;Find all Turkish verbs ending with “uş” with their lemma.;Turkish (NE),verb,ending,uş,lemma;Turkish (match);0;0;null
+26;From which country are the beagles originally from?;country,beagle;country;0.005;1;0.009950248756218907
+27;From which country came the 2nd most winners of the Emmy Award ?;2nd (NE),the Emmy Award (NE),country,came,winner;2nd (match);0;null;null
+28;Does the music style of Helloween belong to rock music?;Helloween (NE),music style,belong,rock music;Helloween (match);0;null;null
+29;Does the postal code 32423 belong to Minden?;Minden (NE),code,belong;Minden (match);0;null;null
+30;has adam ondra been a winner of IFSC climbing world cup?;adam ondra (NE),IFSC climbing world cup (NE),winner;adam ondra (match);0;null;null
+31;has life expectancy in iran grown in any year after 1999?;iran (NE),life expectancy,grown,year;iran (match),life expectancy;0;null;null
+32;has population of Isfahan increased at any point after 2006?;Isfahan (NE),population,increased,point;Isfahan (match);0;null;null
+33;Did Joe Cocker play at the Woodstock festival?;Joe Cocker (NE),Woodstock (NE),play;Joe Cocker (match);0;null;null
+34;Did Udo Bölts participate in the Tour de France?;Udo Bölts (NE),the Tour de France (NE),participate;Udo Bölts (match);0;null;null
+35;How many of Reinhold Messner's brothers still live?;Reinhold Messner's (NE),brother,live;Reinhold Messner's (match);0;0;null
+36;In which manner did Hemingway die?;Hemingway (NE),manner,die;Hemingway (match);0;0;null
+37;In which industry does the House of Medici own a business?;the House of Medici (NE),industry,own,business;the House of Medici (match),industry;0;0;null
+38;How do people from Turkey call the official name of the united states of america?;Turkey (NE),the united states of america (NE),people,call,name;Turkey (match);0;0;null
+39;How high is the Cologne Cathedral ?;the Cologne Cathedral (NE);the Cologne Cathedral (match);0;0;null
+40;How is the Harz called in Mandarin Chinese?;Harz (NE),Mandarin Chinese (NE),called;Harz (match);0;0;null
+41;How many international airports are located within the city of Hamburg ?;Hamburg (NE),airport,located,city;Hamburg (match),airport,location;0;null;null
+42;On how many albums does Madonna perform?;Madonna (NE),album,perform;Madonna (match);0;0;null
+43;On how many albums does Mariah Carey perform?;Mariah Carey (NE),album,perform;Mariah Carey (match);0;0;null
+44;How many studio albums has Lana Del Rey have?;Lana Del Rey (NE),studio,album;Lana Del Rey (match);0;0;null
+45;How many ancient civilizations are there?;civilization;civilization;0;0;null
+46;In how many years did Kobe Bryant receive an NBA All-Defensive Team award?;Kobe Bryant (NE),NBA (NE),year,receive,All Defensive,Team,award;Kobe Bryant (match),NBA (match);0;0;null
+47;How many All-NBA Team awards have Shaquille O'Neal and Kobe Bryant received in the same year?;All-NBA Team (NE),Shaquille O'Neal (NE),Kobe Bryant (NE),award,received,year;All-NBA Team (match);0;0;null
+48;How many literary works did Richard Bachman write?;Richard Bachman (NE),work,write;Richard Bachman (match);0;0;null
+49;How many notable works does Sarah J. Maas have?;Sarah J. Maas (NE),work;Sarah J. Maas (match);0;0;null
+50;Did Bryan Evenson work for at least one university where he was educated at?;Bryan Evenson (NE),work,university,educated;Bryan Evenson (match);0;null;null
+51;How many children (including apopted ones) does Jeff Bezos have with his ex-wife?;Jeff Bezos (NE),child,including,apopted,one,ex-wife;Jeff Bezos (match);0;0;null
+52;How many children had Paul McCartney together with his ex-wife Linda McCartney?;Paul McCartney (NE),Linda McCartney (NE),child,ex-wife;Paul McCartney (match);0;0;null
+53;How many Chinese zodiac animals are there in total?;Chinese (NE),zodiac,animal;Chinese (match);0;0;null
+54;How many cities are part of the Pearl River Delta?;the Pearl River Delta (NE),city,part;the Pearl River Delta (match);0;0;null
+55;How many city-states are currently in the world?;city,state,world;city,state;0;0;null
+56;How many businesses did Steve Jobs found?;Steve Jobs (NE),business,found;Steve Jobs (match);0;0;null

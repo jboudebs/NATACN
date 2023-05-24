@@ -1,8 +1,9 @@
 import { CoreNLP } from "../services/NLP/CoreNLP.js";
 import { ACN } from "./ACN.js"
-import { KeywordList } from "./KeywordList.js"
+import { KeywordList } from "./KeywordList.js";
 import { NavState } from "./NavState.js";
-import { NLPToolsParameters } from "./NLToolsParameters.js"
+import { NLPExtraction } from "./NLPExtraction.js";
+import { NLPToolsParameters } from "./NLToolsParameters.js";
 import Utils from "./Utils.js";
 
 class NatACN
@@ -17,7 +18,7 @@ class NatACN
 	{
 		let keywordList_init = await NLPToolsParameters.keywordExtractionAndSorting(this.navState.getNLQuestion());
 		this.navState.setKeywordList(keywordList_init);
-		this.navState.setCurrentKeywordList(KeywordList.toKeywordList(keywordList_init));
+		this.navState.setCurrentKeywordList(KeywordList.copy(keywordList_init));
 	}
 	
 
@@ -31,7 +32,6 @@ class NatACN
 		
 		
 		this.navState = new NavState(NLQuestion);
-		console.warn(this.navState);
 		//await this.navState.init();
 		
 		const startq = Date.now();
@@ -63,7 +63,6 @@ class NatACN
 		console.log("input navState :", (await navState).toString());
 		//controle des resultats
 		qResults.push({"navstate" : navState});
-		
 		if (!navState.hasNextKeyword())
 		{
 			console.warn("End");
@@ -82,7 +81,6 @@ class NatACN
 			
 			for (let i = 0; i < navState._candidatesQT.length; i++)
 			{
-				console.log(navState._candidatesQT);
 				let qt = navState._candidatesQT.get(i);
 				await this.acn.navigate(qt);
 				let currentNavState = NavState.copy(navState);

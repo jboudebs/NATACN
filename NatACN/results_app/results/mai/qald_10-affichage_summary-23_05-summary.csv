@@ -1,0 +1,3 @@
+ID;QALD;Keywords Extracted;Longest QT-Path;Precision;Recall;F1-Score
+215;What are the occupations of Nat King Cole?;Nat King Cole (NE),occupations;Nat King Cole (match),occupation;1;1;1
+204;What is the coordinate location of Shenzhen ?;Shenzhen (NE),coordinate location;Shenzhen (match),coordinate location;0.07692307692307693;1;0.14285714285714288
