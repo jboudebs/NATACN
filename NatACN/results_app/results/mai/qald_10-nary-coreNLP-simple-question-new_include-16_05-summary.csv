@@ -1,0 +1,76 @@
+ID;QALD;Keywords Extracted;Longest QT-Path;Precision;Recall;F1-Score
+0;After whom is the Riemannian geometry named?;named;Riemannian geometry (match),named after;0.2;1;0.33333333333333337
+8;What is the boiling point of water?;water;;null;0;null
+26;From which country are the beagles originally from?;beagles;country;0.005;1;0.009950248756218907
+36;In which manner did Hemingway die?;manner,die;Hemingway (match);0;0;null
+39;How high is the Cologne Cathedral ?;;;null;0;null
+115;What is TNFAIP1 ?;;;null;0;null
+132;In which country is Oberirrach ?;country;Oberirrach (match),country;1;1;1
+183;What are the spin-offs of Breaking Bad?;Breaking;Doctor Who spin-offs;0;0;null
+185;What was the key event related to Salvador Dalí?;event,related;Salvador Dalí (match),significant event;1;1;1
+193;What did the suffragettes stand for?;stand;;null;0;null
+197;What happened to the dinosaurs ?;dinosaurs;;null;null;null
+204;What is the coordinate location of Shenzhen ?;coordinate location;Shenzhen (match),coordinate location;0.07692307692307693;1;0.14285714285714288
+205;What is the Erlangen program ?;;Erlangen program (match);0;0;null
+210;Who was the partner of Allen Ginsberg?;partner;Allen Ginsberg (match),spouse;0;0;null
+213;What is the english nickname of Ella Fitzgerald?;Ella Fitzgerald (NE);english nickname (match);0;0;null
+215;What are the occupations of Nat King Cole?;occupations;King Cole (match);0;0;null
+216;what is the official language of iran?;language;iran (match),languages spoken, written or signed;0;0;null
+217;What is the population in Freiburg ?;population;Freiburg (match),population;0.00847457627118644;1;0.01680672268907563
+219;What does Ray-Ban produce primarily?;produce;Ray-Ban (match);0;0;null
+231;What albums has Atif Aslam been on?;albums;Atif Aslam (match),album;1;1;1
+232;What was Ada Lovelace’s noble title?;title;Ada Lovelace (match),title;0;0;null
+233;What was Janus the god of?;god;;null;0;null
+240;When did Allen Ginsberg die?;die;Allen Ginsberg (match);0;0;null
+241;When did Ella Fitzgerald die?;die;Ella Fitzgerald (match);0;0;null
+244;When did Rumi die?;die;Rumi (match);0;0;null
+250;When did the Weimar Republic start?;start;Weimar Republic (match);0;0;null
+251;When did World War II officially end?;II (NE),end;World War (match);0;0;null
+254;When the film Red Notice was released?;Notice,released;;null;0;null
+255;When was Cologne Cathedral built?;built;Cologne Cathedral (match);0;0;null
+256;What can be done against gout?;;;null;0;null
+259;When was Marlene Dietrich born?;born;Marlene Dietrich (match),date of birth;1;1;1
+260;When was Penicillin discovered?;discovered;Penicillin (match),discoverer or inventor;0;0;null
+261;When was Rumi born?;born;Rumi (match),date of birth;0.058823529411764705;1;0.1111111111111111
+262;When was the beginning of Romanticism ?;;beginning;0;0;null
+263;When was the Echo Music Prize abolished?;Prize,abolished;;null;0;null
+265;When was the Hamburg Airport inaugurated?;inaugurated;Hamburg Airport (match),date of official opening;0;0;null
+266;When was the Hamburg S-Bahn officially opened?;Bahn,opened;Hamburg S (match),S-Bahn station,officially opened by;0;0;null
+269;When was the university of Cambridge founded?;university,founded;Cambridge (match);0;0;null
+270;When was the University of Hamburg founded?;Hamburg,founded;University of Hamburg (match);0;0;null
+271;When was the University of Saskatchewan founded?;Saskatchewan,founded;University of Saskatchewan (match);0;0;null
+272;When was the Vatican City created?;created;Vatican City (match),inception;0.25;1;0.4
+273;When was United Fruit Company founded?;Company,founded;United Fruit Company (match),multinational corporation,founded by;0;0;null
+274;Where did Trotzky die?;die;Trotzky (match);0;0;null
+276;Where did the Hambach Festival happen?;happen;;null;0;null
+278;Where does the Nutri-Score originate from?;originate;;null;0;null
+283;Where was Caesar murdered?;murdered;Caesar (match);0;0;null
+285;Where was Roland Corporation founded?;founded;Roland Corporation (match),founded by;0;0;null
+287;Who developed the Erlangen program?;developed;Erlangen program (match);0.125;1;0.2222222222222222
+292;Which art movement was Yoko Ono part of?;art movement,part;Yoko Ono (match),movement;1;1;1
+294;What caused Kobe Bryant's Death?;caused,Death;Kobe Bryant (match);0;0;null
+295;What are the opposites of zero?;;opposite of;0.010638297872340425;1;0.021052631578947368
+314;What is the offical language of Taipei?;language;Taipei (match),language of work or name;0;0;null
+323;Who developed WordNet?;WordNet;developer,WordNet 3.1 Synset ID;0;0;null
+324;Who are the actresses in Portrait of a Lady on Fire?;actresses,Portrait,Lady;Fire (match);0;0;null
+326;Who created the Turing machine?;Turing machine;created during;null;0;null
+327;When was the Hambach Castle built?;built;Hambach Castle (match),château;0;0;null
+328;Who died at the North Pole?;died;Pole (match),date of death;0;0;null
+329;Who directed Anne with an E ?;directed,E;Anne (match),director;0;0;null
+330;Who wrote "Prototypical Networks for Few-shot Learning"?;wrote,Networks;shot Learning (match);0;0;null
+331;Who founded “The Blue Rider”?;Blue Rider;founded by;0;0;null
+332;Who founded the Worpswede artist colony ?;founded,colony;artist (match),founded by;0;0;null
+333;Who is the author of “Convenience Store Woman” ?;Convenience Store,Woman;author (match);0;0;null
+339;Who is the publisher of Smite ?;Smite;publisher (match);0;0;null
+340;Who wrote the Erlangen program?;wrote;Erlangen program (match);0.125;1;0.2222222222222222
+346;Who was the creator of Boo-Boo Bear ?;Boo Boo,Bear;creator (match);0;0;null
+347;Who was the creator of Unbreakable Kimmy Schmidt ?;Kimmy Schmidt (NE);creator (match);0;0;null
+349;Who founded the Roland Corporation?;founded;Roland Corporation (match),founded by;0.5;1;0.6666666666666666
+351;Who were the parents of Socrates ?;parents;Socrates (match);0;0;null
+352;Who wrote Anne of Green Gables ?;Green Gables (NE),wrote;Anne (match);0;0;null
+354;Who's the author of The Hellbound Heart ?;Hellbound Heart;author (match);0;0;null
+355;Whom did Clara Westhoff marry?;marry;Clara Westhoff (match);0;0;null
+357;When was Athens founded?;founded;Athens (match),founded by;0;0;null
+381;What is the twitter name of Running Wild?;Running;Twitter username,cross country running;0;0;null
+389;In what country is the Kandahar-downhill?;country;Kandahar-downhill (match),country;1;1;1
+393;What is the Fujiyama made of?;made;Fujiyama (match);0;0;null

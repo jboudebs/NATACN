@@ -1,13 +1,17 @@
-import { SparklisAPI } from "/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/client/services/ACN/SparklisAPI.js";
-import { NatACN } from '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/client/models/NatACN.js';
-import {isEqual} from "/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/client/models/Utils.js";
+import { SparklisAPI } from "../../client/services/ACN/SparklisAPI.js";
+import { NatACN } from '../../client/models/NatACN.js';
+import { isEqual } from "../../client/models/Utils.js";
+import { NLPExtraction } from "../../client/models/NLPExtraction.js";
+import { CoreNLP } from "../../client/services/NLP/CoreNLP.js";
+//import { SpaCy } from "/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/client/models/Utils.js";
+//import { Doc } from '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/client/services/NLP/SpaCy/src/index.js'
 
 var sparklisAPI;
 var natACN;
 
 try
 {
-	
+	//INIT
 	console.log("natACN calcul")
 	sparklisAPI = new SparklisAPI();
 	await SparklisAPI._waitForSparklis();
@@ -15,25 +19,32 @@ try
 	
 	await sparklisAPI.init();
 	natACN = new NatACN(sparklisAPI);
+	//INIT
+	//TEST UNIQUE QUESTION
+	//
+	// let question = "At which school was Yayoi Kusama educated at?";
+	// let resultsQALD = [];
+	//
+	// //tests
+	// await natACN.natNavigate(question, resultsQALD);
+	// console.warn("Résultat :")
+	// console.warn(resultsQALD);
+	//TEST UNIQUE QUESTION
 	
-	//unique question
-	//let question = "What is the boiling point of water?";
-	//let resultsQALD = [];
-	//let lQTRes = JSON.parse('{"longest" : false, "res" : []}');
-	
-	//tests
-	//await natACN.natNavigate(question, resultsQALD, lQTRes);
-	//console.warn("Résultat :")
-	//console.warn(resultsQALD);
-	
-	//await calculNatACN();
-	//await QALD();
-	// let q = {"id":5,"question":"On which stock exchanges are Siemens AG shares traded?","query":"SELECT DISTINCT ?result WHERE {wd:Q81230 wdt:P414 ?result}","answer":{"our":[[{"type":"uri","uri":"http://www.wikidata.org/entity/Q151139"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q661834"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q819468"}],[{"type":"uri","uri":"http://www.wikidata.org/entity/Q13677"}]],"qald":[{"type":"uri","value":"http://www.wikidata.org/entity/Q13677"},{"type":"uri","value":"http://www.wikidata.org/entity/Q151139"},{"type":"uri","value":"http://www.wikidata.org/entity/Q661834"},{"type":"uri","value":"http://www.wikidata.org/entity/Q819468"}]},"squall":{"question":"","labels":["{\"uri\": \"Q81230\",\"label\" :\"Siemens\"}","{\"uri\": \"P414\",\"label\" :\"stock exchange\"}"]}};
-	// await calcul(q);
+	//handler alert windows
+	(function() {
+		var _old_alert = window.alert;
+		window.alert = function() {
+			console.error('ALERT HANDLED')
+			return true
+		};
+	})();
 	
 	//reprise
-	await getNatACN(0);//342
-
+	await getNatACN(33);
+	
+	
+	
 }
 catch (e)
 {
@@ -54,8 +65,17 @@ async function QALD()
 
 async function evalQuery(query)
 {
+	let res;
 	console.log("eval query",query)
-	const res = await sparklis.evalSparql(query+"LIMIT 200");
+	try
+	{
+		res = await sparklis.evalSparql(query+"LIMIT 200");
+	}
+	catch (e)
+	{
+		console.error(e);
+		res = [];
+	}
 	console.log("res client json", res);
 	return res;
 }
@@ -360,6 +380,15 @@ function postNatACN(data)
 	
 }
 
+async function resetNatACN()
+{
+	
+	await sparklisAPI.home();
+	NLPExtraction.resetClass();
+	CoreNLP.resetClass();
+	//SpaCy.resetClass();
+}
+
 function getNatACN(id)
 {
 	const Http = new XMLHttpRequest();
@@ -371,10 +400,13 @@ function getNatACN(id)
 	{
 		if (Http.readyState === 4)
 		{
+			//reception de la question qald à analyser
 			console.log(Http.status);
-			console.log(JSON.parse(Http.responseText));
+			console.log(Http.responseText);
 			
 			const qald = JSON.parse(Http.responseText);
+			
+			//evaluation du SPARQL dans WIKIDATA - ref
 			const query = qald.query.sparql
 				//WIKIDATA
 				.replace('PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> ','')
@@ -385,6 +417,7 @@ function getNatACN(id)
 			const answer = (await evalQuery(query)).rows;
 			//console.log(answer);
 			
+			//evaluation de la question NL dans NatACN - res
 			let resultsQALD = [];
 			let lQTRes;
 			
@@ -392,11 +425,13 @@ function getNatACN(id)
 			
 			lQTRes = navState._longestQTPath.Res;
 			console.log(lQTRes);
-			await sparklisAPI.home();
-
+			await resetNatACN()
 			
+
+			//Comparaison des réponses entre ref et res
 			const score = scoring(sparklisRestoRes(answer),sparklisRestoRes(lQTRes));
 			
+			//formatage de l'historique de la recherche dans NatACN
 			const data = {  "id": qald.id,
 				"question": qald.question[0].string,
 				"query": query,
@@ -414,6 +449,8 @@ function getNatACN(id)
 					}
 			}
 			console.log(data);
+			
+			//envoi au serveur
 			postNatACN(data);
 			
 		}
@@ -426,9 +463,9 @@ function getNatACN(id)
 
 function sparklisRestoRes(sparklisRes,i)
 {
-	//console.log(sparklisRes);
+	console.log(sparklisRes);
 	let res = [];
-	if(sparklisRes.hasOwnProperty('columns'))
+	if(sparklisRes&&sparklisRes.hasOwnProperty('columns'))
 	{
 		const nb = sparklisRes.columns.length-1;
 		for (const r in sparklisRes.rows)

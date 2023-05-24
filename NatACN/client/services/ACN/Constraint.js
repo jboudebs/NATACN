@@ -33,13 +33,22 @@ class WikidataConstraint
 	 */
 	async create(word)
 	{
-		const constr = await sparklis.externalSearchConstr({ type: "WikidataSearch",
-			kwds: (typeof word === 'string')?[word]:word }); //word.includes(" ")?word.split(" "):[word]
-		if (constr == null)
+		if (word.length >= 3)
 		{
-			throw new Error("No match found for " + word + " in Wikidata External Search.");
+			const constr = await sparklis.externalSearchConstr({
+				type: "WikidataSearch", kwds: (typeof word === 'string') ? [word] : word
+			});
+			if (constr == null)
+			{
+				throw new Error("No match found for " + word + " in Wikidata External Search.");
+			}
+			return constr;
 		}
-		return constr;
+		else
+		{
+			console.error(word + " is too short for Wikidata External Search.");
+			return null;
+		}
 	}
 }
 

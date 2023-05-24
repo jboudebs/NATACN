@@ -2,8 +2,10 @@ import { NatACN } from './models/NatACN.js';
 import { NavState } from './models/NavState.js';
 import { SparklisAPI } from './services/ACN/SparklisAPI.js';
 import { CoreNLP } from './services/NLP/CoreNLP.js';
+import { SpaCy } from './services/NLP/SpaCy.js';
+import { NLPToolsParameters } from "/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/client/models/NLToolsParameters.js";
 //import { sparklis } from '/Users/jboudebs/Documents/NatACN/NatACN/client/services/ACN/SparklisAPI/sparklis/webapp/osparklis.js';
-//import { ConceptNet } from './services/NLP/ConceptNet.js';
+import { ConceptNet } from './services/NLP/ConceptNet.js';
 /**
  * ACN Choosing
  */
@@ -17,7 +19,11 @@ try
 	let sparklisAPI = new SparklisAPI();
 	await sparklisAPI.init();
 	let natACN = new NatACN(sparklisAPI);
-	// natACN.navState = new NavState(NLQuestion);
+	
+	
+	
+	
+	//natACN.navState = new NavState(NLQuestion);
 	// //await this.navstate.init();
 	// await natACN.NLpreprocessing();
 	// await natACN.navState.updateNextKeyword();
@@ -69,25 +75,27 @@ try
 	//console.log(ConceptNet);
 	//await ConceptNet.main();
 	//await CoreNLP.main();
+	//await SpaCy.main();
+	//await NLPToolsParameters.keywordExtractionAndSorting("What is the birthdate of Isabelle Huppert?")
 	
 	/**
 	 * Test SparklisAPI
 	 */
-	natACN.navState = new NavState(NLQuestion);
-	// //await this.navstate.init();
-	await natACN.NLpreprocessing();
-	await natACN.navState.updateNextKeyword();
-	console.log("this");
-	console.log(natACN);
-	//await sparklisAPI.main(natACN.navState);
+	//natACN.navState = new NavState(NLQuestion);
+	// // //await this.navstate.init();
+	// await natACN.NLpreprocessing();
+	// await natACN.navState.updateNextKeyword();
+	// console.log("this");
+	// console.log(natACN);
+	// //await sparklisAPI.main(natACN.navState);
 	
 	/**
 	 * Test NatACN processing
 	 */
-	//await NavState.main();
-	//var results = [];
+	// //await NavState.main();
+	// //var results = [];
 	natACN.natNavigate('Give me a taxon that has name.', results).then(e=>console.log(e, results));
-	await sparklisAPI.main(natACN.navState);
+	// await sparklisAPI.main(natACN.navState);
 
 }
 catch (e)

@@ -1,0 +1,11 @@
+ID;QALD;Keywords Extracted;Longest QT-Path;Precision;Recall;F1-Score
+0;After whom is the Riemannian geometry named?;Riemannian geometry,named;exponential map,named after;0;0;null
+1;Which animal participated in a military operation with the Australian Defence Force?;the Australian Defence Force (NE),animal,participated,operation;the Australian Defence Force (match);0;0;null
+2;among the characters in the witcher, who has two unmarried partners, Yennefer of Vengerberg and Triss Merigold?;two (NE),Yennefer (NE),Vengerberg (NE),Triss Merigold (NE),character,witcher,partner;two (match);0;0;null
+3;among the founders of tencent company, who has been member of national people’s congress?;tencent company (NE),national people’s congress (NE),founder,member;tencent company (match);0;0;null
+4;among the other representative work of the author of hunter x hunter, which one is talking about middle school student?;hunter x hunter (NE),work,author,talking,school student;hunter x hunter (match);0;0;null
+5;On which stock exchanges are Siemens AG shares traded?;Siemens AG (NE),stock,exchange,share,traded;Siemens AG (match),rolling stock class;0;0;null
+6;Apart from the book series the witcher, name all of the author’s notable work.;book series,witcher,name,author,work;book series;0;0;null
+7;are brooke raboutou and colin duffy from same state of the usa?;brooke raboutou (NE),colin duffy (NE),usa (NE),state;brooke raboutou (match);0;null;null
+8;What is the boiling point of water?;boiling point,water;;null;0;null
+9;At which school was Yayoi Kusama educated at?;Yayoi Kusama (NE),school,educated;Yayoi Kusama (match);0;0;null

@@ -1,7 +1,9 @@
 import { CoreNLP } from "../services/NLP/CoreNLP.js";
-import { NLPTools } from "./NLPTools.js";
 import { ConceptNet } from "../services/NLP/ConceptNet.js";
-import {KeywordList} from "NatACN/client/models/KeywordList";
+import { SpaCy } from "../services/NLP/SpaCy.js";
+import { KeywordList } from './KeywordList.js';
+import { Keyword } from './Keyword.js';
+import { NLPExtraction } from "./NLPExtraction.js";
 
 /**
  * Static instance of NLPTool
@@ -18,26 +20,47 @@ class NLPToolsParameters// extends NLPTools
 			throw Error('A static class cannot be instantiated.');
 		}
 	}
-
+	
 	static async keywordExtractionAndSorting(NLQuestion)
 	{
-		await CoreNLP.fetch(NLQuestion);
-		CoreNLP.extractNN_VB();
-		CoreNLP.merge();
-		CoreNLP.NEFirst();
+		return await NLPExtraction.extract(NLQuestion);
 	}
-	
-	static async keywordExtractionAndSorting_SpaCyNER(NLQuestion)
-	{
-		await CoreNLP.fetch(NLQuestion);
-		CoreNLP.extractNN_VB();
-		CoreNLP.merge();
-		SpaCy.NERFirst();
-	}
+
+	// static async keywordExtractionAndSorting_CoreNLP_NER(NLQuestion)
+	// {
+	// 	await CoreNLP.fetch(NLQuestion);
+	// 	CoreNLP.extractNN_VB();
+	// 	CoreNLP.merge();
+	// 	CoreNLP.NEFirst();
+	// 	return KeywordList.toKeywordList(CoreNLP._filtered_list);
+	// }
+	//
+	// /**
+	//  * with Spacy NER
+	//  * @param NLQuestion
+	//  * @returns {Promise<void>}
+	//  */
+	// static async keywordExtractionAndSorting_spaCy_NER(NLQuestion)
+	// {
+	// 	await CoreNLP.extract(NLQuestion);
+	// 	await SpaCy.NEFirst(NLQuestion);
+	// 	// await CoreNLP.fetch(NLQuestion);
+	// 	// CoreNLP.extractNN_VB();
+	// 	// CoreNLP.merge();
+	// 	return KeywordList.toKeywordList(CoreNLP._filtered_list);
+	// }
 	
 	static async getSynonyms(keyword)
 	{
-		return await ConceptNet.getSynonyms(keyword);
+		let synCN = await ConceptNet.getSynonyms(keyword);
+		const lemma = keyword.getLemma()
+		if(lemma)
+		{
+			let lemmakw = new Keyword(lemma);
+			lemmakw.setType('lemma')
+			synCN.push(lemmakw);
+		}
+		return synCN;
 	}
 	
 	static async getRelatedness(word1, word2)

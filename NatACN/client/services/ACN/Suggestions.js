@@ -51,8 +51,7 @@ class WikidataSuggestions
 		let forest =  (await sparklis.currentPlace().getConceptSuggestions(false, navState.getConstraint())).forest;
 		
 		forest = _preprocessConceptSuggestions(forest);
-		const suggestionList = _findChildSuggestionList(forest);
-		return suggestionList;
+		return _findChildSuggestionList(forest);
 		//return navState.resultTerms.map(term=>{ return { type: "IncrTerm", term:term} });
 	}
 	
@@ -73,7 +72,9 @@ class WikidataSuggestions
 			
 			try
 			{
+				console.warn("fetching wikidata entities by sparklis constraint", navState.getConstraint())
 				let forest =  (await sparklis.currentPlace().getConceptSuggestions(false, navState.getConstraint())).forest;
+				console.warn("fetching wikidata entities by sparklis constraint - DONE")
 				//console.log(forest);
 				forest = _preprocessConceptSuggestions(forest);
 				suggestionList = _findChildSuggestionList(forest);
@@ -101,8 +102,6 @@ class WikidataSuggestions
 			forest = (await sparklis.currentPlace().getTermSuggestions(false, navState.getConstraint())).forest;
 			forest = _preprocessTermSuggestions(forest);
 			const suggestionList = _findChildSuggestionList(forest);
-			console.log(forest);
-			console.log(suggestionList);
 			//filtering suggestionList among current keyword
 			if(suggestionList.length===0)
 			{

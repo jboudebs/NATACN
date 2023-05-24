@@ -9,11 +9,11 @@ let i = 0;
 module.exports.i = i;
 let length = 0;
 
-let test_name = "corr_score_all";
-const inputQALD = '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/data/mondial.json';
-const outputNatACN = '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/results/janvier/mondial'+test_name+'-res.json';
-const scoreFile ='/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/results/janvier/mondial'+test_name+'-score.json';
-const summaryRes = '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/results/janvier/mondial'+test_name+'-summary.csv';
+const test_name = "qald_10-natOrder-23_05";
+const inputQALD = '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/data/qald_10-path-questions.json';
+const outputNatACN = '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/results/mai/'+test_name+'-res.json';
+const scoreFile ='/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/results/mai/'+test_name+'-score.json';
+const summaryRes = '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/results/mai/'+test_name+'-summary.csv';
 
 module.exports.getSimple =  async function getSimple(req, res)
 {
@@ -36,7 +36,7 @@ module.exports.getSimple =  async function getSimple(req, res)
 module.exports.post = async function post (req,res)
 {
 	console.log("Writing in a file", req.body);
-	
+	console.log('post', i)
 	if(i<length)
 	{
 		fs.appendFileSync(outputNatACN, JSON.stringify(req.body)+',\n');
@@ -91,18 +91,23 @@ module.exports.removeDuplicates = function removeDuplicates()
 
 module.exports.get = async function get(req,res)
 {
-	const qald10 = deepParseJson(fs.readFileSync(inputQALD).toString());
-	length = qald10.questions.length;
-	i = parseInt(req.params.ln) ;
-	const qald = qald10.questions[i];
-	if(i===0)
-	{
-		console.log('Starting...')
-		fs.writeFileSync(outputNatACN, '{"date" : \"'+ new Date().toGMTString() +'\",\n' +
-		                                '"res": [', {flag: "w+"});
-	}
-	i++;
-	res.status(200).json(qald);
+	//if(parseInt(req.params.ln))
+	//{
+		i = parseInt(req.params.ln) ? parseInt(req.params.ln) : i;
+		if (i === 0)
+		{
+			console.log('Starting...')
+			fs.writeFileSync(outputNatACN, '{"date" : \"' + new Date().toGMTString() + '\",\n' + '"res": [', {flag: "w+"});
+		}
+		
+		const qald10 = deepParseJson(fs.readFileSync(inputQALD).toString());
+		length = qald10.questions.length;
+		const qald = qald10.questions[i];
+		//console.log('get',length,i, qald);
+		
+		i++;//À laisser quoi qu'il arrive
+		res.status(200).json(qald);
+	//}
 }
 
 module.exports.score = async function score()
@@ -110,10 +115,15 @@ module.exports.score = async function score()
 	console.log("Calculating score ...")
 	const output = deepParseJson(fs.readFileSync(outputNatACN).toString());
 	
+	if(typeof output !== "object")
+	{
+		console.log(typeof output);
+	}
+	
 	let precision = 0;
 	let recall = 0;
 	let F1score = 0;
-	//console.log(output.res);
+	console.log(Object.keys(output));
 	let nb = output.res.length;
 	
 	for (const i in output.res)
