@@ -1,9 +1,10 @@
-import { KeywordList } from '../../models/KeywordList.js';
-import { Keyword } from '../../models/Keyword.js';
+import { InstrList } from '../../models/InstrList.js';
+import { Instruction } from '../../models/Instruction.js';
 
 class CoreNLP
 {
 	static _tag_to_extract = ['NN', 'VB']
+	static _dep_to_exclude = ['ROOT', 'punct']
 	
 	
 	/**
@@ -41,7 +42,7 @@ class CoreNLP
 	static getNE(){
 		if(!CoreNLP.NE)
 		{
-			CoreNLP.NE = CoreNLP._fetch.sentences[0].entitymentions.map(e=>{if(e.ner !== 'TITLE' && e.ner !== 'NATIONALITY')return {"word": e.text, "type": "NE", "start_char": e.characterOffsetBegin, "end_char":e.characterOffsetEnd}}).filter(e=> e != undefined)
+			CoreNLP.NE = CoreNLP._fetch.sentences[0].entitymentions.map(e=>{if(e.ner !== 'TITLE' && e.ner !== 'NATIONALITY' && e.ner !== 'NUMBER')return {"word": e.text, "type": "NE", "start_char": e.characterOffsetBegin, "end_char":e.characterOffsetEnd}}).filter(e=> e != undefined)
 		}
 		return CoreNLP.NE
 	};
@@ -68,14 +69,40 @@ class CoreNLP
 		return CoreNLP.keywords
 	};
 	
+	static enrichDependences(keyword_json)
+	{
+		//find dependancies
+		let dependencies = CoreNLP._fetch.sentences[0].enhancedPlusPlusDependencies.map(e=>
+		{
+			if(!CoreNLP._dep_to_exclude.includes(e.dep))
+			{
+				return {"start_index" : e.governor, "dep": e.dep, "end_index" : e.dependent}
+			}
+		}).filter(e=>e!==undefined)
+		//console.log(dependencies);
+		
+		//put in kw list
+		keyword_json = keyword_json.map(e=>
+			{
+				//console.log(e, dependencies.filter(d=>d.start_index===e.index || ))
+				e["dependencies"] = dependencies.filter(d=>(d.start_index===e.index || d.end_index===e.index
+					||(e.indexes && (e.indexes.includes(d.end_index) || e.indexes.includes(d.start_index)))))
+				//console.log(e)
+				return e
+			}
+		)
+		//console.log(keyword_json)
+	}
 	
 	
 	//clearing extraction
-	static mergeCompoundWord()
+	static mergeCompoundWord(list)
 	{
+		CoreNLP.keywords = list?list:CoreNLP.keywords
 		//liste des indexes des couples
 		let compound_indexes = CoreNLP._findCompoundIndexes();
 		CoreNLP.keywords = fusionnerMotsCles(CoreNLP.keywords, compound_indexes);
+		return CoreNLP.keywords;
 		
 	}
 	
@@ -95,8 +122,8 @@ class CoreNLP
 	
 	static serialization_NatACN()
 	{
-		CoreNLP.NE = KeywordList.toKeywordList(CoreNLP.NE);
-		CoreNLP.keywords = KeywordList.toKeywordList(CoreNLP.keywords);
+		CoreNLP.NE = InstrList.toInstrList(CoreNLP.NE);
+		CoreNLP.keywords = InstrList.toInstrList(CoreNLP.keywords);
 	}
 	
 	
@@ -387,7 +414,7 @@ function fusionnerMotsCles(l, c) {
 		let motCleFusionne1 = l.filter(e => e.index === couple[0])[0];
 		if (couple.length>1)
 		{
-			console.log(couple, l, CoreNLP.keywords_ini)
+			//console.log(couple, l, CoreNLP.keywords_ini)
 			for (let i = 1; i < couple.length; i++) {
 				let motCleFusionne2 = l.filter(e => e.index === couple[i])[0];
 				if(!motCleFusionne2)
@@ -395,6 +422,7 @@ function fusionnerMotsCles(l, c) {
 					motCleFusionne2 = CoreNLP.keywords_ini.filter(e => e.index === couple[i])[0];
 				}
 				motCleFusionne1 = fusionnerMotCle(motCleFusionne1, motCleFusionne2)
+				//console.log(motCleFusionne1)
 			}
 		}
 		motsClesFusionnes.push(motCleFusionne1);
@@ -404,18 +432,38 @@ function fusionnerMotsCles(l, c) {
 
 function fusionnerMotCle(motCleFusionne1, motCleFusionne2)
 {
-	console.log(motCleFusionne1)
+	//console.log(motCleFusionne1)
 	if(motCleFusionne1.start_char>motCleFusionne2.end_char)
 	{
 		let a = motCleFusionne1;
 		motCleFusionne1 = motCleFusionne2;
 		motCleFusionne2 = a;
 	}
-	console.log("ici")
+	//fusion indexes
+	let indexes = []
+	if(motCleFusionne1.indexes)
+	{
+		indexes.concat(motCleFusionne1.indexes)
+	}
+	else
+	{
+		indexes.push(motCleFusionne1.index)
+	}
+	if(motCleFusionne2.indexes)
+	{
+		indexes.concat(motCleFusionne2.indexes)
+	}
+	else
+	{
+		indexes.push(motCleFusionne2.index)
+	}
+	//console.log("ici")
 	let motCleFusionne = {  "word": motCleFusionne1.word + " " + motCleFusionne2.word,
 							"pos_tag": motCleFusionne1.pos_tag, "start_char": motCleFusionne1.start_char,
 							"end_char" : motCleFusionne2.end_char, "index" : motCleFusionne1.index,
-							"lemma": motCleFusionne1.lemma + " " + motCleFusionne2.lemma} ;
+							"lemma": motCleFusionne1.lemma + " " + motCleFusionne2.lemma,
+							"dependencies" : motCleFusionne1.dependencies.concat(motCleFusionne2.dependencies),
+							"indexes" : indexes} ;
 	return motCleFusionne;
 }
 

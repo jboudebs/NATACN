@@ -13,12 +13,12 @@ class ACN
 		}
 	}
 
-	async getFilteredQT(navState)
+	async getFilteredQT(instr, Pi)
 	{
 		throw new Error("Method 'getFilteredQT' must be implemented.");
 	}
 
-	async navigate(qt)
+	async navigate(Pi, qt)
 	{
 		throw new Error("Method 'navigate' must be implemented.");
 	}
@@ -28,9 +28,14 @@ class ACN
 		throw new Error("Method 'back' must be implemented.");
 	}
 
-	async getResults()
+	async getResults(place)
 	{
-		throw new Error("Method 'back' must be implemented.");
+		throw new Error("Method 'getResults' must be implemented.");
+	}
+	
+	hasEmptyQuery(place)
+	{
+		throw new Error("Method 'emptyQuery' must be implemented.");
 	}
 }
  

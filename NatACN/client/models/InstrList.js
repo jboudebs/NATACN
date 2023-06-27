@@ -1,10 +1,10 @@
 import { CoreNLP } from '../services/NLP/CoreNLP.js';
-import { Keyword } from './Keyword.js'
+import { Instruction } from './Instruction.js'
 
-class KeywordList
+class InstrList
 {
 
-	constructor(list)
+	constructor(list=[])
 	{
 		this._list = [];
 		this.length = 0;
@@ -12,7 +12,7 @@ class KeywordList
 		for(let i = 0; i < list.length; i++) 
 		{
 			let e = list[i];
-			if(typeof e === 'string' || e instanceof Keyword)
+			if(typeof e === 'string' || e instanceof Instruction)
 			{
 				this.add(e);
 			}
@@ -28,25 +28,43 @@ class KeywordList
 		this.length++;
 		if(typeof keyword === 'string')
 		{
-			let kw = new Keyword(keyword);
-			this._list.push(kw);
+			if(!this.includes(keyword))
+			{
+				let kw = new Instruction(keyword);
+				this._list.push(kw);
+			}
 			
 		}
-		else if(keyword instanceof Keyword)
+		else if(keyword instanceof Instruction)
 		{
-			
-			this._list.push(keyword);
+			if(!this.includes(keyword))
+			{
+				this._list.push(keyword);
+			}
 			
 		}
 		else
 		{
 			throw new Error("Erreur lors de l'ajout de " + keyword + " dans une KeywordList.");
 		}
+		return this;
 	}
 
 	static copy(kwList)
 	{
-		return KeywordList.toKeywordList(kwList);
+		return InstrList.toInstrList(kwList);
+	}
+	
+	includes(a)
+	{
+		if(this._list.includes(a))
+		{
+			return true;
+		}
+		else if(a.toString())
+		{
+			return this._list.map(instr=>instr.toString() === a.toString()).find(e=>e)
+		}
 	}
 
 	head()
@@ -84,29 +102,30 @@ class KeywordList
 	 * Les kw ne sont pas clonés, parce qu'ils ne sont qu'en lecture.
 	 * @param {*} anyList
 	 */
-	static toKeywordList(anyList)
+	static toInstrList(anyList)
 	{
-		if (anyList instanceof KeywordList)
+		if (anyList instanceof InstrList)
 		{
 			anyList=anyList._list
 		}
-		let kwList = new KeywordList([]);
+		let kwList = new InstrList([]);
 		anyList.map(
 			(it) => {
 				try{
 					let kw;
 					if (typeof it === "string")
 					{
-						kw = new Keyword(it)
+						kw = new Instruction(it)
 					}
-					else if(it instanceof Keyword)
+					else if(it instanceof Instruction)
 					{
 						kw = it;
 					}
 					else if(it instanceof Object)
 					{
-						kw = new Keyword(it);
+						kw = new Instruction(it);
 					}
+					
 					kwList.add(kw);
 					return
 				} catch (e)
@@ -119,5 +138,5 @@ class KeywordList
 	}
 }
 
-export { KeywordList };
-export default { KeywordList };
+export { InstrList };
+export default { KeywordList: InstrList };

@@ -1,0 +1,69 @@
+ID;QALD;Keywords Extracted;instrTree;instrPath;Longest QT-Path;Precision;Recall;F1-Score
+9;At which school was Yayoi Kusama educated at?;school,Yayoi Kusama,educated;null;Yayoi Kusama (NE);Yayoi Kusama (match);0;0;0
+10;Which High School did Allen Ginsberg attend?;High School,Allen Ginsberg,attend;null;Allen Ginsberg (NE),attend,High School;Allen Ginsberg (match),educated at,high school;1;1;1
+12;can i play don't starve on play station 4?;play,starve,play station 4;null;play station 4 (NE);play station 4 (match);0;0;0
+17;Did Haruki Murakami receive the Nobel Prize in Literature?;Haruki Murakami,receive,the Nobel Prize in Literature;null;Haruki Murakami (NE);Haruki Murakami (match);0;0;0
+40;How is the Harz called in Mandarin Chinese?;Harz,called,Mandarin Chinese;null;Harz (NE);Harz (match);0;0;0
+125;In which federal state is the Veltins brewery headquarter?;state,Veltins brewery;null;null;null;0;0;0
+126;In which stadium do the New York Yankees play?;stadium,the New York Yankees,play;null;the New York Yankees (NE);the New York Yankees (match);0;0;0
+127;In which countries is the Himalayas located?;countries,Himalayas,located;null;null;null;0;0;0
+130;In which country did the United Fruit Company have their headquarters?;country,the United Fruit Company,headquarters;null;the United Fruit Company (NE),country,headquarters;the United Fruit Company (match),country,headquarters location;0;0;0
+133;In which country was Spotify created?;country,Spotify,created;null;Spotify (NE),created;Spotify (match),inception;0;0;0
+138;In which year did ABBA publish their album The Visitors ?;year,ABBA,publish,album,The Visitors;null;ABBA (NE),publish;ABBA (match),publication date;0;0;0
+139;In which year was the author of “The Vanishing Half” born?;year,author,The Vanishing Half,born;null;null;null;0;0;0
+163;Of which political party was Joseph Beuys a member?;party,Joseph Beuys,member;null;null;null;0;0;0
+164;In what year did the Hollywood Walk of Fame open?;year,the Hollywood Walk of Fame;null;null;null;0;0;0
+165;on which video streaming services can i watch hunter x hunter anime series?;video streaming services,watch,hunter x hunter anime series;null;hunter x hunter anime series (NE);hunter x hunter anime series (match);0;0;0
+167;In what year did the district of Höxter come into existence?;year,district,Höxter,come,existence;null;Höxter (NE),existence;Höxter (match),human;0;0;0
+173;Through which countries does the Danube go?;countries,Danube,go;null;Danube (NE);Danube (match);0;0;0
+174;What do sperm whales mainly eat?;sperm whales,eat;null;null;null;0;0;0
+184;Which river flows through the Grand Canyon?;river,flows,the Grand Canyon;null;the Grand Canyon (NE);the Grand Canyon (match);0;0;0
+189;What are the professions of John Lennon’s sons?;professions,John Lennon’s,sons;null;John Lennon’s (NE),sons;John Lennon’s (match),child;0;0;0
+192;What colors does the German national flag have?;colors,German,flag;null;null;null;0;0;0
+198;What instruments did Louis Armstrong play?;instruments,Louis Armstrong,play;null;Louis Armstrong (NE);Louis Armstrong (match);0;0;0
+199;what did the author of the phrase: "Alea iacta est" die of?;author,phrase,Alea iacta est,die;null;author,phrase;author,phrase;0;0;0
+200;What is the binary gender of the partner of Allen Ginsberg ?;gender,partner,Allen Ginsberg;null;Allen Ginsberg (NE),partner,gender;Allen Ginsberg (match),spouse,sex or gender;1;1;1
+201;What is the capital of the prefecture Tokyo ?;capital,prefecture,Tokyo;null;Tokyo (NE);Tokyo (match);0;0;0
+202;What is the Chinese zodiac animal that follows the ox?;Chinese,zodiac animal,follows,ox;null;Chinese (NE);Chinese (match);0;0;0
+214;What are the occupations of Kazuo Ishiguro’s daughter?;occupations,Kazuo Ishiguro’s,daughter;null;Kazuo Ishiguro’s (NE),daughter;Kazuo Ishiguro’s (match),child;0;0;0
+221;What language do they speak in Poland ?;language,speak,Poland;null;Poland (NE);Poland (match);0;0;0
+234;Who was the fellow Hobbit who was an enemy of Frodo?;Hobbit,enemy,Frodo;null;Hobbit (NE);Hobbit (match);0;0;0
+236;What was the main subject addressed in the Deep Purple song “Smoke on the water”?;subject,addressed,Deep Purple song,Smoke on the water;null;Smoke on the water (NE);Smoke on the water (match);0;0;0
+238;What year did the Berlin Wall fall?;year,the Berlin Wall,fall;null;the Berlin Wall (NE);the Berlin Wall (match);0;0;0
+245;When did the brother of the author of Slaughterhouse Five die?;brother,author,Slaughterhouse Five;null;Slaughterhouse Five (NE),author,brother;Slaughterhouse Five (match),author,sibling;0;0;0
+246;when was the creator of saturday night live born?;creator,saturday night live,born;null;saturday night live (NE);saturday night live (match);0;0;0
+253;when was the magazine in which hunter x hunter is published established?;magazine,hunter x hunter,published,established;null;hunter x hunter (NE),published;hunter x hunter (match),published in;0;0;0
+268;When was the poem Howl written?;poem Howl,written;null;poem Howl (NE);poem Howl (match);0;0;0
+280;Where was K-pop star Lisa Manoban born?;K pop star Lisa Manoban,born;null;null;null;0;0;0
+282;Where did the psychedelic band “Khruangbin” form?;band,Khruangbin form;null;null;null;0;0;0
+284;Where was Goethe’s unmarried partner born ?;Goethe,partner,born;null;Goethe (NE),partner,born;Goethe (match),spouse,date of birth;0;0;0
+286;Where was the author of The Catcher in the Rye born ?;author,The Catcher in the Rye,born;null;The Catcher in the Rye (NE),author,born;The Catcher in the Rye (match),author,date of birth;0;0;0
+296;Which businesses are founded by the person in charge of Tesla?;businesses,founded,person,charge,Tesla;null;Tesla (NE),businesses,founded,charge;Tesla (match),business,founded by,chief executive officer;0;0;0
+298;Which aircraft did Howard Hughes build?;aircraft,Howard Hughes,build;null;Howard Hughes (NE);Howard Hughes (match);0;0;0
+301;Which disease caused the death of Mark Twain?;disease,caused,death,Mark Twain;null;Mark Twain (NE),death;Mark Twain (match),date of death;0;0;0
+302;Which diseases can be caused by smoking ?;diseases,caused,smoking;null;diseases,caused;DiseasesDB,has effect;0;0;0
+305;Which kingdom preceded the Thonburi Kingdom ?;kingdom,preceded,the Thonburi Kingdom;null;the Thonburi Kingdom (NE),preceded;the Thonburi Kingdom (match),follows;0;0;0
+307;Which movements is the painting “Les Demoiselles d'Avignon” assigned to?;movements,painting,Les Demoiselles d'Avignon”,assigned;null;Les Demoiselles d'Avignon” (NE),painting;Les Demoiselles d'Avignon” (match),painting;0;0;0
+308;Which movies belong to the Cornetto trilogy ?;movies,belong,Cornetto trilogy;null;Cornetto trilogy (NE);Cornetto trilogy (match);0;0;0
+309;During what event was the Four Policemen Council proposed?;event,the Four Policemen Council,proposed;null;null;null;0;0;0
+312;Which other movies by the director of Another Round also starred Mads Mikkelsen ?;movies,director,Another Round,starred,Mads Mikkelsen;null;Another Round (NE),director;Another Round (match),director;0;0;0
+316;Which songs made up the album Fijación Oral vol. 1 ?;songs,made,album Fijación,vol.;null;album Fijación (NE);album Fijación (match);0;0;0
+320;Which teams participated in the 2020 UEFA Champions League Final ?;teams,participated,UEFA Final Champions League;null;UEFA Final Champions League (NE),participated;UEFA Final Champions League (match),sport;0;0;0
+335;Who is the creator of the Dinosaurs tv show ?;creator,Dinosaurs tv show;null;null;null;0;0;0
+341;In which country is the Nanga Parbat located?;country,the Nanga Parbat,located;null;the Nanga Parbat (NE),located,country;the Nanga Parbat (match),location,country;1;1;1
+344;For what literature prize was Simone de Beauvoir nominated?;literature prize,Simone de Beauvoir,nominated;null;Simone de Beauvoir (NE);Simone de Beauvoir (match);0;0;0
+345;What is the website of NPR's “Tiny Desk Concert”?;website,NPR,Tiny Desk Concert;null;NPR (NE);NPR (match);0;0;0
+348;Who was the director of Llamas with Hats ?;director,Llamas with Hats;null;null;null;0;0;0
+350;Who was the original actor who played Pinhead ?;actor,played,Pinhead;null;Pinhead (NE),played,actor;Pinhead (match),extended play,performer;0;0;0
+353;Who wrote the poem Howl ?;wrote,poem Howl;null;null;null;0;0;0
+377;What is native name of the composer of the Japanese national anthem?;name,composer,Japanese,anthem;null;Japanese (NE),anthem,composer;Japanese (match),anthem,composer;0;0;0
+378;Who is the founder of the capital of Vietnam?;founder,capital,Vietnam;null;Vietnam (NE),capital,founder;Vietnam (match),capital,founded by;0.5;1;0.6666666666666666
+379;Who is the manager of the operator of Neumayer III?;manager,operator,Neumayer III;null;Neumayer III (NE),operator,manager;Neumayer III (match),operator,director / manager;0.2;1;0.33333333333333337
+380;How high is the mountain on which Günther Messner died?;mountain,Günther Messner,died;null;Günther Messner (NE),died,mountain;Günther Messner (match),place of death,mountain;0;0;0
+383;What is the area of the capital of Spitsbergen?;area,capital,Spitsbergen;null;Spitsbergen (NE),capital,area;Spitsbergen (match),capital,area;1;1;1
+384;What percentage of Andorra is covered with water?;percentage,Andorra,covered,water;null;Andorra (NE),percentage;Andorra (match),literacy rate;0;0;0
+387;At what coordinates was the "Sender Teutoburger Wald" erected?;coordinates,the "Sender Teutoburger Wald,erected;null;null;null;0;0;0
+388;Where is the poet Alexander Pope buried?;poet,Alexander Pope,buried;null;Alexander Pope (NE);Alexander Pope (match);0;0;0
+390;Who founded the architectural firm who planned the Elbphilharmonie?;founded,firm,planned,Elbphilharmonie;null;Elbphilharmonie (NE);Elbphilharmonie (match);0;0;0
+391;Where are the founders of the band Metallica from?;founders,band,Metallica;null;Metallica (NE);Metallica (match);0;0;0
+392;Where does the Granny Smith apple variety come from?;Granny Smith apple variety,come;null;null;null;0;0;0

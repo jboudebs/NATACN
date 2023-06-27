@@ -8,6 +8,7 @@ import { CoreNLP } from "../../client/services/NLP/CoreNLP.js";
 
 var sparklisAPI;
 var natACN;
+var home_place;
 
 try
 {
@@ -16,20 +17,26 @@ try
 	sparklisAPI = new SparklisAPI();
 	await SparklisAPI._waitForSparklis();
 	console.log(sparklis);
-	
+
 	await sparklisAPI.init();
 	natACN = new NatACN(sparklisAPI);
 	//INIT
+	//DB
+	home_place = await sparklisAPI.getPlace() ;
+	//await sparklisAPI.changeEndpoint("https://query.wikidata.org/sparql", home_place)
+	//DB
 	//TEST UNIQUE QUESTION
+	let question = "'Which animal participated in a military operation with the Australian Defence Force?";
 	//
-	// let question = "At which school was Yayoi Kusama educated at?";
-	// let resultsQALD = [];
-	//
-	// //tests
-	// await natACN.natNavigate(question, resultsQALD);
-	// console.warn("Résultat :")
-	// console.warn(resultsQALD);
+	//tests
+	// console.log(initial_place)
+	//const res = await natACN.natNavigation(question, home_place);
+	//console.dir(res);
 	//TEST UNIQUE QUESTION
+	
+	//TEST TREE
+	//let tree = await NLPExtraction.extractTree(question);
+	//TEST TREE
 	
 	//handler alert windows
 	(function() {
@@ -41,7 +48,7 @@ try
 	})();
 	
 	//reprise
-	await getNatACN(33);
+	await getNatACN(23);
 	
 	
 	
@@ -403,8 +410,9 @@ function getNatACN(id)
 			//reception de la question qald à analyser
 			console.log(Http.status);
 			console.log(Http.responseText);
-			
-			const qald = JSON.parse(Http.responseText);
+			const httpres = JSON.parse(Http.responseText);
+			const qald = httpres.qald;
+			const coreNLP = httpres.coreNLP;
 			
 			//evaluation du SPARQL dans WIKIDATA - ref
 			const query = qald.query.sparql
@@ -419,17 +427,17 @@ function getNatACN(id)
 			
 			//evaluation de la question NL dans NatACN - res
 			let resultsQALD = [];
-			let lQTRes;
+			let bestRes;
 			
-			const navState = await natACN.natNavigate(question, resultsQALD);
+			const res = await natACN.natNavigation(question, home_place, coreNLP);
 			
-			lQTRes = navState._longestQTPath.Res;
-			console.log(lQTRes);
+			bestRes = await sparklisAPI.getResults(res.bestNavigation.place);
+			console.log(bestRes);
 			await resetNatACN()
 			
 
 			//Comparaison des réponses entre ref et res
-			const score = scoring(sparklisRestoRes(answer),sparklisRestoRes(lQTRes));
+			const score = scoring(sparklisRestoRes(answer),sparklisRestoRes(bestRes));
 			
 			//formatage de l'historique de la recherche dans NatACN
 			const data = {  "id": qald.id,
@@ -438,14 +446,16 @@ function getNatACN(id)
 				"answer":
 					{   "our_ref": answer,
 						"qald": qald.answers.results,
-						"longestQTList_res" : lQTRes,
-						"NatACN_qald": resultsQALD[0].answer
+						"longestQTList_res" : bestRes,
+						"NatACN_qald": bestRes
 					},
 				"score" : score,
-				
 				"NatACN_info" :
 					{
-						"qald" : resultsQALD
+						"QTpath" : res.bestNavigation.QTpath,
+						"instrPath" : res.bestNavigation.instrPath,
+						"instrTree" : res.instrTree.toString(),
+						"extracted_kw" : res.extracted_kw.toString()
 					}
 			}
 			console.log(data);

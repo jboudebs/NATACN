@@ -1,4 +1,5 @@
 import * as Utils from '../../models/Utils.js';
+import { SparklisAPI } from "./SparklisAPI.js";
 
 class Suggestions
 	/**
@@ -20,14 +21,14 @@ class Suggestions
 		}
 	}
 	
-	async create(navState)
+	async create(constr, place)
 	{
 		return await this._sugg.create(navState);
 	}
 	
-	async createMatch(navState)
+	async createMatch(constr, place)
 	{
-		return  await this._sugg.createMatch(navState);
+		return  await this._sugg.createMatch(constr, place);
 	}
 	
 	async create_all(navState)
@@ -39,16 +40,22 @@ class Suggestions
 
 class WikidataSuggestions
 {
+	
 	/**
-	 * Si word contient plusieurs mot, split de word en liste de mots
-	 * @param {NavState} navState
-	 * @returns
+	 * Si word contient plusieurs mots, split de word en liste de mots
+	
 	 */
-	async _create_first(navState)
+	/**
+	 *
+	 * @param constr
+	 * @param place
+	 * @returns {Promise<Array<sparklis-suggestion>>}
+	 * @private
+	 */
+	async _create_first(constr, place)
 	{
-		//console.log("test1", navState)
-		console.log("current syn", navState.getCurrentKeywordSynonyms())
-		let forest =  (await sparklis.currentPlace().getConceptSuggestions(false, navState.getConstraint())).forest;
+		
+		let forest =  (await place.getConceptSuggestions(false, constr)).forest;
 		
 		forest = _preprocessConceptSuggestions(forest);
 		return _findChildSuggestionList(forest);
@@ -56,29 +63,27 @@ class WikidataSuggestions
 	}
 	
 	
-	async create(navState)
+	async create(constr, place)
 	{
-		//console.log(navState);
 		let suggestionList;
-		if (navState.getId() === 0)
+		if (SparklisAPI.hasEmptyQuery(place))//si la query de la place est vide
 		{
-			//console.log("here");
-			suggestionList = this._create_first(navState);
+			suggestionList = await this._create_first(constr, place);
 		}
 		else
 		{
-			//console.log("test1", navState)
-			console.log("Current word or synonym", navState.getConstraint().searchQuery.kwds)
+			
+			console.log("Current word or synonym", constr.searchQuery.kwds)
 			
 			try
 			{
-				console.warn("fetching wikidata entities by sparklis constraint", navState.getConstraint())
-				let forest =  (await sparklis.currentPlace().getConceptSuggestions(false, navState.getConstraint())).forest;
+				console.warn("fetching wikidata entities by sparklis constraint", constr)
+				let forest =  (await place.getConceptSuggestions(false, constr)).forest;
 				console.warn("fetching wikidata entities by sparklis constraint - DONE")
 				//console.log(forest);
 				forest = _preprocessConceptSuggestions(forest);
 				suggestionList = _findChildSuggestionList(forest);
-				suggestionList = _removeAlreadyAppliedSuggestion(suggestionList, navState);
+				suggestionList = _removeAlreadyAppliedSuggestion(suggestionList, place);
 				
 				//console.log("concept sugg",suggestionList);
 			}
@@ -88,12 +93,37 @@ class WikidataSuggestions
 				return "error";
 			}
 		}
-		
 		return suggestionList;
 		//return navState.resultTerms.map(term=>{ return { type: "IncrTerm", term:term} });
 	}
 	
-	async createMatch(navState)
+	async createMatch(constr, place)
+	{
+		let suggestions;
+		let forest
+		try
+		{
+			forest = (await place.getTermSuggestions(false, constr)).forest;
+			forest = _preprocessTermSuggestions(forest);
+			const suggestionList = _findChildSuggestionList(forest);
+			//filtering suggestionList among current keyword
+			if(suggestionList.length===0)
+			{
+				suggestions = [];
+			}
+			else
+			{
+				suggestions = [{type: "IncrConstr", constr: constr, filterType: "Mixed"}];//risque de ne pas marcher
+			}
+		}
+		catch(e)
+		{
+			suggestions = [];
+		}
+		
+		return  suggestions;
+	}
+	async createMatch_old(navState)
 	{
 		let suggestions;
 		let forest
@@ -225,15 +255,9 @@ function _preprocessTermSuggestions(suggestions_forest)
 	return suggestions_forest == null? [] : suggestions_forest.filter(s => (s.item.suggestion.type === 'IncrTerm') && s.item.frequency.value > 0);
 }
 
-function _removeAlreadyAppliedSuggestion(suggestionList, navState)
+function _removeAlreadyAppliedSuggestion(suggestionList, place)
 {
-	for(const s of suggestionList)
-	{
-		for(const qt of navState.getQTPath().getList())
-		{
-			suggestionList = suggestionList.filter(s=>!Utils.isEqual(s,qt.getIncr()));//TODO : faire un fonction qui valide la similarité entre deux relations, cas des pred
-		}
-	}
+	console.log("TODO remove already applied QT")
 	return suggestionList;
 }
 

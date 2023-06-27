@@ -3,8 +3,6 @@ import { NavState } from './models/NavState.js';
 import { SparklisAPI } from './services/ACN/SparklisAPI.js';
 import { CoreNLP } from './services/NLP/CoreNLP.js';
 import { SpaCy } from './services/NLP/SpaCy.js';
-import { NLPToolsParameters } from "/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/client/models/NLToolsParameters.js";
-//import { sparklis } from '/Users/jboudebs/Documents/NatACN/NatACN/client/services/ACN/SparklisAPI/sparklis/webapp/osparklis.js';
 import { ConceptNet } from './services/NLP/ConceptNet.js';
 /**
  * ACN Choosing
