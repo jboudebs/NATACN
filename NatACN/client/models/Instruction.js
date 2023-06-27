@@ -1,7 +1,8 @@
 import { CoreNLP } from '../services/NLP/CoreNLP.js';
-class Keyword
+class Instruction
 {
-	constructor(kw)
+	//object keyword and node for KeywordTree
+	constructor(kw, childreen)
 	{
 		
 		if(typeof kw === 'string')
@@ -13,7 +14,7 @@ class Keyword
 			// }
 		}
 		
-		else if(kw instanceof Keyword)
+		else if(kw instanceof Instruction)
 		{
 			this._type = 'NE';
 			this._string = kw._string;
@@ -27,8 +28,25 @@ class Keyword
 			this._start_char = kw.start_char;
 			this._end_char = kw.end_char;
 			this._lemma = kw.lemma;
+			this._synset = kw.synset
+			
+		}
+		
+		if(childreen)
+		{
+			this._childreen = childreen
 		}
 			
+	}
+	
+	isNE()
+	{
+		return this._type==='NE'
+	}
+	
+	hasNext()
+	{
+		return this._childreen.length!==0
 	}
 
 	static copy(kw)
@@ -43,6 +61,10 @@ class Keyword
 
 	toString()
 	{
+		if(this._childreen)
+		{
+			return this._string + "     " + this._childreen.map(kw=>"   "+kw.toString()).toString();
+		}
 		return this._string;
 	}
 	
@@ -64,15 +86,17 @@ class Keyword
 	{
 		return this._lemma
 	}
-}
-
-class NEKeyword extends Keyword
-{
-	constructor(kw)
+	
+	getSynset()
 	{
-		super(kw);
+		return this._synset;
+	}
+	
+	setSynset(synset)
+	{
+		this._synset = synset;
 	}
 }
 
-export { Keyword, NEKeyword };
-export default { Keyword, NEKeyword };
+export { Instruction };
+export default { Keyword: Instruction };

@@ -1,6 +1,11 @@
 const fs = require("fs");
 const editJsonFile = require("edit-json-file");
 const {deepParseJson} = require("deep-parse-json");
+const StanfordCoreNLPClient=require('corenlp-client');
+
+const client=new StanfordCoreNLPClient("http://localhost:9000","tokenize,ssplit,pos,parse");
+
+
 //const resultsLib = require("NatACN/results_app/lib/old/results");
 //import {isEqual} from "/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/client/models/Utils.js";
 
@@ -9,11 +14,11 @@ let i = 0;
 module.exports.i = i;
 let length = 0;
 
-const test_name = "qald_10-natOrder-23_05";
+const test_name = "path-question-26_06";
 const inputQALD = '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/data/qald_10-path-questions.json';
-const outputNatACN = '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/results/mai/'+test_name+'-res.json';
-const scoreFile ='/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/results/mai/'+test_name+'-score.json';
-const summaryRes = '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/results/mai/'+test_name+'-summary.csv';
+const outputNatACN = '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/results/juin/'+test_name+'-res.json';
+const scoreFile ='/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/results/juin/'+test_name+'-score.json';
+const summaryRes = '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/results/juin/'+test_name+'-summary.csv';
 
 module.exports.getSimple =  async function getSimple(req, res)
 {
@@ -26,9 +31,12 @@ module.exports.getSimple =  async function getSimple(req, res)
 	
 	const qald10 = deepParseJson(fs.readFileSync(inputQALD).toString());
 	length = qald10.qald10.length;
+	const coreNLP = await client.annotate(qald10.qald10[0])
+		//.then(result => console.log(JSON.stringify(result,null,2)));
 	console.log("JSON length", length);
+	console.log("coreNLP", coreNLP);
 	console.log("Query to client", qald10.qald10[0]);
-	res.status(200).json(qald10.qald10[0]);
+	res.status(200).json({"question" : qald10.qald10[0], "coreNLP" : coreNLP});
 	
 	console.log("GET Simple - server");
 }
@@ -103,10 +111,11 @@ module.exports.get = async function get(req,res)
 		const qald10 = deepParseJson(fs.readFileSync(inputQALD).toString());
 		length = qald10.questions.length;
 		const qald = qald10.questions[i];
+		const coreNLP = await client.annotate(qald.question[0].string)
 		//console.log('get',length,i, qald);
 		
 		i++;//À laisser quoi qu'il arrive
-		res.status(200).json(qald);
+		res.status(200).json({"qald" : qald, "coreNLP" : JSON.stringify(coreNLP)});
 	//}
 }
 
@@ -146,24 +155,26 @@ module.exports.score = async function score()
 module.exports.resJSON2resCSV = async function resJSON2resCSV()
 {
 	const output = deepParseJson(fs.readFileSync(outputNatACN).toString());
-	fs.writeFileSync(summaryRes, 'ID;QALD;Keywords Extracted;Longest QT-Path;Precision;Recall;F1-Score\n', {flag: "w+"});
+	fs.writeFileSync(summaryRes, 'ID;QALD;Keywords Extracted;instrTree;instrPath;Longest QT-Path;Precision;Recall;F1-Score\n', {flag: "w+"});
 	
 	for (const i in output.res)
 	{
 		const id = output.res[i].id
 		const question = output.res[i].question;
-		const kwExtracted = output.res[i].NatACN_info.qald[0].HistoryResults[0].navstate._keywordList._list.map(e=>e._type?e._string+' ('+e._type+')':e._string).toString();
-		const longestQTpath = output.res[i].NatACN_info.qald[0].HistoryResults[0].navstate._longestQTPath.QTPath._list.map(e=>e._incr.type==='IncrConstr'?
+		console.log(typeof output.res[i].NatACN_info.extracted_kw);
+		const kwExtracted = output.res[i].NatACN_info.extracted_kw?output.res[i].NatACN_info.extracted_kw:null;
+		const instrPath = output.res[i].NatACN_info.instrPath instanceof Array?null:output.res[i].NatACN_info.instrPath._list.map(e=>e._type?e._string+' ('+e._type+')':e._string).toString();
+		const longestQTpath = output.res[i].NatACN_info.QTpath instanceof Array?null:output.res[i].NatACN_info.QTpath._list.map(e=>e._incr.type==='IncrConstr'?
 		                                                                                                                      (e._incr.constr.searchQuery?
 		                                                                                                                       e._incr.constr.searchQuery.kwds.toString()+' (match)'.toString()
 		                                                                                                                                                      :e._incr.constr.kwds.toString()+' (match)'.toString())
 		                                                                                                                                                 :e._label);
+		const instrTree = null;//output.res[i].NatACN_info.instrTree;
+		const precision = output.res[i].score.precision === null?0:output.res[i].score.precision;
+		const recall = output.res[i].score.recall === null?0:output.res[i].score.recall;
+		const F1score = output.res[i].score.F1score === null?0:output.res[i].score.F1score;
 		
-		const precision = output.res[i].score.precision;
-		const recall = output.res[i].score.recall;
-		const F1score = output.res[i].score.F1score;
-		
-		const csvLine = id +';' + question + ';' + kwExtracted + ';' + longestQTpath + ';' + precision + ';' + recall + ';' + F1score + '\n';
+		const csvLine = id +';' + question + ';' + kwExtracted + ';'+ instrTree + ';'+ instrPath + ';' + longestQTpath + ';' + precision + ';' + recall + ';' + F1score + '\n';
 		
 		fs.appendFileSync(summaryRes, csvLine);
 	}

@@ -18,11 +18,12 @@ import {NLPToolsParameters} from "../../models/NLToolsParameters.js";
 class SparklisAPI extends ACN
 {
 	static _sparklis;
+	static _view_mode = true;
 	constructor()
 	{
 		super();
 	}
-	//CONTROLLER
+	
 	async init()
 	{
 		await SparklisAPI._waitForSparklis();
@@ -33,25 +34,154 @@ class SparklisAPI extends ACN
 		
 	}
 	
+	async changeEndpoint(string, place)
+	{
+		this._sparklis.changeEndpoint(string);
+		await this.getResults(place);
+	}
+	
 	async endpointConfig()
 	{
-		if(sparklis.endpoint().includes('wikidata'))
+		if(this._sparklis.endpoint().includes('wikidata'))
 		{
 			this.getLabelFromUri = this._getLabelFromUriWiki;
 		}
-		else if(sparklis.endpoint().includes('mondial'))
+		else if(this._sparklis.endpoint().includes('mondial'))
 		{
 			this.getLabelFromUri = this._getLabelFromUriMondial;
 		}
 	}
+	
+	async getPlace()
+	{
+		await this.getResults();
+		return this._sparklis.currentPlace()
+	}
+	
+	async setPlace(place)
+	{
+		await this.getResults(place);
+		return this._sparklis.setCurrentPlace(place)
+	}
+	
+	/**
+	 *
+	 * @param instr
+	 * @param place
+	 * @returns {Promise<QTList>}
+	 */
+	async getFilteredQT(instr, place)
+	{
+		let qtList = new QTList();
+		
+		//case current keyword is a NE
+		if(instr.getType() === 'NE' && instr.toString().length>2)
+		{
+			const ne = instr.toString();
+			console.log("Current NE :", ne);
+			//Constraint Sparklis match
+			const constr = await new Constraint.Constraint().create(ne);
+			console.log('Constraint :', constr);
+			//get filtred QT list from Sparklis
+			qtList.add(await (new Suggestions()).createMatch(constr, place));
+			console.warn(qtList)
+			if(qtList.length){qtList.get(0).setLabel(ne)}
+		}
+		//case current instr is a keyword
+		else if(instr.toString().length>2)
+		{
+			const synonyms = instr.getSynset();
+			//.toString().toLowerCase().split(",").filter(e=>e.length>2);
+			console.log("Current synonyms :",synonyms.toString());
+			
+			for(const syn of synonyms.get())//nouvelle contrainte pour chaque synonyme
+			{
+				const constr = await new Constraint.Constraint().create(syn.toString().toLowerCase());//A changer avec les syn
+				console.log('Constraint :', constr);
+				try{
+					//get filtred suggestion list from Sparklis
+					let suggList = await (new Suggestions()).create(constr, place);
+					if(suggList==='error' || suggList===undefined)
+					{
+						//await Utils.sleep(6000);
+						qtList = new QTList([]);
+					}
+					else
+					{
+						//change into QT list
+						//console.warn("Sugg",suggList);
+						qtList.add(suggList);
+						//console.log(qtList);
+					}
+				}
+				catch (e)
+				{
+					console.error(e);
+					qtList = new QTList([]);
+				}
+			}
+			
+			let qtList_toRemove=[]
+			//adding relatedness score for each QT
+			for (const qt of qtList.getList())
+			{
+				//console.log(qt);
+				//fetch label
+				const label = await this.getLabelFromUri(qt.getIncr());
+				//console.log(label);
+				//remove ID QT
+				const regex = /\b(ID|i_d|id|Id)\b|\b(ID|i_d|id|Id)\b$/;
+				if (label.match(regex))
+				{
+					console.warn('ici ID identifié', label)
+					qtList_toRemove.push(qt);
+				}
+				else
+				{
+					
+					qt.setLabel(label);
+					//relatedness
+					const relatedness = await NLPToolsParameters.getRelatedness(qt.getLabel(),instr.toString())
+					qt.setScore(relatedness);
+				}
+				
+			}
+			
+			for (const qtListToRemoveElement of qtList_toRemove)
+			{
+				qtList.removeQT(qtListToRemoveElement)
+			}
+			
+			//ranking the QT list
+			qtList = qtList.rankByScore();
+		}
+		else
+		{
+			console.error("mot clé trop petit")
+			qtList = new QTList([]);
+		}
+		
+		//alternative de filtrage
+		// if(qtList.isEmpty()&&!this._sparklis.endpoint().includes('wikidata'))
+		// {
+		// 	console.log("Alternative filtering")
+		// 	qtList = await this._getFilteredQTbyRelatedness(navState);
+		// 	//ranking the QT list
+		// 	qtList = qtList.rankByScore();
+		// }
+		console.log(qtList)
+		return qtList;
+	}
+	
 	
 	/**
 	 * recuperer le label
 	 * @param navState
 	 * @returns {Promise<QTList>}
 	 */
-	async getFilteredQT(navState)
+	async getFilteredQT_old(navState)
 	{
+		console.log(navState)
 		let qtList = new QTList();
 		//case current keyword is a NE
 		if(navState.getCurrentKeyword().getType() === 'NE' && navState.getCurrentKeyword().toString().length>2)
@@ -218,13 +348,22 @@ class SparklisAPI extends ACN
 		return label;
 	}
 
-	async navigate(qt)
+	async navigate(place, qt)
 	{
+		
 		console.log("Waiting for Sparklis to update.");
-		await sparklis.activateSuggestion(qt.getIncr());
+		let newPlace = place.applySuggestion(qt.getIncr());
 		console.log('Navigate through ', qt.getLabel());
-		await this.getResults();
+		await this.getResults(newPlace);
 		console.log("Sparklis has navigated");
+		
+		if(SparklisAPI._view_mode)
+		{
+			this._sparklis.setCurrentPlace(newPlace)
+			await this.getResults(newPlace);
+		}
+		
+		return newPlace;
 	}
 
 	async back()
@@ -241,17 +380,23 @@ class SparklisAPI extends ACN
 
 		console.log("Waiting for Sparklis to update.");
 
-		sparklis.home();
+		this._sparklis.home();
 		await this.getResults();
 		
 		console.log("Sparklis has updated a home.")
 	}
 	
-	async getResults()
+	async getResults(place)
 	{
+		place = place?place:this._sparklis.currentPlace();
 		let res = await new Promise(resolve=>{
-				sparklis.currentPlace().onEvaluated(()=>resolve(sparklis.currentPlace().results()))});
+			place.onEvaluated(()=>resolve(place.results()))});
 		return res;
+	}
+	
+	static hasEmptyQuery(place)
+	{
+		return place.sparql == null;
 	}
 
 	async main(navState)

@@ -27,8 +27,11 @@ class QTList
 		}
 		else if( qt instanceof QT )
 		{
-			this._list.push(qt);
-			this.length++;
+			if(!this.includes(qt))
+			{
+				this._list.push(qt);
+				this.length++;
+			}
 		}
 		else if ( qt instanceof Array)
 		{
@@ -39,12 +42,24 @@ class QTList
 		}
 		else if (typeof qt === 'object')
 		{
-			this._list.push(new QT(qt));
-			this.length++;
+			if(!this.includes(qt))
+			{
+				this._list.push(new QT(qt));
+				this.length++;
+			}
 		}
 		else
 		{
 			throw new Error("Erreur lors de l'ajout de " + qt + " dans une QTList.");
+		}
+		return this;
+	}
+	
+	removeQT( qt) {
+		const index = this._list.indexOf(qt);
+		if (index !== -1) {
+			this._list.splice(index, 1);
+			this.length--;
 		}
 	}
 
@@ -86,10 +101,27 @@ class QTList
 	{
 		return this._list.toString();
 	}
+	
+	
 
 	includes(a)
 	{
-		return this._list.includes(a);
+		if(this._list.includes(a))
+		{
+			return true;
+		}
+		else if(a.uri)
+		{
+			return this._list.map(qt=>qt.getIncr().uri === a.uri).find(e=>e)
+		}
+		// else if(a.uriE)
+		// {
+		// 	return this._list.map(qt=>qt.getIncr().uriE === a.uriE).find(e=>e)
+		// }
+		// else if(a.uriO)
+		// {
+		// 	return this._list.map(qt=>qt.getIncr().uriO === a.uriO).find(e=>e)
+		// }
 	}
 	
 	_getScoreOrder(prop)

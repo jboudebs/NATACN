@@ -1,5 +1,5 @@
 import * as Utils from '../../models/Utils.js';
-import { Keyword } from "../../models/Keyword.js";
+import { Instruction } from "../../models/Instruction.js";
 
 class ConceptNet
 {
@@ -68,7 +68,7 @@ class ConceptNet
 
 	static async main()
 	{
-		let kw = new Keyword("word");
+		let kw = new Instruction("word");
 		let syn = await ConceptNet.getSynonyms(kw);
 		let rel = await ConceptNet.getRelatedness(kw, "parole");
 		console.log(syn);

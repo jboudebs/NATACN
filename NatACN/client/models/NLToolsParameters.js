@@ -1,8 +1,8 @@
 import { CoreNLP } from "../services/NLP/CoreNLP.js";
 import { ConceptNet } from "../services/NLP/ConceptNet.js";
 import { SpaCy } from "../services/NLP/SpaCy.js";
-import { KeywordList } from './KeywordList.js';
-import { Keyword } from './Keyword.js';
+import { InstrList } from './InstrList.js';
+import { Instruction } from './Instruction.js';
 import { NLPExtraction } from "./NLPExtraction.js";
 
 /**
@@ -53,10 +53,10 @@ class NLPToolsParameters// extends NLPTools
 	static async getSynonyms(keyword)
 	{
 		let synCN = await ConceptNet.getSynonyms(keyword);
-		const lemma = keyword.getLemma()
+		const lemma = keyword.lemma
 		if(lemma)
 		{
-			let lemmakw = new Keyword(lemma);
+			let lemmakw = new Instruction(lemma);
 			lemmakw.setType('lemma')
 			synCN.push(lemmakw);
 		}
