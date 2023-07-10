@@ -66,6 +66,7 @@ class CoreNLP
 				
 			})
 		}
+		//CoreNLP.keywords_POSextracted = JSON.parse(JSON.stringify(CoreNLP.keywords))
 		return CoreNLP.keywords
 	};
 	
@@ -101,6 +102,15 @@ class CoreNLP
 		CoreNLP.keywords = list?list:CoreNLP.keywords
 		//liste des indexes des couples
 		let compound_indexes = CoreNLP._findCompoundIndexes();
+		//console.log(compound_indexes);
+		
+		//filtrer les indexes qui ne sont pas dans list (cas des NE en compound)
+		//console.log(CoreNLP.keywords)
+		const indexKWExtracted = CoreNLP.keywords.map(e=>e.index)
+		//console.log(indexKWExtracted)
+		compound_indexes = compound_indexes.map(e=>e.filter(t=>indexKWExtracted.includes(t))).filter(e=>e.length!==0);
+		console.log(compound_indexes);
+		
 		CoreNLP.keywords = fusionnerMotsCles(CoreNLP.keywords, compound_indexes);
 		return CoreNLP.keywords;
 		

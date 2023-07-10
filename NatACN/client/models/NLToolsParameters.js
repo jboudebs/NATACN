@@ -52,13 +52,18 @@ class NLPToolsParameters// extends NLPTools
 	
 	static async getSynonyms(keyword)
 	{
-		let synCN = await ConceptNet.getSynonyms(keyword);
 		const lemma = keyword.lemma
+		let synCN = []
 		if(lemma)
 		{
+			synCN = await ConceptNet.getSynonyms(lemma);
 			let lemmakw = new Instruction(lemma);
 			lemmakw.setType('lemma')
 			synCN.push(lemmakw);
+		}
+		else
+		{
+			synCN = await ConceptNet.getSynonyms(keyword.word);
 		}
 		return synCN;
 	}

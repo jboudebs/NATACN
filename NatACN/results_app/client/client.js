@@ -48,7 +48,7 @@ try
 	})();
 	
 	//reprise
-	await getNatACN(23);
+	await getNatACN(0);
 	
 	
 	
@@ -97,9 +97,13 @@ async function extractLabels(query)
 	const regex = /(wd|wdt|p|pq|rdfs|xsd)\:([a-z]|[A-Z]|[0-9])*/g;
 	const regexPrefix = /(wdt|wd|pq|p|rdfs|xsd)\:*/g;
 	const wikidataLabelExtracted = query.match(regex);
+	console.log(query,wikidataLabelExtracted)
 	const wikidataIDs = wikidataLabelExtracted.map((e) => e.replace(regexPrefix,"wd:"));
 	
 	console.log(wikidataIDs);
+	
+	
+	
 	
 	let labelsQuery = "SELECT ?item ?itemLabel WHERE {" + "   VALUES ?item {";
 	for (const e of wikidataIDs)
@@ -360,7 +364,7 @@ function postNatACN(data)
 		if (Http.readyState === 4)
 		{
 			console.log(Http.status);
-			console.log(Http.responseText);
+			//console.log(Http.responseText);
 			if(Http.responseText)
 			{
 				getNatACN(Http.responseText);
@@ -382,7 +386,7 @@ function postNatACN(data)
 		console.error(e);
 	}
 	console.log("post");
-	console.log(data);
+	//console.log(data);
 	Http.send(data);
 	
 }
@@ -409,7 +413,7 @@ function getNatACN(id)
 		{
 			//reception de la question qald à analyser
 			console.log(Http.status);
-			console.log(Http.responseText);
+			//console.log(Http.responseText);
 			const httpres = JSON.parse(Http.responseText);
 			const qald = httpres.qald;
 			const coreNLP = httpres.coreNLP;
@@ -421,18 +425,21 @@ function getNatACN(id)
 				//MONDIAL
 				.replace("PREFIX n1: <http://www.semwebtech.org/mondial/10/meta#>", '');
 			const question = qald.question[0].string;
-			
-			const answer = (await evalQuery(query)).rows;
+			const ids = undefined//await extractLabels(query)
+			//console.warn(ids.map(e=>e.label).toString())
+			var answer = (await evalQuery(query)).rows;
+			natACN.QRes = answer;
 			//console.log(answer);
 			
 			//evaluation de la question NL dans NatACN - res
 			let resultsQALD = [];
 			let bestRes;
-			
-			const res = await natACN.natNavigation(question, home_place, coreNLP);
-			
-			bestRes = await sparklisAPI.getResults(res.bestNavigation.place);
-			console.log(bestRes);
+			let launch = true
+			const start = Date.now();
+			const res = launch?await natACN.natNavigation(question, home_place, coreNLP):null;
+			const runtime = Date.now() - start;//millis
+			launch?res.bestNavigation?bestRes = await sparklisAPI.getResults(res.bestNavigation.place):null:null;
+			//console.log(bestRes);
 			await resetNatACN()
 			
 
@@ -449,14 +456,17 @@ function getNatACN(id)
 						"longestQTList_res" : bestRes,
 						"NatACN_qald": bestRes
 					},
+				"ids":ids?ids.map(e=>e.label).toString():undefined,
 				"score" : score,
 				"NatACN_info" :
-					{
+				res?res.bestNavigation?{
 						"QTpath" : res.bestNavigation.QTpath,
 						"instrPath" : res.bestNavigation.instrPath,
 						"instrTree" : res.instrTree.toString(),
 						"extracted_kw" : res.extracted_kw.toString()
-					}
+					}:{"instrTree" : res.instrTree.toString()}:undefined,
+				"runtime" : runtime,
+				"nb_call" : NatACN.appel
 			}
 			console.log(data);
 			

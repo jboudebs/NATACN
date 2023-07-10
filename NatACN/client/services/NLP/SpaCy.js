@@ -1,12 +1,12 @@
 import { CoreNLP } from "./CoreNLP.js";
-// TODOOOOO!!!!!!!!
+
 class SpaCy
 {
 	static async _fetch(NLQuestion)
 	{
 		let fetcH = new Promise(resolve =>
 		{
-			fetch('https://9624-35-199-8-209.ngrok-free.app/', {
+			fetch('https://00cc-34-127-101-46.ngrok-free.app/', {
 				method : 'POST', headers: {
 					'Content-Type': 'text/plain;charset=UTF-8',
 				}, body: NLQuestion,
@@ -30,11 +30,13 @@ class SpaCy
 	static async getNE(NLQuestion)
 	{
 		//Changer les classes pour plus de flex
-		const word_list = CoreNLP._merged_word_list;
 		await SpaCy._fetch(NLQuestion)
 		SpaCy.NE = SpaCy.fetch.filter(w=>
-			(w.label!=="CARDINAL")).filter((w=>w.label!=="DATE")).filter((w=>w.label!=="ORDINAL")); //enlever les entitées nommées qui sont des nombres ou des dates
+			(w.label!=="CARDINAL")).filter((w=>w.label!=="DATE")).filter((w=>w.label!=="ORDINAL"))//enlever les entitées nommées qui sont des nombres ou des dates
+			.map(w=>
+			{w.word = w.word.replaceAll("\"","").replace(/^the\s/g, "").replace(/'s\b/g, "");return w}); //pourquoi il reste John Lennon's ??
 		console.log("Named Entity",SpaCy.NE);
+		console.dir(SpaCy.NE)
 		return SpaCy.NE
 	}
 

@@ -5,7 +5,8 @@ import { QT } from "../../models/QT.js";
 import * as Constraint from "./Constraint.js";
 import { Suggestions } from "./Suggestions.js";
 import { NLPTools } from "../../models/NLPTools.js";
-import {NLPToolsParameters} from "../../models/NLToolsParameters.js";
+import { NLPToolsParameters } from "../../models/NLToolsParameters.js";
+import { InstrList } from "../../models/InstrList.js";
 
 
 /**
@@ -19,6 +20,8 @@ class SparklisAPI extends ACN
 {
 	static _sparklis;
 	static _view_mode = true;
+	static labelDico = []
+	
 	constructor()
 	{
 		super();
@@ -44,11 +47,11 @@ class SparklisAPI extends ACN
 	{
 		if(this._sparklis.endpoint().includes('wikidata'))
 		{
-			this.getLabelFromUri = this._getLabelFromUriWiki;
+			//this._getLabelFromUri = this._getLabelFromUriWiki;
 		}
 		else if(this._sparklis.endpoint().includes('mondial'))
 		{
-			this.getLabelFromUri = this._getLabelFromUriMondial;
+			//this._getLabelFromUri = this._getLabelFromUriMondial;
 		}
 	}
 	
@@ -70,7 +73,7 @@ class SparklisAPI extends ACN
 	 * @param place
 	 * @returns {Promise<QTList>}
 	 */
-	async getFilteredQT(instr, place)
+	async getFilteredQT(instr, place, QTpath)
 	{
 		let qtList = new QTList();
 		
@@ -80,7 +83,8 @@ class SparklisAPI extends ACN
 			const ne = instr.toString();
 			console.log("Current NE :", ne);
 			//Constraint Sparklis match
-			const constr = await new Constraint.Constraint().create(ne);
+			const constr = instr.getConstr()?instr.getConstr():await new Constraint.Constraint().create(ne);
+			instr.setConstr(constr);
 			console.log('Constraint :', constr);
 			//get filtred QT list from Sparklis
 			qtList.add(await (new Suggestions()).createMatch(constr, place));
@@ -88,22 +92,27 @@ class SparklisAPI extends ACN
 			if(qtList.length){qtList.get(0).setLabel(ne)}
 		}
 		//case current instr is a keyword
-		else if(instr.toString().length>2)
+		else if(!instr.type)
 		{
-			const synonyms = instr.getSynset();
+			const synonyms = InstrList.toInstrList(instr.getSynset());
 			//.toString().toLowerCase().split(",").filter(e=>e.length>2);
+			console.log(synonyms)
 			console.log("Current synonyms :",synonyms.toString());
 			
 			for(const syn of synonyms.get())//nouvelle contrainte pour chaque synonyme
 			{
-				const constr = await new Constraint.Constraint().create(syn.toString().toLowerCase());//A changer avec les syn
+				const constr = syn.getConstr()?syn.getConstr():await new Constraint.Constraint().create(syn.toString().toLowerCase());
+				syn.setConstr(constr);
+				
 				console.log('Constraint :', constr);
 				try{
 					//get filtred suggestion list from Sparklis
-					let suggList = await (new Suggestions()).create(constr, place);
+					let suggList = await (new Suggestions()).create(constr, place, QTpath);
+					console.log(suggList);
 					if(suggList==='error' || suggList===undefined)
 					{
 						//await Utils.sleep(6000);
+						console.error("error")
 						qtList = new QTList([]);
 					}
 					else
@@ -125,10 +134,10 @@ class SparklisAPI extends ACN
 			//adding relatedness score for each QT
 			for (const qt of qtList.getList())
 			{
-				//console.log(qt);
+				console.log(qt);
 				//fetch label
 				const label = await this.getLabelFromUri(qt.getIncr());
-				//console.log(label);
+				console.log(label);
 				//remove ID QT
 				const regex = /\b(ID|i_d|id|Id)\b|\b(ID|i_d|id|Id)\b$/;
 				if (label.match(regex))
@@ -154,22 +163,24 @@ class SparklisAPI extends ACN
 			
 			//ranking the QT list
 			qtList = qtList.rankByScore();
+			
+			//alternative de filtrage
+			// if(qtList.isEmpty()&&QTpath.length!==0)//&&!this._sparklis.endpoint().includes('wikidata'))
+			// {
+			// 	console.log("Alternative filtering")
+			// 	qtList = await this._getFilteredQTbyRelatedness(instr, place);
+			// 	//ranking the QT list
+			// 	qtList = qtList.rankByScore();
+			// }
 		}
 		else
 		{
-			console.error("mot clé trop petit")
+			console.error("mot clé non interprété")
 			qtList = new QTList([]);
 		}
 		
-		//alternative de filtrage
-		// if(qtList.isEmpty()&&!this._sparklis.endpoint().includes('wikidata'))
-		// {
-		// 	console.log("Alternative filtering")
-		// 	qtList = await this._getFilteredQTbyRelatedness(navState);
-		// 	//ranking the QT list
-		// 	qtList = qtList.rankByScore();
-		// }
-		console.log(qtList)
+		
+		// console.log(qtList)
 		return qtList;
 	}
 	
@@ -179,108 +190,107 @@ class SparklisAPI extends ACN
 	 * @param navState
 	 * @returns {Promise<QTList>}
 	 */
-	async getFilteredQT_old(navState)
-	{
-		console.log(navState)
-		let qtList = new QTList();
-		//case current keyword is a NE
-		if(navState.getCurrentKeyword().getType() === 'NE' && navState.getCurrentKeyword().toString().length>2)
-		{
-			const ne = navState.getCurrentKeyword().toString();
-			console.log("Current NE :", ne);
-			//Constraint Sparklis match
-			navState.setConstraint(await new Constraint.Constraint().create(ne));
-			console.log('Constraint :', navState.getConstraint());
-			//get filtred QT list from Sparklis
-			qtList.add(await (new Suggestions()).createMatch(navState));
-			if(qtList.length){qtList.get(0).setLabel(ne)};
-		}
-		//case current keyword is not a NE
-		else if(navState.getCurrentKeyword().toString().length>2)
-		{
-			const synonyms = navState.getCurrentKeywordSynonyms();
-				//.toString().toLowerCase().split(",").filter(e=>e.length>2);
-			console.log("Current synonyms :",synonyms);
-			
-			for(const syn of synonyms.get())//nouvelle contrainte pour chaque synonyme
-			{
-				navState.setConstraint(await new Constraint.Constraint().create(syn.toString().toLowerCase()));//A changer avec les syn
-				console.log('Constraint :', navState.getConstraint());
-				try{
-					//get filtred suggestion list from Sparklis
-					let suggList = await (new Suggestions()).create(navState);
-					if(suggList==='error' || suggList===undefined)
-					{
-						//await Utils.sleep(6000);
-						qtList = new QTList([]);
-					}
-					else
-					{
-						//change into QT list
-						//console.warn("Sugg",suggList);
-						qtList.add(suggList);
-						//console.log(qtList);
-					}
-				}
-				catch (e)
-				{
-					console.log(e);
-					qtList = new QTList([]);;
-				}
-			}
-			
-			//adding relatedness score for each QT
-			for (const qt of qtList.getList())
-			{
-				//console.log(qt);
-				//fetch label
-				const label = await this.getLabelFromUri(qt.getIncr());
-				//console.log(label);
-				qt.setLabel(label);
-				
-				//relatedness
-				const relatedness = await NLPToolsParameters.getRelatedness(qt.getLabel(),navState.getCurrentKeyword().toString())
-				qt.setScore(relatedness);
-				
-			}
-			
-			//ranking the QT list
-			qtList = qtList.rankByScore();
-		}
-		else
-		{
-			console.error("mot clé trop petit")
-			qtList = new QTList([]);
-		}
-		
-		//alternative de filtrage
-		if(qtList.isEmpty()&&!sparklis.endpoint().includes('wikidata'))
-		{
-			console.log("Alternative filtering")
-			qtList = await this._getFilteredQTbyRelatedness(navState);
-			//ranking the QT list
-			qtList = qtList.rankByScore();
-		}
-		
-		return qtList;
-	}
+	// async getFilteredQT_old(navState)
+	// {
+	// 	console.log(navState)
+	// 	let qtList = new QTList();
+	// 	//case current keyword is a NE
+	// 	if(navState.getCurrentKeyword().getType() === 'NE' && navState.getCurrentKeyword().toString().length>2)
+	// 	{
+	// 		const ne = navState.getCurrentKeyword().toString();
+	// 		console.log("Current NE :", ne);
+	// 		//Constraint Sparklis match
+	// 		navState.setConstraint(await new Constraint.Constraint().create(ne));
+	// 		console.log('Constraint :', navState.getConstraint());
+	// 		//get filtred QT list from Sparklis
+	// 		qtList.add(await (new Suggestions()).createMatch(navState));
+	// 		if(qtList.length){qtList.get(0).setLabel(ne)};
+	// 	}
+	// 	//case current keyword is not a NE
+	// 	else if(navState.getCurrentKeyword().toString().length>2)
+	// 	{
+	// 		const synonyms = navState.getCurrentKeywordSynonyms();
+	// 			//.toString().toLowerCase().split(",").filter(e=>e.length>2);
+	// 		console.log("Current synonyms :",synonyms);
+	//
+	// 		for(const syn of synonyms.get())//nouvelle contrainte pour chaque synonyme
+	// 		{
+	// 			navState.setConstraint(await new Constraint.Constraint().create(syn.toString().toLowerCase()));//A changer avec les syn
+	// 			console.log('Constraint :', navState.getConstraint());
+	// 			try{
+	// 				//get filtred suggestion list from Sparklis
+	// 				let suggList = await (new Suggestions()).create(navState);
+	// 				if(suggList==='error' || suggList===undefined)
+	// 				{
+	// 					//await Utils.sleep(6000);
+	// 					qtList = new QTList([]);
+	// 				}
+	// 				else
+	// 				{
+	// 					//change into QT list
+	// 					//console.warn("Sugg",suggList);
+	// 					qtList.add(suggList);
+	// 					//console.log(qtList);
+	// 				}
+	// 			}
+	// 			catch (e)
+	// 			{
+	// 				console.log(e);
+	// 				qtList = new QTList([]);;
+	// 			}
+	// 		}
+	//
+	// 		//adding relatedness score for each QT
+	// 		for (const qt of qtList.getList())
+	// 		{
+	// 			//console.log(qt);
+	// 			//fetch label
+	// 			const label = await this.getLabelFromUri(qt.getIncr());
+	// 			//console.log(label);
+	// 			qt.setLabel(label);
+	//
+	// 			//relatedness
+	// 			const relatedness = await NLPToolsParameters.getRelatedness(qt.getLabel(),navState.getCurrentKeyword().toString())
+	// 			qt.setScore(relatedness);
+	//
+	// 		}
+	//
+	// 		//ranking the QT list
+	// 		qtList = qtList.rankByScore();
+	// 	}
+	// 	else
+	// 	{
+	// 		console.error("mot clé trop petit")
+	// 		qtList = new QTList([]);
+	// 	}
+	//
+	// 	//alternative de filtrage
+	// 	if(qtList.isEmpty()&&!sparklis.endpoint().includes('wikidata'))
+	// 	{
+	// 		console.log("Alternative filtering")
+	// 		qtList = await this._getFilteredQTbyRelatedness(navState);
+	// 		//ranking the QT list
+	// 		qtList = qtList.rankByScore();
+	// 	}
+	//
+	// 	return qtList;
+	// }
 	
 	//Alternate filtering in case the sparklis filtering is empty
-	async _getFilteredQTbyRelatedness(navState)
+	async _getFilteredQTbyRelatedness(instr, place)
 	{
 		let qtList = new QTList();
 		
-		const synonyms = navState.getCurrentKeywordSynonyms()
-			.toString().toLowerCase().split(",").filter(e=>e.length>2);
+		const synonyms = instr.getSynset();
 		console.log("Current synonyms :",synonyms);
-		const keyword = navState.getCurrentKeyword()
+		const keyword = instr.toString();
 		
-		for(const syn of synonyms)//nouvelle contrainte pour chaque synonyme
+		for(const syn of synonyms._list)//nouvelle contrainte pour chaque synonyme
 		{
 			try
 			{
 				//get unfiltered suggestion list from Sparklis
-				let suggList = await (new Suggestions()).create_all(navState);
+				let suggList = await (new Suggestions()).create_all(instr, place);
 				if(suggList==='error')
 				{
 					await Utils.sleep(6000);
@@ -292,15 +302,33 @@ class SparklisAPI extends ACN
 					for (const s of suggList)
 					{
 						//console.log(s);
-						const label = await this._getLabelFromUriMondial(s);
-						const synRelatedness = await NLPToolsParameters.getRelatedness(label,syn);
-						const kwRelatedness = await NLPToolsParameters.getRelatedness(label,keyword);
-						if( synRelatedness>=0.2 && kwRelatedness>=0.2)
+						const label = await this.getLabelFromUri(s);
+						const regex = /\b(ID|i_d|id|Id)\b|\b(ID|i_d|id|Id)\b$/;
+						if (!label.match(regex))
 						{
-							let qt = new QT(s);
-							qt.setScore(kwRelatedness);
-							qt.setLabel(label);
-							qtList.add(qt);
+							if(syn.toString()!==keyword.toString())
+							{
+								const synRelatedness = await NLPToolsParameters.getRelatedness(label,syn);
+								const kwRelatedness = await NLPToolsParameters.getRelatedness(label,keyword);
+								if( synRelatedness>=0.2 && kwRelatedness>=0.2)
+								{
+									let qt = new QT(s);
+									qt.setScore(kwRelatedness);
+									qt.setLabel(label);
+									qtList.add(qt);
+								}
+							}
+							else
+							{
+								const kwRelatedness = await NLPToolsParameters.getRelatedness(label,keyword);
+								if(kwRelatedness>=0.2)
+								{
+									let qt = new QT(s);
+									qt.setScore(kwRelatedness);
+									qt.setLabel(label);
+									qtList.add(qt);
+								}
+							}
 						}
 					}
 					//console.log("filtered qtList",qtList);
@@ -313,7 +341,6 @@ class SparklisAPI extends ACN
 			}
 		}
 		
-		
 		//ranking the QT list
 		qtList.filterByScore(0.2);
 		qtList = qtList.rankByScore();
@@ -321,9 +348,59 @@ class SparklisAPI extends ACN
 		
 		return qtList;
 	}
+	async getLabelFromUri(incr)
+	{
+		let label = this.getRelatedDico(incr);
+		if(!label)
+		{
+			label = await this._getLabelFromUri(incr);
+			this.pushRelatedDico(incr,label)
+		}
+		
+		return label;
+	}
+	getRelatedDico(incr)
+	{
+		let label = undefined;
+		const uri = incr.uri?incr.uri:incr.pred["uri"+incr.pred.type[1]]
+		for (const labeledIncr of SparklisAPI.labelDico)
+		{
+			const incrD = labeledIncr.incr;
+			const uriD = incrD.uri?incrD.uri:incrD.pred["uri"+incrD.pred.type[1]]
+			if( uri === uriD)
+			{
+				console.warn("comp incr",incr, incrD)
+				return incrD.label;
+			}
+		}
+		return label
+	}
+	
+	pushRelatedDico(incr,label)
+	{
+		SparklisAPI.labelDico.push({"incr":incr,"label":label})
+	}
+	
+	async _getLabelFromUri(incr)
+	{
+		console.log(incr)
+		if(this._sparklis.endpoint().includes("wikidata"))
+		{
+			return this._getLabelFromUriWiki(incr);
+		}
+		else if(this._sparklis.endpoint().includes("wikidata"))
+		{
+			return this._getLabelFromUriMondial(incr);
+		}
+		else
+		{
+			console.error("TO IMPLEMENT FOR THIS ENDPOINT")
+		}
+	}
 	
 	async _getLabelFromUriWiki(incr)
 	{
+		
 		//const incr = qt.getIncr()
 		const uri = incr.uri?incr.uri:incr.pred["uri"+incr.pred.type[1]];//cas des incrPred
 		const id = uri.replace('http://www.wikidata.org/entity/', '')
@@ -331,11 +408,12 @@ class SparklisAPI extends ACN
 			.replace('http://www.wikidata.org/prop/statement/', '');
 		
 		//recuperer le label
-		
-		let labelQuery = "SELECT ?item ?itemLabel WHERE {" + "   VALUES ?item { wd:"+id+' }' + '   SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }}';
-		
+		console.log(id)
+		let labelQuery = "SELECT ?itemLabel WHERE {  wd:"+id+" rdfs:label ?itemLabel    FILTER (lang(?itemLabel) = \"en\")  }"
+		console.log(labelQuery)
 		let res = await sparklis.evalSparql(labelQuery);
-		return res.rows[0][1].str;
+		console.log(res);
+		return res.rows[0][0].str;
 	}
 
 	
@@ -398,6 +476,8 @@ class SparklisAPI extends ACN
 	{
 		return place.sparql == null;
 	}
+	
+	
 
 	async main(navState)
 	{

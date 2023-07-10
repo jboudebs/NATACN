@@ -128,7 +128,7 @@
       "question": [
         {
           "language": "en",
-          "string": "Did Haruki Murakami receive the Nobel Prize in Literature?"
+          "string": "animal"
         },
         {
           "language": "zh",
@@ -1114,50 +1114,6 @@
       ],
       "query": {
         "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q1779 wdt:P1303 ?result}"
-      }
-    },
-    {
-      "id": 199,
-      "aggregation": false,
-      "question": [
-        {
-          "language": "en",
-          "string": "what did the author of the phrase: \"Alea iacta est\" die of?"
-        },
-        {
-          "language": "zh",
-          "string": "Alea iacta est这句话的作者死于什么？"
-        },
-        {
-          "language": "de",
-          "string": "Woran ist der Autor der Redewendung \"Alea iacta est\" gestorben?"
-        },
-        {
-          "language": "ru",
-          "string": "От чего умер автор цитаты: \"Жребий брошен\"?"
-        }
-      ],
-      "answers": [
-        {
-          "head": {
-            "vars": [
-              "result"
-            ]
-          },
-          "results": {
-            "bindings": [
-              {
-                "result": {
-                  "type": "uri",
-                  "value": "http://www.wikidata.org/entity/Q4228595"
-                }
-              }
-            ]
-          }
-        }
-      ],
-      "query": {
-        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result WHERE {wd:Q271723 wdt:P50/wdt:P509 ?result}"
       }
     },
     {

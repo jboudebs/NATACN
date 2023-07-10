@@ -3,16 +3,16 @@ import { Instruction } from './Instruction.js'
 
 class InstrList
 {
-
-	constructor(list=[])
+	
+	constructor(list = [])
 	{
 		this._list = [];
 		this.length = 0;
-
-		for(let i = 0; i < list.length; i++) 
+		
+		for (let i = 0; i < list.length; i++)
 		{
 			let e = list[i];
-			if(typeof e === 'string' || e instanceof Instruction)
+			if (typeof e === 'string' || e instanceof Instruction)
 			{
 				this.add(e);
 			}
@@ -26,18 +26,18 @@ class InstrList
 	add(keyword)
 	{
 		this.length++;
-		if(typeof keyword === 'string')
+		if (typeof keyword === 'string')
 		{
-			if(!this.includes(keyword))
+			if (!this.includes(keyword))
 			{
 				let kw = new Instruction(keyword);
 				this._list.push(kw);
 			}
 			
 		}
-		else if(keyword instanceof Instruction)
+		else if (keyword instanceof Instruction)
 		{
-			if(!this.includes(keyword))
+			if (!this.includes(keyword))
 			{
 				this._list.push(keyword);
 			}
@@ -49,7 +49,7 @@ class InstrList
 		}
 		return this;
 	}
-
+	
 	static copy(kwList)
 	{
 		return InstrList.toInstrList(kwList);
@@ -57,86 +57,101 @@ class InstrList
 	
 	includes(a)
 	{
-		if(this._list.includes(a))
+		if (this._list.includes(a))
 		{
 			return true;
 		}
-		else if(a.toString())
+		else if (a.toString())
 		{
-			return this._list.map(instr=>instr.toString() === a.toString()).find(e=>e)
+			return this._list.map(instr => instr.toString() === a.toString()).find(e => e)
 		}
 	}
-
+	
 	head()
 	{
 		return this._list[0];
 	}
-
+	
 	tail()
 	{
 		this._list = this._list.slice(1);
 		this.length--;
 		return this;
 	}
-
+	
 	get(i)
 	{
-		return i?this._list[i]:this._list;
+		return i ? this._list[i] : this._list;
 	}
-
+	
 	isEmpty()
 	{
-		if(this.length === 1)
+		if (this.length === 1)
 		{
 			return this.get(0) === "";
 		}
 		return this._list.length === 0;
 	}
-
+	
 	toString()
 	{
-		return this._list.toString();
+		function s(w)
+		{
+			w._type ? w.toString() + "(" + w._type + ")" : w.toString()
+		}
+		
+		return this._list.map(w => w.toString() + "(" + w._type + ")").toString();
 	}
-
+	
 	/**
 	 * Les kw ne sont pas clonés, parce qu'ils ne sont qu'en lecture.
 	 * @param {*} anyList
 	 */
 	static toInstrList(anyList)
 	{
+		let kwList = new InstrList([]);
+		// if (anyList instanceof Object && anyList._list!=undefined && anyList.length!=undefined && !(anyList instanceof InstrList))
+		// {
+		// 	kwList = new InstrList([]);
+		// 	kwList._list = anyList._list;
+		// 	kwList.length = anyList.length;
+		// }
+		// else{
 		if (anyList instanceof InstrList)
 		{
-			anyList=anyList._list
+			anyList = anyList._list
 		}
-		let kwList = new InstrList([]);
-		anyList.map(
-			(it) => {
-				try{
-					let kw;
-					if (typeof it === "string")
-					{
-						kw = new Instruction(it)
-					}
-					else if(it instanceof Instruction)
-					{
-						kw = it;
-					}
-					else if(it instanceof Object)
-					{
-						kw = new Instruction(it);
-					}
-					
-					kwList.add(kw);
-					return
-				} catch (e)
+		
+		anyList.map((it) =>
+		{
+			try
+			{
+				let kw;
+				if (typeof it === "string")
 				{
-					console.error(e)
+					kw = new Instruction(it)
 				}
+				else if (it instanceof Instruction)
+				{
+					kw = it;
+				}
+				else if (it instanceof Object)
+				{
+					kw = new Instruction(it);
+				}
+				
+				kwList.add(kw);
+				return
 			}
-		)
+			catch (e)
+			{
+				console.error(e)
+			}
+		})
+		
 		return kwList;
+		//}
 	}
 }
-
 export { InstrList };
 export default { KeywordList: InstrList };

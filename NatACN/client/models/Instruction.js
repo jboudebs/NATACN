@@ -23,7 +23,7 @@ class Instruction
 		else if(kw instanceof Object)//new serialization for json CoreNLP
 		{
 			this._type = kw.type === 'NE'?"NE":undefined;
-			this._string = kw.word;
+			this._string = kw.word.replace('"','').replace(/'s$/,'');
 			this._pos_tag = kw.pos_tag;
 			this._start_char = kw.start_char;
 			this._end_char = kw.end_char;
@@ -57,6 +57,16 @@ class Instruction
 	setString(kw)
 	{
 		this._string = kw;
+	}
+	
+	setConstr(constr)
+	{
+		this._constr = constr;
+	}
+	
+	getConstr()
+	{
+		return this._constr;
 	}
 
 	toString()
