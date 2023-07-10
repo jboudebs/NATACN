@@ -21,9 +21,9 @@ class Suggestions
 		}
 	}
 	
-	async create(constr, place)
+	async create(constr, place, QTPath)
 	{
-		return await this._sugg.create(navState);
+		return await this._sugg.create(constr, place, QTPath);
 	}
 	
 	async createMatch(constr, place)
@@ -31,9 +31,9 @@ class Suggestions
 		return  await this._sugg.createMatch(constr, place);
 	}
 	
-	async create_all(navState)
+	async create_all(instr, place)
 	{
-		return  await this._sugg.create_all(navState);
+		return  await this._sugg.create_all(instr, place);
 	}
 	
 }
@@ -63,7 +63,7 @@ class WikidataSuggestions
 	}
 	
 	
-	async create(constr, place)
+	async create(constr, place, QTpath)
 	{
 		let suggestionList;
 		if (SparklisAPI.hasEmptyQuery(place))//si la query de la place est vide
@@ -79,11 +79,11 @@ class WikidataSuggestions
 			{
 				console.warn("fetching wikidata entities by sparklis constraint", constr)
 				let forest =  (await place.getConceptSuggestions(false, constr)).forest;
-				console.warn("fetching wikidata entities by sparklis constraint - DONE")
+				console.warn("fetching wikidata entities by sparklis constraint - DONE", forest)
 				//console.log(forest);
 				forest = _preprocessConceptSuggestions(forest);
 				suggestionList = _findChildSuggestionList(forest);
-				suggestionList = _removeAlreadyAppliedSuggestion(suggestionList, place);
+				suggestionList = _removeAlreadyAppliedSuggestion(suggestionList, QTpath);
 				
 				//console.log("concept sugg",suggestionList);
 			}
@@ -150,9 +150,9 @@ class WikidataSuggestions
 		return  suggestions;
 	}
 
-	async create_all(navState)
+	async create_all(instr, place)
 	{
-		return  _create_all(navState);
+		return  _create_all(instr, place);
 	}
 	// async createMatch(navState)
 	// {
@@ -207,19 +207,19 @@ class DefaultSuggestions
 	
 }
 
-async function  _create_all(navState)
+async function  _create_all(instr, place)
 {
 	let suggestionList = [];
-	if (navState.getId() !== 0)
-	{
-		//console.log("here");
-		let forest =  (await sparklis.currentPlace().getConceptSuggestions(false, "True")).forest;
-		forest = _preprocessConceptSuggestions(forest);
-		
-		suggestionList = _findChildSuggestionList(forest);
-		
-		suggestionList = _removeAlreadyAppliedSuggestion(suggestionList, navState);
-	}
+	
+	//console.log("here");
+	let forest =  (await place.getConceptSuggestions(false, "True")).forest;
+	console.log(forest)
+	forest = _preprocessConceptSuggestions(forest);
+	
+	suggestionList = _findChildSuggestionList(forest);
+	
+	suggestionList = _removeAlreadyAppliedSuggestion(suggestionList, place);
+	
 	
 	return suggestionList;
 }
@@ -255,9 +255,25 @@ function _preprocessTermSuggestions(suggestions_forest)
 	return suggestions_forest == null? [] : suggestions_forest.filter(s => (s.item.suggestion.type === 'IncrTerm') && s.item.frequency.value > 0);
 }
 
-function _removeAlreadyAppliedSuggestion(suggestionList, place)
+function _removeAlreadyAppliedSuggestion(suggestionList, QTpath)
 {
-	console.log("TODO remove already applied QT")
+	//incr.uri?incr.uri:incr.pred["uri"+incr.pred.type[1]]
+	
+	if(QTpath.length && (QTpath._list[QTpath.length-1]._incr.uri || QTpath._list[QTpath.length-1]._incr.pred))
+	{
+		
+		let incr = QTpath._list[QTpath.length-1]._incr;
+		
+		let qturi = incr.uri?incr.uri:incr.pred["uri"+incr.pred.type[1]]
+		for (let i = suggestionList.length - 1; i >= 0; i--) {
+			let incr2 = suggestionList[i];
+			let suri = incr2.uri?incr2.uri:incr2.pred["uri"+incr2.pred.type[1]]
+			if (qturi === suri) {
+				//console.warn("remove last applied QT")
+				suggestionList.splice(i, 1);
+			}
+		}
+	}
 	return suggestionList;
 }
 

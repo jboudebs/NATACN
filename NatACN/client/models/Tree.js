@@ -23,6 +23,26 @@ class Noeud {
 		}
 	}
 	
+	addPathFromNode(path) {
+		let currentNode = this;
+		
+		for (const value of path) {
+			let childNode = currentNode.child.find((child) => child.valeur.toString() === value.toString());
+			
+			if (!childNode) {
+				childNode = new Noeud(value);
+				childNode.profondeur = currentNode.profondeur + 1;
+				currentNode.child.push(childNode);
+			}
+			
+			currentNode = childNode;
+		}
+		
+		if (currentNode.largeur === 0) {
+			currentNode.largeur = currentNode.child.length;
+		}
+	}
+	
 	
 	addChild(valeur) {
 		const nouvelEnfant = new Noeud(valeur);

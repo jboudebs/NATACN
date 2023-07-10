@@ -2,9 +2,12 @@
 import { NLPExtraction } from "./NLPExtraction.js";
 import { InstrList } from "./InstrList.js";
 import { QTList } from "./QTList.js";
+import { isEqual } from "./Utils.js";
+import { SparklisAPI } from "../services/ACN/SparklisAPI.js";
 
 class NatACN
 {
+	static appel;
 	constructor(acn)
 	{
 		this.acn = acn;
@@ -311,9 +314,23 @@ class NatACN
 	
 	better(place, QTpath, instrPath, bestNavigation)
 	{
+		return this.betterLength(place, QTpath, instrPath, bestNavigation);
+	}
+	betterLength(place, QTpath, instrPath, bestNavigation)
+	{
 		return QTpath.length>bestNavigation.QTpath.length;
 	}
-	
+	betterF1(place, QTpath, instrPath, bestNavigation)
+	{
+		let currentNatACNRes = this.acn.getResults(place);
+		let currentScore = scoring(sparklisRestoRes(currentNatACNRes), sparklisRestoRes(this.QRes))
+		
+		let bestNatACNRes = this.acn.getResults(bestNavigation.place);
+		let bestScore = scoring(sparklisRestoRes(bestNatACNRes), sparklisRestoRes(this.QRes))
+		
+		return currentScore.F1score>bestScore.F1score;
+		
+	}
 	
 	async natNavigation(question, P, coreNLP)
 	{
@@ -325,18 +342,11 @@ class NatACN
 			let instrTree = await NLPExtraction.instrTree(question, coreNLP);
 			// Navigation
 			let bestNavigation = {"place": P, "QTpath": [], "instrPath": []}
-			//let res = await this.natNavigateRec(instrTree.racine, P, new QTList(), new InstrList(), bestNavigation);//////
-			// Solution
-			// console.warn('END of Navigation', res)
-			// if(placeRes)
-			// {
-			// 	return placeRes;
-			// }
-			// else
-			// {
-			//return {"bestNavigation" : res.bestNavigation, "instrTree": instrTree, "extracted_kw" : NLPExtraction._orderedkwList}//.place;///////
-			// }
-			return {"bestNavigation" : bestNavigation, "instrTree": instrTree, "extracted_kw" : []}
+			NatACN.appel = 0;
+			console.dir(instrTree)
+			let res = await this.natNavigateRec(instrTree.racine, P, new QTList(), new InstrList(), bestNavigation);//////
+			return {"bestNavigation" : res.bestNavigation, "instrTree": instrTree, "extracted_kw" : NLPExtraction._orderedkwList}
+			//return {"instrTree": instrTree}
 		}
 		catch (e)
 		{
@@ -346,6 +356,7 @@ class NatACN
 	//confusion instrNode et instr
 	async natNavigateRec(instrNode, Pi, QTpath_i, instrPath_i, bestNavigation) {
 		
+		NatACN.appel++;
 		
 		// 1) Mettre à jour la meilleure navigation jusqu'à présent
 		if (this.better(Pi, QTpath_i, instrPath_i, bestNavigation)) {
@@ -365,7 +376,7 @@ class NatACN
 				let childInstrNode = L_c[i];
 				
 				// Filtrer le QT correspondant à l'instruction enfant actuelle
-				let T_i = await this.acn.getFilteredQT(childInstrNode.valeur, Pi);
+				let T_i = await this.acn.getFilteredQT(childInstrNode.valeur, Pi, QTpath_i);
 				
 				// Exploration de tous les QT filtrés
 				for (let j = 0; j < T_i.length; j++) {
@@ -396,6 +407,81 @@ class NatACN
 	
 	
 	
+}
+
+function sparklisRestoRes(sparklisRes,i)
+{
+	console.log(sparklisRes);
+	let res = [];
+	if(sparklisRes&&sparklisRes.hasOwnProperty('columns'))
+	{
+		const nb = sparklisRes.columns.length-1;
+		for (const r in sparklisRes.rows)
+		{
+			
+			//vérifier s'il existe déjà pour éviter les doublons
+			const e1 = sparklisRes.rows[r][nb];
+			
+			res = res.filter(e2=>!_.isEqual(e1,e2));
+			
+			res.push(sparklisRes.rows[r][nb]);
+			
+		}
+	}
+	else
+	{
+		for (const r in sparklisRes)
+		{
+			res.push(sparklisRes[r][sparklisRes[r].length-1]);
+		}
+	}
+	//pb format
+	res = res.filter( (ele,pos)=>res.indexOf(ele) === pos);
+	console.log(res);
+	res = res[0]?res:[];
+	
+	return res;
+}
+function scoring(Ad, Aqa)
+{
+	console.log("Calculating scores...", Ad, Aqa)
+	let inter = [];
+	for (const a1 in Ad)
+	{
+		for (const a2 in Aqa)
+		{
+			if (_.isEqual(Ad[a1], Aqa[a2]))
+			{
+				inter.push(Aqa[a2])
+			}
+			else
+			{
+			
+			}
+		}
+	}
+	console.log("inter", inter);
+	const recall = inter.length / Ad.length;
+	const precision = inter.length / Aqa.length;
+	
+	const score = {
+		"recall": recall, "precision": precision, "F1score": 2 * recall * precision / (recall + precision)
+	}
+	
+	var uniqueResultOne = function (result1,result2) {result1.filter(function(obj) {
+		return !result2.some(function(obj2) {
+			return _.isEqual(obj,obj2);
+		});
+	})};
+	const onlyInLeft = (left, right, compareFunction) =>
+		left.filter(leftValue =>
+			!right.some(rightValue =>
+				compareFunction(leftValue, rightValue)));
+	
+	console.warn('only in Ad', onlyInLeft(Ad,Aqa,isEqual));
+	console.warn('only in Aqa', onlyInLeft(Aqa,Ad,isEqual));
+	
+	return score;
 }
 
 

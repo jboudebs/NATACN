@@ -142,7 +142,8 @@ class QTList
 	
 	filterByScore(mu)
 	{
-		this._list = this._list.filter(qt=>qt._score>=0.2)
+		this._list = this._list.filter(qt=>qt._score>=0.2);
+		this.length = this._list.length;
 	}
 	rankByScore()
 	{

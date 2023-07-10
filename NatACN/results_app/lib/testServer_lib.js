@@ -3,7 +3,7 @@ const editJsonFile = require("edit-json-file");
 const {deepParseJson} = require("deep-parse-json");
 const StanfordCoreNLPClient=require('corenlp-client');
 
-const client=new StanfordCoreNLPClient("http://localhost:9000","tokenize,ssplit,pos,parse");
+const client=new StanfordCoreNLPClient("http://localhost:9000","tokenize,ssplit,pos,parse,lemma");
 
 
 //const resultsLib = require("NatACN/results_app/lib/old/results");
@@ -14,11 +14,12 @@ let i = 0;
 module.exports.i = i;
 let length = 0;
 
-const test_name = "path-question-26_06";
-const inputQALD = '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/data/qald_10-path-questions.json';
-const outputNatACN = '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/results/juin/'+test_name+'-res.json';
-const scoreFile ='/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/results/juin/'+test_name+'-score.json';
-const summaryRes = '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/results/juin/'+test_name+'-summary.csv';
+const test_name = "oracle-test-path-question-ids-10_07";
+console.log(test_name);
+const inputQALD = '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/data/qald_10-10-first.json';
+const outputNatACN = '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/results/juillet/'+test_name+'-res.json';
+const scoreFile ='/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/results/juillet/'+test_name+'-score.json';
+const summaryRes = '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/results/juillet/'+test_name+'-summary.csv';
 
 module.exports.getSimple =  async function getSimple(req, res)
 {
@@ -111,6 +112,7 @@ module.exports.get = async function get(req,res)
 		const qald10 = deepParseJson(fs.readFileSync(inputQALD).toString());
 		length = qald10.questions.length;
 		const qald = qald10.questions[i];
+		console.log(i, qald10.questions[i])
 		const coreNLP = await client.annotate(qald.question[0].string)
 		//console.log('get',length,i, qald);
 		
@@ -155,26 +157,30 @@ module.exports.score = async function score()
 module.exports.resJSON2resCSV = async function resJSON2resCSV()
 {
 	const output = deepParseJson(fs.readFileSync(outputNatACN).toString());
-	fs.writeFileSync(summaryRes, 'ID;QALD;Keywords Extracted;instrTree;instrPath;Longest QT-Path;Precision;Recall;F1-Score\n', {flag: "w+"});
+	fs.writeFileSync(summaryRes, 'ID;QALD;IDS SPARQL;Keywords Extracted;instrTree;instrPath;Longest QT-Path;Precision;Recall;F1-Score;Runtime;Nb Call\n', {flag: "w+"});
 	
 	for (const i in output.res)
 	{
 		const id = output.res[i].id
+		const ids = output.res[i].ids
 		const question = output.res[i].question;
-		console.log(typeof output.res[i].NatACN_info.extracted_kw);
-		const kwExtracted = output.res[i].NatACN_info.extracted_kw?output.res[i].NatACN_info.extracted_kw:null;
-		const instrPath = output.res[i].NatACN_info.instrPath instanceof Array?null:output.res[i].NatACN_info.instrPath._list.map(e=>e._type?e._string+' ('+e._type+')':e._string).toString();
-		const longestQTpath = output.res[i].NatACN_info.QTpath instanceof Array?null:output.res[i].NatACN_info.QTpath._list.map(e=>e._incr.type==='IncrConstr'?
+		const kwExtracted = output.res[i].NatACN_info?output.res[i].NatACN_info.extracted_kw?output.res[i].NatACN_info.extracted_kw:null:undefined;
+		const instrPath = output.res[i].NatACN_info?output.res[i].NatACN_info.instrPath?output.res[i].NatACN_info.instrPath instanceof Array?null:output.res[i].NatACN_info.instrPath._list.map(e=>e._type?e._string+' ('+e._type+')':e._string).toString():null:undefined;
+		const longestQTpath = output.res[i].NatACN_info?output.res[i].NatACN_info.QTpath?output.res[i].NatACN_info.QTpath instanceof Array?null:output.res[i].NatACN_info.QTpath._list.map(e=>e._incr.type==='IncrConstr'?
 		                                                                                                                      (e._incr.constr.searchQuery?
 		                                                                                                                       e._incr.constr.searchQuery.kwds.toString()+' (match)'.toString()
 		                                                                                                                                                      :e._incr.constr.kwds.toString()+' (match)'.toString())
-		                                                                                                                                                 :e._label);
-		const instrTree = null;//output.res[i].NatACN_info.instrTree;
+		                                                                                                                                                 :e._label):null:undefined;
+		
+		//console.log(output.res[i].NatACN_info.instrTree.replaceAll("\n","").replaceAll(",",":"))
+		const instrTree = output.res[i].NatACN_info?output.res[i].NatACN_info.instrTree.replaceAll("\n","").replaceAll(",",":"):undefined;
 		const precision = output.res[i].score.precision === null?0:output.res[i].score.precision;
 		const recall = output.res[i].score.recall === null?0:output.res[i].score.recall;
 		const F1score = output.res[i].score.F1score === null?0:output.res[i].score.F1score;
+		const nb_call = output.res[i].nb_call;
+		const runtime = output.res[i].runtime;
 		
-		const csvLine = id +';' + question + ';' + kwExtracted + ';'+ instrTree + ';'+ instrPath + ';' + longestQTpath + ';' + precision + ';' + recall + ';' + F1score + '\n';
+		const csvLine = id +';' + question + ';' + ids + ';' + kwExtracted + ';'+ instrTree + ';'+ instrPath + ';' + longestQTpath + ';' + precision + ';' + recall + ';' + F1score + ';' + nb_call + ';' + runtime + '\n';
 		
 		fs.appendFileSync(summaryRes, csvLine);
 	}

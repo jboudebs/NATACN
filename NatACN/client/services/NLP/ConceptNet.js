@@ -4,6 +4,7 @@ import { Instruction } from "../../models/Instruction.js";
 class ConceptNet
 {
 	static last_time = 0;
+	static RelatedDico = [];
 	
 	static async  _fetch(uri)
 	{
@@ -54,7 +55,7 @@ class ConceptNet
 	 * @param {*} word2 
 	 * @returns
 	 */
-	static async getRelatedness(word1, word2)
+	static async getRelatednessFetch(word1, word2)
 	{
 		//console.log(word1);
 		
@@ -64,6 +65,36 @@ class ConceptNet
 		
 		console.log(uri, JSON.value);
 		return JSON.value;
+	}
+	
+	static async getRelatedness(word1, word2)
+	{
+		let relatedness = this.getRelatedDico(word1, word2);
+		if(!relatedness)
+		{
+			relatedness = await this.getRelatednessFetch(word1, word2);
+			this.pushRelatedDico(word1,word2,relatedness)
+		}
+		
+		return relatedness;
+	}
+	static getRelatedDico(word1, word2)
+	{
+		let relatedness = undefined;
+		for (const couple of this.RelatedDico)
+		{
+			if( (couple.words[0] === word1&&couple.words[1]===word2)
+			   || (couple.words[1] === word1&&couple.words[0]===word2) )
+			{
+				return couple.score;
+			}
+		}
+		return relatedness
+	}
+	
+	static pushRelatedDico(word1,word2,score)
+	{
+		this.RelatedDico.push({"words":[word1,word2],"score":score})
 	}
 
 	static async main()
