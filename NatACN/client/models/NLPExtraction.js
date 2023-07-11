@@ -51,13 +51,13 @@ class NLPExtraction
 			                                               : undefined;//InstrList.toInstrList(kw.word);
 			console.log(kw.word, kw.synset)
 		}
-		//console.log(this._orderedkwList_json)
+		//generate permutation
+		const permutation = getPermutations(this._orderedkwList_json);
+		NLPExtraction.combinaisons = NLPExtraction._copyListOfLists(permutation);
 		
-		if(this._orderedkwList.length>2)
-		{
+		// if(this._orderedkwList.length>2)
+		// {
 			//generate all possible permutations
-			const permutation = getPermutations(this._orderedkwList_json);
-			NLPExtraction.combinaisons = NLPExtraction._copyListOfLists(permutation);
 			//console.log(NLPExtraction.combinaisons)
 			NLPExtraction.orderedCombinaisons = []
 			//CONSTRAINTS
@@ -84,12 +84,12 @@ class NLPExtraction
 			//CONSTRAINTS
 			NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, NLPExtraction.combinaisons);
 			console.log(NLPExtraction.orderedCombinaisons)
-		}
-		else
-		{
-			NLPExtraction.orderedCombinaisons = NLPExtraction.combinaisons.filter(l=>isNEfirst(l))
-			
-		}
+		// }
+		// else
+		// {
+		// 	NLPExtraction.orderedCombinaisons = NLPExtraction.combinaisons.filter(l=>isNEfirst(l))
+		//
+		// }
 		
 		
 		NLPExtraction.instrTreeI = new Tree(w => new Instruction(w), NLPExtraction.orderedCombinaisons);

@@ -14,9 +14,9 @@ let i = 0;
 module.exports.i = i;
 let length = 0;
 
-const test_name = "oracle-test-path-question-ids-10_07";
+const test_name = "oracle-path-question-ids-10_07";
 console.log(test_name);
-const inputQALD = '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/data/qald_10-10-first.json';
+const inputQALD = '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/data/qald_10-path-questions.json';
 const outputNatACN = '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/results/juillet/'+test_name+'-res.json';
 const scoreFile ='/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/results/juillet/'+test_name+'-score.json';
 const summaryRes = '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/results/juillet/'+test_name+'-summary.csv';

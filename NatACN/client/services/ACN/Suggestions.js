@@ -77,9 +77,9 @@ class WikidataSuggestions
 			
 			try
 			{
-				console.warn("fetching wikidata entities by sparklis constraint", constr)
+				//console.warn("fetching wikidata entities by sparklis constraint", constr)
 				let forest =  (await place.getConceptSuggestions(false, constr)).forest;
-				console.warn("fetching wikidata entities by sparklis constraint - DONE", forest)
+				//console.warn("fetching wikidata entities by sparklis constraint - DONE", forest)
 				//console.log(forest);
 				forest = _preprocessConceptSuggestions(forest);
 				suggestionList = _findChildSuggestionList(forest);
