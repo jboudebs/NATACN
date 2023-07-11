@@ -30,7 +30,7 @@ try
 	//
 	//tests
 	//console.log(initial_place)
-	//const res = await natACN.natNavigation(question, home_place);
+	const res = await natACN.natNavigation(question, home_place);
 	//console.dir(res);
 	//TEST UNIQUE QUESTION
 	
@@ -48,7 +48,7 @@ try
 	})();
 	
 	//reprise
-	await getNatACN(0);
+	//await getNatACN(0);
 	
 	
 	

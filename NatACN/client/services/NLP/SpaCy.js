@@ -4,12 +4,15 @@ class SpaCy
 {
 	static async _fetch(NLQuestion)
 	{
+		const url = 'http://localhost:5000/'
 		let fetcH = new Promise(resolve =>
 		{
-			fetch('https://368c-35-230-168-188.ngrok-free.app/', {
+			fetch(url, {
 				method : 'POST', headers: {
 					'Content-Type': 'text/plain;charset=UTF-8',
-				}, body: NLQuestion,
+					'Access-Control-Allow-Origin': '*'
+
+			}, body: NLQuestion,
 			})
 				.then((response) => response.json())
 				//Then with the data from the response in JSON...
