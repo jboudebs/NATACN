@@ -1,7 +1,33 @@
+
+
 # NatACN API
+serveur scpaCy
 ```
+python -m pip install spacy-transformers
+python -m spacy download "en_core_web_trf"
+python -m pip install flask
+```
+
+```
+ python .\NatACN\client\services\NLP\CoreNLP_server\Spacy_server\app.py
+```
+
+
+serveur coreNLP
+```
+cd C:\Users\julie\WebstormProjects\NatACN\NatACN\client\services\NLP\CoreNLP_server\stanford-corenlp-4.5.4 
 java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 9000 -timeout 15000
 ```
+serveur natACN
+```
+python -m http.server 9999
+```
+[lien de sparklis](http://localhost:9999/NatACN/client/services/ACN/SparklisAPI/sparklis/webapp/osparklis.html?title=Wikidata&endpoint=https%3A//query.wikidata.org/sparql&wikidata_mode=true&class_hierarchy=false&property_hierarchy=false&intentional_init_concepts=false&nary_relations=true&entity_lexicon_select=http%3A//www.w3.org/2000/01/rdf-schema%23label&entity_lexicon_lang=en&concept_lexicons_select=http%3A//www.w3.org/2000/01/rdf-schema%23label&concept_lexicons_lang=en)
+
+
+
+
+
 
 
 ## Getting started

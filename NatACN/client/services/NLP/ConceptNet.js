@@ -22,7 +22,16 @@ class ConceptNet
 		ConceptNet.last_time = time_now;
 		//console.log(time_now, ConceptNet.last_time);
 		
-		const JSON = await fetch(uri).then((value) => { return value.json(); });
+		const JSON = await fetch(uri,
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+					'Access-Control-Allow-Origin': '*'
+				},
+				crossDomain: true
+			}
+			).then((value) => { return value.json(); });
 		return JSON;
 	}
 	
