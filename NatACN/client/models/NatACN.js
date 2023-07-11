@@ -2,7 +2,7 @@
 import { NLPExtraction } from "./NLPExtraction.js";
 import { InstrList } from "./InstrList.js";
 import { QTList } from "./QTList.js";
-import { isEqual } from "./Utils.js";
+import Utils, { isEqual } from "./Utils.js";
 import { SparklisAPI } from "../services/ACN/SparklisAPI.js";
 
 class NatACN
@@ -312,22 +312,25 @@ class NatACN
 	 * TEST SPACE
 	 */
 	
-	better(place, QTpath, instrPath, bestNavigation)
+	async better(place, QTpath, instrPath, bestNavigation)
 	{
-		return this.betterLength(place, QTpath, instrPath, bestNavigation);
+		return await this.betterF1(place, QTpath, instrPath, bestNavigation);
 	}
 	betterLength(place, QTpath, instrPath, bestNavigation)
 	{
 		return QTpath.length>bestNavigation.QTpath.length;
 	}
-	betterF1(place, QTpath, instrPath, bestNavigation)
+	async betterF1(place, QTpath, instrPath, bestNavigation)
 	{
-		let currentNatACNRes = this.acn.getResults(place);
-		let currentScore = scoring(sparklisRestoRes(currentNatACNRes), sparklisRestoRes(this.QRes))
-		
-		let bestNatACNRes = this.acn.getResults(bestNavigation.place);
-		let bestScore = scoring(sparklisRestoRes(bestNatACNRes), sparklisRestoRes(this.QRes))
-		
+		console.warn(instrPath.toString())
+		let currentNatACNRes = await this.acn.getResults(place);
+		console.log(currentNatACNRes)
+		let currentScore = maxScore(currentNatACNRes, this.QRes)
+		console.warn(currentScore)
+		let bestNatACNRes = await this.acn.getResults(bestNavigation.place);
+		console.log(bestNatACNRes)
+		let bestScore = maxScore(bestNatACNRes, this.QRes)
+		console.warn(bestScore)
 		return currentScore.F1score>bestScore.F1score;
 		
 	}
@@ -336,7 +339,6 @@ class NatACN
 	{
 		try
 		{
-			
 			// NLP
 			console.log(question)
 			let instrTree = await NLPExtraction.instrTree(question, coreNLP);
@@ -357,9 +359,9 @@ class NatACN
 	async natNavigateRec(instrNode, Pi, QTpath_i, instrPath_i, bestNavigation) {
 		
 		NatACN.appel++;
-		
+		console.warn("Node",instrNode.toString())
 		// 1) Mettre à jour la meilleure navigation jusqu'à présent
-		if (this.better(Pi, QTpath_i, instrPath_i, bestNavigation)) {
+		if (await this.better(Pi, QTpath_i, instrPath_i, bestNavigation)) {
 			bestNavigation = {"place" :Pi, "QTpath" : QTpath_i, "instrPath" : instrPath_i};
 			console.warn("better", bestNavigation)
 		}
@@ -388,10 +390,12 @@ class NatACN
 					let resultsNavigation = await this.natNavigateRec(childInstrNode, P_i_1, QTList.copy(QTpath_i).add(t_j), InstrList.copy(instrPath_i).add(childInstrNode.valeur), bestNavigation);
 					
 					bestNavigation = resultsNavigation.bestNavigation;
-					if (resultsNavigation.place !== null)
-					{
-						return resultsNavigation; // Une solution a été trouvée
-					}
+					//Cas d'arret
+					// if (resultsNavigation.place !== null)
+					// {
+					// 	return resultsNavigation; // Une solution a été trouvée
+					// }
+					//Cas d'arret
 					// Sinon, c'est une impasse, nous continuons l'exploration avec un autre QT
 				}
 				// S'il n'y a aucun QT à tester ou si tous mènent à une impasse, nous explorons avec l'instruction enfant suivante
@@ -415,7 +419,7 @@ function sparklisRestoRes(sparklisRes,i)
 	let res = [];
 	if(sparklisRes&&sparklisRes.hasOwnProperty('columns'))
 	{
-		const nb = sparklisRes.columns.length-1;
+		const nb = i?i:sparklisRes.columns.length-1;
 		for (const r in sparklisRes.rows)
 		{
 			
@@ -430,14 +434,15 @@ function sparklisRestoRes(sparklisRes,i)
 	}
 	else
 	{
-		for (const r in sparklisRes)
+		for (const r of sparklisRes)
 		{
-			res.push(sparklisRes[r][sparklisRes[r].length-1]);
+			console.log(r[0])
+			res.push(r[0]);
 		}
 	}
 	//pb format
+			console.log(res)
 	res = res.filter( (ele,pos)=>res.indexOf(ele) === pos);
-	console.log(res);
 	res = res[0]?res:[];
 	
 	return res;
@@ -482,6 +487,26 @@ function scoring(Ad, Aqa)
 	console.warn('only in Aqa', onlyInLeft(Aqa,Ad,isEqual));
 	
 	return score;
+}
+
+function maxScore(NatACNRes, QRes)
+{
+	let nb = 1;
+	if(NatACNRes&&NatACNRes.hasOwnProperty('columns'))
+	{
+		nb = NatACNRes.columns.length;
+	}
+	console.log(NatACNRes, QRes, nb)
+	let maxScore = {"recall" : 0, "precision": 0, "F1score": 0};
+	const Aqa = sparklisRestoRes(QRes)
+	for (let i = 0; i < nb; i++)
+	{
+		const score = scoring(sparklisRestoRes(NatACNRes,i), Aqa);
+		console.log("score", score)
+		maxScore = score.F1score>maxScore.F1score?score:maxScore;
+		console.log("maxScore", maxScore)
+	}
+	return maxScore;
 }
 
 

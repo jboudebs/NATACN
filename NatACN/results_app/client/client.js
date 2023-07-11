@@ -26,10 +26,10 @@ try
 	//await sparklisAPI.changeEndpoint("https://query.wikidata.org/sparql", home_place)
 	//DB
 	//TEST UNIQUE QUESTION
-	let question = "'Which animal participated in a military operation with the Australian Defence Force?";
+	let question = "Which High School did Allen Ginsberg attend?";
 	//
 	//tests
-	// console.log(initial_place)
+	//console.log(initial_place)
 	//const res = await natACN.natNavigation(question, home_place);
 	//console.dir(res);
 	//TEST UNIQUE QUESTION

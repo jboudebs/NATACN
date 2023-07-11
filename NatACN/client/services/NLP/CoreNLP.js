@@ -15,7 +15,7 @@ class CoreNLP
 	static async fetch(NLQuestion){
 		let coreNLP_fetch = new Promise(resolve=>
 				{
-					fetch('http://corenlp.run', {
+					fetch('http://localhost:9000', {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
