@@ -72,7 +72,7 @@ class CoreNLP
 	
 	static enrichDependences(keyword_json)
 	{
-		//find dependancies
+		//find dependencies
 		let dependencies = CoreNLP._fetch.sentences[0].enhancedPlusPlusDependencies.map(e=>
 		{
 			if(!CoreNLP._dep_to_exclude.includes(e.dep))
@@ -80,8 +80,10 @@ class CoreNLP
 				return {"start_index" : e.governor, "dep": e.dep, "end_index" : e.dependent}
 			}
 		}).filter(e=>e!==undefined)
-		//console.log(dependencies);
-		
+
+
+		console.log(dependencies);
+		console.log(keyword_json);
 		//put in kw list
 		keyword_json = keyword_json.map(e=>
 			{
@@ -92,7 +94,7 @@ class CoreNLP
 				return e
 			}
 		)
-		//console.log(keyword_json)
+		console.log(keyword_json)
 	}
 	
 	

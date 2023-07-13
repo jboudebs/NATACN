@@ -55,32 +55,33 @@ class NLPExtraction
 		const permutation = getPermutations(this._orderedkwList_json);
 		NLPExtraction.combinaisons = NLPExtraction._copyListOfLists(permutation);
 		
-		// if(this._orderedkwList.length>2)
-		// {
+		//if(this._orderedkwList.length>2)
+		//{
 			//generate all possible permutations
 			//console.log(NLPExtraction.combinaisons)
 			NLPExtraction.orderedCombinaisons = []
 			//CONSTRAINTS
 			//filtrage selon les dépendences
-			// let combinaisonsDep = NLPExtraction.combinaisons.filter(l=>checkDependencies(l))
+			 let combinaisonsDep = NLPExtraction.combinaisons.filter(l=>checkDependencies(l))
 			//
 			// //filtrage selon NE et Dep
-			// let combinaisonsNEFirstDep = []
+			 let combinaisonsNEFirstDep = []
 			//
 			// //filtrage selon NE en début (si y a un NE)
-			// let combinaisonsNE = []
+			 let combinaisonsNE = []
 			//
-			// if(NLPExtraction._hasNE())
-			// {
-			// 	combinaisonsNEFirstDep = combinaisonsDep.filter(l=>l[0].type === 'NE')
-			// 	combinaisonsNE = NLPExtraction.combinaisons.filter(l=>isNEfirst(l))
-			// }
+			 if(NLPExtraction._hasNE())
+			 {
+			 	combinaisonsNEFirstDep = combinaisonsDep.filter(l=>l[0].type === 'NE')
+			 	combinaisonsNE = NLPExtraction.combinaisons.filter(l=>isNEfirst(l))
+			 }
 			//
 			//
 			//
-			// NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsNEFirstDep);
-			// NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsNE);
-			// NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsDep);
+		console.log("NEDEP",combinaisonsNEFirstDep,"NE",combinaisonsNE,"DEP",combinaisonsDep)
+			 NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsNEFirstDep);
+			 NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsNE);
+			 NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsDep);
 			//CONSTRAINTS
 			NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, NLPExtraction.combinaisons);
 			console.log(NLPExtraction.orderedCombinaisons)
@@ -217,12 +218,25 @@ class NLPExtraction
 	static _clearFromNE()
 	{
 		//console.log(this._neList)
-		for (const ne of this._neList)
-		{
+		for (const ne of this._neList) {
 			//console.log(ne,this._kwList.map(e=>e.word).toString())
-			//find
-			let kw_ne_like = NLPExtraction._findKwNELike(ne, this._kwList)
-			//console.log(kw_ne_like, ne, this._kwList)
+			for (const kw of this._kwList) {
+
+				if (chevauchement(ne, kw)) {
+					let obj_longest_string = plus_grand_string_info(ne, kw)
+					ne["word"] = obj_longest_string.word// supprimer et start char et end char à jour
+					ne["start_char"] = obj_longest_string.start_char
+					ne["end_char"] = obj_longest_string.end_char
+					ne["pos_tag"] = kw.pos_tag;
+					ne["dependencies"] = (kw.dependencies?kw.dependencies:[]).concat(ne.dependencies);
+					ne["index"] = kw.index;
+					ne["indexes"] = (kw.indexes?kw.indexes:[]).concat(ne.indexes);
+				}
+
+			}
+			/*//find
+			let kw_ne_like = NLPExtraction.chevauchement(ne, this._kwList)
+			console.log("NE like",kw_ne_like, ne, this._kwList)
 			//replace by ne in _kwList
 			if(kw_ne_like !== undefined)
 			{
@@ -240,7 +254,7 @@ class NLPExtraction
 						e["start_char"] = obj_longest_string.start_char
 						e["end_char"] = obj_longest_string.end_char
 						e["pos_tag"] = kw_ne_like[2].pos_tag;
-						e["dependencies"] = kw_ne_like[2].dependencies;
+						e["dependencies"] = kw_ne_like[2].dependencies.concat(e.dependencies);
 						e["index"] = kw_ne_like[2].index;
 						e["indexes"] = kw_ne_like[2].indexes;
 					}
@@ -277,6 +291,7 @@ class NLPExtraction
 		{
 			
 			this._kwList = this._kwList.filter(e=>!chevauchement(ne, e))
+		}*/
 		}
 	}
 	
@@ -342,7 +357,11 @@ class NLPExtraction
 		this._neList = await this.NETOOL.getNE(NLQuestion);
 		//console.log(this._neList,this._kwList);
 		NLPExtraction._clearKeywordsCoreNLP(this._kwList);
+		//fusion NE word
 		let list = this._neList.map(ne=>{ne.type="NE";return ne}).concat(this._kwList.filter(kw=>kw.type!=='NE'))
+		console.log(list);
+
+		//tri
 		list.sort(function(a, b) {
 			var nomA = a.start_char;
 			var nomB = b.start_char;
@@ -355,9 +374,14 @@ class NLPExtraction
 			}
 			return 0;
 		});
+
+		//supprimer les doublons
+		console.log(list);
 		this._orderedkwList_json = supprimerChevauchements(list);
 		// //ajouter mot manquant
 		// console.warn(await CoreNLP.keywords_POSextracted);
+		//ajouter les dependences manquantes
+		CoreNLP.enrichDependences(this._orderedkwList_json);
 		this._orderedkwList = InstrList.toInstrList(list);//serialization
 		console.warn("Extracted LIST :", this._orderedkwList.toString())
 		return this._orderedkwList;
