@@ -21,9 +21,9 @@ app.get('/score', (req, res)=>{
 		//NatACNLib.majscore();
 		
 		//NatACNLib.verif();
-		NatACNLib.removeDuplicates();
-		NatACNLib.score();
-		NatACNLib.resJSON2resCSV();
+		//NatACNLib.removeDuplicates();
+		//NatACNLib.score();
+		//NatACNLib.resJSON2resCSV();
 		
 	}
 	catch (e)

@@ -8,6 +8,7 @@ import { SparklisAPI } from "../services/ACN/SparklisAPI.js";
 class NatACN
 {
 	static appel;
+	static nbInstruction;
 	constructor(acn)
 	{
 		this.acn = acn;
@@ -314,13 +315,58 @@ class NatACN
 	
 	async better(place, QTpath, instrPath, bestNavigation)
 	{
-		return await this.betterF1(place, QTpath, instrPath, bestNavigation);
+		return await this.better123(place, QTpath, instrPath, bestNavigation);
 	}
 	betterLength(place, QTpath, instrPath, bestNavigation)
 	{
 		return QTpath.length>bestNavigation.QTpath.length;
 	}
-	async betterF1(place, QTpath, instrPath, bestNavigation)
+
+	async better123(place, QTpath, instrPath, bestNavigation)
+	{
+		let better = false
+		const betterNE = this.betterNE(place, QTpath, instrPath, bestNavigation);
+		const betterQTPath = this.betterQTPath(place, QTpath, instrPath, bestNavigation);
+		if(betterNE)
+		{
+			better =  true;
+			console.warn("betterNE",better)
+		}
+		else if(betterNE===0&&betterQTPath)
+		{
+			better =  true;
+			console.warn("betterQTPath",better)
+		}
+		else if(betterNE===0&&betterQTPath===0&& await this.betterRes(place, QTpath, instrPath, bestNavigation))
+		{
+			better =  true;
+			console.warn("betterRes",better)
+		}
+
+		return better;
+	}
+
+	betterNE(place, QTpath, instrPath, bestNavigation)
+	{
+		const currentNbNE = instrPath._list.map(e=>e.type==='NE').length;
+		console.log(bestNavigation.instrPath)
+		const bestNbNE = bestNavigation.instrPath._list.map(e=>e.type==='NE').length;
+		return currentNbNE>bestNbNE?1:currentNbNE===bestNbNE?0:-1;
+	}
+
+	betterQTPath(place, QTpath, instrPath, bestNavigation)
+	{
+		return QTpath.length>bestNavigation.QTpath.length?1:QTpath.length===bestNavigation.QTpath.length?0:-1;
+	}
+
+	async betterRes(place, QTpath, instrPath, bestNavigation)
+	{
+		let bestNatACNRes = sparklisRestoRes(await this.acn.getResults(bestNavigation.place));
+		let currentNatACNRes = sparklisRestoRes(await this.acn.getResults(place));
+		return currentNatACNRes<bestNatACNRes?1:currentNatACNRes===bestNatACNRes?0:-1;
+	}
+
+		async betterF1(place, QTpath, instrPath, bestNavigation)
 	{
 		console.warn(instrPath.toString())
 		let currentNatACNRes = await this.acn.getResults(place);
@@ -334,6 +380,21 @@ class NatACN
 		return currentScore.F1score>bestScore.F1score;
 		
 	}
+
+	async stopCriterion(bestNavigation)
+	{
+		return await this.stopCriterion1(bestNavigation);
+	}
+
+	async stopCriterion1(bestNavigation)
+	{
+		let stop = false
+		const currentNatACNRes = sparklisRestoRes(await this.acn.getResults(bestNavigation.place));
+		console.warn(bestNavigation.QTpath.length, currentNatACNRes.length)
+		stop = bestNavigation.QTpath.length===NatACN.nbInstruction && currentNatACNRes.length<=10
+		console.warn("stop",stop)
+		return stop;
+	}
 	
 	async natNavigation(question, P, coreNLP)
 	{
@@ -343,11 +404,12 @@ class NatACN
 			console.log(question)
 			let instrTree = await NLPExtraction.instrTree(question, coreNLP);
 			// Navigation
-			let bestNavigation = {"place": P, "QTpath": [], "instrPath": []}
+			let bestNavigation = {"place": P, "QTpath": new QTList([]), "instrPath": new InstrList([])}
 			NatACN.appel = 0;
+			NatACN.nbInstruction = instrTree.globalDeepth;
 			console.dir(instrTree)
 			let res = await this.natNavigateRec(instrTree.racine, P, new QTList(), new InstrList(), bestNavigation);//////
-			return {"bestNavigation" : res.bestNavigation, "instrTree": instrTree, "extracted_kw" : NLPExtraction._orderedkwList}
+			return {"bestNavigation" : res, "instrTree": instrTree, "extracted_kw" : NLPExtraction._orderedkwList}
 			//return {"instrTree": instrTree}
 		}
 		catch (e)
@@ -361,10 +423,10 @@ class NatACN
 		NatACN.appel++;
 		console.warn("Node",instrNode.toString())
 		// 1) Mettre à jour la meilleure navigation jusqu'à présent
-		if (await this.better(Pi, QTpath_i, instrPath_i, bestNavigation)) {
-			bestNavigation = {"place" :Pi, "QTpath" : QTpath_i, "instrPath" : instrPath_i};
-			console.warn("better", bestNavigation)
-		}
+		//if (await this.better(Pi, QTpath_i, instrPath_i, bestNavigation)) {
+		//	bestNavigation = {"place" :Pi, "QTpath" : QTpath_i, "instrPath" : instrPath_i};
+		//	console.warn("better", bestNavigation)
+		//}
 		
 		// 2) Interpréter l'instruction racine actuelle dans l'ACN
 		// 2.a) S'il s'agit d'une feuille, toutes les instructions ont été interprétées
@@ -389,18 +451,20 @@ class NatACN
 					// Appel récursif de navigateRec avec l'instruction enfant actuelle
 					let resultsNavigation = await this.natNavigateRec(childInstrNode, P_i_1, QTList.copy(QTpath_i).add(t_j), InstrList.copy(instrPath_i).add(childInstrNode.valeur), bestNavigation);
 					
-					bestNavigation = resultsNavigation.bestNavigation;
-					//Cas d'arret
-					// if (resultsNavigation.place !== null)
-					// {
-					// 	return resultsNavigation; // Une solution a été trouvée
-					// }
-					//Cas d'arret
+					//bestNavigation = resultsNavigation.bestNavigation;
+					if (await this.better(resultsNavigation.place, resultsNavigation.QTpath, resultsNavigation.instrPath, bestNavigation)) {
+						bestNavigation = {"place": resultsNavigation.place, "QTpath": resultsNavigation.QTpath, "instrPath": resultsNavigation.instrPath};
+						//Cas d'arret
+						if (await this.stopCriterion(bestNavigation)) {
+							return bestNavigation; // Une solution a été trouvée
+						}
+						//Cas d'arret
+					}
 					// Sinon, c'est une impasse, nous continuons l'exploration avec un autre QT
 				}
 				// S'il n'y a aucun QT à tester ou si tous mènent à une impasse, nous explorons avec l'instruction enfant suivante
 			}
-			return {"place" : null, "QTpath" : QTpath_i, "instrPath" : instrPath_i, "bestNavigation" : bestNavigation}; // Aucune instruction enfant ne permet une interprétation complète de l'ensemble d'instructions
+			return bestNavigation; // Aucune instruction enfant ne permet une interprétation complète de l'ensemble d'instructions
 		}
 	}
 
@@ -432,13 +496,17 @@ function sparklisRestoRes(sparklisRes,i)
 			
 		}
 	}
-	else
+	else if(sparklisRes)
 	{
 		for (const r of sparklisRes)
 		{
 			console.log(r[0])
 			res.push(r[0]);
 		}
+	}
+	else
+	{
+		console.error("sparklisRes is undefined",sparklisRes)
 	}
 	//pb format
 			console.log(res)

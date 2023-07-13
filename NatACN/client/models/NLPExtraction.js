@@ -93,7 +93,7 @@ class NLPExtraction
 		
 		
 		NLPExtraction.instrTreeI = new Tree(w => new Instruction(w), NLPExtraction.orderedCombinaisons);
-		
+		NLPExtraction.instrTreeI.globalDeepth = this._orderedkwList.length;
 		console.log("Selected combinaison in tree",NLPExtraction.instrTreeI.toString())
 		return NLPExtraction.instrTreeI
 	}

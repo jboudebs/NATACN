@@ -2,7 +2,7 @@ import { isEqual } from "./Utils.js";
 
 
 class Noeud {
-	constructor(valeur, profondeur, largeur, parent) {
+	constructor(valeur, profondeur, largeur, parent, nb) {
 		this.valeur = valeur;
 		this.child = [];
 		this.profondeur = profondeur;
