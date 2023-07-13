@@ -1,9 +1,9 @@
 const fs = require("fs");
 const editJsonFile = require("edit-json-file");
 const {deepParseJson} = require("deep-parse-json");
-const StanfordCoreNLPClient=require('corenlp-client');
+//const StanfordCoreNLPClient=require('corenlp-client');
 
-const client=new StanfordCoreNLPClient("http://localhost:9000","tokenize,ssplit,pos,parse,lemma");
+//const client=new StanfordCoreNLPClient("http://localhost:9000","tokenize,ssplit,pos,parse,lemma");
 
 
 //const resultsLib = require("NatACN/results_app/lib/old/results");
@@ -14,12 +14,12 @@ let i = 0;
 module.exports.i = i;
 let length = 0;
 
-const test_name = "oracle-path-question-ids-10_07";
+const test_name = "heuri-path-question-ids-10_07";
 console.log(test_name);
-const inputQALD = '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/data/qald_10-path-questions.json';
-const outputNatACN = '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/results/juillet/'+test_name+'-res.json';
-const scoreFile ='/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/results/juillet/'+test_name+'-score.json';
-const summaryRes = '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/results_app/results/juillet/'+test_name+'-summary.csv';
+const inputQALD = 'C:\\Users\\julie\\WebstormProjects\\NatACN\\NatACN\\results_app\\data\\qald_10-path-questions.json';
+const outputNatACN = 'C:\\Users\\julie\\WebstormProjects\\NatACN\\NatACN\\results_app\\results\\juillet-win\\'+test_name+'-res.json';
+const scoreFile ='C:\\Users\\julie\\WebstormProjects\\NatACN\\NatACN\\results_app\\results\\juillet-win\\'+test_name+'-score.json';
+const summaryRes = 'C:\\Users\\julie\\WebstormProjects\\NatACN\\NatACN\\results_app\\results\\juillet-win\\'+test_name+'-summary.csv';
 
 module.exports.getSimple =  async function getSimple(req, res)
 {
@@ -113,11 +113,11 @@ module.exports.get = async function get(req,res)
 		length = qald10.questions.length;
 		const qald = qald10.questions[i];
 		console.log(i, qald10.questions[i])
-		const coreNLP = await client.annotate(qald.question[0].string)
+		//const coreNLP = await client.annotate(qald.question[0].string)
 		//console.log('get',length,i, qald);
 		
 		i++;//À laisser quoi qu'il arrive
-		res.status(200).json({"qald" : qald, "coreNLP" : JSON.stringify(coreNLP)});
+		res.status(200).json({"qald" : qald});
 	//}
 }
 

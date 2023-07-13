@@ -30,7 +30,7 @@ try
 	//
 	//tests
 	//console.log(initial_place)
-	const res = await natACN.natNavigation(question, home_place);
+	//const res = await natACN.natNavigation(question, home_place);
 	//console.dir(res);
 	//TEST UNIQUE QUESTION
 	
@@ -48,7 +48,7 @@ try
 	})();
 	
 	//reprise
-	//await getNatACN(0);
+	await getNatACN(51);
 	
 	
 	
@@ -428,8 +428,8 @@ function getNatACN(id)
 			const ids = undefined//await extractLabels(query)
 			//console.warn(ids.map(e=>e.label).toString())
 			var answer = (await evalQuery(query)).rows;
-			natACN.QRes = answer;
-			//console.log(answer);
+			//natACN.QRes = answer;
+			console.log(answer);
 			
 			//evaluation de la question NL dans NatACN - res
 			let resultsQALD = [];
@@ -439,12 +439,17 @@ function getNatACN(id)
 			const res = launch?await natACN.natNavigation(question, home_place, coreNLP):null;
 			const runtime = Date.now() - start;//millis
 			launch?res.bestNavigation?bestRes = await sparklisAPI.getResults(res.bestNavigation.place):null:null;
-			//console.log(bestRes);
+			console.log(res);
 			await resetNatACN()
 			
 
 			//Comparaison des réponses entre ref et res
-			const score = scoring(sparklisRestoRes(answer),sparklisRestoRes(bestRes));
+			console.log("Aqa processing",answer)
+			const Aqa  = sparklisRestoRes(answer)
+			console.log("Ad processing",bestRes)
+			const Ad = sparklisRestoRes(bestRes)
+			console.log("scoring",Ad,Aqa)
+			const score = scoring(Ad,Aqa);
 			
 			//formatage de l'historique de la recherche dans NatACN
 			const data = {  "id": qald.id,
@@ -481,76 +486,103 @@ function getNatACN(id)
 	
 }
 
-function sparklisRestoRes(sparklisRes,i)
-{
-	console.log(sparklisRes);
-	let res = [];
-	if(sparklisRes&&sparklisRes.hasOwnProperty('columns'))
+
+	function sparklisRestoRes(sparklisRes,i)
 	{
-		const nb = sparklisRes.columns.length-1;
-		for (const r in sparklisRes.rows)
+		console.log(sparklisRes);
+		let res = [];
+		if(sparklisRes&&sparklisRes.hasOwnProperty('columns'))
 		{
-			
-			//vérifier s'il existe déjà pour éviter les doublons
-			const e1 = sparklisRes.rows[r][nb];
-			
-			res = res.filter(e2=>!_.isEqual(e1,e2));
-			
-			res.push(sparklisRes.rows[r][nb]);
-			
-		}
-	}
-	else
-	{
-		for (const r in sparklisRes)
-		{
-			res.push(sparklisRes[r][sparklisRes[r].length-1]);
-		}
-	}
-	//pb format
-	res = res.filter( (ele,pos)=>res.indexOf(ele) === pos);
-	res = res[0]?res:[];
-	
-	return res;
-}
-function scoring(Ad, Aqa)
-{
-	console.log("Calculating scores...", Ad, Aqa)
-	let inter = [];
-	for (const a1 in Ad)
-	{
-		for (const a2 in Aqa)
-		{
-			if (_.isEqual(Ad[a1], Aqa[a2]))
+			const nb = i?i:sparklisRes.columns.length-1;
+			for (const r in sparklisRes.rows)
 			{
-				inter.push(Aqa[a2])
-			}
-			else
-			{
-			
+
+				//vérifier s'il existe déjà pour éviter les doublons
+				const e1 = sparklisRes.rows[r][nb];
+
+				res = res.filter(e2=>!_.isEqual(e1,e2));
+
+				res.push(sparklisRes.rows[r][nb]);
+
 			}
 		}
+		else if(sparklisRes)
+		{
+			for (const r of sparklisRes)
+			{
+				console.log(r[0])
+				res.push(r[0]);
+			}
+		}
+		else
+		{
+			console.error("sparklisRes is undefined",sparklisRes)
+		}
+		//pb format
+		console.log(res)
+		res = res.filter( (ele,pos)=>res.indexOf(ele) === pos);
+		res = res[0]?res:[];
+
+		return res;
 	}
-	console.log("inter", inter);
-	const recall = inter.length / Ad.length;
-	const precision = inter.length / Aqa.length;
-	
-	const score = {
-		"recall": recall, "precision": precision, "F1score": 2 * recall * precision / (recall + precision)
+	function scoring(Ad, Aqa)
+	{
+		console.log("Calculating scores...", Ad, Aqa)
+		let inter = [];
+		for (const a1 in Ad)
+		{
+			for (const a2 in Aqa)
+			{
+				if (_.isEqual(Ad[a1], Aqa[a2]))
+				{
+					inter.push(Aqa[a2])
+				}
+				else
+				{
+
+				}
+			}
+		}
+		console.log("inter", inter);
+		const recall = inter.length / Ad.length;
+		const precision = inter.length / Aqa.length;
+
+		const score = {
+			"recall": recall, "precision": precision, "F1score": 2 * recall * precision / (recall + precision)
+		}
+
+		var uniqueResultOne = function (result1,result2) {result1.filter(function(obj) {
+			return !result2.some(function(obj2) {
+				return _.isEqual(obj,obj2);
+			});
+		})};
+		const onlyInLeft = (left, right, compareFunction) =>
+			left.filter(leftValue =>
+				!right.some(rightValue =>
+					compareFunction(leftValue, rightValue)));
+
+		console.warn('only in Ad', onlyInLeft(Ad,Aqa,isEqual));
+		console.warn('only in Aqa', onlyInLeft(Aqa,Ad,isEqual));
+
+		return score;
 	}
-	
-	var uniqueResultOne = function (result1,result2) {result1.filter(function(obj) {
-		return !result2.some(function(obj2) {
-			return _.isEqual(obj,obj2);
-		});
-	})};
-	const onlyInLeft = (left, right, compareFunction) =>
-		left.filter(leftValue =>
-			!right.some(rightValue =>
-				compareFunction(leftValue, rightValue)));
-	
-	console.warn('only in Ad', onlyInLeft(Ad,Aqa,isEqual));
-	console.warn('only in Aqa', onlyInLeft(Aqa,Ad,isEqual));
-	
-	return score;
-}
+
+	function maxScore(NatACNRes, QRes)
+	{
+		let nb = 1;
+		if(NatACNRes&&NatACNRes.hasOwnProperty('columns'))
+		{
+			nb = NatACNRes.columns.length;
+		}
+		console.log(NatACNRes, QRes, nb)
+		let maxScore = {"recall" : 0, "precision": 0, "F1score": 0};
+		const Aqa = sparklisRestoRes(QRes)
+		for (let i = 0; i < nb; i++)
+		{
+			const score = scoring(sparklisRestoRes(NatACNRes,i), Aqa);
+			console.log("score", score)
+			maxScore = score.F1score>maxScore.F1score?score:maxScore;
+			console.log("maxScore", maxScore)
+		}
+		return maxScore;
+	}
