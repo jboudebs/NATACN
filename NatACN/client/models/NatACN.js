@@ -408,9 +408,9 @@ class NatACN
 			NatACN.appel = 0;
 			NatACN.nbInstruction = instrTree.globalDeepth;
 			console.dir(instrTree)
-			let res = await this.natNavigateRec(instrTree.racine, P, new QTList(), new InstrList(), bestNavigation);//////
-			return {"bestNavigation" : res, "instrTree": instrTree, "extracted_kw" : NLPExtraction._orderedkwList}
-			//return {"instrTree": instrTree}
+			//let res = await this.natNavigateRec(instrTree.racine, P, new QTList(), new InstrList(), bestNavigation);//////
+			//return {"bestNavigation" : res, "instrTree": instrTree, "extracted_kw" : NLPExtraction._orderedkwList}
+			return {"instrTree": instrTree}
 		}
 		catch (e)
 		{

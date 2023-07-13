@@ -26,11 +26,11 @@ try
 	//await sparklisAPI.changeEndpoint("https://query.wikidata.org/sparql", home_place)
 	//DB
 	//TEST UNIQUE QUESTION
-	let question = "Which High School did Allen Ginsberg attend?";
+	let question = "What instruments did Louis Armstrong play?";
 	//
 	//tests
 	//console.log(initial_place)
-	//const res = await natACN.natNavigation(question, home_place);
+	const res = await natACN.natNavigation(question, home_place);
 	//console.dir(res);
 	//TEST UNIQUE QUESTION
 	
@@ -48,7 +48,7 @@ try
 	})();
 	
 	//reprise
-	await getNatACN(64);
+	//await getNatACN(64);
 	
 	
 	
