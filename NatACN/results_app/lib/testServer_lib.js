@@ -17,7 +17,7 @@ let length = 0;
 const currentDir = path.resolve();
 console.log(currentDir)
 
-const test_name = "oracle-test-path-question-14_07";
+const test_name = "oracle-ordered-tree-path-question-16_07";
 console.log(test_name);
 const inputQALD = './data/qald_10-path-questions.json';
 const outputNatACN = './results/juillet/'+test_name+'-res.json';

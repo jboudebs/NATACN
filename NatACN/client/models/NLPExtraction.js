@@ -83,7 +83,7 @@ class NLPExtraction
 			 NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsNE);
 			 NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsDep);
 			//CONSTRAINTS
-			NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, NLPExtraction.combinaisons);
+			//NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, NLPExtraction.combinaisons);
 			console.log(NLPExtraction.orderedCombinaisons)
 		// }
 		// else
