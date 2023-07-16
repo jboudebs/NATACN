@@ -6,7 +6,7 @@ class SpaCy
 	{
 		let fetcH = new Promise(resolve =>
 		{
-			fetch('https://d993-34-138-26-145.ngrok-free.app/', {
+			fetch('https://45d1-34-145-253-7.ngrok-free.app/', {
 				method : 'POST', headers: {
 					'Content-Type': 'text/plain;charset=UTF-8',
 				}, body: NLQuestion,

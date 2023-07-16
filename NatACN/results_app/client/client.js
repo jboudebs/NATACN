@@ -56,7 +56,7 @@ try
 	})();
 	
 	//reprise
-	await getNatACN(8);
+	await getNatACN(0);
 	
 	
 	
