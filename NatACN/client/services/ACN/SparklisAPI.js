@@ -381,6 +381,11 @@ class SparklisAPI extends ACN
 		SparklisAPI.labelDico.push({"incr":incr,"label":label})
 	}
 	
+	static resetClass()
+	{
+		SparklisAPI.labelDico = []
+	}
+	
 	async _getLabelFromUri(incr)
 	{
 		console.log(incr)

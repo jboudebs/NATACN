@@ -1,6 +1,7 @@
 const fs = require("fs");
 const editJsonFile = require("edit-json-file");
 const {deepParseJson} = require("deep-parse-json");
+const path = require('path');
 //const StanfordCoreNLPClient=require('corenlp-client');
 
 //const client=new StanfordCoreNLPClient("http://localhost:9000","tokenize,ssplit,pos,parse,lemma");
@@ -13,13 +14,15 @@ const {deepParseJson} = require("deep-parse-json");
 let i = 0;
 module.exports.i = i;
 let length = 0;
+const currentDir = path.resolve();
+console.log(currentDir)
 
-const test_name = "heuri-path-question-ids-10_07";
+const test_name = "oracle-test-path-question-14_07";
 console.log(test_name);
-const inputQALD = 'C:\\Users\\julie\\WebstormProjects\\NatACN\\NatACN\\results_app\\data\\qald_10-path-questions.json';
-const outputNatACN = 'C:\\Users\\julie\\WebstormProjects\\NatACN\\NatACN\\results_app\\results\\juillet-win\\'+test_name+'-res.json';
-const scoreFile ='C:\\Users\\julie\\WebstormProjects\\NatACN\\NatACN\\results_app\\results\\juillet-win\\'+test_name+'-score.json';
-const summaryRes = 'C:\\Users\\julie\\WebstormProjects\\NatACN\\NatACN\\results_app\\results\\juillet-win\\'+test_name+'-summary.csv';
+const inputQALD = './data/qald_10-path-questions.json';
+const outputNatACN = './results/juillet/'+test_name+'-res.json';
+const scoreFile ='./results/juillet/'+test_name+'-score.json';
+const summaryRes = './results/juillet/'+test_name+'-summary.csv';
 
 module.exports.getSimple =  async function getSimple(req, res)
 {

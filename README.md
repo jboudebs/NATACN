@@ -1,15 +1,20 @@
 
 
 # NatACN API
-serveur scpaCy
+serveur SpaCy
 ```
-python -m pip install spacy-transformers
-python -m spacy download "en_core_web_trf"
-python -m pip install flask
+python3 -m pip install spacy-transformers
+python3 -m spacy download "en_core_web_trf"
+python3 -m pip install flask
+python3 -m pip install flask_cors
 ```
 
 ```
- python .\NatACN\client\services\NLP\CoreNLP_server\Spacy_server\app.py
+ python3 ./NatACN/client/services/NLP/CoreNLP_server/Spacy_server/app.py
+```
+
+```
+ python3 ./client/services/NLP/CoreNLP_server/Spacy_server/app.py
 ```
 
 
