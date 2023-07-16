@@ -19,6 +19,7 @@ import { InstrList } from "../../models/InstrList.js";
 class SparklisAPI extends ACN
 {
 	static _sparklis;
+	static MU_RELATED = 0.2;
 	static _view_mode = true;
 	static labelDico = []
 	
@@ -151,7 +152,14 @@ class SparklisAPI extends ACN
 					qt.setLabel(label);
 					//relatedness
 					const relatedness = await NLPToolsParameters.getRelatedness(qt.getLabel(),instr.toString())
-					qt.setScore(relatedness);
+					if(relatedness>=SparklisAPI.MU_RELATED)
+					{
+						qt.setScore(relatedness);
+					}
+					else
+					{
+						qtList_toRemove.push(qt);
+					}
 				}
 				
 			}

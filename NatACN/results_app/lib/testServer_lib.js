@@ -17,7 +17,7 @@ let length = 0;
 const currentDir = path.resolve();
 console.log(currentDir)
 
-const test_name = "oracle-ordered-tree-path-question-16_07";
+const test_name = "one_per_one-123-ordered-tree-path-cutted-question-16_07";
 console.log(test_name);
 const inputQALD = './data/qald_10-path-questions.json';
 const outputNatACN = './results/juillet/'+test_name+'-res.json';
@@ -30,29 +30,30 @@ module.exports.getSimple =  async function getSimple(req, res)
 	i = 0;
 	fs.unlinkSync(outputNatACN);
 	fs.appendFileSync(outputNatACN, '{"date" : \"'+ new Date().toGMTString() +'\",\n' +
-	                              '"res": [');
-	
-	
+		'"res": [');
+
+
 	const qald10 = deepParseJson(fs.readFileSync(inputQALD).toString());
 	length = qald10.qald10.length;
 	const coreNLP = await client.annotate(qald10.qald10[0])
-		//.then(result => console.log(JSON.stringify(result,null,2)));
+	//.then(result => console.log(JSON.stringify(result,null,2)));
 	console.log("JSON length", length);
 	console.log("coreNLP", coreNLP);
 	console.log("Query to client", qald10.qald10[0]);
-	res.status(200).json({"question" : qald10.qald10[0], "coreNLP" : coreNLP});
-	
+	res.status(200).json({"question" : qald10.qald10[0]});
+
 	console.log("GET Simple - server");
 }
 
 module.exports.post = async function post (req,res)
 {
+	const next = false
 	console.log("Writing in a file", req.body);
 	console.log('post', i)
 	if(i<length)
 	{
 		fs.appendFileSync(outputNatACN, JSON.stringify(req.body)+',\n');
-		res.status(200).json(i);
+		res.status(200).json(next?i:undefined);
 	}
 	else
 	{
@@ -70,7 +71,7 @@ module.exports.verif = async function verif()
 	//console.log(results);
 	const nb = results.res.length;
 	console.log("nb",nb);
-	
+
 	const array = Array(nb).fill(0).map((n, i) => n + i);
 	const ids = results.res.map(q => q.id);
 	const missing = array.filter(value => !ids.includes(value));
@@ -78,13 +79,13 @@ module.exports.verif = async function verif()
 	const toFindDuplicates = arry => arry.filter((item, index) => arry.indexOf(item) !== index)
 	const duplicateElements = toFindDuplicates(ids);
 	console.log("duplicate items",duplicateElements);
-	
+
 }
 
 module.exports.removeDuplicates = function removeDuplicates()
 {
 	let duplicateElements = [];
-	
+
 	const file = editJsonFile(outputNatACN);
 	let res = file.get("res");
 	do
@@ -98,29 +99,30 @@ module.exports.removeDuplicates = function removeDuplicates()
 	while (duplicateElements.length>1)
 	file.set("res",res)
 	file.save();
-	
+
 }
 
 module.exports.get = async function get(req,res)
 {
 	//if(parseInt(req.params.ln))
 	//{
-		i = parseInt(req.params.ln) ? parseInt(req.params.ln) : i;
-		if (i === 0)
-		{
-			console.log('Starting...')
-			fs.writeFileSync(outputNatACN, '{"date" : \"' + new Date().toGMTString() + '\",\n' + '"res": [', {flag: "w+"});
-		}
-		
-		const qald10 = deepParseJson(fs.readFileSync(inputQALD).toString());
-		length = qald10.questions.length;
-		const qald = qald10.questions[i];
-		console.log(i, qald10.questions[i])
-		//const coreNLP = await client.annotate(qald.question[0].string)
-		//console.log('get',length,i, qald);
-		
-		i++;//À laisser quoi qu'il arrive
-		res.status(200).json({"qald" : qald});
+	console.log(i);
+	i = parseInt(req.params.ln) ? parseInt(req.params.ln) : i;
+	if (i === 0)
+	{
+		console.log('Starting...')
+		fs.writeFileSync(outputNatACN, '{"date" : \"' + new Date().toGMTString() + '\",\n' + '"res": [', {flag: "w+"});
+	}
+
+	const qald10 = deepParseJson(fs.readFileSync(inputQALD).toString());
+	length = qald10.questions.length;
+	const qald = qald10.questions[i];
+	console.log(i, qald10.questions[i])
+	//const coreNLP = await client.annotate(qald.question[0].string)
+	//console.log('get',length,i, qald);
+
+	i++;//À laisser quoi qu'il arrive
+	res.status(200).json({"qald" : qald});
 	//}
 }
 
@@ -128,25 +130,25 @@ module.exports.score = async function score()
 {
 	console.log("Calculating score ...")
 	const output = deepParseJson(fs.readFileSync(outputNatACN).toString());
-	
+
 	if(typeof output !== "object")
 	{
 		console.log(typeof output);
 	}
-	
+
 	let precision = 0;
 	let recall = 0;
 	let F1score = 0;
 	console.log(Object.keys(output));
 	let nb = output.res.length;
-	
+
 	for (const i in output.res)
 	{
 		precision+=output.res[i].score.precision;
 		recall+=output.res[i].score.recall;
 		F1score+=output.res[i].score.F1score;
 	}
-	
+
 	const score_json = {
 		"recall" : recall/nb,
 		"precision": precision/nb,
@@ -160,8 +162,8 @@ module.exports.score = async function score()
 module.exports.resJSON2resCSV = async function resJSON2resCSV()
 {
 	const output = deepParseJson(fs.readFileSync(outputNatACN).toString());
-	fs.writeFileSync(summaryRes, 'ID;QALD;IDS SPARQL;Keywords Extracted;instrTree;instrPath;Longest QT-Path;Precision;Recall;F1-Score;Runtime;Nb Call\n', {flag: "w+"});
-	
+	fs.writeFileSync(summaryRes, 'ID;QALD;IDS SPARQL;Keywords Extracted;instrTree.txt;instrPath;Longest QT-Path;Precision;Recall;F1-Score;Runtime;Nb Call\n', {flag: "w+"});
+
 	for (const i in output.res)
 	{
 		const id = output.res[i].id
@@ -170,21 +172,23 @@ module.exports.resJSON2resCSV = async function resJSON2resCSV()
 		const kwExtracted = output.res[i].NatACN_info?output.res[i].NatACN_info.extracted_kw?output.res[i].NatACN_info.extracted_kw:null:undefined;
 		const instrPath = output.res[i].NatACN_info?output.res[i].NatACN_info.instrPath?output.res[i].NatACN_info.instrPath instanceof Array?null:output.res[i].NatACN_info.instrPath._list.map(e=>e._type?e._string+' ('+e._type+')':e._string).toString():null:undefined;
 		const longestQTpath = output.res[i].NatACN_info?output.res[i].NatACN_info.QTpath?output.res[i].NatACN_info.QTpath instanceof Array?null:output.res[i].NatACN_info.QTpath._list.map(e=>e._incr.type==='IncrConstr'?
-		                                                                                                                      (e._incr.constr.searchQuery?
-		                                                                                                                       e._incr.constr.searchQuery.kwds.toString()+' (match)'.toString()
-		                                                                                                                                                      :e._incr.constr.kwds.toString()+' (match)'.toString())
-		                                                                                                                                                 :e._label):null:undefined;
-		
-		//console.log(output.res[i].NatACN_info.instrTree.replaceAll("\n","").replaceAll(",",":"))
-		const instrTree = output.res[i].NatACN_info?output.res[i].NatACN_info.instrTree.replaceAll("\n","").replaceAll(",",":"):undefined;
+			(e._incr.constr.searchQuery?
+				e._incr.constr.searchQuery.kwds.toString()+' (match)'.toString()
+				:e._incr.constr.kwds.toString()+' (match)'.toString())
+			:e._label):null:undefined;
+
+		//console.log(output.res[i].NatACN_info.instrTree.txt.replaceAll("\n","").replaceAll(",",":"))
+
+		console.log(output.res[i].NatACN_info.instrTree,";");
+		const instrTree = "";//output.res[i].NatACN_info?output.res[i].NatACN_info.instrTree.txt.toString().replaceAll("\n","").replaceAll(",",":"):undefined;
 		const precision = output.res[i].score.precision === null?0:output.res[i].score.precision;
 		const recall = output.res[i].score.recall === null?0:output.res[i].score.recall;
 		const F1score = output.res[i].score.F1score === null?0:output.res[i].score.F1score;
 		const nb_call = output.res[i].nb_call;
 		const runtime = output.res[i].runtime;
-		
+
 		const csvLine = id +';' + question + ';' + ids + ';' + kwExtracted + ';'+ instrTree + ';'+ instrPath + ';' + longestQTpath + ';' + precision + ';' + recall + ';' + F1score + ';' + nb_call + ';' + runtime + '\n';
-		
+
 		fs.appendFileSync(summaryRes, csvLine);
 	}
 	console.log("resJSON2resCSV Done")

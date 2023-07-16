@@ -1,28 +1,36 @@
+java 1.8
+python 3
 
+mac : xcode
 
 # NatACN API
-serveur SpaCy
+serveur spaCy
 ```
 python3 -m pip install spacy-transformers
 python3 -m spacy download "en_core_web_trf"
 python3 -m pip install flask
 python3 -m pip install flask_cors
 ```
-
+win
 ```
- python3 ./NatACN/client/services/NLP/CoreNLP_server/Spacy_server/app.py
+ python3 .\NatACN\client\services\NLP\CoreNLP_server\Spacy_server\app.py
 ```
-
+mac/linux :
 ```
- python3 ./client/services/NLP/CoreNLP_server/Spacy_server/app.py
+python3 ./NatACN/client/services/NLP/CoreNLP_server/Spacy_server/app.py
 ```
-
 
 serveur coreNLP
 ```
 cd C:\Users\julie\WebstormProjects\NatACN\NatACN\client\services\NLP\CoreNLP_server\stanford-corenlp-4.5.4 
 java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 9000 -timeout 15000
 ```
+mac/linux :
+```
+cd C:/Users/levyn/WebstormProjects/NatACN/NatACN/client/services/NLP/CoreNLP_server/stanford-corenlp-4.5.4 
+java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 9000 -timeout 15000
+```
+
 serveur natACN
 ```
 python -m http.server 9999

@@ -1,5 +1,5 @@
 import coreNLP, { CoreNLP } from "../services/NLP/CoreNLP.js";
-import { SpaCy } from "../services/NLP/SpaCy.js";
+import { SpaCyNER } from "../services/NLP/SpaCyNER.js";
 import { InstrList } from "./InstrList.js";
 import { Instruction } from "./Instruction.js";
 import { Noeud, Tree } from "./Tree.js";
@@ -8,7 +8,7 @@ class NLPExtraction
 {
 	static _lemma_to_exclude = ['be', 'have', 'do']
 	static _dependent_word_to_exclude = ['I', 'you', 'me']//Modaux déjà exclus
-	static NETOOL = SpaCy
+	static NETOOL = SpaCyNER
 	constructor()
 	{
 		//super();
@@ -17,7 +17,7 @@ class NLPExtraction
 			throw Error('A static class cannot be instantiated.');
 		}
 	}
-	
+
 	// static async extractMultiple(NLQuestion)
 	// {
 	// 	await NLPExtraction._natOrder_SpaCy(NLQuestion);
@@ -47,82 +47,82 @@ class NLPExtraction
 		{
 			//console.warn(kw)
 			kw.synset = kw.type !=='NE'?
-			                           InstrList.toInstrList((await NLPToolsParameters.getSynonyms(kw)).concat([kw.word]))
-			                                               : undefined;//InstrList.toInstrList(kw.word);
+				InstrList.toInstrList((await NLPToolsParameters.getSynonyms(kw)).concat([kw.word]))
+				: undefined;//InstrList.toInstrList(kw.word);
 			console.log(kw.word, kw.synset)
 		}
 		//generate permutation
 		const permutation = getPermutations(this._orderedkwList_json);
 		NLPExtraction.combinaisons = NLPExtraction._copyListOfLists(permutation);
-		
+
 		//if(this._orderedkwList.length>2)
 		//{
-			//generate all possible permutations
-			//console.log(NLPExtraction.combinaisons)
-			NLPExtraction.orderedCombinaisons = []
-			//CONSTRAINTS
-			//filtrage selon les dépendences
-			 let combinaisonsDep = NLPExtraction.combinaisons.filter(l=>checkDependencies(l))
-			//
-			// //filtrage selon NE et Dep
-			 let combinaisonsNEFirstDep = []
-			//
-			// //filtrage selon NE en début (si y a un NE)
-			 let combinaisonsNE = []
-			//
-			 if(NLPExtraction._hasNE())
-			 {
-			 	combinaisonsNEFirstDep = combinaisonsDep.filter(l=>l[0].type === 'NE')
-			 	combinaisonsNE = NLPExtraction.combinaisons.filter(l=>isNEfirst(l))
-			 }
-			//
-			//
-			//
+		//generate all possible permutations
+		//console.log(NLPExtraction.combinaisons)
+		NLPExtraction.orderedCombinaisons = []
+		//CONSTRAINTS
+		//filtrage selon les dépendences
+		let combinaisonsDep = NLPExtraction.combinaisons.filter(l=>checkDependencies(l))
+		//
+		// //filtrage selon NE et Dep
+		let combinaisonsNEFirstDep = []
+		//
+		// //filtrage selon NE en début (si y a un NE)
+		let combinaisonsNE = []
+		//
+		if(NLPExtraction._hasNE())
+		{
+			combinaisonsNEFirstDep = combinaisonsDep.filter(l=>l[0].type === 'NE')
+			combinaisonsNE = NLPExtraction.combinaisons.filter(l=>isNEfirst(l))
+		}
+		//
+		//
+		//
 		console.log("NEDEP",combinaisonsNEFirstDep,"NE",combinaisonsNE,"DEP",combinaisonsDep)
-			 NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsNEFirstDep);
-			 NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsNE);
-			 NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsDep);
-			//CONSTRAINTS
-			//NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, NLPExtraction.combinaisons);
-			console.log(NLPExtraction.orderedCombinaisons)
+		NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsNEFirstDep);
+		NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsNE);
+		NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsDep);
+		//CONSTRAINTS
+		//NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, NLPExtraction.combinaisons);
+		console.log(NLPExtraction.orderedCombinaisons)
 		// }
 		// else
 		// {
 		// 	NLPExtraction.orderedCombinaisons = NLPExtraction.combinaisons.filter(l=>isNEfirst(l))
 		//
 		// }
-		
-		
+
+
 		NLPExtraction.instrTreeI = new Tree(w => new Instruction(w), NLPExtraction.orderedCombinaisons);
 		NLPExtraction.instrTreeI.globalDeepth = this._orderedkwList.length;
 		console.log("Selected combinaison in tree",NLPExtraction.instrTreeI.toString())
 		return NLPExtraction.instrTreeI
 	}
-	
+
 	static _copyListOfLists(listOfLists) {
 		const newList = [];
-		
+
 		for (const list of listOfLists) {
 			const newListInner = [];
-			
+
 			for (const item of list) {
 				// Effectuez la copie de chaque élément de la liste
 				// Si les éléments sont de type primitif ou des objets immuables, une simple affectation suffit
 				// Si les éléments sont des objets mutables, vous pouvez utiliser une méthode appropriée pour effectuer une copie en profondeur
-				
+
 				// Exemple de copie en utilisant JSON.parse et JSON.stringify (fonctionne uniquement pour les objets sérialisables en JSON)
 				const copiedItem = item;
-				
+
 				newListInner.push(copiedItem);
 			}
-			
+
 			newList.push(newListInner);
 		}
-		
+
 		return newList;
 	}
 
-	
+
 	static _addMissingLists(A, B) {
 		for (const list of B) {
 			if (!this._hasList(A, list)) {
@@ -131,7 +131,7 @@ class NLPExtraction
 		}
 		return A
 	}
-	
+
 	static _hasList(lists, targetList) {
 		for (const list of lists) {
 			if (this._isSameList(list, targetList)) {
@@ -140,22 +140,22 @@ class NLPExtraction
 		}
 		return false;
 	}
-	
+
 	static _isSameList(list1, list2) {
 		if (list1.length !== list2.length) {
 			return false;
 		}
-		
+
 		for (let i = 0; i < list1.length; i++) {
 			if (list1[i].word !== list2[i].word) {
 				return false;
 			}
 		}
-		
+
 		return true;
 	}
 
-	
+
 	// _isPathExistsDFS(node, path) {
 	// 	if (path.length === 0) {
 	// 		return true; // Si le chemin est vide, il existe toujours
@@ -179,22 +179,22 @@ class NLPExtraction
 	// 	return false; // Si aucune correspondance n'a été trouvée, le chemin n'existe pas
 	// }
 	//
-	
-	
+
+
 	static _hasNE()
 	{
 		return NLPExtraction._neList.length>0
 	}
-	
+
 	static async extract(NLQuestion)
 	{
 		await NLPExtraction._natOrder(NLQuestion);
 		return this._orderedkwList;
 	}
-	
+
 	static _clearKeywordsCoreNLP()
 	{
-		console.warn(this._kwList, CoreNLP.keywords.map(e=>e.word), SpaCy.NE);
+		console.warn(this._kwList, CoreNLP.keywords.map(e=>e.word), SpaCyNER.NE);
 		NLPExtraction._clearFromNE()
 		console.warn(this._kwList.map(e=>e.word));
 		this._kwList = CoreNLP.mergeCompoundWord(this._kwList);
@@ -204,13 +204,13 @@ class NLPExtraction
 		CoreNLP.keywords = this._kwList
 		//console.warn(this._kwList)
 	}
-	
+
 	static _clearFromLemma()
 	{
 		this._kwList = this._kwList.filter(kw=>!NLPExtraction._lemma_to_exclude.includes(kw.lemma))
 		//console.warn(this._kwList.map(e=>{return [e.word, e.lemma]}), NLPExtraction._lemma_to_exclude);
 	}
-	
+
 	/**
 	 * supprimer les NE de la kwList en enrichissant les infos des NE de la neList
 	 * @private
@@ -294,27 +294,27 @@ class NLPExtraction
 		}*/
 		}
 	}
-	
+
 	static _findKwNELike(ne, kwList)
 	{
 		let ne_kw_like = kwList.map((kw,i) =>
 			{
 				const list = [ne,i,kw]
 				if((kw.word.includes(ne.word) && ne.start_char >= kw.start_char && ne.end_char >= kw.end_char) ||
-				   (ne.word.includes(kw.word) && ne.start_char <= kw.start_char && ne.end_char <= kw.end_char) ||
-				   (ne.start_char >= kw.start_char && ne.start_char <= kw.end_char) ||
-				   (ne.end_char >= kw.start_char && ne.end_char <= kw.end_char))
+					(ne.word.includes(kw.word) && ne.start_char <= kw.start_char && ne.end_char <= kw.end_char) ||
+					(ne.start_char >= kw.start_char && ne.start_char <= kw.end_char) ||
+					(ne.end_char >= kw.start_char && ne.end_char <= kw.end_char))
 				{
 					return list
 				}
-				
+
 			}
 		).filter(e=>e!==undefined)[0]
-		
+
 		return ne_kw_like;
 	}
-	
-	
+
+
 	/**
 	 * Algo NE First
 	 * @param NLQuestion
@@ -331,12 +331,12 @@ class NLPExtraction
 		this._orderedkwList = InstrList.toInstrList(list);//serialization
 		return this._orderedkwList;
 	}
-	
+
 	static async _NE_first_SpaCy(NLQuestion)
 	{
 		await CoreNLP.fetch(NLQuestion)
 		this._kwList = await CoreNLP.getKeyword();
-		this._neList = await SpaCy.getNE(NLQuestion);
+		this._neList = await SpaCyNER.getNE(NLQuestion);
 		//console.log(this._kwList);
 		NLPExtraction._clearKeywordsCoreNLP(this._kwList);
 		//console.log(this._kwList);
@@ -345,10 +345,10 @@ class NLPExtraction
 		console.warn("Extracted LIST :", this._orderedkwList.toString())
 		return this._orderedkwList;
 	}
-	
+
 	static async _natOrder(NLQuestion, coreNLP)
 	{
-		
+
 		coreNLP?CoreNLP._fetch = JSON.parse(coreNLP):await CoreNLP.fetch(NLQuestion)
 		this._kwList = await CoreNLP.getKeyword();
 		//console.log(this._kwList);
@@ -365,7 +365,7 @@ class NLPExtraction
 		list.sort(function(a, b) {
 			var nomA = a.start_char;
 			var nomB = b.start_char;
-			
+
 			if (nomA < nomB) {
 				return -1;
 			}
@@ -386,7 +386,7 @@ class NLPExtraction
 		console.warn("Extracted LIST :", this._orderedkwList.toString())
 		return this._orderedkwList;
 	}
-	
+
 	static resetClass()
 	{
 		this._kwList = undefined;
@@ -403,11 +403,11 @@ function isNEfirst(list)
 function genererCombinaisons(liste)
 {
 	var combinaisons = [];
-	
+
 	function backtrack(combinaisonActuelle, index)
 	{
 		combinaisons.push(combinaisonActuelle.slice());
-		
+
 		for (var i = index; i < liste.length; i++)
 		{
 			combinaisonActuelle.push(liste[i]);
@@ -415,15 +415,15 @@ function genererCombinaisons(liste)
 			combinaisonActuelle.pop();
 		}
 	}
-	
+
 	backtrack([], 0);
-	
+
 	return combinaisons;
 }
 
 function getPermutations(strings) {
 	const result = [];
-	
+
 	function permute(arr, m = []) {
 		if (arr.length === 0) {
 			result.push(m);
@@ -435,13 +435,13 @@ function getPermutations(strings) {
 			}
 		}
 	}
-	
-		permute(strings);
-	
+
+	permute(strings);
+
 	return result[0]?result:[strings];
 }
 function checkDependencies(list) {
-	
+
 	for (let i = 0; i < list.length - 1; i++) {
 		const currentObj = list[i];
 		const nextObj = list[i + 1];
@@ -459,7 +459,7 @@ function checkDependencies(list) {
 		}
 		//return false
 	}
-	
+
 	return true;
 }
 function hasCommonObject(list1, list2) {
@@ -471,13 +471,13 @@ function hasCommonObject(list1, list2) {
 			}
 		}
 	}
-	
+
 	return false;
 }
 function areObjectsEqual(obj1, obj2) {
 	const stringifiedObj1 = JSON.stringify(obj1);
 	const stringifiedObj2 = JSON.stringify(obj2);
-	
+
 	return stringifiedObj1 === stringifiedObj2;
 }
 
@@ -488,7 +488,7 @@ function plus_grand_string_info(obj1,obj2)
 		return obj1
 	}
 	return obj2
-	
+
 }
 
 function plus_grand_string(string1, string2)
@@ -506,13 +506,13 @@ function chevauchement(kw1, kw2) {
 
 
 function supprimerChevauchements(keywordList) {
-	
+
 	for (var i = 0; i < keywordList.length; i++) {
 		var keyword1 = keywordList[i];
-		
+
 		for (var j = i + 1; j < keywordList.length; j++) {
 			var keyword2 = keywordList[j];
-			
+
 			if (chevauchement(keyword1, keyword2)) {
 				if (keyword1.word.length < keyword2.word.length) {
 					keywordList.splice(i, 1);
@@ -525,7 +525,7 @@ function supprimerChevauchements(keywordList) {
 			}
 		}
 	}
-	
+
 	return keywordList;
 }
 

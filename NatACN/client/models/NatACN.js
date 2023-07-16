@@ -13,8 +13,8 @@ class NatACN
 	{
 		this.acn = acn;
 	}
-	
-	
+
+
 	// update_navState_pointer()
 	// {
 	// 	this.old_pointer = this.navState_pointer
@@ -38,7 +38,7 @@ class NatACN
 	// 	this.navState_pointer.setKeywordList(this.keywordListList[i]);
 	// 	this.navState_pointer.setCurrentKeywordList(InstrList.copy(this.keywordListList[i]));
 	// }
-	
+
 // 	async natNavigate(NLQuestion, results)
 // 	{
 // 		if(NLQuestion === '')
@@ -48,7 +48,7 @@ class NatACN
 // 		let qResults = [];
 //
 // 		const startall = Date.now();
-// 		this._currentKeywordTree = await NLPExtraction.instrTree(this.currentQuestion);
+// 		this._currentKeywordTree = await NLPExtraction.instrTree.txt(this.currentQuestion);
 // 		const endNLP = Date.now() - startall;
 // 		//TODO
 // 		for (let i = 0; i < natACN.keywordListList.length-1; i++)
@@ -88,7 +88,7 @@ class NatACN
 // 		//await this.navState.init();
 // 		//let results = []
 // 		//const startq = Date.now();
-// 		this._currentKeywordTree = await NLPExtraction.instrTree(this.currentQuestion);
+// 		this._currentKeywordTree = await NLPExtraction.instrTree.txt(this.currentQuestion);
 // 		let arbre = this.navStateTree
 // 		arbre.createIterator()
 // 		while (arbre.hasNext()) {
@@ -307,15 +307,15 @@ class NatACN
 // 			return this.navState_pointer;
 // 		}
 // 	}
-	
-	
+
+
 	/**
 	 * TEST SPACE
 	 */
-	
+
 	async better(place, QTpath, instrPath, bestNavigation)
 	{
-		return await this.betterF1(place, QTpath, instrPath, bestNavigation);
+		return await this.better123(place, QTpath, instrPath, bestNavigation);
 	}
 	betterLength(place, QTpath, instrPath, bestNavigation)
 	{
@@ -366,7 +366,7 @@ class NatACN
 		return currentNatACNRes<bestNatACNRes?1:currentNatACNRes===bestNatACNRes?0:-1;
 	}
 
-		async betterF1(place, QTpath, instrPath, bestNavigation)
+	async betterF1(place, QTpath, instrPath, bestNavigation)
 	{
 		console.warn(instrPath.toString());
 		console.log(place, QTpath, instrPath, bestNavigation);
@@ -379,12 +379,12 @@ class NatACN
 		let bestScore = maxScore(bestNatACNRes, this.QRes)
 		console.warn(bestScore)
 		return currentScore.F1score>bestScore.F1score;
-		
+
 	}
 
 	async stopCriterion(bestNavigation)
 	{
-		return await this.stopCriterionF1(bestNavigation);
+		return await this.stopCriterionResults(bestNavigation);
 	}
 
 	async stopCriterionResults(bestNavigation)
@@ -396,24 +396,24 @@ class NatACN
 		console.warn("stop",stop)
 		return stop;
 	}
-	
+
 	async stopCriterionF1(bestNavigation)
 	{
 		let stop = false
-		
+
 		let bestNatACNRes = await this.acn.getResults(bestNavigation.place);
 		console.log(bestNatACNRes)
 		let bestScore = maxScore(bestNatACNRes, this.QRes);
-		
+
 		if (bestScore.F1score === 1)
 		{
 			stop = true
 		}
-		
+
 		console.warn("stop",stop)
 		return stop;
 	}
-	
+
 	async natNavigation(question, P, coreNLP)
 	{
 		try
@@ -428,7 +428,7 @@ class NatACN
 			console.dir(instrTree)
 			let res = await this.natNavigateRec(instrTree.racine, P, new QTList(), new InstrList())//, bestNavigation);//////
 			return {"bestNavigation" : res, "instrTree": instrTree, "extracted_kw" : NLPExtraction._orderedkwList}
-			//return {"instrTree": instrTree}
+			//return {"instrTree.txt": instrTree.txt}
 		}
 		catch (e)
 		{
@@ -445,7 +445,7 @@ class NatACN
 		// 	bestNavigation = {"place" :Pi, "QTpath" : QTpath_i, "instrPath" : instrPath_i};
 		// 	console.warn("better", bestNavigation)
 		// }
-		
+
 		// 2) Interpréter l'instruction racine actuelle dans l'ACN
 		// 2.a) S'il s'agit d'une feuille, toutes les instructions ont été interprétées
 		if (instrNode.isLeaf()) {
@@ -457,20 +457,20 @@ class NatACN
 			for (let i = 0; i < L_c.length; i++)
 			{
 				let childInstrNode = L_c[i];
-				
+
 				// Filtrer le QT correspondant à l'instruction enfant actuelle
 				let T_i = await this.acn.getFilteredQT(childInstrNode.valeur, Pi, QTpath_i);
-				
+
 				// Exploration de tous les QT filtrés
 				for (let j = 0; j < T_i.length; j++)
 				{
 					let t_j = T_i.get(j);
-					
+
 					let P_i_1 = await this.acn.navigate(Pi, t_j); // Navigation selon t_j
-					
+
 					// Appel récursif de navigateRec avec l'instruction enfant actuelle
 					let resultsNavigation = await this.natNavigateRec(childInstrNode, P_i_1, QTList.copy(QTpath_i).add(t_j), InstrList.copy(instrPath_i).add(childInstrNode.valeur));
-					
+
 					//bestNavigation = resultsNavigation.bestNavigation;
 					if (await this.better(resultsNavigation.place, resultsNavigation.QTpath, resultsNavigation.instrPath, bestNavigation)) {
 						bestNavigation = {"place": resultsNavigation.place, "QTpath": resultsNavigation.QTpath, "instrPath": resultsNavigation.instrPath};
@@ -490,13 +490,13 @@ class NatACN
 		}
 	}
 
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
 }
 
 function sparklisRestoRes(sparklisRes,i)
@@ -508,14 +508,14 @@ function sparklisRestoRes(sparklisRes,i)
 		const nb = i?i:sparklisRes.columns.length-1;
 		for (const r in sparklisRes.rows)
 		{
-			
+
 			//vérifier s'il existe déjà pour éviter les doublons
 			const e1 = sparklisRes.rows[r][nb];
-			
+
 			res = res.filter(e2=>!_.isEqual(e1,e2));
-			
+
 			res.push(sparklisRes.rows[r][nb]);
-			
+
 		}
 	}
 	else if(sparklisRes)
@@ -531,10 +531,10 @@ function sparklisRestoRes(sparklisRes,i)
 		console.error("sparklisRes is undefined",sparklisRes)
 	}
 	//pb format
-			console.log(res)
+	console.log(res)
 	res = res.filter( (ele,pos)=>res.indexOf(ele) === pos);
 	res = res[0]?res:[];
-	
+
 	return res;
 }
 function scoring(Ad, Aqa)
@@ -551,18 +551,18 @@ function scoring(Ad, Aqa)
 			}
 			else
 			{
-			
+
 			}
 		}
 	}
 	console.log("inter", inter);
 	const recall = inter.length / Ad.length;
 	const precision = inter.length / Aqa.length;
-	
+
 	const score = {
 		"recall": recall, "precision": precision, "F1score": 2 * recall * precision / (recall + precision)
 	}
-	
+
 	var uniqueResultOne = function (result1,result2) {result1.filter(function(obj) {
 		return !result2.some(function(obj2) {
 			return _.isEqual(obj,obj2);
@@ -572,10 +572,10 @@ function scoring(Ad, Aqa)
 		left.filter(leftValue =>
 			!right.some(rightValue =>
 				compareFunction(leftValue, rightValue)));
-	
+
 	console.warn('only in Ad', onlyInLeft(Ad,Aqa,isEqual));
 	console.warn('only in Aqa', onlyInLeft(Aqa,Ad,isEqual));
-	
+
 	return score;
 }
 
