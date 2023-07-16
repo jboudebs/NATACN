@@ -2,7 +2,7 @@ import { NatACN } from './models/NatACN.js';
 import { NavState } from './models/NavState.js';
 import { SparklisAPI } from './services/ACN/SparklisAPI.js';
 import { CoreNLP } from './services/NLP/CoreNLP.js';
-import { SpaCy } from './services/NLP/SpaCy.js';
+import { SpaCyNER } from './services/NLP/SpaCyNER.js';
 import { ConceptNet } from './services/NLP/ConceptNet.js';
 /**
  * ACN Choosing

@@ -12,6 +12,7 @@ question = "What is the birthdate of Barack Obama?"
 
 nlp = spacy.load("en_core_web_trf")
 
+
 def spaCy_NER(nl_question):
     print(nl_question)
     doc = nlp(nl_question)

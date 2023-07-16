@@ -4,6 +4,7 @@ import { isEqual } from "../../client/models/Utils.js";
 import { NLPExtraction } from "../../client/models/NLPExtraction.js";
 import { CoreNLP } from "../../client/services/NLP/CoreNLP.js";
 import { ConceptNet } from "../../client/services/NLP/ConceptNet.js";
+import { SpaCySimilarity } from "../../client/services/NLP/SpaCySimilarity.js";
 //import { SpaCy } from "/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/client/models/Utils.js";
 //import { Doc } from '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/client/services/NLP/SpaCy/src/index.js'
 
@@ -34,18 +35,22 @@ try
 	//const res = await natACN.natNavigation(question, home_place);
 	//console.dir(res);
 	//TEST UNIQUE QUESTION
-	
+
 	//TEST TREE
 	//let tree = await NLPExtraction.extractTree(question);
 	//TEST TREE
-	
+
 	//Test ConceptNet Synonyms
 	// const word = "state";
 	// const synset = await ConceptNet.getSynonyms(word);
 	// console.warn("Synset of "+word)
 	// synset.map(e=>console.warn(e.toString()))
 	//Test ConceptNet Synonyms
-	
+
+	//TEST SPACY SIM
+	SpaCySimilarity.main();
+	//TEST SPACY SIM
+
 	//handler alert windows
 	(function() {
 		var _old_alert = window.alert;
@@ -54,12 +59,12 @@ try
 			return true
 		};
 	})();
-	
+
 	//reprise
-	await getNatACN(0);
-	
-	
-	
+	//await getNatACN(2);
+
+
+
 }
 catch (e)
 {
@@ -69,7 +74,7 @@ catch (e)
 async function QALD()
 {
 	console.log("test");
-	
+
 	await SparklisAPI._waitForSparklis();
 	console.log(sparklis);
 	console.log(sparklis.currentPlace());
@@ -107,12 +112,12 @@ async function extractLabels(query)
 	const wikidataLabelExtracted = query.match(regex);
 	console.log(query,wikidataLabelExtracted)
 	const wikidataIDs = wikidataLabelExtracted.map((e) => e.replace(regexPrefix,"wd:"));
-	
+
 	console.log(wikidataIDs);
-	
-	
-	
-	
+
+
+
+
 	let labelsQuery = "SELECT ?item ?itemLabel WHERE {" + "   VALUES ?item {";
 	for (const e of wikidataIDs)
 	{
@@ -123,11 +128,11 @@ async function extractLabels(query)
 	let res = await sparklis.evalSparql(labelsQuery);
 	console.log("label res", res);
 	return res.rows.map((e)=>
-		{
-			return  {   "wikidataID" : e[0].uri.replace('http://www.wikidata.org/entity/',''),
-			            "label" : e[1].str
-					}
-		});
+	{
+		return  {   "wikidataID" : e[0].uri.replace('http://www.wikidata.org/entity/',''),
+			"label" : e[1].str
+		}
+	});
 }
 
 function postQALD(data)
@@ -157,7 +162,7 @@ function postQALD(data)
 				  "Quantity": 1,
 				  "Price": 18.00
 				}`;
-		
+
 	}
 	catch (e)
 	{
@@ -166,7 +171,7 @@ function postQALD(data)
 	console.log("post");
 	console.log(data);
 	Http.send(data);
-	
+
 }
 
 function getSimpleQALD()
@@ -214,7 +219,7 @@ function getSimpleQALD()
 	};
 	console.log("get Simple");
 	Http.send();
-	
+
 }
 
 function getQALD(id)
@@ -260,13 +265,13 @@ function getQALD(id)
 					"labels" : labels}
 			}
 			postQALD(data);
-			
+
 		}
 	};
-	
+
 	console.log("get");
 	Http.send();
-	
+
 }
 
 /*
@@ -281,10 +286,10 @@ async function calculNatACN()
 	await SparklisAPI._waitForSparklis();
 	console.log(sparklis);
 	console.log(sparklis.currentPlace());
-	
+
 	await sparklisAPI.init();
-	
-	
+
+
 	natACN = new NatACN(sparklisAPI);
 	await getSimpleNatACN();
 }
@@ -312,14 +317,14 @@ function getSimpleNatACN()
 		{
 			console.log(Http.status);
 			console.log(JSON.parse(Http.responseText));
-			
+
 			const qald = JSON.parse(Http.responseText)
 			const query = qald.query;
 			const question = qald.question;
 			//const labeled_question = qald.labeled_question.question;
 
 			const answer = (await evalQuery(query)).rows;
-			
+
 			let resultsQALD = [];
 			let lQTRes = JSON.parse('{"longest" : false, "res" : []}');
 			await natACN.natNavigate(question, resultsQALD, lQTRes);
@@ -327,36 +332,36 @@ function getSimpleNatACN()
 			let resultsLQ = [];
 			//await natACN.natNavigate(labeled_question, resultsLQ);
 			//await sparklisAPI.home();
-			
+
 			const score = score();
-			
+
 			console.log(answer);
 			const data = {  "id": qald.id,
-							"question": qald.question,
-							"query": query,
-							"answer":
-								{   "our_ref": answer,
-									"qald": qald.answer.qald,
-									"QTList+_res" : lQTRes.res,
-									"NatACN_qald": resultsQALD[0].answer//,//à changer
-									//"NatACN_labeled_question": resultsLQ.answers//à changer
-								},
-							//"labeled_question" :
-							//	{   "question": qald.labeled_question.question,
-							//		"labels" : qald.labeled_question.labels
-							//	},
-							"NatACN_info" :
-								{
-									"qald" : resultsQALD//,
-									//"labeled_question": resultsLQ
-								}
-						}
+				"question": qald.question,
+				"query": query,
+				"answer":
+					{   "our_ref": answer,
+						"qald": qald.answer.qald,
+						"QTList+_res" : lQTRes.res,
+						"NatACN_qald": resultsQALD[0].answer//,//à changer
+						//"NatACN_labeled_question": resultsLQ.answers//à changer
+					},
+				//"labeled_question" :
+				//	{   "question": qald.labeled_question.question,
+				//		"labels" : qald.labeled_question.labels
+				//	},
+				"NatACN_info" :
+					{
+						"qald" : resultsQALD//,
+						//"labeled_question": resultsLQ
+					}
+			}
 			postNatACN(data);
 		}
 	};
 	console.log("GET Simple - client");
 	Http.send();
-	
+
 }
 
 
@@ -387,7 +392,7 @@ function postNatACN(data)
 				  "Quantity": 1,
 				  "Price": 18.00
 				}`;
-		
+
 	}
 	catch (e)
 	{
@@ -396,12 +401,12 @@ function postNatACN(data)
 	console.log("post");
 	//console.log(data);
 	Http.send(data);
-	
+
 }
 
 async function resetNatACN()
 {
-	
+
 	await sparklisAPI.home();
 	NLPExtraction.resetClass();
 	CoreNLP.resetClass();
@@ -425,7 +430,7 @@ function getNatACN(id)
 			const httpres = JSON.parse(Http.responseText);
 			const qald = httpres.qald;
 			const coreNLP = httpres.coreNLP;
-			
+
 			//evaluation du SPARQL dans WIKIDATA - ref
 			const query = qald.query.sparql
 				//WIKIDATA
@@ -438,7 +443,7 @@ function getNatACN(id)
 			var answer = (await evalQuery(query)).rows;
 			natACN.QRes = answer;
 			//console.log(answer);
-			
+
 			//evaluation de la question NL dans NatACN - res
 			let resultsQALD = [];
 			let bestRes;
@@ -449,11 +454,11 @@ function getNatACN(id)
 			launch?res.bestNavigation?bestRes = await sparklisAPI.getResults(res.bestNavigation.place):null:null;
 			//console.log(bestRes);
 			await resetNatACN()
-			
+
 
 			//Comparaison des réponses entre ref et res
 			const score = scoring(sparklisRestoRes(answer),sparklisRestoRes(bestRes));
-			
+
 			//formatage de l'historique de la recherche dans NatACN
 			const data = {  "id": qald.id,
 				"question": qald.question[0].string,
@@ -467,7 +472,7 @@ function getNatACN(id)
 				"ids":ids?ids.map(e=>e.label).toString():undefined,
 				"score" : score,
 				"NatACN_info" :
-				res?res.bestNavigation?{
+					res?res.bestNavigation?{
 						"QTpath" : res.bestNavigation.QTpath,
 						"instrPath" : res.bestNavigation.instrPath,
 						"instrTree" : res.instrTree.toString(),
@@ -477,16 +482,16 @@ function getNatACN(id)
 				"nb_call" : NatACN.appel
 			}
 			console.log(data);
-			
+
 			//envoi au serveur
 			postNatACN(data);
-			
+
 		}
 	};
-	
+
 	console.log("get");
 	Http.send();
-	
+
 }
 
 function sparklisRestoRes(sparklisRes,i)
@@ -498,14 +503,14 @@ function sparklisRestoRes(sparklisRes,i)
 		const nb = sparklisRes.columns.length-1;
 		for (const r in sparklisRes.rows)
 		{
-			
+
 			//vérifier s'il existe déjà pour éviter les doublons
 			const e1 = sparklisRes.rows[r][nb];
-			
+
 			res = res.filter(e2=>!_.isEqual(e1,e2));
-			
+
 			res.push(sparklisRes.rows[r][nb]);
-			
+
 		}
 	}
 	else
@@ -518,7 +523,7 @@ function sparklisRestoRes(sparklisRes,i)
 	//pb format
 	res = res.filter( (ele,pos)=>res.indexOf(ele) === pos);
 	res = res[0]?res:[];
-	
+
 	return res;
 }
 function scoring(Ad, Aqa)
@@ -535,18 +540,18 @@ function scoring(Ad, Aqa)
 			}
 			else
 			{
-			
+
 			}
 		}
 	}
 	console.log("inter", inter);
 	const recall = inter.length / Ad.length;
 	const precision = inter.length / Aqa.length;
-	
+
 	const score = {
 		"recall": recall, "precision": precision, "F1score": 2 * recall * precision / (recall + precision)
 	}
-	
+
 	var uniqueResultOne = function (result1,result2) {result1.filter(function(obj) {
 		return !result2.some(function(obj2) {
 			return _.isEqual(obj,obj2);
@@ -556,9 +561,9 @@ function scoring(Ad, Aqa)
 		left.filter(leftValue =>
 			!right.some(rightValue =>
 				compareFunction(leftValue, rightValue)));
-	
+
 	console.warn('only in Ad', onlyInLeft(Ad,Aqa,isEqual));
 	console.warn('only in Aqa', onlyInLeft(Aqa,Ad,isEqual));
-	
+
 	return score;
 }

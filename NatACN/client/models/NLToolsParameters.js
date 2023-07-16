@@ -1,6 +1,6 @@
 import { CoreNLP } from "../services/NLP/CoreNLP.js";
 import { ConceptNet } from "../services/NLP/ConceptNet.js";
-import { SpaCy } from "../services/NLP/SpaCy.js";
+import { SpaCyNER } from "../services/NLP/SpaCyNER.js";
 import { InstrList } from './InstrList.js';
 import { Instruction } from './Instruction.js';
 import { NLPExtraction } from "./NLPExtraction.js";

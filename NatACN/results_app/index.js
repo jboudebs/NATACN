@@ -26,8 +26,8 @@ app.get('/score', (req, res)=>{
 		
 		//NatACNLib.verif();
 		//NatACNLib.removeDuplicates();
-		//NatACNLib.score();
-		//NatACNLib.resJSON2resCSV();
+		NatACNLib.score();
+		NatACNLib.resJSON2resCSV();
 		
 	}
 	catch (e)

@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "main": "./resultsv2/index.js",
   "scripts": {
-    "start": "node NatACN/results_app/index.js",
-    "test": "node /Users/jboudebs/WebstormProjects/NatACN_API/NatACN/client/services/NLP/SpaCy.js"
+    "start": "node NatACN/results_app/index.js"
   },
   "devDependencies": {
     "cors": "^2.8.5",
@@ -16,7 +15,6 @@
   "dependencies": {
     "corenlp": "^1.5.2",
     "corenlp-client": "^1.0.0",
-    "edit-json-file": "^1.7.0",
-    "spacy": "^0.0.4"
+    "edit-json-file": "^1.7.0"
   }
 }
