@@ -1,18 +1,15 @@
-import { CoreNLP } from "./CoreNLP.js";
+
 
 class SpaCy
 {
 	static async _fetch(NLQuestion)
 	{
-		const url = 'http://localhost:5000/'
 		let fetcH = new Promise(resolve =>
 		{
-			fetch(url, {
+			fetch('https://d993-34-138-26-145.ngrok-free.app/', {
 				method : 'POST', headers: {
 					'Content-Type': 'text/plain;charset=UTF-8',
-					'Access-Control-Allow-Origin': '*'
-
-			}, body: NLQuestion,
+				}, body: NLQuestion,
 			})
 				.then((response) => response.json())
 				//Then with the data from the response in JSON...

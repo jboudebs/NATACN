@@ -8,6 +8,10 @@ const port = 3000;
 
 NatACNLib.i = 0;
 
+app.use((req, res, next) => {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	next();
+});
 //get settings
 app.use(bodyParser.urlencoded({ limit: '200mb', extended: false }));
 app.use(bodyParser.json({limit: '200mb'}));
@@ -22,8 +26,8 @@ app.get('/score', (req, res)=>{
 		
 		//NatACNLib.verif();
 		//NatACNLib.removeDuplicates();
-		NatACNLib.score();
-		NatACNLib.resJSON2resCSV();
+		//NatACNLib.score();
+		//NatACNLib.resJSON2resCSV();
 		
 	}
 	catch (e)

@@ -315,7 +315,7 @@ class NatACN
 	
 	async better(place, QTpath, instrPath, bestNavigation)
 	{
-		return await this.better123(place, QTpath, instrPath, bestNavigation);
+		return await this.betterF1(place, QTpath, instrPath, bestNavigation);
 	}
 	betterLength(place, QTpath, instrPath, bestNavigation)
 	{
@@ -368,7 +368,8 @@ class NatACN
 
 		async betterF1(place, QTpath, instrPath, bestNavigation)
 	{
-		console.warn(instrPath.toString())
+		console.warn(instrPath.toString());
+		console.log(place, QTpath, instrPath, bestNavigation);
 		let currentNatACNRes = await this.acn.getResults(place);
 		console.log(currentNatACNRes)
 		let currentScore = maxScore(currentNatACNRes, this.QRes)
@@ -383,15 +384,32 @@ class NatACN
 
 	async stopCriterion(bestNavigation)
 	{
-		return await this.stopCriterion1(bestNavigation);
+		return await this.stopCriterionF1(bestNavigation);
 	}
 
-	async stopCriterion1(bestNavigation)
+	async stopCriterionResults(bestNavigation)
 	{
 		let stop = false
 		const currentNatACNRes = sparklisRestoRes(await this.acn.getResults(bestNavigation.place));
 		console.warn(bestNavigation.QTpath.length, currentNatACNRes.length)
 		stop = bestNavigation.QTpath.length===NatACN.nbInstruction && currentNatACNRes.length<=10
+		console.warn("stop",stop)
+		return stop;
+	}
+	
+	async stopCriterionF1(bestNavigation)
+	{
+		let stop = false
+		
+		let bestNatACNRes = await this.acn.getResults(bestNavigation.place);
+		console.log(bestNatACNRes)
+		let bestScore = maxScore(bestNatACNRes, this.QRes);
+		
+		if (bestScore.F1score === 1)
+		{
+			stop = true
+		}
+		
 		console.warn("stop",stop)
 		return stop;
 	}
@@ -404,13 +422,13 @@ class NatACN
 			console.log(question)
 			let instrTree = await NLPExtraction.instrTree(question, coreNLP);
 			// Navigation
-			let bestNavigation = {"place": P, "QTpath": new QTList([]), "instrPath": new InstrList([])}
+			//let bestNavigation = {"place": P, "QTpath": new QTList([]), "instrPath": new InstrList([])}
 			NatACN.appel = 0;
 			NatACN.nbInstruction = instrTree.globalDeepth;
 			console.dir(instrTree)
-			//let res = await this.natNavigateRec(instrTree.racine, P, new QTList(), new InstrList(), bestNavigation);//////
-			//return {"bestNavigation" : res, "instrTree": instrTree, "extracted_kw" : NLPExtraction._orderedkwList}
-			return {"instrTree": instrTree}
+			let res = await this.natNavigateRec(instrTree.racine, P, new QTList(), new InstrList())//, bestNavigation);//////
+			return {"bestNavigation" : res, "instrTree": instrTree, "extracted_kw" : NLPExtraction._orderedkwList}
+			//return {"instrTree": instrTree}
 		}
 		catch (e)
 		{
@@ -418,44 +436,48 @@ class NatACN
 		}
 	}
 	//confusion instrNode et instr
-	async natNavigateRec(instrNode, Pi, QTpath_i, instrPath_i, bestNavigation) {
-		
+	async natNavigateRec(instrNode, Pi, QTpath_i, instrPath_i) {
+		let bestNavigation = {"place": Pi, "QTpath": QTpath_i, "instrPath": instrPath_i}
 		NatACN.appel++;
 		console.warn("Node",instrNode.toString())
 		// 1) Mettre à jour la meilleure navigation jusqu'à présent
-		//if (await this.better(Pi, QTpath_i, instrPath_i, bestNavigation)) {
-		//	bestNavigation = {"place" :Pi, "QTpath" : QTpath_i, "instrPath" : instrPath_i};
-		//	console.warn("better", bestNavigation)
-		//}
+		// if (await this.better(Pi, QTpath_i, instrPath_i, bestNavigation)) {
+		// 	bestNavigation = {"place" :Pi, "QTpath" : QTpath_i, "instrPath" : instrPath_i};
+		// 	console.warn("better", bestNavigation)
+		// }
 		
 		// 2) Interpréter l'instruction racine actuelle dans l'ACN
 		// 2.a) S'il s'agit d'une feuille, toutes les instructions ont été interprétées
 		if (instrNode.isLeaf()) {
-			return {"place" :Pi, "QTpath" : QTpath_i, "instrPath" : instrPath_i, "bestNavigation" :bestNavigation};
+			return bestNavigation;
 		} else {
 			// 2.b) Sinon, nous devons interpréter les instructions enfants
 			let L_c = instrNode.getEnfants();
 			// Exploration de toutes les instructions enfants
-			for (let i = 0; i < L_c.length; i++) {
+			for (let i = 0; i < L_c.length; i++)
+			{
 				let childInstrNode = L_c[i];
 				
 				// Filtrer le QT correspondant à l'instruction enfant actuelle
 				let T_i = await this.acn.getFilteredQT(childInstrNode.valeur, Pi, QTpath_i);
 				
 				// Exploration de tous les QT filtrés
-				for (let j = 0; j < T_i.length; j++) {
+				for (let j = 0; j < T_i.length; j++)
+				{
 					let t_j = T_i.get(j);
 					
 					let P_i_1 = await this.acn.navigate(Pi, t_j); // Navigation selon t_j
 					
 					// Appel récursif de navigateRec avec l'instruction enfant actuelle
-					let resultsNavigation = await this.natNavigateRec(childInstrNode, P_i_1, QTList.copy(QTpath_i).add(t_j), InstrList.copy(instrPath_i).add(childInstrNode.valeur), bestNavigation);
+					let resultsNavigation = await this.natNavigateRec(childInstrNode, P_i_1, QTList.copy(QTpath_i).add(t_j), InstrList.copy(instrPath_i).add(childInstrNode.valeur));
 					
 					//bestNavigation = resultsNavigation.bestNavigation;
 					if (await this.better(resultsNavigation.place, resultsNavigation.QTpath, resultsNavigation.instrPath, bestNavigation)) {
 						bestNavigation = {"place": resultsNavigation.place, "QTpath": resultsNavigation.QTpath, "instrPath": resultsNavigation.instrPath};
+						console.warn("NatACN better", bestNavigation.toString())
 						//Cas d'arret
 						if (await this.stopCriterion(bestNavigation)) {
+							console.warn("NatACN stop")
 							return bestNavigation; // Une solution a été trouvée
 						}
 						//Cas d'arret

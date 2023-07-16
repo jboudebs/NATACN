@@ -92,68 +92,6 @@
       }
     },
     {
-      "id": 12,
-      "aggregation": false,
-      "question": [
-        {
-          "language": "en",
-          "string": "can i play don't starve on play station 4?"
-        },
-        {
-          "language": "zh",
-          "string": "我能在PlayStation 4上玩饥荒 (游戏)吗？"
-        },
-        {
-          "language": "de",
-          "string": "Kann man Don't Starve auf der Playstaton 4 spielen?"
-        },
-        {
-          "language": "ru",
-          "string": "можно ли играть в игру \"don't starve\" на play station 4?"
-        }
-      ],
-      "answers": [
-        {
-          "head": {},
-          "boolean": true
-        }
-      ],
-      "query": {
-        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> ASk {wd:Q3208174 wdt:P400 wd:Q5014725.}"
-      }
-    },
-    {
-      "id": 17,
-      "aggregation": false,
-      "question": [
-        {
-          "language": "en",
-          "string": "animal"
-        },
-        {
-          "language": "zh",
-          "string": "村上春树赢得过诺贝尔文学奖吗？"
-        },
-        {
-          "language": "de",
-          "string": "Hat Haruki Murakami den Nobelpreis für Literatur erhalten?"
-        },
-        {
-          "language": "ru",
-          "string": "Получил ли Харуки Мураками Нобелевскую премию по литературе?"
-        }
-      ],
-      "answers": [
-        {
-          "head": {},
-          "boolean": false
-        }
-      ],
-      "query": {
-        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> ASK {wd:Q37922 wdt:P1346 wd:Q134798}"
-      }
-    },
-    {
       "id": 40,
       "aggregation": false,
       "question": [

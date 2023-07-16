@@ -3,6 +3,7 @@ import { NatACN } from '../../client/models/NatACN.js';
 import { isEqual } from "../../client/models/Utils.js";
 import { NLPExtraction } from "../../client/models/NLPExtraction.js";
 import { CoreNLP } from "../../client/services/NLP/CoreNLP.js";
+import { ConceptNet } from "../../client/services/NLP/ConceptNet.js";
 //import { SpaCy } from "/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/client/models/Utils.js";
 //import { Doc } from '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/client/services/NLP/SpaCy/src/index.js'
 
@@ -26,17 +27,24 @@ try
 	//await sparklisAPI.changeEndpoint("https://query.wikidata.org/sparql", home_place)
 	//DB
 	//TEST UNIQUE QUESTION
-	let question = "What instruments did Louis Armstrong play?";
+	let question = "Which High School did Allen Ginsberg attend?";
 	//
 	//tests
 	//console.log(initial_place)
-	const res = await natACN.natNavigation(question, home_place);
+	//const res = await natACN.natNavigation(question, home_place);
 	//console.dir(res);
 	//TEST UNIQUE QUESTION
 	
 	//TEST TREE
 	//let tree = await NLPExtraction.extractTree(question);
 	//TEST TREE
+	
+	//Test ConceptNet Synonyms
+	// const word = "state";
+	// const synset = await ConceptNet.getSynonyms(word);
+	// console.warn("Synset of "+word)
+	// synset.map(e=>console.warn(e.toString()))
+	//Test ConceptNet Synonyms
 	
 	//handler alert windows
 	(function() {
@@ -48,7 +56,7 @@ try
 	})();
 	
 	//reprise
-	//await getNatACN(64);
+	await getNatACN(8);
 	
 	
 	
@@ -405,7 +413,7 @@ function getNatACN(id)
 	const Http = new XMLHttpRequest();
 	const url = 'http://localhost:3000/'+id;
 	Http.open("GET", url);
-	// Http.setRequestHeader("Accept", "application/json");
+	//Http.setRequestHeader("Access-Control-Allow-Origin", "*");
 	// Http.setRequestHeader("Content-Type", "application/json");
 	Http.onreadystatechange = async function ()
 	{
@@ -428,8 +436,8 @@ function getNatACN(id)
 			const ids = undefined//await extractLabels(query)
 			//console.warn(ids.map(e=>e.label).toString())
 			var answer = (await evalQuery(query)).rows;
-			//natACN.QRes = answer;
-			console.log(answer);
+			natACN.QRes = answer;
+			//console.log(answer);
 			
 			//evaluation de la question NL dans NatACN - res
 			let resultsQALD = [];
@@ -439,17 +447,12 @@ function getNatACN(id)
 			const res = launch?await natACN.natNavigation(question, home_place, coreNLP):null;
 			const runtime = Date.now() - start;//millis
 			launch?res.bestNavigation?bestRes = await sparklisAPI.getResults(res.bestNavigation.place):null:null;
-			console.log(res);
+			//console.log(bestRes);
 			await resetNatACN()
 			
 
 			//Comparaison des réponses entre ref et res
-			console.log("Aqa processing",answer)
-			const Aqa  = sparklisRestoRes(answer)
-			console.log("Ad processing",bestRes)
-			const Ad = sparklisRestoRes(bestRes)
-			console.log("scoring",Ad,Aqa)
-			const score = scoring(Ad,Aqa);
+			const score = scoring(sparklisRestoRes(answer),sparklisRestoRes(bestRes));
 			
 			//formatage de l'historique de la recherche dans NatACN
 			const data = {  "id": qald.id,
@@ -486,103 +489,76 @@ function getNatACN(id)
 	
 }
 
-
-	function sparklisRestoRes(sparklisRes,i)
+function sparklisRestoRes(sparklisRes,i)
+{
+	console.log(sparklisRes);
+	let res = [];
+	if(sparklisRes&&sparklisRes.hasOwnProperty('columns'))
 	{
-		console.log(sparklisRes);
-		let res = [];
-		if(sparklisRes&&sparklisRes.hasOwnProperty('columns'))
+		const nb = sparklisRes.columns.length-1;
+		for (const r in sparklisRes.rows)
 		{
-			const nb = i?i:sparklisRes.columns.length-1;
-			for (const r in sparklisRes.rows)
+			
+			//vérifier s'il existe déjà pour éviter les doublons
+			const e1 = sparklisRes.rows[r][nb];
+			
+			res = res.filter(e2=>!_.isEqual(e1,e2));
+			
+			res.push(sparklisRes.rows[r][nb]);
+			
+		}
+	}
+	else
+	{
+		for (const r in sparklisRes)
+		{
+			res.push(sparklisRes[r][sparklisRes[r].length-1]);
+		}
+	}
+	//pb format
+	res = res.filter( (ele,pos)=>res.indexOf(ele) === pos);
+	res = res[0]?res:[];
+	
+	return res;
+}
+function scoring(Ad, Aqa)
+{
+	console.log("Calculating scores...", Ad, Aqa)
+	let inter = [];
+	for (const a1 in Ad)
+	{
+		for (const a2 in Aqa)
+		{
+			if (_.isEqual(Ad[a1], Aqa[a2]))
 			{
-
-				//vérifier s'il existe déjà pour éviter les doublons
-				const e1 = sparklisRes.rows[r][nb];
-
-				res = res.filter(e2=>!_.isEqual(e1,e2));
-
-				res.push(sparklisRes.rows[r][nb]);
-
+				inter.push(Aqa[a2])
+			}
+			else
+			{
+			
 			}
 		}
-		else if(sparklisRes)
-		{
-			for (const r of sparklisRes)
-			{
-				console.log(r[0])
-				res.push(r[0]);
-			}
-		}
-		else
-		{
-			console.error("sparklisRes is undefined",sparklisRes)
-		}
-		//pb format
-		console.log(res)
-		res = res.filter( (ele,pos)=>res.indexOf(ele) === pos);
-		res = res[0]?res:[];
-
-		return res;
 	}
-	function scoring(Ad, Aqa)
-	{
-		console.log("Calculating scores...", Ad, Aqa)
-		let inter = [];
-		for (const a1 in Ad)
-		{
-			for (const a2 in Aqa)
-			{
-				if (_.isEqual(Ad[a1], Aqa[a2]))
-				{
-					inter.push(Aqa[a2])
-				}
-				else
-				{
-
-				}
-			}
-		}
-		console.log("inter", inter);
-		const recall = inter.length / Ad.length;
-		const precision = inter.length / Aqa.length;
-
-		const score = {
-			"recall": recall, "precision": precision, "F1score": 2 * recall * precision / (recall + precision)
-		}
-
-		var uniqueResultOne = function (result1,result2) {result1.filter(function(obj) {
-			return !result2.some(function(obj2) {
-				return _.isEqual(obj,obj2);
-			});
-		})};
-		const onlyInLeft = (left, right, compareFunction) =>
-			left.filter(leftValue =>
-				!right.some(rightValue =>
-					compareFunction(leftValue, rightValue)));
-
-		console.warn('only in Ad', onlyInLeft(Ad,Aqa,isEqual));
-		console.warn('only in Aqa', onlyInLeft(Aqa,Ad,isEqual));
-
-		return score;
+	console.log("inter", inter);
+	const recall = inter.length / Ad.length;
+	const precision = inter.length / Aqa.length;
+	
+	const score = {
+		"recall": recall, "precision": precision, "F1score": 2 * recall * precision / (recall + precision)
 	}
-
-	function maxScore(NatACNRes, QRes)
-	{
-		let nb = 1;
-		if(NatACNRes&&NatACNRes.hasOwnProperty('columns'))
-		{
-			nb = NatACNRes.columns.length;
-		}
-		console.log(NatACNRes, QRes, nb)
-		let maxScore = {"recall" : 0, "precision": 0, "F1score": 0};
-		const Aqa = sparklisRestoRes(QRes)
-		for (let i = 0; i < nb; i++)
-		{
-			const score = scoring(sparklisRestoRes(NatACNRes,i), Aqa);
-			console.log("score", score)
-			maxScore = score.F1score>maxScore.F1score?score:maxScore;
-			console.log("maxScore", maxScore)
-		}
-		return maxScore;
-	}
+	
+	var uniqueResultOne = function (result1,result2) {result1.filter(function(obj) {
+		return !result2.some(function(obj2) {
+			return _.isEqual(obj,obj2);
+		});
+	})};
+	const onlyInLeft = (left, right, compareFunction) =>
+		left.filter(leftValue =>
+			!right.some(rightValue =>
+				compareFunction(leftValue, rightValue)));
+	
+	console.warn('only in Ad', onlyInLeft(Ad,Aqa,isEqual));
+	console.warn('only in Aqa', onlyInLeft(Aqa,Ad,isEqual));
+	
+	return score;
+}

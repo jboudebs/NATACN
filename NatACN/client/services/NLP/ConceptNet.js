@@ -5,13 +5,14 @@ class ConceptNet
 {
 	static last_time = 0;
 	static RelatedDico = [];
+	static SynsetToAsk = ["Synonym","RelatedTo"]
 	
 	static async  _fetch(uri)
 	{
 		//Too many request Handle
 		let time_now = Date.now()
 		let i = 0;
-		while(time_now - ConceptNet.last_time<1000 && i<11)
+		while(time_now - ConceptNet.last_time<1010 && i<11)
 		{
 			i++;
 			time_now = Date.now();
@@ -35,11 +36,18 @@ class ConceptNet
 	static async getSynonyms(word)
 	{
 		const synonyms = [];
-		const uri = "http://api.conceptnet.io/query?start=/c/en/"+Utils.snakize(Utils.uncamelize(word.toString()))+"&rel=/r/Synonym&filter=/c/en";
-		console.log("Asking for synonyms :"+uri);
-		const JSON = await ConceptNet._fetch(uri);
-
-		for (const edge of JSON.edges )
+		let edges = [];
+		for (const synset of ConceptNet.SynsetToAsk)
+		{
+			const uri = "http://api.conceptnet.io/query?start=/c/en/"+Utils.snakize(Utils.uncamelize(word.toString()))+"&rel=/r/"+synset+"&filter=/c/en";
+			console.log("Asking for synonyms :"+uri);
+			const fetch = await ConceptNet._fetch(uri);
+			console.log(fetch);
+			edges = edges.concat(fetch.edges);
+			console.log(edges);
+		}
+		
+		for (const edge of edges )
 		{
 			if(edge.end.language === "en")
 			{
@@ -105,6 +113,11 @@ class ConceptNet
 		let rel = await ConceptNet.getRelatedness(kw, "parole");
 		console.log(syn);
 		console.log(rel);
+	}
+	
+	static resetClass()
+	{
+		this.RelatedDico = []
 	}
 }
 //await ConceptNet.main()
