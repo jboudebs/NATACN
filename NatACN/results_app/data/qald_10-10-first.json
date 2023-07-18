@@ -4,50 +4,6 @@
   },
   "questions": [
     {
-      "id": 10,
-      "aggregation": false,
-      "question": [
-        {
-          "language": "en",
-          "string": "Which High School did Allen Ginsberg attend?"
-        },
-        {
-          "language": "zh",
-          "string": "艾伦·金斯堡在哪所高中上的学？"
-        },
-        {
-          "language": "de",
-          "string": "Welche weiterführende Schule besuchte Allen Ginsberg?"
-        },
-        {
-          "language": "ru",
-          "string": "В какой средней школе учился Аллен Гинзберг ?"
-        }
-      ],
-      "answers": [
-        {
-          "head": {
-            "vars": [
-              "result"
-            ]
-          },
-          "results": {
-            "bindings": [
-              {
-                "result": {
-                  "type": "uri",
-                  "value": "http://www.wikidata.org/entity/Q14705485"
-                }
-              }
-            ]
-          }
-        }
-      ],
-      "query": {
-        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result {wd:Q6711 wdt:P69 ?result. ?result wdt:P31 wd:Q9826}"
-      }
-    },
-    {
       "id": 9,
       "aggregation": false,
       "question": [
@@ -89,6 +45,50 @@
       ],
       "query": {
         "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result {wd:Q231121 wdt:P69 ?result}"
+      }
+    },
+    {
+      "id": 10,
+      "aggregation": false,
+      "question": [
+        {
+          "language": "en",
+          "string": "Which High School did Allen Ginsberg attend?"
+        },
+        {
+          "language": "zh",
+          "string": "艾伦·金斯堡在哪所高中上的学？"
+        },
+        {
+          "language": "de",
+          "string": "Welche weiterführende Schule besuchte Allen Ginsberg?"
+        },
+        {
+          "language": "ru",
+          "string": "В какой средней школе учился Аллен Гинзберг ?"
+        }
+      ],
+      "answers": [
+        {
+          "head": {
+            "vars": [
+              "result"
+            ]
+          },
+          "results": {
+            "bindings": [
+              {
+                "result": {
+                  "type": "uri",
+                  "value": "http://www.wikidata.org/entity/Q14705485"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "query": {
+        "sparql": "PREFIX bd: <http://www.bigdata.com/rdf#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX geo: <http://www.opengis.net/ont/geosparql#> PREFIX p: <http://www.wikidata.org/prop/> PREFIX pq: <http://www.wikidata.org/prop/qualifier/> PREFIX ps: <http://www.wikidata.org/prop/statement/> PREFIX psn: <http://www.wikidata.org/prop/statement/value-normalized/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wds: <http://www.wikidata.org/entity/statement/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX wdv: <http://www.wikidata.org/value/> PREFIX wikibase: <http://wikiba.se/ontology#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT DISTINCT ?result {wd:Q6711 wdt:P69 ?result. ?result wdt:P31 wd:Q9826}"
       }
     }
     ]

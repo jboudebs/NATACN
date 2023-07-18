@@ -436,6 +436,7 @@ class NatACN
 		}
 	}
 	//confusion instrNode et instr
+	//version contrainte ACN
 	async natNavigateRec(instrNode, Pi, QTpath_i, instrPath_i) {
 		let bestNavigation = {"place": Pi, "QTpath": QTpath_i, "instrPath": instrPath_i}
 		NatACN.appel++;
@@ -457,10 +458,12 @@ class NatACN
 			for (let i = 0; i < L_c.length; i++)
 			{
 				let childInstrNode = L_c[i];
+				console.log("Current instruction - ",childInstrNode.valeur.toString())
 
 				// Filtrer le QT correspondant à l'instruction enfant actuelle
 				let T_i = await this.acn.getFilteredQT(childInstrNode.valeur, Pi, QTpath_i);
 
+				console.log(T_i)
 				// Exploration de tous les QT filtrés
 				for (let j = 0; j < T_i.length; j++)
 				{

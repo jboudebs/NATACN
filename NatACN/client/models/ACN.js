@@ -13,7 +13,7 @@ class ACN
 		}
 	}
 
-	async getFilteredQT(instr, Pi)
+	async getFilteredQT(instr, Pi, QTpath_i)
 	{
 		throw new Error("Method 'getFilteredQT' must be implemented.");
 	}

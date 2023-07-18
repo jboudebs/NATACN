@@ -7,6 +7,7 @@ import { Suggestions } from "./Suggestions.js";
 import { NLPTools } from "../../models/NLPTools.js";
 import { NLPToolsParameters } from "../../models/NLToolsParameters.js";
 import { InstrList } from "../../models/InstrList.js";
+import { SpaCySimilarity } from "../NLP/SpaCySimilarity.js";
 
 
 /**
@@ -19,7 +20,8 @@ import { InstrList } from "../../models/InstrList.js";
 class SparklisAPI extends ACN
 {
 	static _sparklis;
-	static MU_RELATED = 0.2;
+	static MU_Syn = 0.39;
+	static MU_Instr = 0.39;
 	static _view_mode = true;
 	static labelDico = []
 	
@@ -67,14 +69,90 @@ class SparklisAPI extends ACN
 		await this.getResults(place);
 		return this._sparklis.setCurrentPlace(place)
 	}
-	
+
+	async getFilteredQT(instr, place, QTpath) {
+		return await this.getFilteredQT_newConstraint(instr, place, QTpath)
+	}
+
+	/**
+	 *
+	 * @param instr
+	 * @param place
+	 * @param QTpath
+	 * @returns {Promise<QTList>}
+	 */
+	async getFilteredQT_newConstraint(instr, place, QTpath)
+	{
+		if(QTpath.length&&instr.getType() !== 'NE')
+		{
+			let filteredQTList = new QTList([]);
+			let qtList;
+			//let qtList = new QTList([]);
+			try
+			{
+				//get T_i
+				let suggList = await (new Suggestions()).create("True", place, QTpath);
+
+				qtList = await this._getLabelFromMultipleUriWiki(suggList); //les index correspondent
+				console.log(qtList.length.toString());
+
+				//filter ID label
+				const regex = /\b(ID|i_d|id|Id)\b|\b(ID|i_d|id|Id)\b$/;
+				qtList = new QTList(qtList.filter(qt => !qt.getLabel().match(regex)));
+				console.dir(qtList);
+			}
+			catch (e)
+			{
+				console.error(e);
+				qtList = new QTList([]);
+			}
+			//synset search T_i
+			const synonyms = InstrList.toInstrList(instr.getSynset());
+			let labelList = qtList.map(qt=>qt.getLabel())
+			console.log(labelList)
+			console.log("Current synonyms :",synonyms.toString());
+			for(const syn of synonyms.get())//nouvelle contrainte pour chaque synonyme
+			{
+				//une requete
+				const synsetQTLabelList = (await SpaCySimilarity.getSimilarities(syn.toString(),labelList))
+					.filter(e=>e.similarity>=SparklisAPI.MU_Syn)
+					.map(e=>e.word2);
+				console.log(synsetQTLabelList);
+				const synsetQTList = qtList.filter(qt=>synsetQTLabelList.includes(qt.getLabel()));
+				console.log(synsetQTList);
+				filteredQTList.add(synsetQTList);
+			}
+
+			console.log(filteredQTList);
+			labelList = filteredQTList.map(qt=>qt.getLabel());
+			//get Sim score
+			const simList = await SpaCySimilarity.getSimilarities(instr.toString(),labelList)
+			for(const indexqt in filteredQTList._list)
+			{
+				filteredQTList._list[indexqt].setScore(simList[indexqt].similarity)
+			}
+			console.log(filteredQTList);
+			//filtering thanks to instr
+			//filteredQTList.filterByScore(SparklisAPI.MU_Instr)
+
+			//ranking
+			filteredQTList.rankByScore();
+
+			return filteredQTList;
+		}
+		else
+		{
+			return this.getFilteredQT_ExternalSearchBug(instr, place, QTpath)
+		}
+	}
+
 	/**
 	 *
 	 * @param instr
 	 * @param place
 	 * @returns {Promise<QTList>}
 	 */
-	async getFilteredQT(instr, place, QTpath)
+	async getFilteredQT_ExternalSearchBug(instr, place, QTpath)
 	{
 		let qtList = new QTList();
 		
@@ -152,7 +230,7 @@ class SparklisAPI extends ACN
 					qt.setLabel(label);
 					//relatedness
 					const relatedness = await NLPToolsParameters.getRelatedness(qt.getLabel(),instr.toString())
-					if(relatedness>=SparklisAPI.MU_RELATED)
+					if(relatedness>=SparklisAPI.MU_Syn)
 					{
 						qt.setScore(relatedness);
 					}
@@ -410,16 +488,16 @@ class SparklisAPI extends ACN
 			console.error("TO IMPLEMENT FOR THIS ENDPOINT")
 		}
 	}
-	
+
 	async _getLabelFromUriWiki(incr)
 	{
-		
+
 		//const incr = qt.getIncr()
 		const uri = incr.uri?incr.uri:incr.pred["uri"+incr.pred.type[1]];//cas des incrPred
 		const id = uri.replace('http://www.wikidata.org/entity/', '')
 			.replace('http://www.wikidata.org/prop/direct/', '')
 			.replace('http://www.wikidata.org/prop/statement/', '');
-		
+
 		//recuperer le label
 		console.log(id)
 		let labelQuery = "SELECT ?itemLabel WHERE {  wd:"+id+" rdfs:label ?itemLabel    FILTER (lang(?itemLabel) = \"en\")  }"
@@ -428,6 +506,60 @@ class SparklisAPI extends ACN
 		console.log(res);
 		return res.rows[0][0].str;
 	}
+
+	/**
+	 *
+	 * @param incrList
+	 * @returns {Promise<QTList>}
+	 * @private
+	 */
+	async _getLabelFromMultipleUriWiki(incrList)
+	{
+
+		//const incr = qt.getIncr()
+		let ids = ""
+		for (const incr of incrList)
+		{
+			const uri = incr.uri?incr.uri:incr.pred["uri"+incr.pred.type[1]];//cas des incrPred
+			ids = ids + "wd:"+this._getWikidataID(uri).toString()+" "
+		}
+		//SELECT ?entity ?label
+		// WHERE {
+		//   VALUES ?entity { wd:Q42 wd:Q123 wd:Q456 }  # Remplacez ces identifiants par votre liste d'entités
+		//   ?entity rdfs:label ?label.
+		//   FILTER (lang(?label) = "en")  # Vous pouvez spécifier la langue des labels (dans cet exemple : français)
+		// }
+		let labelQuery = "SELECT ?entity ?label WHERE {  VALUES ?entity { " + ids + "} ?entity rdfs:label ?label.    FILTER (lang(?label) = \"en\")  BIND(STRBEFORE(STR(?entity), \"://\") AS ?value)} ORDER BY ?value"
+		console.log(labelQuery)
+		let res = (await sparklis.evalSparql(labelQuery)).rows;
+		//console.log(res);
+
+		// résultats a mapper selon les noms d'entitées
+		let qtList = new QTList([])
+		for (const incr of incrList)
+		{
+			let qt = new QT(incr);
+			const uri = (incr.uri?incr.uri:incr.pred["uri"+incr.pred.type[1]])
+			//console.log(uri);
+			const r = res.find(r=>this._getWikidataID(r[0].uri) === this._getWikidataID(uri));
+			//console.log(r);
+			qt.setLabel(r[1].str)
+			//console.log(qt)
+			qtList.add(qt)
+		}
+
+		return  qtList;
+	}
+
+	_getWikidataID(uri)
+	{
+		const id = uri.replace('http://www.wikidata.org/entity/', '')
+			.replace('http://www.wikidata.org/prop/direct/', '')
+			.replace('http://www.wikidata.org/prop/statement/', '');
+		return id
+	}
+
+
 
 	
 	async _getLabelFromUriMondial(incr)

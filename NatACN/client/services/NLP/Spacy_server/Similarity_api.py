@@ -9,7 +9,7 @@ def getpreferredencoding(do_setlocale=True):
 
 locale.getpreferredencoding = getpreferredencoding
 
-nlp = spacy.load("en_core_web_sm")
+nlp = spacy.load("en_core_web_lg")
 
 def spaCy_Similarity(data):
     word1 = data["word"]

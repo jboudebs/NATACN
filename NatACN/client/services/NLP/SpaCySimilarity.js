@@ -14,9 +14,8 @@ class SpaCySimilarity {
 
 	static async getSimilarities(word, wordList) {
 		const post_data = { word, wordList };
-		await SpaCySimilarity._fetch(post_data);
-		console.log(SpaCySimilarity.fetch);
-		return SpaCySimilarity.fetch;
+		const data = await SpaCySimilarity._fetch(post_data);
+		return data;
 	}
 
 
@@ -27,9 +26,9 @@ static async main()
 	{
 		try
 		{
-			const word = "lune";
-			const wordList = ["lune","soleil","loup"];
-			console.log(await SpaCySimilarity.getSimilarity(word, wordList));
+			const word = "educated";
+			const wordList = ["made from material","educated at","field of work"];
+			console.log(await SpaCySimilarity.getSimilarities(word, wordList));
 			//SpaCy.NEFirst();
 		}
 		catch (e)
