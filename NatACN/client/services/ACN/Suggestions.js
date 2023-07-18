@@ -72,8 +72,7 @@ class WikidataSuggestions
 		}
 		else
 		{
-			
-			console.log("Current word or synonym", constr.searchQuery.kwds)
+			console.log("Current word or synonym", typeof constr === "Object"?constr.searchQuery.kwds:constr)
 			
 			try
 			{

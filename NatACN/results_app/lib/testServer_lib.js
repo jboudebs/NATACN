@@ -17,7 +17,7 @@ let length = 0;
 const currentDir = path.resolve();
 console.log(currentDir)
 
-const test_name = "one_per_one-123-ordered-tree-path-cutted-question-16_07";
+const test_name = "new-Constraint-123-ordered-tree-path-cutted-question-17_07";
 console.log(test_name);
 const inputQALD = './data/qald_10-path-questions.json';
 const outputNatACN = './results/juillet/'+test_name+'-res.json';
@@ -47,7 +47,7 @@ module.exports.getSimple =  async function getSimple(req, res)
 
 module.exports.post = async function post (req,res)
 {
-	const next = false
+	const next = true
 	console.log("Writing in a file", req.body);
 	console.log('post', i)
 	if(i<length)

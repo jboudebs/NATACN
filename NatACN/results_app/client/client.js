@@ -58,10 +58,14 @@ try
 			console.error('ALERT HANDLED')
 			return true
 		};
+		window.confirm = function() {
+			console.error('CONFIRM HANDLED');
+			return true;
+		};
 	})();
 
 	//reprise
-	//await getNatACN(2);
+	await getNatACN(0);
 
 
 

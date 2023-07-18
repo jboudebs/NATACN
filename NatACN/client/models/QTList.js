@@ -63,6 +63,16 @@ class QTList
 		}
 	}
 
+	filter(f)
+	{
+		return this._list.filter(f);
+	}
+
+	map(f)
+	{
+		return this._list.map(f);
+	}
+
 	static copy(qtList)
 	{
 
@@ -147,7 +157,8 @@ class QTList
 	}
 	rankByScore()
 	{
-		return new QTList(this._list.sort(this._getScoreOrder("_score")));
+		this._list = this._list.sort(this._getScoreOrder("_score"))
+		return this._list;
 		//console.warn(this._list);//ajouter un map pour borne inf
 	}
 

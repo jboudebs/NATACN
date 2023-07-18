@@ -4,6 +4,7 @@ import { SpaCyNER } from "../services/NLP/SpaCyNER.js";
 import { InstrList } from './InstrList.js';
 import { Instruction } from './Instruction.js';
 import { NLPExtraction } from "./NLPExtraction.js";
+import { SpaCySimilarity } from "../services/NLP/SpaCySimilarity.js";
 
 /**
  * Static instance of NLPTool
@@ -70,7 +71,7 @@ class NLPToolsParameters// extends NLPTools
 	
 	static async getRelatedness(word1, word2)
 	{
-		return await ConceptNet.getRelatedness(word1,word2);
+		return await SpaCySimilarity.getSimilarities(word1,typeof word2 === 'Array'?word2:[word2]);
 	}
 
 }
