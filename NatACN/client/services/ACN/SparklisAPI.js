@@ -8,7 +8,7 @@ import { NLPTools } from "../../models/NLPTools.js";
 import { NLPToolsParameters } from "../../models/NLToolsParameters.js";
 import { InstrList } from "../../models/InstrList.js";
 import { SpaCySimilarity } from "../NLP/SpaCySimilarity.js";
-import {Instruction} from "NatACN/client/models/Instruction";
+import { Instruction } from "./Instruction.js";
 
 
 /**
