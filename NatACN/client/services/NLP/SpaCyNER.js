@@ -34,7 +34,7 @@ class SpaCyNER
 			.map(w=>
 			{w.word = w.word.replaceAll("\"","").replace(/^the\s/g, "").replace(/'s\b/g, "");return w}); //pourquoi il reste John Lennon's ??
 		console.log("Named Entity",SpaCyNER.NE);
-		console.dir(SpaCyNER.NE)
+		//console.dir(SpaCyNER.NE)
 		return SpaCyNER.NE
 	}
 

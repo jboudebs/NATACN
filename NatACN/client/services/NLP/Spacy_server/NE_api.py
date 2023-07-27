@@ -18,7 +18,7 @@ def spaCy_NER(nl_question):
     doc = nlp(nl_question)
     NER_list = []
     for ent in doc.ents:
-        NER_list = NER_list + [{"word" : ent.text, "label" : ent.label_, "start_char" : ent.start_char, "end_char" : ent.end_char}]
+        NER_list = NER_list + [{"endWord" : ent.text, "label" : ent.label_, "start_char" : ent.start_char, "end_char" : ent.end_char}]
     return json.dumps(NER_list)
 
 ##

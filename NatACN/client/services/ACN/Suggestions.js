@@ -254,10 +254,16 @@ function _preprocessTermSuggestions(suggestions_forest)
 	return suggestions_forest == null? [] : suggestions_forest.filter(s => (s.item.suggestion.type === 'IncrTerm') && s.item.frequency.value > 0);
 }
 
+function isIncrEquals()
+{
+	return (qt.getIncr().uri === a.uri&& qt.getIncr().arg===a.arg)
+}
+
 function _removeAlreadyAppliedSuggestion(suggestionList, QTpath)
 {
 	//incr.uri?incr.uri:incr.pred["uri"+incr.pred.type[1]]
-	
+	//console.log(QTpath.length)
+	//console.log((QTpath._list[QTpath.length-1]))
 	if(QTpath.length && (QTpath._list[QTpath.length-1]._incr.uri || QTpath._list[QTpath.length-1]._incr.pred))
 	{
 		

@@ -42,9 +42,9 @@ class ConceptNet
 			const uri = "http://api.conceptnet.io/query?start=/c/en/"+Utils.snakize(Utils.uncamelize(word.toString()))+"&rel=/r/"+synset+"&filter=/c/en";
 			console.log("Asking for synonyms :"+uri);
 			const fetch = await ConceptNet._fetch(uri);
-			console.log(fetch);
+			//console.log(fetch);
 			edges = edges.concat(fetch.edges);
-			console.log(edges);
+			//console.log(edges);
 		}
 		
 		for (const edge of edges )
@@ -79,7 +79,8 @@ class ConceptNet
 	static async getRelatedness(word1, word2)
 	{
 		let relatedness = this.getRelatedDico(word1, word2);
-		if(!relatedness)
+		console.warn("Dico", this.RelatedDico)
+		if(relatedness === 0)
 		{
 			relatedness = await this.getRelatednessFetch(word1, word2);
 			this.pushRelatedDico(word1,word2,relatedness)
@@ -89,16 +90,16 @@ class ConceptNet
 	}
 	static getRelatedDico(word1, word2)
 	{
-		let relatedness = undefined;
 		for (const couple of this.RelatedDico)
 		{
 			if( (couple.words[0] === word1&&couple.words[1]===word2)
 			   || (couple.words[1] === word1&&couple.words[0]===word2) )
 			{
+				console.log("Dico found", couple.score)
 				return couple.score;
 			}
 		}
-		return relatedness
+		return 0;
 	}
 	
 	static pushRelatedDico(word1,word2,score)

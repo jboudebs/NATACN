@@ -7,7 +7,7 @@
     - in case the AJAX calls failed (instead of called on empty indexes as before)
     - in case increments cannot be computed for some reason (ex: constraints on properties in wikidata)
 - grammar.ml: [hierarchy ~in_] split into [hierarchy] and [in_]
-- lisql2nl.ml: word `FocusSpan takes the increment to which verbalization it belongs
+- lisql2nl.ml: endWord `FocusSpan takes the increment to which verbalization it belongs
   - to allow for customized rendering in HTML
 
 2019-02-09
@@ -103,7 +103,7 @@
 - new increments (in left column)
   - IncrPred (arg,pred) : insertion of a n-ary predicate
   - IncrArg (arg) : insertion of an additional argument of the n-ary predicate at focus
-- new kind of word in XML
+- new kind of endWord in XML
   - Nary (uri,string): similar to Class/Prop (different color)
 
 2018-05-03

@@ -139,8 +139,8 @@ class NavStateOld
 	 */
 	setLongestQTPath(navstateRes)
 	{
-		console.log(navstateRes._longestQTPath);
-		console.log(this._longestQTPath);
+		//console.log(navstateRes._longestQTPath);
+		//console.log(this._longestQTPath);
 		if (navstateRes._longestQTPath.QTPath.length>this._longestQTPath.QTPath.length)
 		{
 			//y a un truc qui bug : ça recupère les resultats en cours, pas ce qui correspondent au plus long chemin :/
@@ -226,9 +226,9 @@ class NavStateOld
 	{
 		let navstate =  new NavState('word')
 		await navstate.init();
-		console.log(navstate);
+		//console.log(navstate);
 		await navstate.updateNextKeyword();
-		console.log(navstate);
+		//console.log(navstate);
 	}
 
 }

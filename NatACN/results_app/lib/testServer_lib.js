@@ -17,9 +17,9 @@ let length = 0;
 const currentDir = path.resolve();
 console.log(currentDir)
 
-const test_name = "new-Constraint-123-ordered-tree-path-cutted-question-17_07";
+const test_name = "better-and-stop-path-question-24_07";
 console.log(test_name);
-const inputQALD = './data/qald_10-path-questions.json';
+const inputQALD = './data/qald_10-simple-questions.json';
 const outputNatACN = './results/juillet/'+test_name+'-res.json';
 const scoreFile ='./results/juillet/'+test_name+'-score.json';
 const summaryRes = './results/juillet/'+test_name+'-summary.csv';
