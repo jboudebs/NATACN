@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require("express");
+var cors = require('cors')
 //const QALDLib = require("NatACN/results_app/lib/old/QALDLib");
 const NatACNLib = require("./lib/testServer_lib.js");
 
@@ -8,6 +9,7 @@ const port = 3000;
 
 NatACNLib.i = 0;
 
+app.use(cors())
 app.use((req, res, next) => {
 	res.setHeader('Access-Control-Allow-Origin', '*');
 	next();

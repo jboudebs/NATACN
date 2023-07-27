@@ -118,7 +118,7 @@ xmlns:d="http://nlp.stanford.edu/CoreNLP/v1">
   <xsl:for-each select="token">
     <tr>
       <td><xsl:value-of select="@id"/></td>
-      <td><xsl:value-of select="word"/></td>
+      <td><xsl:value-of select="endWord"/></td>
       <td><xsl:value-of select="lemma"/></td>
       <td><xsl:value-of select="CharacterOffsetBegin"/></td>
       <td><xsl:value-of select="CharacterOffsetEnd"/></td>

@@ -82,8 +82,8 @@ class CoreNLP
 		}).filter(e=>e!==undefined)
 
 
-		console.log(dependencies);
-		console.log(keyword_json);
+		//console.log(dependencies);
+		//console.log(keyword_json);
 		//put in kw list
 		keyword_json = keyword_json.map(e=>
 			{
@@ -94,7 +94,7 @@ class CoreNLP
 				return e
 			}
 		)
-		console.log(keyword_json)
+		//console.log(keyword_json)
 	}
 	
 	

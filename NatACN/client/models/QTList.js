@@ -18,7 +18,7 @@ class QTList
 	
 	add(qt)
 	{
-		if(typeof qt === 'string')
+		if (typeof qt === 'String')
 		{
 			let sqt = new QT(qt);
 			
@@ -35,8 +35,10 @@ class QTList
 		}
 		else if ( qt instanceof Array)
 		{
+			console.warn("here", qt)
 			for (let qtElement of qt)
 			{
+				console.warn(qtElement)
 				this.add(qtElement);
 			}
 		}
@@ -122,7 +124,7 @@ class QTList
 		}
 		else if(a.uri)
 		{
-			return this._list.map(qt=>qt.getIncr().uri === a.uri).find(e=>e)
+			return this._list.map(qt=>(qt.getIncr().uri === a.uri&& qt.getIncr().type===a.type)).find(e=>e)
 		}
 		// else if(a.uriE)
 		// {
@@ -152,13 +154,13 @@ class QTList
 	
 	filterByScore(mu)
 	{
-		this._list = this._list.filter(qt=>qt._score>=0.2);
+		this._list = this._list.filter(qt=>qt._score>=mu);
 		this.length = this._list.length;
 	}
 	rankByScore()
 	{
 		this._list = this._list.sort(this._getScoreOrder("_score"))
-		return this._list;
+		return this;
 		//console.warn(this._list);//ajouter un map pour borne inf
 	}
 

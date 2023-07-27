@@ -8,6 +8,7 @@ import { NLPTools } from "../../models/NLPTools.js";
 import { NLPToolsParameters } from "../../models/NLToolsParameters.js";
 import { InstrList } from "../../models/InstrList.js";
 import { SpaCySimilarity } from "../NLP/SpaCySimilarity.js";
+import {Instruction} from "NatACN/client/models/Instruction";
 
 
 /**
@@ -20,8 +21,8 @@ import { SpaCySimilarity } from "../NLP/SpaCySimilarity.js";
 class SparklisAPI extends ACN
 {
 	static _sparklis;
-	static MU_Syn = 0.39;
-	static MU_Instr = 0.39;
+	static MU_Syn = 0.1;
+	static MU_Instr = 0.1;
 	static _view_mode = true;
 	static labelDico = []
 	
@@ -69,9 +70,135 @@ class SparklisAPI extends ACN
 		await this.getResults(place);
 		return this._sparklis.setCurrentPlace(place)
 	}
+	
+	async qtToMatch(synString, labelList)
+	{
+		return this.stringMatch(synString, labelList);
+	}
+	
+	async SpacySim(synString, labelList)
+	{
+		return await SpaCySimilarity.getSimilarities(synString, labelList)
+	}
+	
+	async stringMatch(synString, labelList)
+	{
+		let filteredList = labelList.map(e=>
+		{
+			return {"word1":synString, "word2":e, "similarity":(e.toString().includes(synString.toString())||synString.toString().includes(e.toString()))}
+		});
+		return filteredList
+	}
 
 	async getFilteredQT(instr, place, QTpath) {
-		return await this.getFilteredQT_newConstraint(instr, place, QTpath)
+		return await this.getFilteredQT_Mixed(instr, place, QTpath)
+	}
+	
+	async getFilteredQT_Mixed(instr, place, QTpath)
+	{
+		let obviousQTList = await this.getFilteredQT_obviousQT(instr, place, QTpath);
+		let constraintQTList = await this.getFilteredQT_ExternalSearchBug(instr, place, QTpath);
+		console.log("constraintQTList",constraintQTList);
+		constraintQTList instanceof Array && !constraintQTList.length?constraintQTList = new QTList():null;
+		let mixedQTList = new QTList([]);
+		mixedQTList.add(obviousQTList._list);
+		mixedQTList.add(constraintQTList._list);
+		//mixedQTList.filterByScore(SparklisAPI.MU_Instr);
+		mixedQTList = mixedQTList.rankByScore();
+		return mixedQTList;
+	}
+	
+	/**
+	 *
+	 * @param instr
+	 * @param place
+	 * @param QTpath
+	 * @returns {Promise<QTList>}
+	 */
+	async getFilteredQT_obviousQT(instr, place, QTpath)
+	{
+		if(QTpath.length&&instr.getType() !== 'NE')
+		{
+			let filteredQTList = new QTList([]);
+			let qtList;
+			//let qtList = new QTList([]);
+			try
+			{
+				//get T_i
+				let suggList = await (new Suggestions()).create("True", place, QTpath);
+				
+				qtList = await this._getLabelFromMultipleUriWiki(suggList); //les index correspondent
+				console.log(qtList.length.toString());
+				
+				//filter ID label
+				const regex = /\b(ID|i_d|id|Id)\b|\b(ID|i_d|id|Id)\b$/;
+				qtList = new QTList(qtList.filter(qt => !qt.getLabel().match(regex)));
+				console.dir(qtList);
+			}
+			catch (e)
+			{
+				console.error(e);
+				qtList = new QTList([]);
+			}
+			//synset search T_i
+			const synonyms = InstrList.toInstrList(instr.getSynset());
+			let labelList = qtList.map(qt=>qt.getLabel())
+			console.log(labelList)
+			console.log("Current synonyms :",synonyms.toString());
+			for(const syn of synonyms.get())//nouvelle contrainte pour chaque synonyme
+			{
+				//une requete
+				const synsetQTLabelList = (await this.qtToMatch(syn.toString(),labelList))
+					.filter(e=>e.similarity>=SparklisAPI.MU_Syn)
+					.map(e=>e.word2);
+				console.log(synsetQTLabelList);
+				const synsetQTList = qtList.filter(qt=>synsetQTLabelList.includes(qt.getLabel()));
+				console.log(synsetQTList);
+				filteredQTList.add(synsetQTList);
+			}
+			
+			console.log(filteredQTList);
+			labelList = filteredQTList.map(qt=>qt.getLabel());
+			//get Sim score
+			const simList = await NLPToolsParameters.getRelatedness(instr.toString(),labelList)
+			console.log(simList,filteredQTList)
+			for(const indexqt in filteredQTList._list)
+			{
+				console.log(indexqt)
+				filteredQTList._list[indexqt].setScore(simList[indexqt].similarity)
+			}
+			console.log(filteredQTList);
+			//filtering thanks to instr
+			filteredQTList.filterByScore(SparklisAPI.MU_Instr)
+			
+			//ranking
+			filteredQTList.rankByScore();
+			console.warn(filteredQTList);
+			return filteredQTList;
+		}
+		else
+		{
+			return new QTList([]);
+		}
+	}
+	
+	async getSemProxScore(word, place, QTpath)
+	{
+		console.log("trying getSemProxScore")
+		let instr = new Instruction(word);
+		let synset = InstrList.toInstrList((await NLPToolsParameters.getSynonyms(kw)).concat([word]))
+		instr.setSynset(synset);
+		let QT = await this.getFilteredQT_newConstraint(instr, place, QTpath);
+		
+		let sommeScore = 0;
+		for (const qt in QT)
+		{
+			sommeScore+=qt.getScore();
+		}
+		
+		const averageSemScore = sommeScore/QT.length
+		console.log("score : ",averageSemScore)
+		return averageSemScore;
 	}
 
 	/**
@@ -166,16 +293,25 @@ class SparklisAPI extends ACN
 			instr.setConstr(constr);
 			console.log('Constraint :', constr);
 			//get filtred QT list from Sparklis
-			qtList.add(await (new Suggestions()).createMatch(constr, place));
-			console.warn(qtList)
-			if(qtList.length){qtList.get(0).setLabel(ne)}
+			const sugg = await (new Suggestions()).createMatch(constr, place)
+			console.log(sugg);
+			if(sugg.length)
+			{
+				let matchQT = new QT(sugg[0]);
+				console.dir(matchQT.getIncr().toString());
+				matchQT.setScore(1);
+				qtList.add(matchQT);
+				console.warn(qtList)
+				if(qtList.length){qtList.get(0).setLabel(ne)}
+			}
+			
 		}
 		//case current instr is a keyword
 		else if(!instr.type)
 		{
 			const synonyms = InstrList.toInstrList(instr.getSynset());
 			//.toString().toLowerCase().split(",").filter(e=>e.length>2);
-			console.log(synonyms)
+			//console.log(synonyms)
 			console.log("Current synonyms :",synonyms.toString());
 			
 			for(const syn of synonyms.get())//nouvelle contrainte pour chaque synonyme
@@ -230,6 +366,7 @@ class SparklisAPI extends ACN
 					qt.setLabel(label);
 					//relatedness
 					const relatedness = await NLPToolsParameters.getRelatedness(qt.getLabel(),instr.toString())
+					console.log("Dico relatedness",qt.getLabel(),instr.toString(), relatedness)
 					if(relatedness>=SparklisAPI.MU_Syn)
 					{
 						qt.setScore(relatedness);
@@ -453,7 +590,7 @@ class SparklisAPI extends ACN
 		{
 			const incrD = labeledIncr.incr;
 			const uriD = incrD.uri?incrD.uri:incrD.pred["uri"+incrD.pred.type[1]]
-			if( uri === uriD)
+			if( uri === uriD && incr.arg===incrD.arg)
 			{
 				console.warn("comp incr",incr, incrD)
 				return incrD.label;
@@ -504,6 +641,8 @@ class SparklisAPI extends ACN
 		console.log(labelQuery)
 		let res = await sparklis.evalSparql(labelQuery);
 		console.log(res);
+		if(!res.rows.length) {return ""}
+		const label = res.rows[0][0].str;
 		return res.rows[0][0].str;
 	}
 

@@ -49,7 +49,7 @@ class NLPExtraction
 			kw.synset = kw.type !=='NE'?
 				InstrList.toInstrList((await NLPToolsParameters.getSynonyms(kw)).concat([kw.word]))
 				: undefined;//InstrList.toInstrList(kw.word);
-			console.log(kw.word, kw.synset)
+			//console.log(kw.word, kw.synset)
 		}
 		//generate permutation
 		const permutation = getPermutations(this._orderedkwList_json);
@@ -78,13 +78,13 @@ class NLPExtraction
 		//
 		//
 		//
-		console.log("NEDEP",combinaisonsNEFirstDep,"NE",combinaisonsNE,"DEP",combinaisonsDep)
-		NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsNEFirstDep);
-		NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsNE);
-		NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsDep);
+		//console.log("NEDEP",combinaisonsNEFirstDep,"NE",combinaisonsNE,"DEP",combinaisonsDep)
+		//NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsNEFirstDep);
+		//NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsNE);
+		//NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsDep);
 		//CONSTRAINTS
-		//NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, NLPExtraction.combinaisons);
-		console.log(NLPExtraction.orderedCombinaisons)
+		NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, NLPExtraction.combinaisons);
+		//console.log(NLPExtraction.orderedCombinaisons)
 		// }
 		// else
 		// {
@@ -194,11 +194,11 @@ class NLPExtraction
 
 	static _clearKeywordsCoreNLP()
 	{
-		console.warn(this._kwList, CoreNLP.keywords.map(e=>e.word), SpaCyNER.NE);
+		//console.warn(this._kwList, CoreNLP.keywords.map(e=>e.word), SpaCyNER.NE);
 		NLPExtraction._clearFromNE()
-		console.warn(this._kwList.map(e=>e.word));
+		//console.warn(this._kwList.map(e=>e.word));
 		this._kwList = CoreNLP.mergeCompoundWord(this._kwList);
-		console.warn(this._kwList);
+		//console.warn(this._kwList);
 		NLPExtraction._clearFromLemma()
 		//console.warn(this._kwList.map(e=>{return e.word}));
 		CoreNLP.keywords = this._kwList
@@ -359,7 +359,7 @@ class NLPExtraction
 		NLPExtraction._clearKeywordsCoreNLP(this._kwList);
 		//fusion NE word
 		let list = this._neList.map(ne=>{ne.type="NE";return ne}).concat(this._kwList.filter(kw=>kw.type!=='NE'))
-		console.log(list);
+		//console.log(list);
 
 		//tri
 		list.sort(function(a, b) {
@@ -376,7 +376,7 @@ class NLPExtraction
 		});
 
 		//supprimer les doublons
-		console.log(list);
+		//console.log(list);
 		this._orderedkwList_json = supprimerChevauchements(list);
 		// //ajouter mot manquant
 		// console.warn(await CoreNLP.keywords_POSextracted);

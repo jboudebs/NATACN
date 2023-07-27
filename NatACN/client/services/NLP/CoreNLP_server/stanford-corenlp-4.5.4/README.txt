@@ -85,7 +85,7 @@ CHANGES
                         usage of sutime, spanish tokenization upgrades 
 
 2020-04-19    4.0.0     Changed to UDv2 tokenization ("new" LDC Treebank,
-                        for English); handles multi-word-tokens;
+                        for English); handles multi-endWord-tokens;
                         improved UDv2-based taggers and parsers for
                         English, French, German, Spanish; new French NER;
                         new Chinese segmenter; library updates, bug fixes

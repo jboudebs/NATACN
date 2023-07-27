@@ -28,12 +28,13 @@ try
 	//await sparklisAPI.changeEndpoint("https://query.wikidata.org/sparql", home_place)
 	//DB
 	//TEST UNIQUE QUESTION
-	let question = "Which High School did Allen Ginsberg attend?";
+	let question = "Where was Goethe’s unmarried partner born ?";
 	//
 	//tests
 	//console.log(initial_place)
 	//const res = await natACN.natNavigation(question, home_place);
 	//console.dir(res);
+	//console.log(res.bestNavigation.place.sparql())
 	//TEST UNIQUE QUESTION
 
 	//TEST TREE
@@ -48,7 +49,7 @@ try
 	//Test ConceptNet Synonyms
 
 	//TEST SPACY SIM
-	SpaCySimilarity.main();
+	//SpaCySimilarity.main();
 	//TEST SPACY SIM
 
 	//handler alert windows
@@ -80,8 +81,8 @@ async function QALD()
 	console.log("test");
 
 	await SparklisAPI._waitForSparklis();
-	console.log(sparklis);
-	console.log(sparklis.currentPlace());
+	//console.log(sparklis);
+	//console.log(sparklis.currentPlace());
 
 	getSimpleQALD();
 
@@ -114,10 +115,10 @@ async function extractLabels(query)
 	const regex = /(wd|wdt|p|pq|rdfs|xsd)\:([a-z]|[A-Z]|[0-9])*/g;
 	const regexPrefix = /(wdt|wd|pq|p|rdfs|xsd)\:*/g;
 	const wikidataLabelExtracted = query.match(regex);
-	console.log(query,wikidataLabelExtracted)
+	//console.log(query,wikidataLabelExtracted)
 	const wikidataIDs = wikidataLabelExtracted.map((e) => e.replace(regexPrefix,"wd:"));
 
-	console.log(wikidataIDs);
+	//console.log(wikidataIDs);
 
 
 
@@ -172,8 +173,7 @@ function postQALD(data)
 	{
 		console.error(e);
 	}
-	console.log("post");
-	console.log(data);
+	console.log("post", data);
 	Http.send(data);
 
 }
@@ -451,11 +451,13 @@ function getNatACN(id)
 			//evaluation de la question NL dans NatACN - res
 			let resultsQALD = [];
 			let bestRes;
+			let natACNquery;
 			let launch = true
 			const start = Date.now();
 			const res = launch?await natACN.natNavigation(question, home_place, coreNLP):null;
 			const runtime = Date.now() - start;//millis
 			launch?res.bestNavigation?bestRes = await sparklisAPI.getResults(res.bestNavigation.place):null:null;
+			launch?res.bestNavigation?natACNquery = await res.bestNavigation.place.sparql():null:null;
 			//console.log(bestRes);
 			await resetNatACN()
 
@@ -466,11 +468,11 @@ function getNatACN(id)
 			//formatage de l'historique de la recherche dans NatACN
 			const data = {  "id": qald.id,
 				"question": qald.question[0].string,
-				"query": query,
+				"qald_query": query,
+				"query": natACNquery,
 				"answer":
 					{   "our_ref": answer,
 						"qald": qald.answers.results,
-						"longestQTList_res" : bestRes,
 						"NatACN_qald": bestRes
 					},
 				"ids":ids?ids.map(e=>e.label).toString():undefined,

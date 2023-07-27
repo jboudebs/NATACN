@@ -13,6 +13,7 @@ import { SpaCySimilarity } from "../services/NLP/SpaCySimilarity.js";
 
 class NLPToolsParameters// extends NLPTools
 {
+	static SimTOOL = ConceptNet;
 	constructor()
 	{
 		//super();
@@ -53,7 +54,7 @@ class NLPToolsParameters// extends NLPTools
 	
 	static async getSynonyms(keyword)
 	{
-		const lemma = keyword.lemma
+		const lemma = keyword.lemma;
 		let synCN = []
 		if(lemma)
 		{
@@ -64,14 +65,42 @@ class NLPToolsParameters// extends NLPTools
 		}
 		else
 		{
-			synCN = await ConceptNet.getSynonyms(keyword.word);
+			synCN = await ConceptNet.getSynonyms(keyword.word?keyword.word:keyword);
 		}
 		return synCN;
 	}
 	
+	/**
+	 * format de retour pas similaire
+	 * @param word1
+	 * @param word2
+	 * @returns {Promise<*|*[]>}
+	 */
 	static async getRelatedness(word1, word2)
 	{
-		return await SpaCySimilarity.getSimilarities(word1,typeof word2 === 'Array'?word2:[word2]);
+		
+		console.warn("cheack", word1, word2)
+		if(word2 instanceof Array && NLPToolsParameters.SimTOOL == ConceptNet)
+		{
+			let simList = []
+			for (const word of word2)
+			{
+				const similarity = await NLPToolsParameters.getRelatedness(word1, word);
+				simList.push({"word1": word1, "word2": word, "similarity": similarity})
+			}
+			console.log(simList)
+			return simList
+		}
+		else if(NLPToolsParameters.SimTOOL == ConceptNet)
+		{
+			console.log("Dico")
+			return await ConceptNet.getRelatedness(word1, word2);
+		}
+		else if (NLPToolsParameters.SimTOOL == SpaCySimilarity)
+		{
+			
+			return await SpaCySimilarity.getSimilarities(word1,typeof word2 === 'Array'?word2:[word2]);
+		}
 	}
 
 }

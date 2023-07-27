@@ -9,9 +9,49 @@ class NatACN
 {
 	static appel;
 	static nbInstruction;
+	
+	static SEM_SCORE_MIN = 0.5;
+	
 	constructor(acn)
 	{
 		this.acn = acn;
+	}
+	
+	getWordFromInterrogativeWord(word)
+	{
+		if(word === "when")
+		{
+			return 'date'
+		}
+		if(word === "where")
+		{
+			return 'place'
+		}
+		if(word === "who")
+		{
+			return 'person'
+		}
+	}
+	
+	getInterrogativeWordFromQuestion(question)
+	{
+		let list = question.split(" ");
+		list.splice(5, list.length-5);
+		for (const e in list)
+		{
+			if (e === "when"||"When")
+			{
+				return "when"
+			}
+			if (e === "where"||"Where")
+			{
+				return "where"
+			}
+			if (e === "who"||"Who")
+			{
+				return "who"
+			}
+		}
 	}
 
 
@@ -349,7 +389,7 @@ class NatACN
 	betterNE(place, QTpath, instrPath, bestNavigation)
 	{
 		const currentNbNE = instrPath._list.map(e=>e.type==='NE').length;
-		console.log(bestNavigation.instrPath)
+		//console.log(bestNavigation.instrPath)
 		const bestNbNE = bestNavigation.instrPath._list.map(e=>e.type==='NE').length;
 		return currentNbNE>bestNbNE?1:currentNbNE===bestNbNE?0:-1;
 	}
@@ -369,25 +409,29 @@ class NatACN
 	async betterF1(place, QTpath, instrPath, bestNavigation)
 	{
 		console.warn(instrPath.toString());
-		console.log(place, QTpath, instrPath, bestNavigation);
+		//console.log(place, QTpath, instrPath, bestNavigation);
 		let currentNatACNRes = await this.acn.getResults(place);
-		console.log(currentNatACNRes)
+		//console.log(currentNatACNRes)
 		let currentScore = maxScore(currentNatACNRes, this.QRes)
-		console.warn(currentScore)
+		//console.warn(currentScore)
 		let bestNatACNRes = await this.acn.getResults(bestNavigation.place);
-		console.log(bestNatACNRes)
+		//console.log(bestNatACNRes)
 		let bestScore = maxScore(bestNatACNRes, this.QRes)
-		console.warn(bestScore)
+		//console.warn(bestScore)
 		return currentScore.F1score>bestScore.F1score;
 
 	}
 
 	async stopCriterion(bestNavigation)
 	{
-		return await this.stopCriterionResults(bestNavigation);
+		return await this.stopResults(bestNavigation);
+	}
+	
+	async noStop(bestNavigation){
+		return false
 	}
 
-	async stopCriterionResults(bestNavigation)
+	async stopResults(bestNavigation)
 	{
 		let stop = false
 		const currentNatACNRes = sparklisRestoRes(await this.acn.getResults(bestNavigation.place));
@@ -397,12 +441,12 @@ class NatACN
 		return stop;
 	}
 
-	async stopCriterionF1(bestNavigation)
+	async stopF1(bestNavigation)
 	{
 		let stop = false
 
 		let bestNatACNRes = await this.acn.getResults(bestNavigation.place);
-		console.log(bestNatACNRes)
+		//console.log(bestNatACNRes)
 		let bestScore = maxScore(bestNatACNRes, this.QRes);
 
 		if (bestScore.F1score === 1)
@@ -413,6 +457,13 @@ class NatACN
 		console.warn("stop",stop)
 		return stop;
 	}
+	
+	async stopSem(bestNavigation)
+	{
+		const word = this.endWord;
+		const score = await this.acn.getSemProxScore(word,bestNavigation.place);
+		return score>NatACN.SEM_SCORE_MIN
+	}
 
 	async natNavigation(question, P, coreNLP)
 	{
@@ -420,6 +471,7 @@ class NatACN
 		{
 			// NLP
 			console.log(question)
+			this.endWord = this.getWordFromInterrogativeWord(this.getInterrogativeWordFromQuestion(question));
 			let instrTree = await NLPExtraction.instrTree(question, coreNLP);
 			// Navigation
 			//let bestNavigation = {"place": P, "QTpath": new QTList([]), "instrPath": new InstrList([])}
@@ -427,6 +479,8 @@ class NatACN
 			NatACN.nbInstruction = instrTree.globalDeepth;
 			console.dir(instrTree)
 			let res = await this.natNavigateRec(instrTree.racine, P, new QTList(), new InstrList())//, bestNavigation);//////
+			sparklis.setCurrentPlace(res.place);
+			this.acn.getResults(res.place);
 			return {"bestNavigation" : res, "instrTree": instrTree, "extracted_kw" : NLPExtraction._orderedkwList}
 			//return {"instrTree.txt": instrTree.txt}
 		}
@@ -458,12 +512,13 @@ class NatACN
 			for (let i = 0; i < L_c.length; i++)
 			{
 				let childInstrNode = L_c[i];
-				console.log("Current instruction - ",childInstrNode.valeur.toString())
+				console.warn("instrPath_i so far - ",instrPath_i.toString())
+				console.warn("Current child instruction - ",childInstrNode.valeur.toString())
 
 				// Filtrer le QT correspondant à l'instruction enfant actuelle
 				let T_i = await this.acn.getFilteredQT(childInstrNode.valeur, Pi, QTpath_i);
 
-				console.log(T_i)
+				console.warn("Filtered QT",T_i)
 				// Exploration de tous les QT filtrés
 				for (let j = 0; j < T_i.length; j++)
 				{
@@ -504,7 +559,7 @@ class NatACN
 
 function sparklisRestoRes(sparklisRes,i)
 {
-	console.log(sparklisRes);
+	//console.log(sparklisRes);
 	let res = [];
 	if(sparklisRes&&sparklisRes.hasOwnProperty('columns'))
 	{
@@ -525,7 +580,7 @@ function sparklisRestoRes(sparklisRes,i)
 	{
 		for (const r of sparklisRes)
 		{
-			console.log(r[0])
+			//console.log(r[0])
 			res.push(r[0]);
 		}
 	}
@@ -534,7 +589,7 @@ function sparklisRestoRes(sparklisRes,i)
 		console.error("sparklisRes is undefined",sparklisRes)
 	}
 	//pb format
-	console.log(res)
+	//console.log(res)
 	res = res.filter( (ele,pos)=>res.indexOf(ele) === pos);
 	res = res[0]?res:[];
 
@@ -589,7 +644,7 @@ function maxScore(NatACNRes, QRes)
 	{
 		nb = NatACNRes.columns.length;
 	}
-	console.log(NatACNRes, QRes, nb)
+	//console.log(NatACNRes, QRes, nb)
 	let maxScore = {"recall" : 0, "precision": 0, "F1score": 0};
 	const Aqa = sparklisRestoRes(QRes)
 	for (let i = 0; i < nb; i++)

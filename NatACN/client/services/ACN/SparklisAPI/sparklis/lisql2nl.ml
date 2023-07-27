@@ -46,7 +46,7 @@ let config_show_datatypes = new Config.boolean_input ~key:"show_datatypes" ~inpu
   
 (* NL generation from focus *)
 
-type word =
+type endWord =
   [ `Thing
   | `Relation
   | `Entity of Rdf.uri * string
@@ -60,9 +60,9 @@ type word =
   | `Op of string
   | `Undefined
   | `FocusName
-  | `FocusSpan of Lisql.increment (* increment in which is used this FocusSpan word *) ]
+  | `FocusSpan of Lisql.increment (* increment in which is used this FocusSpan endWord *) ]
 
-let word_text_content grammar : word -> string = function
+let word_text_content grammar : endWord -> string = function
   | `Thing -> grammar#thing
   | `Relation -> grammar#relation
   | `Entity (uri,s) -> s
@@ -79,13 +79,13 @@ let word_text_content grammar : word -> string = function
   | `FocusName -> "thing"
 
 type ng_label =
-  [ `Word of word
+  [ `Word of endWord
   | `Expr of annot elt_expr
   | `Ref of Lisql.id
-  | `Gen of ng_label * word
-  | `Of of word * ng_label
-  | `AggregNoun of word * ng_label
-  | `AggregAdjective of word * ng_label
+  | `Gen of ng_label * endWord
+  | `Of of endWord * ng_label
+  | `AggregNoun of endWord * ng_label
+  | `AggregAdjective of endWord * ng_label
   | `Hierarchy of ng_label
   | `Nth of int * ng_label ]
     
@@ -105,12 +105,12 @@ type s =
   | `Focus of annot * s ]
 and np =
   [ `Void
-  | `PN of word * rel
+  | `PN of endWord * rel
   | `This
   | `TheFactThat of s
-  | `Label of ng_label * word option
+  | `Label of ng_label * endWord option
   | `Qu of qu * adj * ng
-  | `QuOneOf of qu * word list
+  | `QuOneOf of qu * endWord list
   | `Expr of adj * Grammar.func_syntax * np list * rel
   | `And of np list
   | `Or of np list
@@ -119,30 +119,30 @@ and np =
   | `Not of np
   | `Focus of annot * np ]
 and ng =
-  [ `That of word * rel
+  [ `That of endWord * rel
   | `LabelThat of ng_label * rel
-  | `OfThat of word * np * rel
+  | `OfThat of endWord * np * rel
   | `Aggreg of bool * ng_aggreg * ng (* the bool indicates suspension *)
   | `Focus of annot * ng ]
 and qu = [ `A | `Any of bool | `The | `Every | `Each | `All | `One | `No of bool ]
 and adj =
   [ `Nil
-  | `Order of word
+  | `Order of endWord
   | `Optional of bool * adj
-  | `Adj of adj * word ]
+  | `Adj of adj * endWord ]
 and ng_aggreg =
-  [ `AdjThat of word * rel
-  | `NounThatOf of word * rel ]
+  [ `AdjThat of endWord * rel
+  | `NounThatOf of endWord * rel ]
 and rel =
   [ `Nil
   | `That of vp
   | `ThatS of s
   | `Whose of ng * vp
-  | `PrepWhich of word * s
-  | `AtWhichNoun of word * s
+  | `PrepWhich of endWord * s
+  | `AtWhichNoun of endWord * s
   (*  | `Of of np *)
   | `PP of pp list
-  | `Ing of word * np * pp list
+  | `Ing of endWord * np * pp list
   | `InWhich of s
   | `And of rel list
   | `Or of rel list
@@ -154,15 +154,15 @@ and rel =
 and vp =
   [ `IsNP of np * pp list
   | `IsPP of pp
-  | `IsTheNounCP of word * cp
-  | `IsAdjCP of word * cp
+  | `IsTheNounCP of endWord * cp
+  | `IsAdjCP of endWord * cp
   | `IsInWhich of s
-  | `HasProp of word * np * pp list
-  | `HasPropCP of word * cp
+  | `HasProp of endWord * np * pp list
+  | `HasPropCP of endWord * cp
   | `Has of np * pp list
   | `HasCP of cp
-  | `VT of word * np * pp list
-  | `VT_CP of word * cp
+  | `VT of endWord * np * pp list
+  | `VT_CP of endWord * cp
   | `Subject of np * vp (* np is the subject of vp *)
   | `And of vp list
   | `Or of vp list (* the optional int indicates that the disjunction is in the context of the i-th element *)
@@ -182,10 +182,10 @@ and cp =
   | `Focus of annot * cp ]
 and pp =
   [ `Bare of np
-  | `Prep of word * np
-  | `AtNoun of word * np
+  | `Prep of endWord * np
+  | `AtNoun of endWord * np
   | `At of np
-  | `PrepBin of word * np * word * np ]
+  | `PrepBin of endWord * np * endWord * np ]
 
 let top_adj : adj = `Nil
 let top_rel : rel = `Nil
@@ -193,9 +193,9 @@ let top_np : np = `Qu (`A, `Nil, `That (`Thing, top_rel))
 let top_expr : np = `PN (`Undefined, top_rel)
 let top_s : s = `Return top_np
 
-let focus_span (incr : Lisql.increment) : word = `FocusSpan incr
+let focus_span (incr : Lisql.increment) : endWord = `FocusSpan incr
 let focus_span_np (incr : Lisql.increment) : np = `PN (`FocusSpan incr, top_rel)
-let focus_name : word = `FocusName
+let focus_name : endWord = `FocusName
 let focus_name_ng : ng = `That (`FocusName, top_rel)
 let undefined_np : np = `PN (`Undefined, top_rel)
 
@@ -773,21 +773,21 @@ let rec vp_of_elt_p1 grammar ~id_labelling : annot elt_p1 -> vp = function
   | Pred (annot,arg,pred,cp) -> `Focus (annot, nl_vp_of_arg_pred grammar ~id_labelling arg pred cp)
   | Type (annot,c) -> `Focus (annot, `IsNP (`Qu (`A, `Nil, `That (word_of_class c, top_rel)), []))
   | Rel (annot,p,Fwd,np) ->
-    let word, synt = word_syntagm_of_property grammar p in
+    let endWord, synt = word_syntagm_of_property grammar p in
     let np = np_of_elt_s1 grammar ~id_labelling np in
     ( match synt with
-    | `Noun -> `Focus (annot, `HasProp (word, np, []))
-    | `InvNoun -> `Focus (annot, `IsNP (`Qu (`The, `Nil, `OfThat (word, np, top_rel)), []))
-    | `TransVerb -> `Focus (annot, `VT (word, np, []))
-    | `TransAdj -> `Focus (annot, `IsPP (`Prep (word, np))) )
+    | `Noun -> `Focus (annot, `HasProp (endWord, np, []))
+    | `InvNoun -> `Focus (annot, `IsNP (`Qu (`The, `Nil, `OfThat (endWord, np, top_rel)), []))
+    | `TransVerb -> `Focus (annot, `VT (endWord, np, []))
+    | `TransAdj -> `Focus (annot, `IsPP (`Prep (endWord, np))) )
   | Rel (annot,p,Bwd,np) ->
-    let word, synt = word_syntagm_of_property grammar p in
+    let endWord, synt = word_syntagm_of_property grammar p in
     let np = np_of_elt_s1 grammar ~id_labelling np in
     ( match synt with
-    | `Noun -> `Focus (annot, `IsNP (`Qu (`The, `Nil, `OfThat (word, np, top_rel)), []))
-    | `InvNoun -> `Focus (annot, `HasProp (word, np, []))
-    | `TransVerb -> `Focus (annot, `Subject (np, `VT (word, `Void, [])))
-    | `TransAdj -> `Focus (annot, `Subject (np, `IsPP (`Prep (word, `Void)))) )
+    | `Noun -> `Focus (annot, `IsNP (`Qu (`The, `Nil, `OfThat (endWord, np, top_rel)), []))
+    | `InvNoun -> `Focus (annot, `HasProp (endWord, np, []))
+    | `TransVerb -> `Focus (annot, `Subject (np, `VT (endWord, `Void, [])))
+    | `TransAdj -> `Focus (annot, `Subject (np, `IsPP (`Prep (endWord, `Void)))) )
   | Hier (annot, id, pred, args, argo, np) -> (* TODO: render pred, args, argo *)
      `Focus (annot, `IsPP (`Prep (`Op grammar#in_, np_of_elt_s1 grammar ~id_labelling np)))
   | Sim (annot,np,pred,args,argo,rank) ->
@@ -933,42 +933,42 @@ and s_of_elt_s grammar ~id_labelling : annot elt_s -> s = function
   | Seq (annot,lr) ->
      `Focus (annot, `Seq (List.map (s_of_elt_s grammar ~id_labelling) lr))
 and nl_vp_of_arg_pred grammar ~id_labelling arg pred cp =
-  let word, synt = word_syntagm_of_pred grammar pred in
+  let endWord, synt = word_syntagm_of_pred grammar pred in
   match arg with
-  | S -> nl_vp_of_S_pred grammar ~id_labelling ~word ~synt cp
+  | S -> nl_vp_of_S_pred grammar ~id_labelling ~endWord ~synt cp
   | P -> raise TODO
-  | O -> nl_vp_of_O_pred grammar ~id_labelling ~word ~synt cp
-  | Q q -> nl_vp_of_Q_pred grammar ~id_labelling q ~word ~synt cp
-and nl_vp_of_S_pred grammar ~id_labelling ~word ~synt cp =
+  | O -> nl_vp_of_O_pred grammar ~id_labelling ~endWord ~synt cp
+  | Q q -> nl_vp_of_Q_pred grammar ~id_labelling q ~endWord ~synt cp
+and nl_vp_of_S_pred grammar ~id_labelling ~endWord ~synt cp =
   match synt with
-  | `Noun -> `HasPropCP (word, cp_of_elt_sn grammar ~id_labelling cp)
-  | `InvNoun -> `IsTheNounCP (word, cp_of_elt_sn grammar ~id_labelling ~inv:true cp)
-  | `TransVerb -> `VT_CP (word, cp_of_elt_sn grammar ~id_labelling cp)
-  | `TransAdj -> `IsAdjCP (word, cp_of_elt_sn grammar ~id_labelling cp)
-and nl_vp_of_O_pred grammar ~id_labelling ~word ~synt cp =
+  | `Noun -> `HasPropCP (endWord, cp_of_elt_sn grammar ~id_labelling cp)
+  | `InvNoun -> `IsTheNounCP (endWord, cp_of_elt_sn grammar ~id_labelling ~inv:true cp)
+  | `TransVerb -> `VT_CP (endWord, cp_of_elt_sn grammar ~id_labelling cp)
+  | `TransAdj -> `IsAdjCP (endWord, cp_of_elt_sn grammar ~id_labelling cp)
+and nl_vp_of_O_pred grammar ~id_labelling ~endWord ~synt cp =
   match synt with
-  | `Noun -> `IsTheNounCP (word, cp_of_elt_sn grammar ~id_labelling cp)
-  | `InvNoun -> `HasPropCP (word, cp_of_elt_sn grammar ~id_labelling ~inv:true cp)
-  | `TransVerb -> nl_is (nl_something (`ThatS (s_of_elt_sn grammar ~id_labelling ~word ~synt cp)))
-  | `TransAdj -> nl_is (nl_something (`ThatS (s_of_elt_sn grammar ~id_labelling ~word ~synt cp)))
-and nl_vp_of_Q_pred grammar ~id_labelling q ~word ~synt cp =
+  | `Noun -> `IsTheNounCP (endWord, cp_of_elt_sn grammar ~id_labelling cp)
+  | `InvNoun -> `HasPropCP (endWord, cp_of_elt_sn grammar ~id_labelling ~inv:true cp)
+  | `TransVerb -> nl_is (nl_something (`ThatS (s_of_elt_sn grammar ~id_labelling ~endWord ~synt cp)))
+  | `TransAdj -> nl_is (nl_something (`ThatS (s_of_elt_sn grammar ~id_labelling ~endWord ~synt cp)))
+and nl_vp_of_Q_pred grammar ~id_labelling q ~endWord ~synt cp =
   let word_q, synt_q = word_syntagm_of_arg_uri grammar q in
   match synt_q with
-  | `Noun -> nl_is (nl_something (`AtWhichNoun (word_q, s_of_elt_sn grammar ~id_labelling ~word ~synt cp)))
-  | `TransAdj -> nl_is (nl_something (`PrepWhich (word_q, s_of_elt_sn grammar ~id_labelling ~word ~synt cp)))
-  (*  | `InvNoun -> `HasProp (word_q, X (`TheFactThat (s_of_elt_sn grammar ~id_labelling ~word ~synt cp)), []) *)
-  (*  | `TransVerb -> nl_is (something (X (`ThatS (X (`Truth (X (`TheFactThat (s_of_elt_sn grammar ~id_labelling ~word ~synt cp)), X (`VT_CP (word_q, X `Nil)))))))) *)
-and s_of_elt_sn grammar ~id_labelling ~word ~synt : annot elt_sn -> s = function
+  | `Noun -> nl_is (nl_something (`AtWhichNoun (word_q, s_of_elt_sn grammar ~id_labelling ~endWord ~synt cp)))
+  | `TransAdj -> nl_is (nl_something (`PrepWhich (word_q, s_of_elt_sn grammar ~id_labelling ~endWord ~synt cp)))
+  (*  | `InvNoun -> `HasProp (word_q, X (`TheFactThat (s_of_elt_sn grammar ~id_labelling ~endWord ~synt cp)), []) *)
+  (*  | `TransVerb -> nl_is (something (X (`ThatS (X (`Truth (X (`TheFactThat (s_of_elt_sn grammar ~id_labelling ~endWord ~synt cp)), X (`VT_CP (word_q, X `Nil)))))))) *)
+and s_of_elt_sn grammar ~id_labelling ~endWord ~synt : annot elt_sn -> s = function
   | CNil annot -> (* missing subject *)
-     `Truth (nl_something `Nil, nl_vp_of_S_pred grammar ~id_labelling ~word ~synt (CNil annot))
+     `Truth (nl_something `Nil, nl_vp_of_S_pred grammar ~id_labelling ~endWord ~synt (CNil annot))
   | CCons (annot, arg, np, cp) ->
      if arg = S
-     then `Focus (annot, `Truth (np_of_elt_s1 grammar ~id_labelling np, nl_vp_of_S_pred grammar ~id_labelling ~word ~synt cp))
-     else `Focus (annot, `PP (pp_of_arg_elt_np grammar ~id_labelling arg np, s_of_elt_sn grammar ~id_labelling ~word ~synt cp))
-  | CAnd (annot,lr) -> `Focus (annot, `And (List.map (s_of_elt_sn grammar ~id_labelling ~word ~synt) lr))
-  | COr (annot,lr) -> `Focus (annot, `Or (List.map (s_of_elt_sn grammar ~id_labelling ~word ~synt) lr))
-  | CMaybe (annot,x) -> `Focus (annot, `Maybe (s_of_elt_sn grammar ~id_labelling ~word ~synt x))
-  | CNot (annot,x) -> `Focus (annot, `Not (s_of_elt_sn grammar ~id_labelling ~word ~synt x))
+     then `Focus (annot, `Truth (np_of_elt_s1 grammar ~id_labelling np, nl_vp_of_S_pred grammar ~id_labelling ~endWord ~synt cp))
+     else `Focus (annot, `PP (pp_of_arg_elt_np grammar ~id_labelling arg np, s_of_elt_sn grammar ~id_labelling ~endWord ~synt cp))
+  | CAnd (annot,lr) -> `Focus (annot, `And (List.map (s_of_elt_sn grammar ~id_labelling ~endWord ~synt) lr))
+  | COr (annot,lr) -> `Focus (annot, `Or (List.map (s_of_elt_sn grammar ~id_labelling ~endWord ~synt) lr))
+  | CMaybe (annot,x) -> `Focus (annot, `Maybe (s_of_elt_sn grammar ~id_labelling ~endWord ~synt x))
+  | CNot (annot,x) -> `Focus (annot, `Not (s_of_elt_sn grammar ~id_labelling ~endWord ~synt x))
 and cp_of_elt_sn grammar ~id_labelling ?(inv = false) : annot elt_sn -> cp = function
   | CNil annot -> `Focus (annot, `Nil)
   | CCons (annot, arg, np, cp) ->
@@ -1191,7 +1191,7 @@ type xml = node list
 and node =
   | Epsilon
   | Kwd of string
-  | Word of word
+  | Word of endWord
   | Input of input_type
   | Selection of xml (* [xml] represents the selection operator *)
   | Suffix of xml * string (* suffix: eg. !, 's *)
@@ -1603,21 +1603,21 @@ let xml_of_incr grammar ~id_labelling (focus : focus) (incr : increment) : xml =
      xml_incr_coordinate
        grammar focus
        (Kwd grammar#relative_that ::
-	  let word, synt = word_syntagm_of_property grammar p in
+	  let endWord, synt = word_syntagm_of_property grammar p in
 	  (match synt with
-	   | `Noun -> Kwd grammar#has :: xml_a_an grammar [Word word]
-	   | `InvNoun -> Kwd grammar#is :: Kwd grammar#the :: Word word :: Word (`Op grammar#of_) :: xml_ellipsis
-	   | `TransVerb -> Word word :: xml_ellipsis
-	   | `TransAdj -> Kwd grammar#is :: Word word :: xml_ellipsis))
+	   | `Noun -> Kwd grammar#has :: xml_a_an grammar [Word endWord]
+	   | `InvNoun -> Kwd grammar#is :: Kwd grammar#the :: Word endWord :: Word (`Op grammar#of_) :: xml_ellipsis
+	   | `TransVerb -> Word endWord :: xml_ellipsis
+	   | `TransAdj -> Kwd grammar#is :: Word endWord :: xml_ellipsis))
   | IncrRel (p,Lisql.Bwd) ->
      xml_incr_coordinate grammar focus
       (Kwd grammar#relative_that ::
-       let word, synt = word_syntagm_of_property grammar p in
+       let endWord, synt = word_syntagm_of_property grammar p in
        (match synt with
-	 | `Noun -> Kwd grammar#is :: Kwd grammar#the :: Word word :: Word (`Op grammar#of_) :: xml_ellipsis
-	 | `InvNoun -> Kwd grammar#has :: xml_a_an grammar [Word word]
-	 | `TransVerb -> xml_ellipsis @ Word word :: []
-	 | `TransAdj -> xml_ellipsis @ Kwd grammar#is :: Word word :: []))
+	 | `Noun -> Kwd grammar#is :: Kwd grammar#the :: Word endWord :: Word (`Op grammar#of_) :: xml_ellipsis
+	 | `InvNoun -> Kwd grammar#has :: xml_a_an grammar [Word endWord]
+	 | `TransVerb -> xml_ellipsis @ Word endWord :: []
+	 | `TransAdj -> xml_ellipsis @ Kwd grammar#is :: Word endWord :: []))
   | IncrLatLong _ll ->
      xml_incr_coordinate grammar focus
        (Kwd grammar#relative_that :: Kwd grammar#has :: xml_a_an grammar [Word (`Op grammar#geolocation)])

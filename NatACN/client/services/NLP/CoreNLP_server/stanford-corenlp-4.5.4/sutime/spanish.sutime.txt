@@ -24,10 +24,10 @@
   $MONTH_NAME = "/enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre/";
 
   # full date
-  { (/el/? (/[0-9]{1,2}/) /de/ ($MONTH_NAME) /de/ (/[0-9]{4}/)) => IsoDate($3[0].numcompvalue, MONTH_MAP[$2[0].word], $1[0].numcompvalue) }
+  { (/el/? (/[0-9]{1,2}/) /de/ ($MONTH_NAME) /de/ (/[0-9]{4}/)) => IsoDate($3[0].numcompvalue, MONTH_MAP[$2[0].endWord], $1[0].numcompvalue) }
 
   # day and month
-  { (/el/? (/[0-9]{1,2}/) /de/ ($MONTH_NAME)) => IsoDate(NIL, MONTH_MAP[$2[0].word], $1[0].numcompvalue) }
+  { (/el/? (/[0-9]{1,2}/) /de/ ($MONTH_NAME)) => IsoDate(NIL, MONTH_MAP[$2[0].endWord], $1[0].numcompvalue) }
 
   # month and year
   { (($MONTH_NAME) /de/ (/[0-9]{4}/)) => IsoDate($2[0].numcompvalue, MONTH_MAP[$1[0].numcompvalue], NIL) }
