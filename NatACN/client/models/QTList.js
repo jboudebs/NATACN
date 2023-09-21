@@ -22,6 +22,7 @@ class QTList
 		{
 			let sqt = new QT(qt);
 			
+			
 			this._list.push(sqt);
 			this.length++;
 		}

@@ -5,6 +5,7 @@ import { NLPExtraction } from "../../client/models/NLPExtraction.js";
 import { CoreNLP } from "../../client/services/NLP/CoreNLP.js";
 import { ConceptNet } from "../../client/services/NLP/ConceptNet.js";
 import { SpaCySimilarity } from "../../client/services/NLP/SpaCySimilarity.js";
+import { sleep } from "../../client/models/Utils.js";
 //import { SpaCy } from "/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/client/models/Utils.js";
 //import { Doc } from '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/client/services/NLP/SpaCy/src/index.js'
 
@@ -17,8 +18,54 @@ try
 	//INIT
 	console.log("natACN calcul")
 	sparklisAPI = new SparklisAPI();
-	await SparklisAPI._waitForSparklis();
+	await sparklisAPI.init();
 	console.log(sparklis);
+	
+	//handler alert windows
+	(function() {
+		var _old_alert = window.alert;
+		window.alert = function() {
+			console.error('ALERT HANDLED')
+			return true
+		};
+		window.confirm = function() {
+			console.error('CONFIRM HANDLED');
+			return true;
+		};
+	})();
+	
+	sparklis_extension.hookResults = function(res)
+	{
+		if(res.includes("Rate limit exceeded"))
+		{
+			console.error("CATCHED")
+		}
+		console.log(res)
+		return res;
+	}
+	
+	// var last_time = 0;
+	//
+	// sparklis_extension.hookSparql =
+	// 	async function(sparql) {
+	// 		//Too many request Handle
+	// 		let time_now = Date.now()
+	// 		let i = 0;
+	// 		while(time_now - last_time<1010 && i<11)
+	// 		{
+	// 			i++;
+	// 			time_now = Date.now();
+	// 			console.error("WAIIIIIIIIIIIT")
+	// 			await sleep(100);
+	// 			console.error("WAIIIIIIIIIIITED")
+	// 			//console.error(time_now, ConceptNet.last_time);
+	// 		}
+	//
+	// 		last_time = time_now;
+	// 		//console.log(time_now, ConceptNet.last_time);
+	//
+	// 		return sparql
+	// 	};
 
 	await sparklisAPI.init();
 	natACN = new NatACN(sparklisAPI);
@@ -28,7 +75,7 @@ try
 	//await sparklisAPI.changeEndpoint("https://query.wikidata.org/sparql", home_place)
 	//DB
 	//TEST UNIQUE QUESTION
-	let question = "Where was Goethe’s unmarried partner born ?";
+	let question = "What are the professions of John Lennon’s sons?";
 	//
 	//tests
 	//console.log(initial_place)
@@ -52,21 +99,10 @@ try
 	//SpaCySimilarity.main();
 	//TEST SPACY SIM
 
-	//handler alert windows
-	(function() {
-		var _old_alert = window.alert;
-		window.alert = function() {
-			console.error('ALERT HANDLED')
-			return true
-		};
-		window.confirm = function() {
-			console.error('CONFIRM HANDLED');
-			return true;
-		};
-	})();
+	
 
 	//reprise
-	await getNatACN(0);
+	await getNatACN(4);
 
 
 
@@ -100,6 +136,7 @@ async function evalQuery(query)
 	{
 		console.error(e);
 		res = [];
+		return res
 	}
 	console.log("res client json", res);
 	return res;
@@ -411,7 +448,7 @@ function postNatACN(data)
 async function resetNatACN()
 {
 
-	await sparklisAPI.home();
+	await sparklisAPI.resetClass();
 	NLPExtraction.resetClass();
 	CoreNLP.resetClass();
 	//SpaCy.resetClass();
@@ -455,12 +492,30 @@ function getNatACN(id)
 			let launch = true
 			const start = Date.now();
 			const res = launch?await natACN.natNavigation(question, home_place, coreNLP):null;
+			console.dir(res);
 			const runtime = Date.now() - start;//millis
 			launch?res.bestNavigation?bestRes = await sparklisAPI.getResults(res.bestNavigation.place):null:null;
 			launch?res.bestNavigation?natACNquery = await res.bestNavigation.place.sparql():null:null;
+			const stats_sparklis = {
+				"home_count" : SparklisAPI.home_count,
+				"changeEndpoint_count" : SparklisAPI.changeEndpoint_count,
+				"endpoint_count" : SparklisAPI.endpoint_count,
+				"currentPlace_count" : SparklisAPI.currentPlace_count,
+				"setCurrentPlace_count" : SparklisAPI.setCurrentPlace_count,
+				"termLabels_count" : SparklisAPI.termLabels_count,
+				"classLabels_count" : SparklisAPI.classLabels_count,
+				"propertyLabels_count" : SparklisAPI.propertyLabels_count,
+				"sync_count" : SparklisAPI.sync_count,
+				"info_count" : SparklisAPI.info_count,
+				"evalSparql_count" : SparklisAPI.evalSparql_count,
+				"back_count" : SparklisAPI.back_count,
+				"onEvaluated_count" : SparklisAPI.onEvaluated_count,
+				"results_count" : SparklisAPI.results_count
+				
+			}
 			//console.log(bestRes);
-			await resetNatACN()
-
+			await resetNatACN();
+			console.error(stats_sparklis);
 
 			//Comparaison des réponses entre ref et res
 			const score = scoring(sparklisRestoRes(answer),sparklisRestoRes(bestRes));
@@ -485,7 +540,8 @@ function getNatACN(id)
 						"extracted_kw" : res.extracted_kw.toString()
 					}:{"instrTree" : res.instrTree.toString()}:undefined,
 				"runtime" : runtime,
-				"nb_call" : NatACN.appel
+				"nb_call" : NatACN.appel,
+				"stats_Sparklis" : stats_sparklis
 			}
 			console.log(data);
 

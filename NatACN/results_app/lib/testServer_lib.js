@@ -2,6 +2,7 @@ const fs = require("fs");
 const editJsonFile = require("edit-json-file");
 const {deepParseJson} = require("deep-parse-json");
 const path = require('path');
+const axios = require('axios');
 //const StanfordCoreNLPClient=require('corenlp-client');
 
 //const client=new StanfordCoreNLPClient("http://localhost:9000","tokenize,ssplit,pos,parse,lemma");
@@ -17,12 +18,15 @@ let length = 0;
 const currentDir = path.resolve();
 console.log(currentDir)
 
-const test_name = "better-and-stop-path-question-24_07";
+const test_name = "21_09-better123StopOrderedTree";
 console.log(test_name);
-const inputQALD = './data/qald_10-simple-questions.json';
-const outputNatACN = './results/juillet/'+test_name+'-res.json';
-const scoreFile ='./results/juillet/'+test_name+'-score.json';
-const summaryRes = './results/juillet/'+test_name+'-summary.csv';
+
+const resDir = './results/septembre/'
+const inputQALD = './data/qald_10-pure_path_questions.json';
+const outputNatACN = resDir+test_name+'-res.json';
+const scoreFile =resDir+test_name+'-score.json';
+const summaryRes = resDir+test_name+'-summary.csv';
+const gerbil = resDir+test_name+'-gerbil.json';
 
 module.exports.getSimple =  async function getSimple(req, res)
 {
@@ -117,7 +121,8 @@ module.exports.get = async function get(req,res)
 	const qald10 = deepParseJson(fs.readFileSync(inputQALD).toString());
 	length = qald10.questions.length;
 	const qald = qald10.questions[i];
-	console.log(i, qald10.questions[i])
+	console.log( qald10.questions[i]);
+	console.log("Index :",i);
 	//const coreNLP = await client.annotate(qald.question[0].string)
 	//console.log('get',length,i, qald);
 
@@ -162,7 +167,7 @@ module.exports.score = async function score()
 module.exports.resJSON2resCSV = async function resJSON2resCSV()
 {
 	const output = deepParseJson(fs.readFileSync(outputNatACN).toString());
-	fs.writeFileSync(summaryRes, 'ID;QALD;IDS SPARQL;Keywords Extracted;instrTree.txt;instrPath;Longest QT-Path;Precision;Recall;F1-Score;Runtime;Nb Call\n', {flag: "w+"});
+	fs.writeFileSync(summaryRes, 'ID;QALD;IDS SPARQL;Keywords Extracted;instrTree.txt;instrPath;Longest QT-Path;Precision;Recall;F1-Score;Nb Call;Runtime\n', {flag: "w+"});
 
 	for (const i in output.res)
 	{
@@ -193,6 +198,61 @@ module.exports.resJSON2resCSV = async function resJSON2resCSV()
 	}
 	console.log("resJSON2resCSV Done")
 }
+
+module.exports.toGerbil = async function toGerbil()
+{
+	const output = deepParseJson(fs.readFileSync(outputNatACN).toString());
+	let questions = [];
+	for (const i in output.res)
+	{
+		const kwExtracted = output.res[i].NatACN_info?output.res[i].NatACN_info.extracted_kw?output.res[i].NatACN_info.extracted_kw:[]:[];
+		const instrPath = output.res[i].NatACN_info?output.res[i].NatACN_info.instrPath?output.res[i].NatACN_info.instrPath instanceof Array?[]:output.res[i].NatACN_info.instrPath:[]:[];
+		let query = "";
+		let answers = [];
+		console.log(instrPath.length, kwExtracted.toString(), instrPath.length >= kwExtracted.length-1)
+		if(instrPath.length <= kwExtracted.length-1)//on considère que les questions sont ratées sinon.
+		{
+			query = output.res[i].query?output.res[i].query.replaceAll('\n',' '):null;
+			answers = [await sendSPARQLRequest(query)];
+		}
+		console.log(answers)
+		const json = {
+			"id"         : output.res[i].id, "aggregation": false, "question": [{
+				"language": "en", "string": output.res[i].question
+			}], "answers": answers, "query": {
+				"sparql": query
+			}
+		}
+		questions.push(json);
+	}
+	
+	const gerbilEvalFile = JSON.stringify({
+		"dataset"     : {
+			"id": "NatACN-" + test_name
+		}, "questions": questions
+		
+	})
+	fs.writeFileSync(gerbil, gerbilEvalFile, {flag: "w+"});
+	console.log("end of constructing gerbil eval file")
+}
+
+
+// Fonction qui effectue la requête SPARQL et renvoie une promesse avec la réponse
+async function sendSPARQLRequest(query) {
+	const url = 'https://query.wikidata.org/sparql';
+	const params = {
+		query: query,
+		format: 'json',
+	};
+	
+	return axios.get(url, { params })
+		.then(response => response.data)
+		.catch(error => {
+			throw new Error('Une erreur s\'est produite lors de la requête.');
+		});
+}
+
+
 
 
 // //Rectification des scores

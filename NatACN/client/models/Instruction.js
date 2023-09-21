@@ -7,7 +7,7 @@ class Instruction
 		
 		if(typeof kw === 'string')
 		{
-			this._string = kw;
+			this._string = kw.replaceAll('\'s','').replaceAll('\'','').replaceAll('"','');
 			// if(CoreNLP._NE_fetch.includes(kw))
 			// {
 			// 	this._type = 'NE';

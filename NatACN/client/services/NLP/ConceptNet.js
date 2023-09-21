@@ -5,7 +5,7 @@ class ConceptNet
 {
 	static last_time = 0;
 	static RelatedDico = [];
-	static SynsetToAsk = ["Synonym"]//["Synonym","RelatedTo"]
+	static SynsetToAsk = ["Synonym","RelatedTo"]
 	
 	static async  _fetch(uri)
 	{

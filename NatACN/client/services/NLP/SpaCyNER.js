@@ -23,17 +23,22 @@ class SpaCyNER
 				});
 		});
 		SpaCyNER.fetch = await fetcH;
+		//SpaCyNER.fetch.map(ne=>{ne.word=ne.endWord})//fix bizarre
 	}
 	
 	static async getNE(NLQuestion)
 	{
 		//Changer les classes pour plus de flex
 		await SpaCyNER._fetch(NLQuestion)
-		SpaCyNER.NE = SpaCyNER.fetch.filter(w=>
-			(w.label!=="CARDINAL")).filter((w=>w.label!=="DATE")).filter((w=>w.label!=="ORDINAL"))//enlever les entitées nommées qui sont des nombres ou des dates
-			.map(w=>
-			{w.word = w.word.replaceAll("\"","").replace(/^the\s/g, "").replace(/'s\b/g, "");return w}); //pourquoi il reste John Lennon's ??
-		console.log("Named Entity",SpaCyNER.NE);
+		console.log(SpaCyNER.NE)
+		SpaCyNER.NE = SpaCyNER.fetch.filter(w => (w.label !== "CARDINAL" && w.label !== "DATE" && w.label !== "ORDINAL")) // enlever les entités nommées qui sont des nombres ou des dates
+			.map(w => {
+				console.log(w);
+				w.word = w.word.replaceAll("\"", "").replace(/^the\s/g, "").replace(/'s\b/gi, "").trim().replaceAll('\'s','').replaceAll('\'','').replaceAll('"','').replaceAll("’s","");
+				return w;
+			});
+		
+		console.log("Named Entity", SpaCyNER.NE);
 		//console.dir(SpaCyNER.NE)
 		return SpaCyNER.NE
 	}
