@@ -1,3 +1,5 @@
+
+
 class Constraint
 /**
  * Factory en fonction du endpoint
@@ -33,6 +35,7 @@ class WikidataConstraint
 	 */
 	async create(word)
 	{
+		console.warn(word)
 		if (word.length >= 3)
 		{
 			const constr = await sparklis.externalSearchConstr({

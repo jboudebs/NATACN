@@ -12,7 +12,7 @@ locale.getpreferredencoding = getpreferredencoding
 nlp = spacy.load("en_core_web_lg")
 
 def spaCy_Similarity(data):
-    word1 = data["endWord"]
+    word1 = data["word"]
     wordList = data["wordList"]
     print(word1, wordList)
     simList = []
@@ -30,7 +30,7 @@ CORS(app)
 def get():
     word1 = request.args.get('word1')
     wordList = request.args.get('wordList')
-    data = {"endWord": word1, "wordList": wordList}
+    data = {"word": word1, "wordList": wordList}
     return spaCy_Similarity(data)
 
 @app.route('/', methods=['POST'])

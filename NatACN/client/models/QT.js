@@ -15,6 +15,8 @@ class QT
 			this._incr = qt;
 		}
 	}
+	
+	
 
 	copy()
 	{
@@ -68,7 +70,10 @@ class QT
 	
 	setLabel(label)
 	{
-		this._label = label;
+		
+			this._label = label;
+		
+		
 	}
 	
 	getLabel()

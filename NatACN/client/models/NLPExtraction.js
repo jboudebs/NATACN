@@ -79,11 +79,13 @@ class NLPExtraction
 		//
 		//
 		//console.log("NEDEP",combinaisonsNEFirstDep,"NE",combinaisonsNE,"DEP",combinaisonsDep)
-		//NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsNEFirstDep);
-		//NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsNE);
-		//NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsDep);
+		NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsNEFirstDep);
+		//NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, [combinaisonsNEFirstDep[0]]);
+		NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsNE);
+		NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsDep);
 		//CONSTRAINTS
-		NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, NLPExtraction.combinaisons);
+		
+		//NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, NLPExtraction.combinaisons);
 		//console.log(NLPExtraction.orderedCombinaisons)
 		// }
 		// else
@@ -92,9 +94,20 @@ class NLPExtraction
 		//
 		// }
 
-
-		NLPExtraction.instrTreeI = new Tree(w => new Instruction(w), NLPExtraction.orderedCombinaisons);
-		NLPExtraction.instrTreeI.globalDeepth = this._orderedkwList.length;
+		//cas simple :
+		if(this._orderedkwList.length<3 && NLPExtraction._hasNE())
+		{
+			NLPExtraction.instrTreeI = new Tree(w => new Instruction(w), combinaisonsNE);
+			NLPExtraction.instrTreeI.globalDeepth = this._orderedkwList.length;
+		}
+		else
+		{
+			NLPExtraction.instrTreeI = new Tree(w => new Instruction(w), NLPExtraction.orderedCombinaisons);
+			NLPExtraction.instrTreeI.globalDeepth = this._orderedkwList.length;
+		}
+		
+		
+		
 		console.log("Selected combinaison in tree",NLPExtraction.instrTreeI.toString())
 		return NLPExtraction.instrTreeI
 	}
@@ -353,9 +366,9 @@ class NLPExtraction
 		this._kwList = await CoreNLP.getKeyword();
 		//console.log(this._kwList);
 		CoreNLP.enrichDependences(this._kwList);
-		//console.log(this._kwList);
+		console.log(this._kwList);
 		this._neList = await this.NETOOL.getNE(NLQuestion);
-		//console.log(this._neList,this._kwList);
+		console.log(this._neList,this._kwList);
 		NLPExtraction._clearKeywordsCoreNLP(this._kwList);
 		//fusion NE word
 		let list = this._neList.map(ne=>{ne.type="NE";return ne}).concat(this._kwList.filter(kw=>kw.type!=='NE'))

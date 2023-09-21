@@ -6,10 +6,10 @@
   $TIMEOFDAY = "/morning|afternoon|evening|night|noon|midnight|teatime|lunchtime|dinnertime|suppertime|afternoon|midday|dusk|dawn|sunup|sunrise|sundown|twilight|daybreak/";
 
   $NUM = ( [ { numcomptype:NUMBER } ] );
-  $INT = ( [ { numcomptype:NUMBER } & !{ endWord:/.*\.\d+.*/} & !{ endWord:/.*,.*/ } ] );
-  $INTORD = ( [ ({ numcomptype:NUMBER } | { numcomptype:ORDINAL }) & !{ endWord:/.*\.\d+.*/} & !{ endWord:/.*,.*/ } ] );
-  $INT1000TO3000 = ( [ $INT & !{ endWord:/\+.*/} & { numcompvalue>1000 } & { numcompvalue<3000 } ] );
-  $INT1TO31 = ( [ $INTORD & !{ endWord:/\+.*/} & { numcompvalue>=1 } & { numcompvalue<=31 } ] );
+  $INT = ( [ { numcomptype:NUMBER } & !{ word:/.*\.\d+.*/} & !{ word:/.*,.*/ } ] );
+  $INTORD = ( [ ({ numcomptype:NUMBER } | { numcomptype:ORDINAL }) & !{ word:/.*\.\d+.*/} & !{ word:/.*,.*/ } ] );
+  $INT1000TO3000 = ( [ $INT & !{ word:/\+.*/} & { numcompvalue>1000 } & { numcompvalue<3000 } ] );
+  $INT1TO31 = ( [ $INTORD & !{ word:/\+.*/} & { numcompvalue>=1 } & { numcompvalue<=31 } ] );
   $NUM_ORD = ( [ { numcomptype:ORDINAL } ] );
 
   $INT_TIMES = ( $INT /times/ | once | twice | thrice );
@@ -153,8 +153,8 @@
 	          Tag($0, "YEAR",
                 :case {
 				   $0 =~ ( /\w+teen|twenty/ [ $INT ] ) => Add(Multiply($0[0].numcompvalue, 100), $0[1].numcompvalue),
-				   $0 =~ ( /'/ /\d\d/ ) => Concat("XX", $0[1].endWord),
-				   $0 =~ ( /'\d\d/ ) => Concat("XX", $0[0].endWord.substring(1)),
+				   $0 =~ ( /'/ /\d\d/ ) => Concat("XX", $0[1].word),
+				   $0 =~ ( /'\d\d/ ) => Concat("XX", $0[0].word.substring(1)),
 				   :else => $0[0].numcompvalue
                 }
 	          ),
@@ -224,7 +224,7 @@
   $PeriodicSetRegex = CreateRegex(Keys(PERIODIC_SET))
   { pattern: ( /.*($PeriodicSetRegex)/ ),
     matchWithResults: TRUE,
-    action: Tag($0, "PeriodicSet", PERIODIC_SET[Lowercase($$0.matchResults[0].endWord.group(1))]) }
+    action: Tag($0, "PeriodicSet", PERIODIC_SET[Lowercase($$0.matchResults[0].word.group(1))]) }
 
   ########################################################################################################################
 
@@ -330,7 +330,7 @@
   { ruleType: "filter",
     over: NIL,
     // We added the end in "s" condition to avoid tagging mistakes (as with 1879) leading to non-plurals being SET
-    pattern: ( [ { temporal::IS_TIMEX_DATE } & {{ tokens[0].tag =~ /NN.*S/ }} & {{ tokens[0].endWord =~ /.+s/ }} ] ),
+    pattern: ( [ { temporal::IS_TIMEX_DATE } & {{ tokens[0].tag =~ /NN.*S/ }} & {{ tokens[0].word =~ /.+s/ }} ] ),
     result: MakePeriodicTemporalSet($0[0].temporal.value),
     // Set to TRUE to turn anything that is labeled a date but marked as plural to be a set
     active: TRUE
@@ -376,8 +376,8 @@
      pattern: ( (/(\d\d)(\d\d)([A-Z])/) ),
      matchWithResults: TRUE,
      result: { type: "Temporal",
-               value: IsoTime($$1.matchResults[0].endWord.group(1), $$1.matchResults[0].endWord.group(2), NIL).setTimeZone(
-                  MILITARY_TIME_ZONE_MAP[$$1.matchResults[0].endWord.group(3)] ) },
+               value: IsoTime($$1.matchResults[0].word.group(1), $$1.matchResults[0].word.group(2), NIL).setTimeZone(
+                  MILITARY_TIME_ZONE_MAP[$$1.matchResults[0].word.group(3)] ) },
      // Change to TRUE to support military time zones
      active: FALSE
    }
@@ -407,18 +407,18 @@
 
   # Generic decade
   { ( /the/? ( /\w+teen|twenty/ /$Decades/ ) )
-       => IsoDate( Concat( Format("%02d", $0[0].numcompvalue), DECADES_MAP[Lowercase($0[1].endWord)]), NIL, NIL)
+       => IsoDate( Concat( Format("%02d", $0[0].numcompvalue), DECADES_MAP[Lowercase($0[1].word)]), NIL, NIL)
   }
   { ( /the/? ( /$Decades/ ) )
-       => IsoDate( Concat("XX", DECADES_MAP[Lowercase($0[0].endWord)]) , NIL, NIL)
+       => IsoDate( Concat("XX", DECADES_MAP[Lowercase($0[0].word)]) , NIL, NIL)
   }
   { (/the/?  /'|’/ /\d\d/ ) => IsoDate( Format( "XX%02d", $0[-1].numcompvalue), NIL, NIL) }
-  { (/the/?  /'/ /\d0s/ | /the/? /'\d0s/ ) => IsoDate( Replace($0[-1].endWord, /'?(\d)0s/, "XX$1X"), NIL, NIL) }
-  { (/the/?  /’/ /\d0s/ | /the/? /’\d0s/ ) => IsoDate( Replace($0[-1].endWord, /’?(\d)0s/, "XX$1X"), NIL, NIL) }
-  { (/the/? /\d\d\d0s/) => IsoDate( Replace($0[-1].endWord, /(\d\d\d)0s/, "$1X"), NIL, NIL) }
-  { (/the/? /\d\d00s/) => IsoDate( Replace($0[-1].endWord, /(\d\d)00s/, "$1XX"), NIL, NIL) }
-  { (/the/? /mid-\d\d\d0s/) => IsoDate( Replace($0[-1].endWord, /mid-(\d\d\d)0s/, "$1X"), NIL, NIL) }
-  { (/the/? /mid-\d\d00s/) => IsoDate( Replace($0[-1].endWord, /mid-(\d\d)00s/, "$1XX"), NIL, NIL) }
+  { (/the/?  /'/ /\d0s/ | /the/? /'\d0s/ ) => IsoDate( Replace($0[-1].word, /'?(\d)0s/, "XX$1X"), NIL, NIL) }
+  { (/the/?  /’/ /\d0s/ | /the/? /’\d0s/ ) => IsoDate( Replace($0[-1].word, /’?(\d)0s/, "XX$1X"), NIL, NIL) }
+  { (/the/? /\d\d\d0s/) => IsoDate( Replace($0[-1].word, /(\d\d\d)0s/, "$1X"), NIL, NIL) }
+  { (/the/? /\d\d00s/) => IsoDate( Replace($0[-1].word, /(\d\d)00s/, "$1XX"), NIL, NIL) }
+  { (/the/? /mid-\d\d\d0s/) => IsoDate( Replace($0[-1].word, /mid-(\d\d\d)0s/, "$1X"), NIL, NIL) }
+  { (/the/? /mid-\d\d00s/) => IsoDate( Replace($0[-1].word, /mid-(\d\d)00s/, "$1XX"), NIL, NIL) }
 
   # some century expressions
   { ( (/every/ $NUM_ORD) (/centurys?|ies/) ) =>
@@ -432,13 +432,13 @@
   {   pattern: ( /the/? (/($BasicOrdTerm)-century/) (/b\.?c\.?/) ),
       matchWithResults: TRUE,
 	  result: IsoDate(
-			Format("-%02dXX", Subtract(BASIC_ORDINAL_MAP[Lowercase($$1.matchResults[0].endWord.group(1))], 1)),
+			Format("-%02dXX", Subtract(BASIC_ORDINAL_MAP[Lowercase($$1.matchResults[0].word.group(1))], 1)),
 			NIL, NIL)
   }
   {   pattern: ( /the/? (/(\d+)(st|nd|rd|th)-century/) (/b\.?c\.?/) ),
       matchWithResults: TRUE,
 	  result: IsoDate(
-			Format("-%02dXX", Subtract( { type: "NUMBER", value: $$1.matchResults[0].endWord.group(1) }, 1)),
+			Format("-%02dXX", Subtract( { type: "NUMBER", value: $$1.matchResults[0].word.group(1) }, 1)),
 			NIL, NIL)
   }
 
@@ -451,13 +451,13 @@
   {   pattern: ( /the/? (/($BasicOrdTerm)-century/) (/a\.?d\.?/)? ),
       matchWithResults: TRUE,
 	  result: IsoDate(
-			Format("%02dXX", Subtract(BASIC_ORDINAL_MAP[Lowercase($$1.matchResults[0].endWord.group(1))], 1)),
+			Format("%02dXX", Subtract(BASIC_ORDINAL_MAP[Lowercase($$1.matchResults[0].word.group(1))], 1)),
 			NIL, NIL)
   }
   {   pattern: ( /the/? (/(\d+)(st|nd|rd|th)-century/) (/a\.?d\.?/)? ),
       matchWithResults: TRUE,
 	  result: IsoDate(
-			Format("%02dXX", Subtract( { type: "NUMBER", value: $$1.matchResults[0].endWord.group(1) }, 1)),
+			Format("%02dXX", Subtract( { type: "NUMBER", value: $$1.matchResults[0].word.group(1) }, 1)),
 			NIL, NIL)
   }
 
@@ -476,8 +476,8 @@
 #    pattern: ( (?m){1,3} /((bi|semi)\s*-?\s*)?((annual|year|month|week|dai|hour|night|quarter)ly|annual)/ ),
     pattern: ( (?m){1,3} /((bi|semi)\s*-?\s*)?($PeriodicSetRegex)/ ),
     result: :case {
-			    $0[0].endWord =~ /bi.*/ => TemporalCompose(MULTIPLY, GetTag($0[-1], "PeriodicSet"), 2),
-			    $0[0].endWord =~ /semi.*/ => TemporalCompose(DIVIDE, GetTag($0[-1], "PeriodicSet"), 2),
+			    $0[0].word =~ /bi.*/ => TemporalCompose(MULTIPLY, GetTag($0[-1], "PeriodicSet"), 2),
+			    $0[0].word =~ /semi.*/ => TemporalCompose(DIVIDE, GetTag($0[-1], "PeriodicSet"), 2),
 			    :else => GetTag($0[-1], "PeriodicSet") }
   }
 
@@ -491,9 +491,9 @@
   { ( /week|business/ /days?/ ) => WEEKDAY }
 
   # Now a few time expressions
-  { ( (/\d\d\d\d/) /hours?/? (/universal|zulu/ | /[a-z]+/ /standard|daylight/) /time/ ) => IsoTime($1[0].endWord, NIL, NIL) }
+  { ( (/\d\d\d\d/) /hours?/? (/universal|zulu/ | /[a-z]+/ /standard|daylight/) /time/ ) => IsoTime($1[0].word, NIL, NIL) }
   { ( (/\d\d?/) /hours?/ (?: (/\d\d?/) /minutes?/?)? (/universal|zulu/ | /[a-z]+/ /standard|daylight/) /time/  )
-     =>  IsoTime($1[0].endWord, $1[0].endWord, NIL) }
+     =>  IsoTime($1[0].word, $1[0].word, NIL) }
   { text: /(\d\d):?(\d\d)(:?(\d\d))?\s*h(ou)rs?/ => IsoTime($1,$2,$3) }
   { text: /(\d\d?)(:?(\d\d))(:\d\d)?a\.?m\.?/ => TemporalCompose(INTERSECT, IsoTime($1,$3,$4), AM) }
   { text: /(\d\d?)(:?(\d\d))(:\d\d)?p\.?m\.?/ => TemporalCompose(INTERSECT, IsoTime($1,$3,$4), PM) }
@@ -506,14 +506,14 @@
   # Year
   { ( /the/? /year/ ($POSSIBLE_YEAR) )
       => :case {
-            $1[0].endWord =~ /'.*/ => IsoDate( GetTag($1[0], "YEAR"), NIL, NIL ),
+            $1[0].word =~ /'.*/ => IsoDate( GetTag($1[0], "YEAR"), NIL, NIL ),
             :else => IsoDate( GetTag($1[0], "YEAR"), NIL, NIL, GetTag($1[0], "YEAR_ERA"), TRUE)
          }
   }
 
   { ( ($POSSIBLE_YEAR) & [ { ner::IS_NIL } | { ner:DATE } | { ner:O } | { ner:NUMBER } ]+ )
       => :case {
-            $1[0].endWord =~ /'.*/ => IsoDate( GetTag($1[0], "YEAR"), NIL, NIL ),
+            $1[0].word =~ /'.*/ => IsoDate( GetTag($1[0], "YEAR"), NIL, NIL ),
             :else => IsoDate( GetTag($1[0], "YEAR"), NIL, NIL, GetTag($1[0], "YEAR_ERA"), TRUE)
          }
   }
@@ -596,7 +596,7 @@
   { pattern: ( (?: /the/ /past|next|following|coming|last|first|final/ | /a|an/ )? (/few/) ([ { temporal::IS_TIME_UNIT } ]) ),
  	result: InexactDuration ( Duration( NIL, NIL, $2 ) ) }
 
-  { pattern: ( /the/ [ { tag:JJ } ]? ([ { temporal::IS_TIME_UNIT } & { endWord:/.*s/ } ]) ),
+  { pattern: ( /the/ [ { tag:JJ } ]? ([ { temporal::IS_TIME_UNIT } & { word:/.*s/ } ]) ),
     priority: -1,
     result:	InexactDuration( $1[0].temporal.value ) }
 
@@ -620,12 +620,12 @@
   {
     matchWithResults: TRUE,
     pattern: ((/$FiscalYearQuarterTerm/) (FY)? (/(FY)?([0-9]{4})/)),
-    result:  TemporalCompose(INTERSECT, IsoDate(Subtract({type: "NUMBER", value: $$3.matchResults[0].endWord.group(2)}, FISCAL_YEAR_QUARTER_YEAR_OFFSETS_MAP[$1[0].endWord]), ANY, ANY), FISCAL_YEAR_QUARTER_MAP[$1[0].endWord])
+    result:  TemporalCompose(INTERSECT, IsoDate(Subtract({type: "NUMBER", value: $$3.matchResults[0].word.group(2)}, FISCAL_YEAR_QUARTER_YEAR_OFFSETS_MAP[$1[0].word]), ANY, ANY), FISCAL_YEAR_QUARTER_MAP[$1[0].word])
   }
 
   {
     pattern: ((/$FiscalYearQuarterTerm/)),
-    result: FISCAL_YEAR_QUARTER_MAP[$1[0].endWord]
+    result: FISCAL_YEAR_QUARTER_MAP[$1[0].word]
   }
 
 
@@ -750,7 +750,7 @@
 
   { name: "composite-date-expression-8",
     pattern: ( /the/ [ { tag:JJ } ]* ([ { temporal::IS_TIME_UNIT }
-	                                     & !{ endWord:/.*s/ } ] )),
+	                                     & !{ word:/.*s/ } ] )),
 	result: RelativeTime( THIS, $1[0].temporal.value )
   }
 
@@ -802,7 +802,7 @@
              ),
 	result: TemporalCompose(
 	          :case {
-			    $rel[0].endWord =~ /past|after/ => PLUS,
+			    $rel[0].word =~ /past|after/ => PLUS,
 				:else => MINUS
 			  },
 			  :case {
@@ -992,9 +992,9 @@
 
   {  pattern: ( $NUM /to/ $NUM) }
   {  pattern: ( /(quarter|sun)s?/ ) }
-  {  pattern: ( [ { endWord:/(fall|spring|second|march|may|sat|sun|min)s?/ } & !{ tag:/NN.*/ } ] )  }
-  {  pattern: ( /the/ [ { endWord:/second/ } & !{ tag:/NN.*/ } ] )  }
-  {  pattern: ( [ { endWord:/((twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)-)?second/ } ] )  }
+  {  pattern: ( [ { word:/(fall|spring|second|march|may|sat|sun|min)s?/ } & !{ tag:/NN.*/ } ] )  }
+  {  pattern: ( /the/ [ { word:/second/ } & !{ tag:/NN.*/ } ] )  }
+  {  pattern: ( [ { word:/((twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)-)?second/ } ] )  }
   {  pattern: ( [ {{ temporal.value == NON_TEMPORAL }} ] ), over: NIL }
 
   # Reject anything that is just a timezone

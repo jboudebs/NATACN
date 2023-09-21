@@ -101,25 +101,25 @@ public class StanfordCoreNlpDemo {
       SemanticGraph graph = sentence.get(SemanticGraphCoreAnnotations.CollapsedCCProcessedDependenciesAnnotation.class);
       out.println(graph.toString(SemanticGraph.OutputFormat.LIST));
 
-      // Print out dependency structure around one endWord
+      // Print out dependency structure around one word
       // This give some idea of how to navigate the dependency structure in a SemanticGraph
       IndexedWord node = graph.getNodeByIndexSafe(5);
       // The below way also works
       // IndexedWord node = new IndexedWord(sentences.get(0).get(CoreAnnotations.TokensAnnotation.class).get(5 - 1));
-      out.println("Printing dependencies around \"" + node.endWord() + "\" index " + node.index());
+      out.println("Printing dependencies around \"" + node.word() + "\" index " + node.index());
       List<SemanticGraphEdge> edgeList = graph.getIncomingEdgesSorted(node);
       if (! edgeList.isEmpty()) {
         assert edgeList.size() == 1;
         int head = edgeList.get(0).getGovernor().index();
-        String headWord = edgeList.get(0).getGovernor().endWord();
+        String headWord = edgeList.get(0).getGovernor().word();
         String deprel = edgeList.get(0).getRelation().toString();
-        out.println("Parent is endWord \"" + headWord + "\" index " + head + " via " + deprel);
+        out.println("Parent is word \"" + headWord + "\" index " + head + " via " + deprel);
       } else  {
         out.println("Parent is ROOT via root");
       }
       edgeList = graph.outgoingEdgeList(node);
       for (SemanticGraphEdge edge : edgeList) {
-        String depWord = edge.getDependent().endWord();
+        String depWord = edge.getDependent().word();
         int depIdx = edgeList.get(0).getDependent().index();
         String deprel = edge.getRelation().toString();
         out.println("Child is \"" + depWord + "\" (" + depIdx + ") via " + deprel);

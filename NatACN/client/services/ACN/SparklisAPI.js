@@ -8,7 +8,7 @@ import { NLPTools } from "../../models/NLPTools.js";
 import { NLPToolsParameters } from "../../models/NLToolsParameters.js";
 import { InstrList } from "../../models/InstrList.js";
 import { SpaCySimilarity } from "../NLP/SpaCySimilarity.js";
-import { Instruction } from "./Instruction.js";
+import { Instruction } from "../../models/Instruction.js";
 
 
 /**
@@ -18,42 +18,93 @@ import { Instruction } from "./Instruction.js";
   * @extends {ACN}
   */
 
+
+
 class SparklisAPI extends ACN
 {
 	static _sparklis;
 	static MU_Syn = 0.1;
 	static MU_Instr = 0.1;
 	static _view_mode = true;
-	static labelDico = []
-	
+	static labelDico = [];
+	//stats
+	static sparklis_call = 0
+	static last_time = 0;
+	static onEvalWait = 1000//ms
+	static home_count = 0;
+	static changeEndpoint_count = 0;
+	static endpoint_count=0;
+	static currentPlace_count = 0;
+	static setCurrentPlace_count = 0;
+	static termLabels_count= 0;
+	static classLabels_count= 0;
+	static propertyLabels_count= 0;
+	static sync_count = 0;
+	static info_count = 0;
+	static evalSparql_count = 0;
+	static back_count = 0;
+	static onEvaluated_count= 0;
+	static results_count= 0;
+	//stats
 	constructor()
 	{
 		super();
 	}
 	
+	
+	
 	async init()
 	{
 		await SparklisAPI._waitForSparklis();
-		this._sparklis = sparklis;
-		this.endpointConfig();
+		this._sparklis = async function (){
+			return sparklis};
+		await this.endpointConfig();
+		SparklisAPI.home_count++;
+		await (await this._sparklis()).home();
 		
-		this._sparklis.home();
 		
+	}
+	
+	async resetClass()
+	{
+		await this.home();
+		SparklisAPI.sparklis_call = 0
+		SparklisAPI.last_time = 0;
+		SparklisAPI.onEvalWait = 1000//ms
+		SparklisAPI.home_count = 0;
+		SparklisAPI.changeEndpoint_count = 0;
+		SparklisAPI.endpoint_count=0;
+		SparklisAPI.currentPlace_count = 0;
+		SparklisAPI.setCurrentPlace_count = 0;
+		SparklisAPI.termLabels_count= 0;
+		SparklisAPI.classLabels_count= 0;
+		SparklisAPI.propertyLabels_count= 0;
+		SparklisAPI.sync_count = 0;
+		SparklisAPI.info_count = 0;
+		SparklisAPI.evalSparql_count = 0;
+		SparklisAPI.back_count = 0;
+		SparklisAPI.onEvaluated_count= 0;
+		SparklisAPI.results_count= 0;
 	}
 	
 	async changeEndpoint(string, place)
 	{
-		this._sparklis.changeEndpoint(string);
+		SparklisAPI.changeEndpoint_count++;
+		(await this._sparklis()).changeEndpoint(string);
+		
 		await this.getResults(place);
 	}
 	
 	async endpointConfig()
 	{
-		if(this._sparklis.endpoint().includes('wikidata'))
+		SparklisAPI.endpoint_count++;
+		SparklisAPI.endpoint_count++;
+		console.log((await this._sparklis()));
+		if((await this._sparklis()).endpoint().includes('wikidata'))
 		{
 			//this._getLabelFromUri = this._getLabelFromUriWiki;
 		}
-		else if(this._sparklis.endpoint().includes('mondial'))
+		else if((await this._sparklis()).endpoint().includes('mondial'))
 		{
 			//this._getLabelFromUri = this._getLabelFromUriMondial;
 		}
@@ -62,13 +113,15 @@ class SparklisAPI extends ACN
 	async getPlace()
 	{
 		await this.getResults();
-		return this._sparklis.currentPlace()
+		SparklisAPI.currentPlace_count++
+		return (await this._sparklis()).currentPlace()
 	}
 	
 	async setPlace(place)
 	{
 		await this.getResults(place);
-		return this._sparklis.setCurrentPlace(place)
+		SparklisAPI.setCurrentPlace_count++;
+		return (await this._sparklis()).setCurrentPlace(place);
 	}
 	
 	async qtToMatch(synString, labelList)
@@ -127,8 +180,15 @@ class SparklisAPI extends ACN
 				//get T_i
 				let suggList = await (new Suggestions()).create("True", place, QTpath);
 				
+				//console.error("typeof ", suggList);
+				// qtList = await Promise.all(suggList.map(async s=>
+				// 	{   let qt = new QT(s);
+				// 		qt.setLabel(await this._getLabelFromUri(s));
+				// 		return qt
+				// 	}));
 				qtList = await this._getLabelFromMultipleUriWiki(suggList); //les index correspondent
-				console.log(qtList.length.toString());
+				//console.error("typeof ", qtList);
+				//console.log("typeof ",typeof qtList, typeof qtList[0], qtList[0]);
 				
 				//filter ID label
 				const regex = /\b(ID|i_d|id|Id)\b|\b(ID|i_d|id|Id)\b$/;
@@ -139,6 +199,7 @@ class SparklisAPI extends ACN
 			{
 				console.error(e);
 				qtList = new QTList([]);
+				return qtList;
 			}
 			//synset search T_i
 			const synonyms = InstrList.toInstrList(instr.getSynset());
@@ -220,7 +281,7 @@ class SparklisAPI extends ACN
 				//get T_i
 				let suggList = await (new Suggestions()).create("True", place, QTpath);
 
-				qtList = await this._getLabelFromMultipleUriWiki(suggList); //les index correspondent
+				qtList = await this._getLabelFromMultipleUriWiki(suggList); //les indexes correspondent
 				console.log(qtList.length.toString());
 
 				//filter ID label
@@ -232,6 +293,7 @@ class SparklisAPI extends ACN
 			{
 				console.error(e);
 				qtList = new QTList([]);
+				return qtList
 			}
 			//synset search T_i
 			const synonyms = InstrList.toInstrList(instr.getSynset());
@@ -269,7 +331,7 @@ class SparklisAPI extends ACN
 		}
 		else
 		{
-			return this.getFilteredQT_ExternalSearchBug(instr, place, QTpath)
+			return await this.getFilteredQT_ExternalSearchBug(instr, place, QTpath)
 		}
 	}
 
@@ -342,16 +404,24 @@ class SparklisAPI extends ACN
 				{
 					console.error(e);
 					qtList = new QTList([]);
+					return qtList;
 				}
 			}
 			
 			let qtList_toRemove=[]
+			
+			//fetching labels for QTs
+			let incrList = qtList.getList().map(qt=>qt.getIncr());
+			console.warn("incrList : ", incrList)
+			qtList = await this._getLabelFromMultipleUriWiki(incrList);
+			console.warn("qtList(with labels) : ", qtList);
+			
 			//adding relatedness score for each QT
 			for (const qt of qtList.getList())
 			{
 				console.log(qt);
 				//fetch label
-				const label = await this.getLabelFromUri(qt.getIncr());
+				const label = qt.getLabel();
 				console.log(label);
 				//remove ID QT
 				const regex = /\b(ID|i_d|id|Id)\b|\b(ID|i_d|id|Id)\b$/;
@@ -388,7 +458,7 @@ class SparklisAPI extends ACN
 			qtList = qtList.rankByScore();
 			
 			//alternative de filtrage
-			// if(qtList.isEmpty()&&QTpath.length!==0)//&&!this._sparklis.endpoint().includes('wikidata'))
+			// if(qtList.isEmpty()&&QTpath.length!==0)//&&!(await this._sparklis()).endpoint().includes('wikidata'))
 			// {
 			// 	console.log("Alternative filtering")
 			// 	qtList = await this._getFilteredQTbyRelatedness(instr, place);
@@ -499,7 +569,7 @@ class SparklisAPI extends ACN
 	// 	return qtList;
 	// }
 	
-	//Alternate filtering in case the sparklis filtering is empty
+	//Alternate filtering in case the (await this._sparklis()) filtering is empty
 	async _getFilteredQTbyRelatedness(instr, place)
 	{
 		let qtList = new QTList();
@@ -576,6 +646,8 @@ class SparklisAPI extends ACN
 		let label = this.getRelatedDico(incr);
 		if(!label)
 		{
+			this.getlabelIncr?this.getlabelIncr = []:null;
+			this.getlabelIncr = this.getlabelIncr.push(incr);
 			label = await this._getLabelFromUri(incr);
 			this.pushRelatedDico(incr,label)
 		}
@@ -612,17 +684,51 @@ class SparklisAPI extends ACN
 	async _getLabelFromUri(incr)
 	{
 		console.log(incr)
-		if(this._sparklis.endpoint().includes("wikidata"))
+		SparklisAPI.endpoint_count++
+		if((await this._sparklis()).endpoint().includes("mondial"))
 		{
-			return this._getLabelFromUriWiki(incr);
-		}
-		else if(this._sparklis.endpoint().includes("wikidata"))
-		{
-			return this._getLabelFromUriMondial(incr);
+			return await this._getLabelFromUriMondial(incr);
 		}
 		else
 		{
-			console.error("TO IMPLEMENT FOR THIS ENDPOINT")
+			SparklisAPI.termLabels_count++;
+			SparklisAPI.classLabels_count++;
+			SparklisAPI.propertyLabels_count++;
+			SparklisAPI.sync_count+=3
+			await (await this._sparklis()).termLabels().sync();
+			await (await this._sparklis()).classLabels().sync();
+			await (await this._sparklis()).propertyLabels().sync();
+			
+			const uri = incr.uri;
+			if (incr.type === "IncrType")
+			{
+				SparklisAPI.classLabels_count++;
+				SparklisAPI.info_count++;
+				return (await this._sparklis()).classLabels().info(uri);
+			}
+			else if (incr.type === "IncrRel")
+			{
+				SparklisAPI.propertyLabels_count++;
+				SparklisAPI.info_count++;
+				//((await this._sparklis()).propertyLabels().info(uri).label);
+				return (await this._sparklis()).propertyLabels().info(uri).label;
+			}
+			else if (incr.type === "IncrTerm")
+			{
+				SparklisAPI.termLabels_count++;
+				SparklisAPI.info_count++;
+				return (await this._sparklis()).termLabels().info(uri).label;
+			}
+			else if (incr.type === "IncrPred")
+			{
+				//sparklis ne sait pas faire
+				console.error("incr type is IncrPred")
+			}
+			else
+			{
+				console.error("incr type not recognize")
+			}
+			
 		}
 	}
 
@@ -639,13 +745,42 @@ class SparklisAPI extends ACN
 		console.log(id)
 		let labelQuery = "SELECT ?itemLabel WHERE {  wd:"+id+" rdfs:label ?itemLabel    FILTER (lang(?itemLabel) = \"en\")  }"
 		console.log(labelQuery)
-		let res = await sparklis.evalSparql(labelQuery);
+		SparklisAPI.evalSparql_count++
+		let res = await (await this._sparklis()).evalSparql(labelQuery);
 		console.log(res);
 		if(!res.rows.length) {return ""}
 		const label = res.rows[0][0].str;
 		return res.rows[0][0].str;
 	}
-
+	
+	static async getURIsFromWikidata(labelQuery)
+	{
+		//Too many request Handle
+		let time_now = Date.now()
+		let i = 0;
+		while(time_now - this.SparklisAPI.last_time<1010 && i<11)
+		{
+			i++;
+			time_now = Date.now();
+			await Utils.sleep(100);
+			//console.error(time_now, ConceptNet.SparklisAPI.last_time);
+		}
+		
+		this.SparklisAPI.last_time = time_now;
+		//console.log(time_now, ConceptNet.SparklisAPI.last_time);
+		
+		console.log(labelQuery)
+		const uri = 'https://query.wikidata.org/sparql';
+		const params = {
+			query: labelQuery,
+			format: 'json',
+		};
+		
+		const JSON = await fetch(uri, params
+		).then((value) => { return value.json(); });
+		return JSON;
+	}
+	
 	/**
 	 *
 	 * @param incrList
@@ -654,7 +789,8 @@ class SparklisAPI extends ACN
 	 */
 	async _getLabelFromMultipleUriWiki(incrList)
 	{
-
+		
+		
 		//const incr = qt.getIncr()
 		let ids = ""
 		for (const incr of incrList)
@@ -670,8 +806,9 @@ class SparklisAPI extends ACN
 		// }
 		let labelQuery = "SELECT ?entity ?label WHERE {  VALUES ?entity { " + ids + "} ?entity rdfs:label ?label.    FILTER (lang(?label) = \"en\")  BIND(STRBEFORE(STR(?entity), \"://\") AS ?value)} ORDER BY ?value"
 		console.log(labelQuery)
-		let res = (await sparklis.evalSparql(labelQuery)).rows;
-		//console.log(res);
+		SparklisAPI.evalSparql_count++
+		let res = (await (await this._sparklis()).evalSparql(labelQuery)).rows;
+		//console.error(res);
 
 		// résultats a mapper selon les noms d'entitées
 		let qtList = new QTList([])
@@ -681,10 +818,12 @@ class SparklisAPI extends ACN
 			const uri = (incr.uri?incr.uri:incr.pred["uri"+incr.pred.type[1]])
 			//console.log(uri);
 			const r = res.find(r=>this._getWikidataID(r[0].uri) === this._getWikidataID(uri));
-			//console.log(r);
-			qt.setLabel(r[1].str)
-			//console.log(qt)
-			qtList.add(qt)
+			if(r!==undefined)//cas ou le label existe en anglais
+			{
+				qt.setLabel(r[1].str)
+				qtList.add(qt)
+			}
+			
 		}
 
 		return  qtList;
@@ -712,26 +851,53 @@ class SparklisAPI extends ACN
 
 	async navigate(place, qt)
 	{
+		try
+		{
 		
 		console.log("Waiting for Sparklis to update.");
-		let newPlace = place.applySuggestion(qt.getIncr());
+		let newPlace;
+		try
+		{
+			newPlace = place.applySuggestion(qt.getIncr());
+		}
+		catch (e)
+		{
+			console.error("POST apply",e)
+		}
 		console.log('Navigate through ', qt.getLabel());
 		await this.getResults(newPlace);
 		console.log("Sparklis has navigated");
 		
 		if(SparklisAPI._view_mode)
 		{
-			this._sparklis.setCurrentPlace(newPlace)
+			try
+			{
+				SparklisAPI.setCurrentPlace_count++
+				(await this._sparklis()).setCurrentPlace(newPlace)
+			}
+			catch (e)
+			{
+				console.error("POST setCurrent",e)//stack overflow error
+			}
+			
 			await this.getResults(newPlace);
 		}
+			return newPlace;
+		}
+		catch (e)
+		{
+			console.log(e)
+			return null;
+		}
 		
-		return newPlace;
+		
 	}
 
 	async back()
 	{
 		console.log("Waiting for Sparklis to update.");
-		sparklis.back();
+		SparklisAPI.back_count++;
+		await (await this._sparklis()).back();
 		await this.getResults();
 		console.log("Sparklis has updated a back.");
 	}
@@ -741,8 +907,8 @@ class SparklisAPI extends ACN
 	{
 
 		console.log("Waiting for Sparklis to update.");
-
-		this._sparklis.home();
+		SparklisAPI.home_count++;
+		(await this._sparklis()).home();
 		await this.getResults();
 		
 		console.log("Sparklis has updated a home.")
@@ -750,10 +916,44 @@ class SparklisAPI extends ACN
 	
 	async getResults(place)
 	{
-		place = place?place:this._sparklis.currentPlace();
-		let res = await new Promise(resolve=>{
-			place.onEvaluated(()=>resolve(place.results()))});
-		return res;
+		try{
+			place?null:SparklisAPI.currentPlace_count++;
+			place = place?place:(await this._sparklis()).currentPlace();
+			SparklisAPI.onEvaluated_count++;
+			SparklisAPI.results_count++;
+			let res = await new Promise(resolve=>{
+				place.onEvaluated(()=>resolve(place.results()));});
+			await Utils.sleep(SparklisAPI.onEvalWait);
+			return res;
+		}catch (e)
+		{
+			await Utils.sleep(SparklisAPI.onEvalWait);
+			console.trace();
+			console.error("in getResults", e);
+			return null;
+		}
+	}
+	
+	async setCurrentPlace(place)
+	{
+		try{
+			place?null:SparklisAPI.currentPlace_count++;
+			SparklisAPI.setCurrentPlace_count++;
+			place = place?place:(await this._sparklis()).currentPlace();
+			SparklisAPI.onEvaluated_count++;
+			let res = await new Promise(resolve=>{
+				place.onEvaluated(async ()=>resolve((await this._sparklis()).setCurrentPlace(place)))});
+			await Utils.sleep(SparklisAPI.onEvalWait);
+			return res;
+		}
+		catch(e)
+		{
+			await Utils.sleep(SparklisAPI.onEvalWait);
+			console.trace();
+			console.error("in setCurrentPlace", e);
+			return null;
+		}
+		
 	}
 	
 	static hasEmptyQuery(place)
@@ -768,22 +968,22 @@ class SparklisAPI extends ACN
 		try
 		{
 			// let res = await new Promise(resolve=>{
-			// 	sparklis.currentPlace().onEvaluated(()=>resolve(sparklis.currentPlace().results()))});
+			// 	sparklis.currentPlace().onEvaluated(()=>resolve((await this._sparklis()).currentPlace().results()))});
 			// console.log(res.rows);
 			await Utils.sleep(10000);
 			let res = await new Promise(resolve=>{
-			 	sparklis.currentPlace().onEvaluated(()=>resolve(sparklis.currentPlace().results()))});
+			 	sparklis.currentPlace().onEvaluated(async ()=>resolve((await this._sparklis()).currentPlace().results()))});
 			
 			for (const r of res.rows)
 			{
 				const uri = r[0].uri;
-				await sparklis.termLabels().sync();
-				await sparklis.classLabels().sync();
-				await sparklis.propertyLabels().sync();
-				//console.log(sparklis.termLabels().info(uri));
+				await (await this._sparklis()).termLabels().sync();
+				await (await this._sparklis()).classLabels().sync();
+				await (await this._sparklis()).propertyLabels().sync();
+				//console.log((await this._sparklis()).termLabels().info(uri));
 				
-				console.log(sparklis.classLabels().info(uri));
-				//console.log(sparklis.propertyLabels().info(uri));
+				console.log((await this._sparklis()).classLabels().info(uri));
+				//console.log((await this._sparklis()).propertyLabels().info(uri));
 			}
 		}
 		catch (e)
@@ -800,7 +1000,7 @@ class SparklisAPI extends ACN
 	 */
 	 static _sparklisExists()
 	 {
-		 return typeof sparklis != "undefined";
+		 return typeof sparklis !== "undefined";
 	 }
  
 	 /**
@@ -823,10 +1023,10 @@ class SparklisAPI extends ACN
 			 await Utils.sleep(250);
 			 console.log("nope !");
 			 sparklis_exists = SparklisAPI._sparklisExists();
-			}
+		 }
 			
 		
-		 this._sparklis = sparklis;
+		 //(await this._sparklis()) = sparklis;
 		 // await SparklisAPI._updateConceptSuggestions("True");
 		 // await SparklisAPI._updateTermSuggestions("True");
 		 console.log("Sparklis activé");
@@ -855,14 +1055,14 @@ class SparklisAPI extends ACN
 // 	 */
 // 	static async _updateConceptSuggestions(constr)
 // 	{
-// 		let partial_suggs = await sparklis.currentPlace().getConceptSuggestions(false, constr);
+// 		let partial_suggs = await (await this._sparklis()).currentPlace().getConceptSuggestions(false, constr);
 // 		this._concept_suggestion_forest = this._preprocessConceptSuggestions(partial_suggs.forest);
 //
 // 	}
 //
 // 	async _updateConceptSuggestions(constr)
 // 	{
-// 		const partial_suggs = await sparklis.currentPlace().getConceptSuggestions(false, constr);
+// 		const partial_suggs = await (await this._sparklis()).currentPlace().getConceptSuggestions(false, constr);
 // 		return this._preprocessConceptSuggestions(partial_suggs.forest);
 // 	}
 //
@@ -965,7 +1165,7 @@ class SparklisAPI extends ACN
 // 		 console.log("Activation de "+ suggestion.uri+".");
 // 		 //await new Promise(()=>setTimeout(()=>{console.log('done');},5000));
 // 		 ///*
-// 		 console.log("Query :", sparklis.currentPlace().query());
+// 		 console.log("Query :", (await this._sparklis()).currentPlace().query());
 // 		 await this._updateConceptSuggestions("True");
 // 		 await this._updateTermSuggestions("True");
 // 		 const count_suggestions = (this._concept_suggestion_forest).length + (this._term_suggestion_forest).length;
@@ -978,7 +1178,7 @@ class SparklisAPI extends ACN
 //
 // 	 static async back_old()
 // 	 {
-// 		 await sparklis.back();
+// 		 await (await this._sparklis()).back();
 // 		 await this._updateConceptSuggestions("True");
 // 		 await this._updateTermSuggestions("True");
 // 	 }
@@ -1016,16 +1216,16 @@ class SparklisAPI extends ACN
 // 		 const uri = suggestion.uri;
 // 		 if (suggestion.type === "IncrType")
 // 		 {
-// 			 return sparklis.classLabels().info(uri);
+// 			 return (await this._sparklis()).classLabels().info(uri);
 // 		 }
 // 		 if (suggestion.type === "IncrRel")
 // 		 {
-// 			 //(sparklis.propertyLabels().info(uri).label);
-// 			 return sparklis.propertyLabels().info(uri).label;
+// 			 //((await this._sparklis()).propertyLabels().info(uri).label);
+// 			 return (await this._sparklis()).propertyLabels().info(uri).label;
 // 		 }
 // 		 if (suggestion.type === "IncrTerm")
 // 		 {
-// 			 return sparklis.termLabels().info(uri).label;
+// 			 return (await this._sparklis()).termLabels().info(uri).label;
 // 		 }
 //
 // 	 }
@@ -1110,7 +1310,7 @@ class SparklisAPI extends ACN
 // 	  */
 // 	 static async _updateTermSuggestions(constr)
 // 	 {
-// 		 let suggestion_forest  = await sparklis.currentPlace().getTermSuggestions(true, constr);
+// 		 let suggestion_forest  = await (await this._sparklis()).currentPlace().getTermSuggestions(true, constr);
 // 		 this._term_suggestion_forest  = this._preprocessTermSuggestions(suggestion_forest.forest)
 // 		 if(this._term_suggestion_forest == null)
 // 		 {
@@ -1120,7 +1320,7 @@ class SparklisAPI extends ACN
 // 	 }
 // 	  async _updateTermSuggestions(constr)
 // 	 {
-// 		let suggestion_forest  = await sparklis.currentPlace().getTermSuggestions(true, constr);
+// 		let suggestion_forest  = await (await this._sparklis()).currentPlace().getTermSuggestions(true, constr);
 // 		this._suggestion_forest  = this._preprocessTermSuggestions(suggestion_forest.forest)
 // 		if(this._suggestion_forest == null)
 // 		{
@@ -1178,7 +1378,7 @@ class SparklisAPI extends ACN
 // 			 const old_sugg = SparklisAPI._concept_suggestion_forest;
 //
 //
-// 			 sparklis.activateSuggestion(suggestion);
+// 			 (await this._sparklis()).activateSuggestion(suggestion);
 //
 // 		 }
 // 	 }
@@ -1190,7 +1390,7 @@ class SparklisAPI extends ACN
 //
 // 			 console.log("Waiting for Sparklis to update.");
 // 			 this._updateConceptSuggestions("True");
-// 			 sparklis.activateSuggestion(suggestion);
+// 			 (await this._sparklis()).activateSuggestion(suggestion);
 //
 //
 // 			 console.log("Sparklis updated.")
