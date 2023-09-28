@@ -7,6 +7,7 @@ class Suggestions
 	 * create a list of suggestions
 	 */
 {
+	count = 0;
 	constructor()
 	{
 		if (sparklis.endpoint().includes('wikidata'))
@@ -63,7 +64,7 @@ class WikidataSuggestions
 	}
 	
 	
-	async create(constr, place, QTpath, count)
+	async create(constr, place, QTpath)
 	{
 		let suggestionList;
 		if (SparklisAPI.hasEmptyQuery(place))//si la query de la place est vide
@@ -91,27 +92,29 @@ class WikidataSuggestions
 				console.error("in create Suggestions",e)
 				try
 				{
-					if(count<3)
+					if(this.count>3)
 					{
-						count = count?count++:1;
-						console.error("Waiting for 60s ...")
-						await Utils.sleep(60000);
-						suggestionList = this.create(constr, place, QTpath, count);
+						console.error("Waiting for 60s ...");
+						await Utils.sleep(60010);
+						console.error("Waited for 60s.");
+						suggestionList = this.create(constr, place, QTpath);
+						this.count = 0;
 						
-						console.error("Waited for 60s")
 						console.error("POST recovered");
 						return suggestionList;
 					}
 					else
 					{
 						console.error(e);
-						return "error";
+						this.count++;
+						suggestionList = this.create(constr, place, QTpath);
+						return suggestionList;
 					}
 					
 				}
 				catch
 				{
-					console.error(e);
+					console.error("Suggestion not handle",e);
 					return "error";
 				}
 			}

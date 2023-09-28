@@ -45,6 +45,7 @@ class SparklisAPI extends ACN
 	static back_count = 0;
 	static onEvaluated_count= 0;
 	static results_count= 0;
+	static error_count = 0
 	//stats
 	constructor()
 	{
@@ -85,6 +86,7 @@ class SparklisAPI extends ACN
 		SparklisAPI.back_count = 0;
 		SparklisAPI.onEvaluated_count= 0;
 		SparklisAPI.results_count= 0;
+		SparklisAPI.error_count = 0
 	}
 	
 	async changeEndpoint(string, place)
@@ -221,7 +223,7 @@ class SparklisAPI extends ACN
 			console.log(filteredQTList);
 			labelList = filteredQTList.map(qt=>qt.getLabel());
 			//get Sim score
-			const simList = await NLPToolsParameters.getRelatedness(instr.toString(),labelList)
+			const simList = await NLPToolsParameters.getRelatedness(instr.getLemma(),labelList)
 			console.log(simList,filteredQTList)
 			for(const indexqt in filteredQTList._list)
 			{
@@ -389,7 +391,8 @@ class SparklisAPI extends ACN
 					if(suggList==='error' || suggList===undefined)
 					{
 						//await Utils.sleep(6000);
-						console.error("error")
+						console.error("error");
+						this.error_count++
 						qtList = new QTList([]);
 					}
 					else
@@ -435,7 +438,7 @@ class SparklisAPI extends ACN
 					
 					qt.setLabel(label);
 					//relatedness
-					const relatedness = await NLPToolsParameters.getRelatedness(qt.getLabel(),instr.toString())
+					const relatedness = await NLPToolsParameters.getRelatedness(qt.getLabel(),instr.getLemma())
 					console.log("Dico relatedness",qt.getLabel(),instr.toString(), relatedness)
 					if(relatedness>=SparklisAPI.MU_Syn)
 					{

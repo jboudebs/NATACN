@@ -79,7 +79,7 @@ class NLPToolsParameters// extends NLPTools
 	static async getRelatedness(word1, word2)
 	{
 		
-		console.warn("cheack", word1, word2)
+		console.warn("check", word1, word2)
 		if(word2 instanceof Array && NLPToolsParameters.SimTOOL == ConceptNet)
 		{
 			let simList = []

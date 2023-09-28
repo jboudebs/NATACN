@@ -5,6 +5,7 @@ class QT
 		if(qt instanceof QT)
 		{
 			this._incr = qt._incr;
+			this._ori = qt._incr.orientation;
 		}
 		else if(typeof qt === 'string')
 		{
@@ -13,6 +14,7 @@ class QT
 		else if(typeof qt === 'object')
 		{
 			this._incr = qt;
+			this._ori = qt.orientation;
 		}
 	}
 	
@@ -42,10 +44,22 @@ class QT
 	{
 		this._score = score;
 	}
+	
+	getOri()
+	{
+		return this._ori;
+	}
 
 	toString()
 	{
-		return this._incr.toString();
+		if (this.getOri())
+		{
+			return this.getLabel() +'(' + this.getOri() + ')';
+		}
+		else
+		{
+			return this.getLabel();
+		}
 	}
 	
 	compareScore(qt)

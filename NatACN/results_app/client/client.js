@@ -1,6 +1,6 @@
 import { SparklisAPI } from "../../client/services/ACN/SparklisAPI.js";
 import { NatACN } from '../../client/models/NatACN.js';
-import { isEqual } from "../../client/models/Utils.js";
+import Utils, { isEqual } from "../../client/models/Utils.js";
 import { NLPExtraction } from "../../client/models/NLPExtraction.js";
 import { CoreNLP } from "../../client/services/NLP/CoreNLP.js";
 import { ConceptNet } from "../../client/services/NLP/ConceptNet.js";
@@ -12,6 +12,8 @@ import { sleep } from "../../client/models/Utils.js";
 var sparklisAPI;
 var natACN;
 var home_place;
+
+var error_count = 0;
 
 try
 {
@@ -25,6 +27,10 @@ try
 	(function() {
 		var _old_alert = window.alert;
 		window.alert = function() {
+			//console.error("Waiting for 60s...")
+			//Utils.sleep(60010)
+			//console.error("Waited for 60s")
+			error_count++
 			console.error('ALERT HANDLED')
 			return true
 		};
@@ -34,15 +40,15 @@ try
 		};
 	})();
 	
-	sparklis_extension.hookResults = function(res)
-	{
-		if(res.includes("Rate limit exceeded"))
-		{
-			console.error("CATCHED")
-		}
-		console.log(res)
-		return res;
-	}
+	// sparklis_extension.hookResults = function(res)
+	// {
+	// 	if(res.includes("Rate limit exceeded"))
+	// 	{
+	// 		console.error("CATCHED")
+	// 	}
+	// 	console.log(res)
+	// 	return res;
+	// }
 	
 	// var last_time = 0;
 	//
@@ -75,13 +81,14 @@ try
 	//await sparklisAPI.changeEndpoint("https://query.wikidata.org/sparql", home_place)
 	//DB
 	//TEST UNIQUE QUESTION
-	let question = "What are the professions of John Lennon’s sons?";
+	let question = "What are the spin-offs of Breaking Bad?";
 	//
 	//tests
 	//console.log(initial_place)
-	//const res = await natACN.natNavigation(question, home_place);
-	//console.dir(res);
-	//console.log(res.bestNavigation.place.sparql())
+	// const res = await natACN.natNavigation(question, home_place);
+	// console.dir(res);
+	// await sparklisAPI.setCurrentPlace(res.bestNavigation.place);
+	////console.log(res.bestNavigation.place.sparql())
 	//TEST UNIQUE QUESTION
 
 	//TEST TREE
@@ -102,7 +109,7 @@ try
 	
 
 	//reprise
-	await getNatACN(4);
+	await getNatACN(0);
 
 
 
@@ -447,7 +454,9 @@ function postNatACN(data)
 
 async function resetNatACN()
 {
-
+	//MAJ interface
+	$("#clear-log").click();
+	
 	await sparklisAPI.resetClass();
 	NLPExtraction.resetClass();
 	CoreNLP.resetClass();
@@ -541,7 +550,8 @@ function getNatACN(id)
 					}:{"instrTree" : res.instrTree.toString()}:undefined,
 				"runtime" : runtime,
 				"nb_call" : NatACN.appel,
-				"stats_Sparklis" : stats_sparklis
+				"stats_Sparklis" : stats_sparklis,
+				"error_count" : SparklisAPI.error_count
 			}
 			console.log(data);
 
