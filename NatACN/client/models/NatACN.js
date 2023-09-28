@@ -355,7 +355,7 @@ class NatACN
 
 	async better(place, QTpath, instrPath, bestNavigation)
 	{
-		return await this.better123(place, QTpath, instrPath, bestNavigation);
+		return await this.better12(place, QTpath, instrPath, bestNavigation);
 	}
 	betterLength(place, QTpath, instrPath, bestNavigation)
 	{
@@ -377,12 +377,31 @@ class NatACN
 			better =  true;
 			console.warn("betterQTPath",better)
 		}
-		else if(betterNE===0&&betterQTPath===0&& await this.betterRes(place, QTpath, instrPath, bestNavigation))
+		else if(betterNE===0&&betterQTPath===0&& (await this.betterRes(place, QTpath, instrPath, bestNavigation)>0))
 		{
 			better =  true;
 			console.warn("betterRes",better)
 		}
 
+		return better;
+	}
+	
+	async better12(place, QTpath, instrPath, bestNavigation)
+	{
+		let better = false
+		const betterNE = this.betterNE(place, QTpath, instrPath, bestNavigation);
+		const betterQTPath = this.betterQTPath(place, QTpath, instrPath, bestNavigation);
+		if(betterNE)
+		{
+			better =  true;
+			console.warn("betterNE",better)
+		}
+		else if(betterNE===0&&betterQTPath)
+		{
+			better =  true;
+			console.warn("betterQTPath",better)
+		}
+		
 		return better;
 	}
 
@@ -401,8 +420,10 @@ class NatACN
 
 	async betterRes(place, QTpath, instrPath, bestNavigation)
 	{
-		let bestNatACNRes = sparklisRestoRes(await this.acn.getResults(bestNavigation.place));
-		let currentNatACNRes = sparklisRestoRes(await this.acn.getResults(place));
+		let bestNatACNRes = sparklisRestoRes(await this.acn.getResults(bestNavigation.place)).length;
+		console.log("better bestNatACNRes ",bestNatACNRes)
+		let currentNatACNRes = sparklisRestoRes(await this.acn.getResults(place)).length;
+		console.log("better currentNatACNRes ",currentNatACNRes)
 		return currentNatACNRes<bestNatACNRes?1:currentNatACNRes===bestNatACNRes?0:-1;
 	}
 
@@ -424,7 +445,7 @@ class NatACN
 
 	async stopCriterion(bestNavigation)
 	{
-		return await this.stopResults(bestNavigation);
+		return await this.stopQTPathlength(bestNavigation);
 	}
 	
 	async noStop(bestNavigation){
@@ -437,6 +458,16 @@ class NatACN
 		const currentNatACNRes = sparklisRestoRes(await this.acn.getResults(bestNavigation.place));
 		console.warn(bestNavigation.QTpath.length, currentNatACNRes.length)
 		stop = bestNavigation.QTpath.length===NatACN.nbInstruction && currentNatACNRes.length<=10
+		console.warn("stop",stop)
+		return stop;
+	}
+	
+	async stopQTPathlength(bestNavigation)
+	{
+		let stop = false
+		const currentNatACNRes = sparklisRestoRes(await this.acn.getResults(bestNavigation.place));
+		console.warn(bestNavigation.QTpath.length, currentNatACNRes.length)
+		stop = bestNavigation.QTpath.length===NatACN.nbInstruction //&& currentNatACNRes.length<=10
 		console.warn("stop",stop)
 		return stop;
 	}

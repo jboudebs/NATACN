@@ -2,7 +2,7 @@
  * code from https://github.com/gustf/js-levenshtein
  */
 
-module.exports.calcul = function levenshtein(s, t) {
+function levenshtein(s, t) {
 	if (s === t) {
 		return 0;
 	}
@@ -105,8 +105,8 @@ function main() {
 	//	return;
 	//}
 	
-	var w1 = "bleu";
-	var w2 = "vert";
+	var w1 = "has_spin-off";
+	var w2 = "spin_offs";
 	
 	var r = levenshtein(w1,w2);
 	console.log(r);
@@ -115,3 +115,5 @@ function main() {
 if (process.argv[1] == __filename) {
 	main();
 }
+
+export {levenshtein}

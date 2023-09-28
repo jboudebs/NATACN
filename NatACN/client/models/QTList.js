@@ -45,6 +45,7 @@ class QTList
 		}
 		else if (typeof qt === 'object')
 		{
+			console.log("qt includes",qt, !this.includes(qt))
 			if(!this.includes(qt))
 			{
 				this._list.push(new QT(qt));
@@ -123,9 +124,13 @@ class QTList
 		{
 			return true;
 		}
+		else if(a.uri&&a.orientation)
+		{
+			return this._list.filter(qt=>(qt.getIncr().uri === a.uri&& qt.getIncr().type===a.type && qt._ori && qt._ori===a.orientation)).length
+		}
 		else if(a.uri)
 		{
-			return this._list.map(qt=>(qt.getIncr().uri === a.uri&& qt.getIncr().type===a.type)).find(e=>e)
+			return this._list.filter(qt=>(qt.getIncr().uri === a.uri&& qt.getIncr().type===a.type)).length
 		}
 		// else if(a.uriE)
 		// {
