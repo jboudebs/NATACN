@@ -18,11 +18,13 @@ let length = 0;
 const currentDir = path.resolve();
 console.log(currentDir)
 
-const test_name = "28_09-test-simple";
+const test_name = "28_09-better12StopOrderedTree-path";
 console.log(test_name);
-
-const resDir = './results/septembre/'
-const inputQALD = './data/qald_10-extract.json';
+const sepMac = "/"
+const sepWin = "\\";
+const sep = sepMac;
+const resDir = '.'+sep+'results'+sep+'septembre'+sep+''
+const inputQALD = '.'+sep+'data'+sep+'qald_10-pure_path_questions.json';
 const outputNatACN = resDir+test_name+'-res.json';
 const scoreFile =resDir+test_name+'-score.json';
 const summaryRes = resDir+test_name+'-summary.csv';

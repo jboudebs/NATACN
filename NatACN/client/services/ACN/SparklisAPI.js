@@ -392,7 +392,7 @@ class SparklisAPI extends ACN
 					{
 						//await Utils.sleep(6000);
 						console.error("error");
-						this.error_count++
+						SparklisAPI.error_count++
 						qtList = new QTList([]);
 					}
 					else
@@ -590,7 +590,7 @@ class SparklisAPI extends ACN
 				if(suggList==='error')
 				{
 					await Utils.sleep(6000);
-					qtList = 'error'; break;
+					qtList = 'error';
 				}
 				else
 				{
@@ -606,7 +606,7 @@ class SparklisAPI extends ACN
 							{
 								const synRelatedness = await NLPToolsParameters.getRelatedness(label,syn);
 								const kwRelatedness = await NLPToolsParameters.getRelatedness(label,keyword);
-								if( synRelatedness>=0.2 && kwRelatedness>=0.2)
+								if( synRelatedness>=SparklisAPI.MU_Syn && kwRelatedness>=SparklisAPI.MU_Instr)
 								{
 									let qt = new QT(s);
 									qt.setScore(kwRelatedness);
@@ -617,7 +617,7 @@ class SparklisAPI extends ACN
 							else
 							{
 								const kwRelatedness = await NLPToolsParameters.getRelatedness(label,keyword);
-								if(kwRelatedness>=0.2)
+								if(kwRelatedness>=SparklisAPI.MU_Instr)
 								{
 									let qt = new QT(s);
 									qt.setScore(kwRelatedness);
@@ -638,7 +638,7 @@ class SparklisAPI extends ACN
 		}
 		
 		//ranking the QT list
-		qtList.filterByScore(0.2);
+		qtList.filterByScore(SparklisAPI.MU_Instr);
 		qtList = qtList.rankByScore();
 	
 		
