@@ -81,13 +81,13 @@ try
 	//await sparklisAPI.changeEndpoint("https://query.wikidata.org/sparql", home_place)
 	//DB
 	//TEST UNIQUE QUESTION
-	let question = "At which school was Yayoi Kusama educated at?";
+	let question = "What is the offical language of Tapei?";
 	//
 	//tests
 	//console.log(initial_place)
-	const res = await natACN.natNavigation(question, home_place);
-	console.dir(res);
-	await sparklisAPI.setCurrentPlace(res.bestNavigation.place);
+	//const res = await natACN.natNavigation(question, home_place);
+	//console.dir(res);
+	//await sparklisAPI.setCurrentPlace(res.bestNavigation.place);
 	////console.log(res.bestNavigation.place.sparql())
 	//TEST UNIQUE QUESTION
 
@@ -109,7 +109,7 @@ try
 	
 
 	//reprise
-	//await getNatACN(0);
+	await getNatACN(0);
 
 
 

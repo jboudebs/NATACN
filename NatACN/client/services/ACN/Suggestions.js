@@ -84,7 +84,8 @@ class WikidataSuggestions
 				forest = _preprocessConceptSuggestions(forest);
 				suggestionList = _findChildSuggestionList(forest);
 				suggestionList = _removeAlreadyAppliedSuggestion(suggestionList, QTpath);
-				
+				//Filtrer les increments relations -- test:
+				suggestionList = suggestionList.filter(s=>s.type==="IncrRel");
 				//console.log("concept sugg",suggestionList);
 			}
 			catch (e)
