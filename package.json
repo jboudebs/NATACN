@@ -13,7 +13,7 @@
     "xmlhttprequest": "^1.8.0"
   },
   "dependencies": {
-    "axios": "^1.5.0",
+    "axios": "^1.5.1",
     "corenlp": "^1.5.2",
     "corenlp-client": "^1.0.0",
     "edit-json-file": "^1.7.0"

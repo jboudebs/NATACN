@@ -1,4 +1,3 @@
-import * as Utils from '../../models/Utils.js';
 import { SparklisAPI } from "./SparklisAPI.js";
 
 class Suggestions
@@ -7,7 +6,7 @@ class Suggestions
 	 * create a list of suggestions
 	 */
 {
-	count = 0;
+	static count = 0;
 	constructor()
 	{
 		if (sparklis.endpoint().includes('wikidata'))
@@ -90,15 +89,16 @@ class WikidataSuggestions
 			catch (e)
 			{
 				console.error("in create Suggestions",e)
+				console.error("count error",Suggestions.count)
 				try
 				{
-					if(this.count>3)
+					if(Suggestions.count>3)
 					{
 						console.error("Waiting for 60s ...");
 						await Utils.sleep(60010);
 						console.error("Waited for 60s.");
 						suggestionList = this.create(constr, place, QTpath);
-						this.count = 0;
+						Suggestions.count = 0;
 						
 						console.error("POST recovered");
 						return suggestionList;
@@ -106,7 +106,7 @@ class WikidataSuggestions
 					else
 					{
 						console.error(e);
-						this.count++;
+						Suggestions.count++;
 						suggestionList = this.create(constr, place, QTpath);
 						return suggestionList;
 					}
