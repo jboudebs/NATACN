@@ -23,8 +23,17 @@ class ConceptNet
 		ConceptNet.last_time = time_now;
 		//console.log(time_now, ConceptNet.last_time);
 		
-		const JSON = await fetch(uri
+		let JSON;
+		try
+		{
+			JSON = await fetch(uri
 			).then((value) => { return value.json(); });
+		}
+		catch (e) {
+			console.error(e)
+			await Utils.sleep(60005)
+			await this._fetch(uri);
+		}
 		return JSON;
 	}
 	
