@@ -9,6 +9,7 @@ class NLPExtraction
 	static _lemma_to_exclude = ['be', 'have', 'do']
 	static _dependent_word_to_exclude = ['I', 'you', 'me']//Modaux déjà exclus
 	static NETOOL = SpaCyNER
+	static questionType = undefined;
 	constructor()
 	{
 		//super();
@@ -22,7 +23,7 @@ class NLPExtraction
 	// {
 	// 	await NLPExtraction._natOrder_SpaCy(NLQuestion);
 	// 	//generate
-	// 	NLPExtraction.combinaisons = getPermutations(this._orderedkwList_json);
+	// 	NLPExtraction.combinaisons = getPermutations(NLPExtraction._orderedkwList_json);
 	// 	console.log(NLPExtraction.combinaisons)
 	// 	//filtrage selon les dépendances
 	// 	let combinaisons = NLPExtraction.combinaisons.filter(l=>checkDependencies(l))
@@ -39,11 +40,97 @@ class NLPExtraction
 	// 	NLPExtraction.combinaisons = NLPExtraction.combinaisons.map(kwl=>InstrList.toInstrList(kwl))
 	// 	return NLPExtraction.combinaisons
 	// }
+
+	static getExpectedAnswerTypeFromSimpleInterrogativeWord(word)
+	{
+		if(word === "when")
+		{
+			return 'date'
+		}
+		if(word === "where")
+		{
+			return 'place'
+		}
+		if(word === "who")
+		{
+			return 'person'
+		}
+		return undefined
+	}
+
+	static getInterrogativeWordFromQuestion(question)
+	{
+		let list = question.split(" ");
+		list = list.splice(0, 5);
+		console.log(list);
+		for (const e of list)
+		{
+			console.log(e, e==='What')
+			if (e === "when"|| e === "When")
+			{
+				return "when"
+			}
+			if (e === "where"|| e === "Where")
+			{
+				return "where"
+			}
+			if (e === "who"|| e === "Who"||e === "whom"|| e === "Whom")
+			{
+				return "who"
+			}
+			if (e === "which"||e === "Which")
+			{
+				return "which"
+			}
+			if (e === "what"||e === "What")
+			{
+				return "what"
+			}
+		}
+		console.error("nothing detected as answers instruction")
+		return undefined;
+	}
+
+	/**
+	 * recupère le type attendu, si c'est des mots interrogatifs simple cf plus haut, sinon on recupère le premier élément de la liste extraite
+	 * @param question
+	 * @returns {Promise<void>}
+	 */
+	static async setAnswerInstructionFromQuestion(question)
+	{
+		NLPExtraction._questionType = NLPExtraction.getInterrogativeWordFromQuestion(question);
+		console.log("NLPExtraction._questionType : ", NLPExtraction._questionType)
+		NLPExtraction._answerInstruction = NLPExtraction.getExpectedAnswerTypeFromSimpleInterrogativeWord(NLPExtraction._questionType);
+		console.warn("NLPExtraction._answerInstruction : ", NLPExtraction._answerInstruction)
+		if(!NLPExtraction._answerInstruction)
+		{
+			await NLPExtraction._natOrder(question);
+			console.log(NLPExtraction._orderedkwList_json);
+			NLPExtraction._answerInstruction = new Instruction(NLPExtraction._orderedkwList_json.filter(e=>e.type===undefined)[0])
+			console.log(NLPExtraction._answerInstruction);
+			//syn for answerInstruction
+			let kw = NLPExtraction._answerInstruction;
+			let synset = (await NLPToolsParameters.getSynonyms(kw)).concat([kw.word])
+			synset = synset?synset:[];
+			kw.synset = InstrList.toInstrList(synset)
+		}
+		return NLPExtraction._answerInstruction;
+	}
+
+	static same(o1,o2)
+	{
+		console.log(o1,o2)
+		return o1._end_char===o2.end_char&&o1._start_char===o2.start_char
+	}
 	static async instrTree(NLQuestion, coreNLP)
 	{
-		this._orderedkwList = await NLPExtraction._natOrder(NLQuestion, coreNLP);
+		NLPExtraction._orderedkwList = NLPExtraction._orderedkwList?NLPExtraction._orderedkwList:await NLPExtraction._natOrder(NLQuestion, coreNLP);
+		console.log(NLPExtraction._orderedkwList_json)
+		//suppression de l'instruction des réponses
+		NLPExtraction._orderedkwList_json = NLPExtraction._orderedkwList_json.filter(e=>!NLPExtraction.same(NLPExtraction._answerInstruction,e))
+		console.log(NLPExtraction._orderedkwList_json)
 		//get syn
-		for (const kw of this._orderedkwList_json)
+		for (const kw of NLPExtraction._orderedkwList_json)
 		{
 			//console.warn(kw)
 			kw.synset = kw.type !=='NE'?
@@ -52,10 +139,11 @@ class NLPExtraction
 			//console.log(kw.word, kw.synset)
 		}
 		//generate permutation
-		const permutation = getPermutations(this._orderedkwList_json);
+		const permutation = getPermutations(NLPExtraction._orderedkwList_json);
+		console.log()
 		NLPExtraction.combinaisons = NLPExtraction._copyListOfLists(permutation);
 
-		//if(this._orderedkwList.length>2)
+		//if(NLPExtraction._orderedkwList.length>2)
 		//{
 		//generate all possible permutations
 		//console.log(NLPExtraction.combinaisons)
@@ -80,7 +168,6 @@ class NLPExtraction
 		//
 		//console.log("NEDEP",combinaisonsNEFirstDep,"NE",combinaisonsNE,"DEP",combinaisonsDep)
 		NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsNEFirstDep);
-		//NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, [combinaisonsNEFirstDep[0]]);
 		NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsNE);
 		NLPExtraction._addMissingLists(NLPExtraction.orderedCombinaisons, combinaisonsDep);
 		//CONSTRAINTS
@@ -94,16 +181,16 @@ class NLPExtraction
 		//
 		// }
 
-		//cas simple :
-		if(this._orderedkwList.length<3 && NLPExtraction._hasNE())
+		//cas simple questions :
+		if(NLPExtraction._orderedkwList.length<3 && NLPExtraction._hasNE())
 		{
 			NLPExtraction.instrTreeI = new Tree(w => new Instruction(w), combinaisonsNE);
-			NLPExtraction.instrTreeI.globalDeepth = this._orderedkwList.length;
+			NLPExtraction.instrTreeI.globalDeepth = NLPExtraction._orderedkwList.length;
 		}
 		else
 		{
 			NLPExtraction.instrTreeI = new Tree(w => new Instruction(w), NLPExtraction.orderedCombinaisons);
-			NLPExtraction.instrTreeI.globalDeepth = this._orderedkwList.length;
+			NLPExtraction.instrTreeI.globalDeepth = NLPExtraction._orderedkwList.length;
 		}
 		
 		
@@ -202,7 +289,7 @@ class NLPExtraction
 	static async extract(NLQuestion)
 	{
 		await NLPExtraction._natOrder(NLQuestion);
-		return this._orderedkwList;
+		return NLPExtraction._orderedkwList;
 	}
 
 	static _clearKeywordsCoreNLP()
@@ -341,8 +428,8 @@ class NLPExtraction
 		this._neList = await CoreNLP.getNE();
 		NLPExtraction._clearKeywordsCoreNLP(this._kwList);
 		let list = this._neList.map(ne=>{ne.type="NE";return ne}).concat(this._kwList.filter(kw=>kw.type!=='NE'))
-		this._orderedkwList = InstrList.toInstrList(list);//serialization
-		return this._orderedkwList;
+		NLPExtraction._orderedkwList = InstrList.toInstrList(list);//serialization
+		return NLPExtraction._orderedkwList;
 	}
 
 	static async _NE_first_SpaCy(NLQuestion)
@@ -354,15 +441,16 @@ class NLPExtraction
 		NLPExtraction._clearKeywordsCoreNLP(this._kwList);
 		//console.log(this._kwList);
 		let list = this._neList.map(ne=>{ne.type="NE";return ne}).concat(this._kwList.filter(kw=>kw.type!=='NE'))
-		this._orderedkwList = InstrList.toInstrList(list);//serialization
-		console.warn("Extracted LIST :", this._orderedkwList.toString())
-		return this._orderedkwList;
+		NLPExtraction._orderedkwList = InstrList.toInstrList(list);//serialization
+		console.warn("Extracted LIST :", NLPExtraction._orderedkwList.toString())
+		return NLPExtraction._orderedkwList;
 	}
 
 	static async _natOrder(NLQuestion, coreNLP)
 	{
 
-		coreNLP?CoreNLP._fetch = JSON.parse(coreNLP):await CoreNLP.fetch(NLQuestion)
+		if(NLPExtraction._orderedkwList===undefined)
+		{coreNLP?CoreNLP._fetch = JSON.parse(coreNLP):await CoreNLP.fetch(NLQuestion);
 		this._kwList = await CoreNLP.getKeyword();
 		//console.log(this._kwList);
 		CoreNLP.enrichDependences(this._kwList);
@@ -390,21 +478,28 @@ class NLPExtraction
 
 		//supprimer les doublons
 		//console.log(list);
-		this._orderedkwList_json = supprimerChevauchements(list);
+		NLPExtraction._orderedkwList_json = supprimerChevauchements(list);
 		// //ajouter mot manquant
 		// console.warn(await CoreNLP.keywords_POSextracted);
 		//ajouter les dependences manquantes
-		CoreNLP.enrichDependences(this._orderedkwList_json);
-		this._orderedkwList = InstrList.toInstrList(list);//serialization
-		console.warn("Extracted LIST :", this._orderedkwList.toString())
-		return this._orderedkwList;
+		CoreNLP.enrichDependences(NLPExtraction._orderedkwList_json);
+		NLPExtraction._orderedkwList = InstrList.toInstrList(list);//serialization
+
+		console.warn("Extracted LIST :", NLPExtraction._orderedkwList.toString())
+		return NLPExtraction._orderedkwList;}
+		else
+		{
+			return NLPExtraction._orderedkwList;
+		}
 	}
 
 	static resetClass()
 	{
+		NLPExtraction._questionType = undefined;
 		this._kwList = undefined;
 		this._neList = undefined;
-		this._orderedkwList = undefined;
+		NLPExtraction._orderedkwList = undefined;
+		NLPExtraction._answerInstruction = undefined;
 	}
 }
 

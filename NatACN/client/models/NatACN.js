@@ -4,6 +4,7 @@ import { InstrList } from "./InstrList.js";
 import { QTList } from "./QTList.js";
 import Utils, { isEqual } from "./Utils.js";
 import { SparklisAPI } from "../services/ACN/SparklisAPI.js";
+import { Suggestions } from "../services/ACN/Suggestions.js";
 
 class NatACN
 {
@@ -17,42 +18,7 @@ class NatACN
 		this.acn = acn;
 	}
 	
-	getWordFromInterrogativeWord(word)
-	{
-		if(word === "when")
-		{
-			return 'date'
-		}
-		if(word === "where")
-		{
-			return 'place'
-		}
-		if(word === "who")
-		{
-			return 'person'
-		}
-	}
-	
-	getInterrogativeWordFromQuestion(question)
-	{
-		let list = question.split(" ");
-		list.splice(5, list.length-5);
-		for (const e in list)
-		{
-			if (e === "when"||"When")
-			{
-				return "when"
-			}
-			if (e === "where"||"Where")
-			{
-				return "where"
-			}
-			if (e === "who"||"Who")
-			{
-				return "who"
-			}
-		}
-	}
+
 
 
 	// update_navState_pointer()
@@ -445,7 +411,7 @@ class NatACN
 
 	async stopCriterion(bestNavigation)
 	{
-		return await this.stopQTPathlength(bestNavigation);
+		return await this.stopAnswerInstructionAndQTPathlength(bestNavigation);
 	}
 	
 	async noStop(bestNavigation){
@@ -470,6 +436,23 @@ class NatACN
 		stop = bestNavigation.QTpath.length===NatACN.nbInstruction //&& currentNatACNRes.length<=10
 		console.warn("stop",stop)
 		return stop;
+	}
+
+	async stopAnswerInstructionAndQTPathlength(bestNavigation)
+	{
+		const QTPathlength = this.stopQTPathlength(bestNavigation);
+		if(QTPathlength)
+		{
+			const answerInstruction = this.stopAnswerInstruction(bestNavigation);
+			return answerInstruction;
+		}
+		return QTPathlength;
+	}
+
+	async stopAnswerInstruction(bestNavigation)
+	{
+		let conceptSuggestion = this.acn.getFilteredQT_obviousQT(NLPExtraction._answerInstruction, bestNavigation.place,bestNavigation.QTpath);
+		return conceptSuggestion.length!==0;
 	}
 
 	async stopF1(bestNavigation)
@@ -500,6 +483,9 @@ class NatACN
 	{
 		// NLP
 		console.log(question)
+		await NLPExtraction.setAnswerInstructionFromQuestion(question);
+		console.log('_answerInstruction : ' ,NLPExtraction._answerInstruction)
+		console.log("NLPExtraction.list", NLPExtraction._orderedkwList.toString());
 		//this.word = this.getWordFromInterrogativeWord(this.getInterrogativeWordFromQuestion(question));
 		let instrTree = await NLPExtraction.instrTree(question, coreNLP);
 		try

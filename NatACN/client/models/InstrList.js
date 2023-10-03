@@ -1,5 +1,6 @@
 import { CoreNLP } from '../services/NLP/CoreNLP.js';
 import { Instruction } from './Instruction.js'
+import { isEqual } from "./Utils.js";
 
 class InstrList
 {
@@ -53,6 +54,26 @@ class InstrList
 	static copy(kwList)
 	{
 		return InstrList.toInstrList(kwList);
+	}
+
+	filterFromType(type)
+	{
+		return this._list.filter(kw=>kw._type===type);
+	}
+
+	removeInstr(instr) {
+		const index = this._list.indexOf(instr);
+		console.log(index);
+		if (index !== -1) {
+			this._list.splice(index, 1);
+			this.length--;
+		}
+		else
+		{
+			console.log(instr, this._list)
+			const list = this._list.filter(val => isEqual(instr, val))
+			console.log(list)
+		}
 	}
 	
 	includes(a)
