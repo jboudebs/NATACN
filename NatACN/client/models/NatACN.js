@@ -552,7 +552,7 @@ class NatACN
 				// Filtrer le QT correspondant à l'instruction enfant actuelle
 				let T_i = await this.acn.getFilteredQT(childInstrNode.valeur, Pi, QTpath_i);
 
-				console.warn("Filtered QT",T_i)
+				console.warn("Filtered QT : ",T_i)
 				// Exploration de tous les QT filtrés
 				for (let j = 0; j < T_i.length; j++)
 				{

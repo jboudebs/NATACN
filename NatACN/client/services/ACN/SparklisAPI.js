@@ -152,6 +152,7 @@ class SparklisAPI extends ACN
 	async getFilteredQT_Mixed(instr, place, QTpath)
 	{
 		let obviousQTList = await this.getFilteredQT_obviousQT(instr, place, QTpath);
+		console.log("obviousQTList",obviousQTList);
 		let constraintQTList = await this.getFilteredQT_ExternalSearchBug(instr, place, QTpath);
 		console.log("constraintQTList",constraintQTList);
 		constraintQTList instanceof Array && !constraintQTList.length?constraintQTList = new QTList():null;
@@ -159,6 +160,7 @@ class SparklisAPI extends ACN
 		mixedQTList.add(obviousQTList._list);
 		mixedQTList.add(constraintQTList._list);
 		//mixedQTList.filterByScore(SparklisAPI.MU_Instr);
+
 		mixedQTList = mixedQTList.rankByScore();
 		return mixedQTList;
 	}
@@ -236,7 +238,7 @@ class SparklisAPI extends ACN
 			
 			//ranking
 			filteredQTList.rankByScore();
-			console.warn(filteredQTList);
+			//console.warn(filteredQTList);
 			return filteredQTList;
 		}
 		else
@@ -365,7 +367,7 @@ class SparklisAPI extends ACN
 				console.dir(matchQT.getIncr().toString());
 				matchQT.setScore(1);
 				qtList.add(matchQT);
-				console.warn(qtList)
+				//console.warn(qtList)
 				if(qtList.length){qtList.get(0).setLabel(ne)}
 			}
 			
@@ -415,9 +417,9 @@ class SparklisAPI extends ACN
 			
 			//fetching labels for QTs
 			let incrList = qtList.getList().map(qt=>qt.getIncr());
-			console.warn("incrList : ", incrList)
+			//console.warn("incrList : ", incrList)
 			qtList = await this._getLabelFromMultipleUriWiki(incrList);
-			console.warn("qtList(with labels) : ", qtList);
+			//console.warn("qtList(with labels) : ", qtList);
 			
 			//adding relatedness score for each QT
 			for (const qt of qtList.getList())
@@ -430,7 +432,7 @@ class SparklisAPI extends ACN
 				const regex = /\b(ID|i_d|id|Id)\b|\b(ID|i_d|id|Id)\b$/;
 				if (label.match(regex))
 				{
-					console.warn('ici ID identifié', label)
+					//console.warn('ici ID identifié', label)
 					qtList_toRemove.push(qt);
 				}
 				else
@@ -667,7 +669,7 @@ class SparklisAPI extends ACN
 			const uriD = incrD.uri?incrD.uri:incrD.pred["uri"+incrD.pred.type[1]]
 			if( uri === uriD && incr.arg===incrD.arg)
 			{
-				console.warn("comp incr",incr, incrD)
+				//console.warn("comp incr",incr, incrD)
 				return incrD.label;
 			}
 		}

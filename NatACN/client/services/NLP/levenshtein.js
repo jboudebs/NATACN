@@ -105,8 +105,8 @@ function main() {
 	//	return;
 	//}
 	
-	var w1 = "has_spin-off";
-	var w2 = "spin_offs";
+	var w1 = "educated";
+	var w2 = "educated_at";
 	
 	var r = levenshtein(w1,w2);
 	console.log(r);
@@ -116,4 +116,4 @@ if (process.argv[1] == __filename) {
 	main();
 }
 
-export {levenshtein}
+//export {levenshtein}

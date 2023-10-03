@@ -75,15 +75,35 @@ class ConceptNet
 		console.log(uri, JSON.value);
 		return JSON.value;
 	}
-	
+
+	/**
+	 * ajout de la gestion des 'word' composé de plusieurs mots, avec gestion du dico, renvoie le max
+	 * @param word1
+	 * @param word2
+	 * @returns {Promise<{F1score, recall: number, precision: number}|*|number>}
+	 */
 	static async getRelatedness(word1, word2)
 	{
+		console.log(word1,word2)
 		let relatedness = this.getRelatedDico(word1, word2);
-		console.warn("Dico", this.RelatedDico)
+		//console.warn("Dico", this.RelatedDico)
 		if(relatedness === 0)
 		{
-			relatedness = await this.getRelatednessFetch(word1, word2);
-			this.pushRelatedDico(word1,word2,relatedness)
+			const listWord1 = word1.split(" ");
+			const listWord2 = word2.split(" ");
+			if(listWord2.length===1&&listWord1.length===1)
+			{
+				relatedness = await this.getRelatednessFetch(word1, word2);
+				this.pushRelatedDico(word1,word2,relatedness);
+			}
+			else{
+				for (const w1 of listWord1) {
+					for (const w2 of listWord2) {
+						const relLoc = await this.getRelatedness(w1, w2);
+						relatedness = Math.max(relatedness, relLoc);
+					}
+				}
+			}
 		}
 		
 		return relatedness;

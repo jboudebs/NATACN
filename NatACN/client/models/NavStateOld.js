@@ -144,11 +144,11 @@ class NavStateOld
 		if (navstateRes._longestQTPath.QTPath.length>this._longestQTPath.QTPath.length)
 		{
 			//y a un truc qui bug : ça recupère les resultats en cours, pas ce qui correspondent au plus long chemin :/
-			console.warn("longest change")
+			//console.warn("longest change")
 			this._longestQTPath = {
 				QTPath: QTList.copy(navstateRes._longestQTPath.QTPath), Res: navstateRes._longestQTPath.Res
 			}
-			console.warn(this._longestQTPath)
+			//console.warn(this._longestQTPath)
 		}
 	}
 
@@ -233,5 +233,5 @@ class NavStateOld
 
 }
 
-export { NavState };
+//export { NavState };
 export default { NavState };

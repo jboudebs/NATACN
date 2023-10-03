@@ -36,19 +36,19 @@ class QTList
 		}
 		else if ( qt instanceof Array)
 		{
-			console.warn("here", qt)
+			//console.warn("here", qt)
 			for (let qtElement of qt)
 			{
-				console.warn(qtElement)
+				//console.warn(qtElement)
 				this.add(qtElement);
 			}
 		}
 		else if (typeof qt === 'object')
 		{
-			console.log("qt includes",qt, !this.includes(qt))
-			if(!this.includes(qt))
+			let qttyped = new QT(qt)
+			if(!this.includes(qttyped))
 			{
-				this._list.push(new QT(qt));
+				this._list.push(qttyped);
 				this.length++;
 			}
 		}
@@ -118,8 +118,14 @@ class QTList
 	
 	
 
-	includes(a)
+	includes(qt)
 	{
+		let a;
+		if(qt instanceof QT)
+		{
+			a = qt.getIncr();
+		}
+
 		if(this._list.includes(a))
 		{
 			return true;
