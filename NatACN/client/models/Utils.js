@@ -5,7 +5,9 @@ function isEmpty(obj)
 
 async function sleep(ms, callback = ()=>{})
 {
+    console.error('Waiting for '+ms+' ms...')
 	await new Promise((resolve) => setTimeout(() => {resolve(callback)}, ms));
+    console.error("Waited.")
 }
 
 /**
