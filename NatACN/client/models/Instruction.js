@@ -1,4 +1,5 @@
 import { CoreNLP } from '../services/NLP/CoreNLP.js';
+import { NLPToolsParameters } from "./NLToolsParameters.js";
 class Instruction
 {
 	//object keyword and node for KeywordTree
@@ -97,8 +98,9 @@ class Instruction
 		return this._lemma
 	}
 	
-	getSynset()
+	async getSynset()
 	{
+		this._synset = this._synset?this._synset:await NLPToolsParameters.getSynonyms(this._string);
 		return this._synset;
 	}
 	

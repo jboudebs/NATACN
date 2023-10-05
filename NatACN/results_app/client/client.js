@@ -87,6 +87,7 @@ try
 	//console.log(initial_place)
 	const res = await natACN.natNavigation(question, home_place);
 	console.dir(res);
+	console.error(SparklisAPI.error_count);
 	await sparklisAPI.setCurrentPlace(res.bestNavigation.place);
 	////console.log(res.bestNavigation.place.sparql())
 	//TEST UNIQUE QUESTION

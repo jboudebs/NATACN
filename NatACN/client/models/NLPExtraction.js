@@ -190,7 +190,7 @@ class NLPExtraction
 		else
 		{
 			NLPExtraction.instrTreeI = new Tree(w => new Instruction(w), NLPExtraction.orderedCombinaisons);
-			NLPExtraction.instrTreeI.globalDeepth = NLPExtraction._orderedkwList.length;
+			NLPExtraction.instrTreeI.globalDeepth = NLPExtraction._orderedkwList_json.length;
 		}
 		
 		

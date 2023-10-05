@@ -440,10 +440,10 @@ class NatACN
 
 	async stopAnswerInstructionAndQTPathlength(bestNavigation)
 	{
-		const QTPathlength = this.stopQTPathlength(bestNavigation);
+		const QTPathlength = await this.stopQTPathlength(bestNavigation);
 		if(QTPathlength)
 		{
-			const answerInstruction = this.stopAnswerInstruction(bestNavigation);
+			const answerInstruction = await this.stopAnswerInstruction(bestNavigation);
 			return answerInstruction;
 		}
 		return QTPathlength;
@@ -451,7 +451,8 @@ class NatACN
 
 	async stopAnswerInstruction(bestNavigation)
 	{
-		let conceptSuggestion = this.acn.getFilteredQT_obviousQT(NLPExtraction._answerInstruction, bestNavigation.place,bestNavigation.QTpath);
+		console.log(NLPExtraction._answerInstruction, bestNavigation.place,bestNavigation.QTpath)
+		let conceptSuggestion = await this.acn.getFilteredQT_obviousQT(NLPExtraction._answerInstruction, bestNavigation.place,bestNavigation.QTpath);
 		return conceptSuggestion.length!==0;
 	}
 

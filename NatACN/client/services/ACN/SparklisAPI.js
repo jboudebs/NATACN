@@ -183,7 +183,16 @@ class SparklisAPI extends ACN
 			{
 				//get T_i
 				let suggList = await (new Suggestions()).create("True", place, QTpath);
-				
+
+				if(suggList==="error")
+				{
+					SparklisAPI.error_count++;
+					console.log(SparklisAPI.error_count)
+					const e = new Error("Filtered QT in error and empty");
+					console.error(e);
+					qtList = new QTList([]);
+					return qtList;
+				}
 				//console.error("typeof ", suggList);
 				// qtList = await Promise.all(suggList.map(async s=>
 				// 	{   let qt = new QT(s);
@@ -191,6 +200,8 @@ class SparklisAPI extends ACN
 				// 		return qt
 				// 	}));
 				qtList = await this._getLabelFromMultipleUriWiki(suggList); //les index correspondent
+				console.log(qtList)
+
 				//console.error("typeof ", qtList);
 				//console.log("typeof ",typeof qtList, typeof qtList[0], qtList[0]);
 				
@@ -206,7 +217,7 @@ class SparklisAPI extends ACN
 				return qtList;
 			}
 			//synset search T_i
-			const synonyms = InstrList.toInstrList(instr.getSynset());
+			const synonyms = InstrList.toInstrList(await instr.getSynset());
 			let labelList = qtList.map(qt=>qt.getLabel())
 			console.log(labelList)
 			console.log("Current synonyms :",synonyms.toString());
@@ -375,7 +386,13 @@ class SparklisAPI extends ACN
 		//case current instr is a keyword
 		else if(!instr.type)
 		{
-			const synonyms = InstrList.toInstrList(instr.getSynset());
+			console.log(instr)
+			let synonyms = await instr.getSynset();
+			console.log(synonyms)
+			if(typeof synonyms !== 'InstrList')
+			{
+				synonyms = InstrList.toInstrList(synonyms);
+			}
 			//.toString().toLowerCase().split(",").filter(e=>e.length>2);
 			//console.log(synonyms)
 			console.log("Current synonyms :",synonyms.toString());
@@ -394,7 +411,7 @@ class SparklisAPI extends ACN
 					{
 						//await Utils.sleep(6000);
 						console.error("error");
-						this.error_count++
+						SparklisAPI.error_count++
 						qtList = new QTList([]);
 					}
 					else
@@ -878,7 +895,7 @@ class SparklisAPI extends ACN
 			try
 			{
 				SparklisAPI.setCurrentPlace_count++
-				(await this._sparklis()).setCurrentPlace(newPlace)
+				await (await this._sparklis()).setCurrentPlace(newPlace)
 			}
 			catch (e)
 			{

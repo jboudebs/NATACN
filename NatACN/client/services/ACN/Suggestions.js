@@ -41,7 +41,7 @@ class Suggestions
 
 class WikidataSuggestions
 {
-	
+	static nb_tries = 1
 	/**
 	 * Si word contient plusieurs mots, split de word en liste de mots
 	
@@ -66,6 +66,8 @@ class WikidataSuggestions
 	
 	async create(constr, place, QTpath)
 	{
+		this.count = this.count?this.count+1:1
+		console.error("this count :",this.count)
 		let suggestionList;
 		if (SparklisAPI.hasEmptyQuery(place))//si la query de la place est vide
 		{
@@ -85,7 +87,7 @@ class WikidataSuggestions
 				suggestionList = _findChildSuggestionList(forest);
 				suggestionList = _removeAlreadyAppliedSuggestion(suggestionList, QTpath);
 				//Filtrer les increments relations -- test:
-				suggestionList = suggestionList.filter(s=>s.type==="IncrRel");
+				//suggestionList = suggestionList.filter(s=>s.type==="IncrRel");
 				//console.log("concept sugg",suggestionList);
 			}
 			catch (e)
@@ -93,23 +95,30 @@ class WikidataSuggestions
 				console.error("in create Suggestions",e)
 				try
 				{
-					if(this.count>3)
+					if(this.count===WikidataSuggestions.nb_tries+1)
 					{
-						console.error("Waiting for 60s ...");
-						await Utils.sleep(60010);
-						console.error("Waited for 60s.");
-						suggestionList = this.create(constr, place, QTpath);
-						this.count = 0;
-						
-						console.error("POST recovered");
+						return "error"
+					}
+
+					else if(this.count===WikidataSuggestions.nb_tries)
+					{
+					console.error("Waiting for 60s ...");
+					await Utils.sleep(60010);
+					console.error("Waited for 60s.");
+					suggestionList = await this.create(constr, place, QTpath);
+					this.count = 0;
+
+						if (suggestionList === "error") {
+							throw new Error(e);
+							console.error("POST error");
+						} else {
+							console.error("POST recovered",);
+						}
 						return suggestionList;
 					}
 					else
 					{
-						console.error(e);
-						this.count++;
-						suggestionList = this.create(constr, place, QTpath);
-						return suggestionList;
+						return await this.create(constr, place, QTpath)
 					}
 					
 				}
