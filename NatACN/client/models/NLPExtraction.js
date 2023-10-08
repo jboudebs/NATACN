@@ -41,21 +41,33 @@ class NLPExtraction
 	// 	return NLPExtraction.combinaisons
 	// }
 
-	static getExpectedAnswerTypeFromSimpleInterrogativeWord(word)
+	static async getExpectedAnswerTypeFromSimpleInterrogativeWord(word)
 	{
+		let type
 		if(word === "when")
 		{
-			return 'date'
+			type = 'date'
 		}
 		if(word === "where")
 		{
-			return 'place'
+			type = 'place'
 		}
 		if(word === "who")
 		{
-			return 'person'
+			type = 'person'
 		}
-		return undefined
+
+		if (type) {
+			NLPExtraction._answerInstruction = new Instruction(type)
+			//syn for answerInstruction
+			let kw = NLPExtraction._answerInstruction;
+
+			let synset = await NLPToolsParameters.getSynonyms(NLPExtraction._answerInstruction)
+			synset = synset?synset:[];
+			kw.synset = InstrList.toInstrList(synset)
+		} else {
+			return undefined;
+		}
 	}
 
 	static getInterrogativeWordFromQuestion(question)
@@ -100,8 +112,9 @@ class NLPExtraction
 	{
 		NLPExtraction._questionType = NLPExtraction.getInterrogativeWordFromQuestion(question);
 		console.log("NLPExtraction._questionType : ", NLPExtraction._questionType)
-		NLPExtraction._answerInstruction = NLPExtraction.getExpectedAnswerTypeFromSimpleInterrogativeWord(NLPExtraction._questionType);
-		console.warn("NLPExtraction._answerInstruction : ", NLPExtraction._answerInstruction)
+		//cas mot interrogatif simple
+		NLPExtraction._answerInstruction = await NLPExtraction.getExpectedAnswerTypeFromSimpleInterrogativeWord(NLPExtraction._questionType);
+		//cas mot interrogatif which/what
 		if(!NLPExtraction._answerInstruction)
 		{
 			await NLPExtraction._natOrder(question);
@@ -111,9 +124,13 @@ class NLPExtraction
 			//syn for answerInstruction
 			let kw = NLPExtraction._answerInstruction;
 			let synset = (await NLPToolsParameters.getSynonyms(kw)).concat([kw.word])
+			console.warn(NLPExtraction._answerInstruction)
 			synset = synset?synset:[];
+
 			kw.synset = InstrList.toInstrList(synset)
 		}
+		console.warn("NLPExtraction._answerInstruction : ", NLPExtraction._answerInstruction)
+
 		return NLPExtraction._answerInstruction;
 	}
 
@@ -127,8 +144,8 @@ class NLPExtraction
 		NLPExtraction._orderedkwList = NLPExtraction._orderedkwList?NLPExtraction._orderedkwList:await NLPExtraction._natOrder(NLQuestion, coreNLP);
 		console.log(NLPExtraction._orderedkwList_json)
 		//suppression de l'instruction des réponses
-		NLPExtraction._orderedkwList_json = NLPExtraction._orderedkwList_json.filter(e=>!NLPExtraction.same(NLPExtraction._answerInstruction,e))
-		console.log(NLPExtraction._orderedkwList_json)
+		//NLPExtraction._orderedkwList_json = NLPExtraction._orderedkwList_json.filter(e=>!NLPExtraction.same(NLPExtraction._answerInstruction,e))
+		//console.log(NLPExtraction._orderedkwList_json)
 		//get syn
 		for (const kw of NLPExtraction._orderedkwList_json)
 		{

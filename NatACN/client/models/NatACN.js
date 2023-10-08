@@ -321,7 +321,8 @@ class NatACN
 
 	async better(place, QTpath, instrPath, bestNavigation)
 	{
-		return await this.better12(place, QTpath, instrPath, bestNavigation);
+		console.log("better", QTpath.toString())
+		return await this.betterSemNEQTPath(place, QTpath, instrPath, bestNavigation);
 	}
 	betterLength(place, QTpath, instrPath, bestNavigation)
 	{
@@ -409,13 +410,66 @@ class NatACN
 
 	}
 
+	async betterSemNEQTPath(place, QTpath, instrPath, bestNavigation)
+	{
+		const sem = await this.betterSem(place, QTpath, instrPath, bestNavigation);
+		const NE = this.betterNE(place, QTpath, instrPath, bestNavigation);
+		const QTPathLength = this.betterQTPath(place, QTpath, instrPath, bestNavigation);
+		if(sem)
+		{
+			return true
+		}
+		else if(NE)
+		{
+			return true
+		}
+		else if(QTPathLength)
+		{
+			return true
+		}
+		else
+		{
+			return false
+		}
+
+
+	}
+
+
+	async betterSem(place, QTpath, instrPath, bestNavigation)
+	{
+		//garder en mémoire le score sem
+		if(this.scoretmp === undefined)
+		{
+			console.log("bestNavigation scoring")
+			let conceptSuggestion = (await this.acn.getFilteredQT_ExternalSearchBug(NLPExtraction._answerInstruction, bestNavigation.place, bestNavigation.QTpath))
+				.filterConcept();
+			this.scoretmp = conceptSuggestion.averageScore();
+			return true
+		}
+		console.log(NLPExtraction._answerInstruction, bestNavigation.place,bestNavigation.QTpath)
+		console.log("current place scoring")
+		let currConceptSuggestion = (await this.acn.getFilteredQT_ExternalSearchBug(NLPExtraction._answerInstruction,place,QTpath));
+		console.log("currConceptSuggestion",currConceptSuggestion)
+		console.log(currConceptSuggestion.filterConcept());
+		let currScore = currConceptSuggestion.averageScore();
+
+		console.log("score", currScore,bestNavigation.score)
+
+		if(currScore>bestNavigation.score)
+		{
+			this.scoretmp = currScore;
+		}
+		return currScore>bestNavigation.score;
+	}
+
 	async stopCriterion(bestNavigation)
 	{
-		return await this.stopAnswerInstructionAndQTPathlength(bestNavigation);
+		return await this.noStop(bestNavigation);
 	}
 	
 	async noStop(bestNavigation){
-		return false
+		return false;
 	}
 
 	async stopResults(bestNavigation)
@@ -451,8 +505,11 @@ class NatACN
 
 	async stopAnswerInstruction(bestNavigation)
 	{
+		console.log("stopAnswerInstruction")
 		console.log(NLPExtraction._answerInstruction, bestNavigation.place,bestNavigation.QTpath)
-		let conceptSuggestion = await this.acn.getFilteredQT_obviousQT(NLPExtraction._answerInstruction, bestNavigation.place,bestNavigation.QTpath);
+		let conceptSuggestion = (await this.acn.getFilteredQT_obviousQT(NLPExtraction._answerInstruction, bestNavigation.place, bestNavigation.QTpath))
+			.filterConcept();
+		console.log(conceptSuggestion)
 		return conceptSuggestion.length!==0;
 	}
 
@@ -496,7 +553,7 @@ class NatACN
 			NatACN.appel = 0;
 			NatACN.nbInstruction = instrTree.globalDeepth;
 			console.dir(instrTree)
-			let res = await this.natNavigateRec(instrTree.racine, P, new QTList(), new InstrList())//, bestNavigation);//////
+			let res = await this.natNavigateRecV2(instrTree.racine, P, new QTList(), new InstrList())//, bestNavigation);//////
 			await this.acn.setCurrentPlace(res.place);
 			await this.acn.getResults(res.place);
 			console.log("Resultat path : ", res.QTpath.toString())
@@ -562,6 +619,65 @@ class NatACN
 						}
 						//Cas d'arret
 					}
+					// Sinon, c'est une impasse, nous continuons l'exploration avec un autre QT
+				}
+				// S'il n'y a aucun QT à tester ou si tous mènent à une impasse, nous explorons avec l'instruction enfant suivante
+			}
+			return bestNavigation; // Aucune instruction enfant ne permet une interprétation complète de l'ensemble d'instructions
+		}
+	}
+
+	async natNavigateRecV2(instrNode, Pi, QTpath_i, instrPath_i, bestNavigation) {
+		bestNavigation = bestNavigation?bestNavigation:{"place": Pi, "QTpath": QTpath_i, "instrPath": instrPath_i}
+		NatACN.appel++;
+		console.warn("Node",instrNode.toString())
+		// 1) Mettre à jour la meilleure navigation jusqu'à présent
+		// if (await this.better(Pi, QTpath_i, instrPath_i, bestNavigation)) {
+		// 	bestNavigation = {"place" :Pi, "QTpath" : QTpath_i, "instrPath" : instrPath_i};
+		// 	console.warn("better", bestNavigation)
+		// }
+		console.log(instrNode, Pi, QTpath_i, instrPath_i, bestNavigation, QTpath_i.length!==0)
+		if (QTpath_i.length!==0 && await this.better(Pi, QTpath_i, instrPath_i, bestNavigation) ) {
+			bestNavigation = {"place": Pi, "QTpath": QTpath_i, "instrPath": instrPath_i, "score": this.scoretmp};
+			console.warn("NatACN better", bestNavigation)
+			//Cas d'arret
+			if (await this.stopCriterion(bestNavigation)) {
+				console.warn("NatACN stop")
+				return bestNavigation; // Une solution a été trouvée
+			}
+			//Cas d'arret
+		}
+		// 2) Interpréter l'instruction racine actuelle dans l'ACN
+		// 2.a) S'il s'agit d'une feuille, toutes les instructions ont été interprétées
+		if (instrNode.isLeaf()) {
+			return bestNavigation;
+		} else {
+			// 2.b) Sinon, nous devons interpréter les instructions enfants
+			let L_c = instrNode.getEnfants();
+			// Exploration de toutes les instructions enfants
+			for (let i = 0; i < L_c.length; i++)
+			{
+				let childInstrNode = L_c[i];
+				console.warn("instrPath_i so far - ",instrPath_i.toString())
+				console.warn("Current child instruction - ",childInstrNode.valeur.toString())
+
+				// Filtrer le QT correspondant à l'instruction enfant actuelle
+				let T_i = await this.acn.getFilteredQT(childInstrNode.valeur, Pi, QTpath_i);
+
+				console.warn("Filtered QT : ",T_i)
+				// Exploration de tous les QT filtrés
+				for (let j = 0; j < T_i.length; j++)
+				{
+					let t_j = T_i.get(j);
+					let P_i_1;
+
+					P_i_1 = await this.acn.navigate(Pi, t_j); // Navigation selon t_j
+
+					// Appel récursif de navigateRec avec l'instruction enfant actuelle
+					bestNavigation = await this.natNavigateRecV2(childInstrNode, P_i_1, QTList.copy(QTpath_i).add(t_j), InstrList.copy(instrPath_i).add(childInstrNode.valeur), bestNavigation);
+
+					//bestNavigation = resultsNavigation.bestNavigation;
+
 					// Sinon, c'est une impasse, nous continuons l'exploration avec un autre QT
 				}
 				// S'il n'y a aucun QT à tester ou si tous mènent à une impasse, nous explorons avec l'instruction enfant suivante

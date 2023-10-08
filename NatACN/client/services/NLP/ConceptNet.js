@@ -1,6 +1,7 @@
 import * as Utils from '../../models/Utils.js';
 import { Instruction } from "../../models/Instruction.js";
 
+
 class ConceptNet
 {
 	static last_time = 0;
@@ -93,6 +94,10 @@ class ConceptNet
 	 */
 	static async getRelatedness(word1, word2)
 	{
+		if(word1 === undefined || word2 === undefined)
+		{
+			return 0;
+		}
 		console.log(word1,word2)
 		let relatedness = this.getRelatedDico(word1, word2);
 		//console.warn("Dico", this.RelatedDico)

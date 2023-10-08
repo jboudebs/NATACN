@@ -39,7 +39,7 @@ class WikidataConstraint
 		if (word.length >= 3)
 		{
 			const constr = await sparklis.externalSearchConstr({
-				type: "WikidataSearch", kwds: (typeof word === 'string') ? [word] : word
+				type: "WikidataSearch", kwds: (typeof word === 'string') ? [word.replaceAll("”"," ")] : word.replaceAll("”"," ")
 			});
 			if (constr == null)
 			{

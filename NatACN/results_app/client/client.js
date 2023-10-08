@@ -81,14 +81,14 @@ try
 	//await sparklisAPI.changeEndpoint("https://query.wikidata.org/sparql", home_place)
 	//DB
 	//TEST UNIQUE QUESTION
-	let question = "What is the Chinese zodiac animal that follows the ox?";
+	//let question = "What is the offical language of Tapei?";
 	//
 	//tests
 	//console.log(initial_place)
-	const res = await natACN.natNavigation(question, home_place);
-	console.dir(res);
-	console.error(SparklisAPI.error_count);
-	await sparklisAPI.setCurrentPlace(res.bestNavigation.place);
+	//const res = await natACN.natNavigation(question, home_place);
+	//console.dir(res);
+	//console.error(SparklisAPI.error_count);
+	//await sparklisAPI.setCurrentPlace(res.bestNavigation.place);
 	////console.log(res.bestNavigation.place.sparql())
 	//TEST UNIQUE QUESTION
 
@@ -110,7 +110,7 @@ try
 	
 
 	//reprise
-	//await getNatACN(0);
+	await getNatACN(0);
 
 
 

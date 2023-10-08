@@ -69,7 +69,20 @@ class QTList
 
 	filter(f)
 	{
-		return this._list.filter(f);
+		return QTList.toQTList(this._list.filter(f));
+	}
+
+	filterConcept()
+	{
+		console.log(this);
+		const qtList =QTList.toQTList(this._list.filter(qt=>qt._incr.type === "IncrType"));
+		console.log(qtList)
+		return qtList;
+	}
+
+	filterRelation()
+	{
+		return QTList.toQTList(this._list.filter(qt=>qt._ori));
 	}
 
 	map(f)
@@ -176,41 +189,57 @@ class QTList
 		//console.warn(this._list);//ajouter un map pour borne inf
 	}
 
-	static toQTList(stringList)
+	averageScore()
 	{
-		let qtList = new QTList([]);
-		if(stringList === undefined)
+		let totalScores = this._list.reduce((total, objet) => total + objet._score, 0);
+		let moyenneScores = totalScores / this.length;
+		return moyenneScores;
+	}
+
+	static toQTList(anyList)
+	{
+		let kwList = new QTList([]);
+		// if (anyList instanceof Object && anyList._list!=undefined && anyList.length!=undefined && !(anyList instanceof InstrList))
+		// {
+		// 	kwList = new InstrList([]);
+		// 	kwList._list = anyList._list;
+		// 	kwList.length = anyList.length;
+		// }
+		// else{
+		if (anyList instanceof QTList)
 		{
-			qtList._list = [];
-        	qtList.length = 0;
+			anyList = anyList._list
 		}
-		else
+
+		anyList.map((it) =>
 		{
 			try
 			{
-				for (let i = 0; i < stringList.length; i++)
+				let kw;
+				if (typeof it === "string")
 				{
-					let string;
-					if (string === undefined) // cas list de qt
-					{
-						string = stringList.get(i);
-					}
-					else
-					{
-						string = stringList[i];
-					}
-					
-					qtList.add(string);
-					
+					kw = new QT(it)
 				}
+				else if (it instanceof QT)
+				{
+					kw = it;
+				}
+				else if (it instanceof Object)
+				{
+					kw = new QT(it);
+				}
+
+				kwList.add(kw);
+				return
 			}
 			catch (e)
 			{
 				console.error(e)
 			}
-		}
-		return qtList;
-		
+		})
+		console.log(kwList)
+		return kwList;
+		//}
 	}
 	
 	

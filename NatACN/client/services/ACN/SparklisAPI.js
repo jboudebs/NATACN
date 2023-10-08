@@ -161,7 +161,12 @@ class SparklisAPI extends ACN
 		mixedQTList.add(constraintQTList._list);
 		//mixedQTList.filterByScore(SparklisAPI.MU_Instr);
 
+		if(QTpath.length&&instr.getType() !== 'NE') {
+			mixedQTList = mixedQTList.filterRelation();
+		}
 		mixedQTList = mixedQTList.rankByScore();
+		//console.warn("mixedQTList before filtering",mixedQTList.toString())
+		//console.warn("mixedQTList after filtering",mixedQTList.toString())
 		return mixedQTList;
 	}
 	
@@ -207,7 +212,7 @@ class SparklisAPI extends ACN
 				
 				//filter ID label
 				const regex = /\b(ID|i_d|id|Id)\b|\b(ID|i_d|id|Id)\b$/;
-				qtList = new QTList(qtList.filter(qt => !qt.getLabel().match(regex)));
+				qtList = new QTList(qtList._list.filter(qt => !qt.getLabel().match(regex)));
 				console.dir(qtList);
 			}
 			catch (e)
@@ -243,12 +248,13 @@ class SparklisAPI extends ACN
 				console.log(indexqt)
 				filteredQTList._list[indexqt].setScore(simList[indexqt].similarity)
 			}
-			console.log(filteredQTList);
 			//filtering thanks to instr
 			filteredQTList.filterByScore(SparklisAPI.MU_Instr)
-			
 			//ranking
+
 			filteredQTList.rankByScore();
+			console.trace()
+			console.log(filteredQTList);
 			//console.warn(filteredQTList);
 			return filteredQTList;
 		}

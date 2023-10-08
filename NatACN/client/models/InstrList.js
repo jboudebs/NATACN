@@ -44,6 +44,9 @@ class InstrList
 			}
 			
 		}
+		else if(keyword === undefined)
+		{
+		}
 		else
 		{
 			throw new Error("Erreur lors de l'ajout de " + keyword + " dans une KeywordList.");
