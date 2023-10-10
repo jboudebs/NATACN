@@ -191,6 +191,7 @@ class QTList
 
 	averageScore()
 	{
+		if(this.length===0){return 0}
 		let totalScores = this._list.reduce((total, objet) => total + objet._score, 0);
 		let moyenneScores = totalScores / this.length;
 		return moyenneScores;

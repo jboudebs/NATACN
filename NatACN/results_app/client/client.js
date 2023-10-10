@@ -81,7 +81,7 @@ try
 	//await sparklisAPI.changeEndpoint("https://query.wikidata.org/sparql", home_place)
 	//DB
 	//TEST UNIQUE QUESTION
-	//let question = "What is the offical language of Tapei?";
+	let question = "At which school was Yayoi Kusama educated at?";
 	//
 	//tests
 	//console.log(initial_place)

@@ -117,7 +117,7 @@ class NLPExtraction
 		//cas mot interrogatif which/what
 		if(!NLPExtraction._answerInstruction)
 		{
-			await NLPExtraction._natOrder(question);
+			NLPExtraction._orderedkwList = await NLPExtraction._natOrder(question);
 			console.log(NLPExtraction._orderedkwList_json);
 			NLPExtraction._answerInstruction = new Instruction(NLPExtraction._orderedkwList_json.filter(e=>e.type===undefined)[0])
 			console.log(NLPExtraction._answerInstruction);
@@ -313,9 +313,9 @@ class NLPExtraction
 	{
 		//console.warn(this._kwList, CoreNLP.keywords.map(e=>e.word), SpaCyNER.NE);
 		NLPExtraction._clearFromNE()
-		//console.warn(this._kwList.map(e=>e.word));
+		console.warn(this._kwList.map(e=>e.word+e.type).toString());
 		this._kwList = CoreNLP.mergeCompoundWord(this._kwList);
-		//console.warn(this._kwList);
+		console.warn(this._kwList.map(e=>e.word+e.type).toString());
 		NLPExtraction._clearFromLemma()
 		//console.warn(this._kwList.map(e=>{return e.word}));
 		CoreNLP.keywords = this._kwList
@@ -348,6 +348,7 @@ class NLPExtraction
 					ne["dependencies"] = (kw.dependencies?kw.dependencies:[]).concat(ne.dependencies);
 					ne["index"] = kw.index;
 					ne["indexes"] = (kw.indexes?kw.indexes:[]).concat(ne.indexes);
+					ne["type"] = 'NE';
 				}
 
 			}
@@ -477,7 +478,7 @@ class NLPExtraction
 		NLPExtraction._clearKeywordsCoreNLP(this._kwList);
 		//fusion NE word
 		let list = this._neList.map(ne=>{ne.type="NE";return ne}).concat(this._kwList.filter(kw=>kw.type!=='NE'))
-		//console.log(list);
+		console.dir(list.map(kw=>kw.word+kw.type).toString());
 
 		//tri
 		list.sort(function(a, b) {
@@ -496,11 +497,21 @@ class NLPExtraction
 		//supprimer les doublons
 		//console.log(list);
 		NLPExtraction._orderedkwList_json = supprimerChevauchements(list);
+		console.dir(list.map(kw=>kw.word+kw.type).toString());
+		for (const kw of NLPExtraction._orderedkwList_json)
+		{
+			//console.warn(kw)
+			kw.synset = kw.type !=='NE'?
+				InstrList.toInstrList((await NLPToolsParameters.getSynonyms(kw)).concat([kw.word]))
+				: undefined;//InstrList.toInstrList(kw.word);
+			//console.log(kw.word, kw.synset)
+		}
 		// //ajouter mot manquant
 		// console.warn(await CoreNLP.keywords_POSextracted);
 		//ajouter les dependences manquantes
 		CoreNLP.enrichDependences(NLPExtraction._orderedkwList_json);
 		NLPExtraction._orderedkwList = InstrList.toInstrList(list);//serialization
+
 
 		console.warn("Extracted LIST :", NLPExtraction._orderedkwList.toString())
 		return NLPExtraction._orderedkwList;}
@@ -641,10 +652,12 @@ function supprimerChevauchements(keywordList) {
 			if (chevauchement(keyword1, keyword2)) {
 				if (keyword1.word.length < keyword2.word.length) {
 					keywordList.splice(i, 1);
+					keyword2.type? null: keyword2.type = keyword1.type;
 					i--;
 					break;
 				} else {
 					keywordList.splice(j, 1);
+					keyword1.type?null: keyword1.type = keyword2.type;
 					j--;
 				}
 			}

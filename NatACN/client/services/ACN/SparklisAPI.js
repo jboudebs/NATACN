@@ -416,8 +416,8 @@ class SparklisAPI extends ACN
 					if(suggList==='error' || suggList===undefined)
 					{
 						//await Utils.sleep(6000);
-						console.error("error");
 						SparklisAPI.error_count++
+						console.error("error", SparklisAPI.error_count);
 						qtList = new QTList([]);
 					}
 					else

@@ -109,7 +109,7 @@ class WikidataSuggestions
 					this.count = 0;
 
 						if (suggestionList === "error") {
-							throw new Error(e);
+							//throw new Error(e);
 							console.error("POST error");
 						} else {
 							console.error("POST recovered",);

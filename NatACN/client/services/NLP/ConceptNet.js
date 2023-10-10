@@ -33,7 +33,7 @@ class ConceptNet
 		catch (e) {
 			console.error(e)
 			await Utils.sleep(60005)
-			await this._fetch(uri);
+			return await this._fetch(uri);
 		}
 		return JSON;
 	}
@@ -50,6 +50,7 @@ class ConceptNet
 		for (const synset of ConceptNet.SynsetToAsk)
 		{
 			const uri = "http://api.conceptnet.io/query?start=/c/en/"+Utils.snakize(Utils.uncamelize(word.toString()))+"&rel=/r/"+synset+"&filter=/c/en";
+			console.trace();
 			console.log("Asking for synonyms :"+uri);
 			const fetch = await ConceptNet._fetch(uri);
 			//console.log(fetch);

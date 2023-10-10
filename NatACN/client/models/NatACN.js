@@ -443,7 +443,8 @@ class NatACN
 		{
 			console.log("bestNavigation scoring")
 			let conceptSuggestion = (await this.acn.getFilteredQT_ExternalSearchBug(NLPExtraction._answerInstruction, bestNavigation.place, bestNavigation.QTpath))
-				.filterConcept();
+			console.log(conceptSuggestion.toString())
+			conceptSuggestion = conceptSuggestion.filterConcept();
 			this.scoretmp = conceptSuggestion.averageScore();
 			return true
 		}
