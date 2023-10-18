@@ -176,6 +176,33 @@ class InstrList
 		return kwList;
 		//}
 	}
+	_getScoreOrder(prop)
+	{
+		return function (qt1,qt2)
+		{
+			if (qt1[prop] > qt2[prop])
+			{
+				return -1
+			}
+			else if(qt1[prop] < qt2[prop])
+			{
+				return 1
+			}
+			return 0;
+		}
+	}
+	rankByScore()
+	{
+		this._list = this._list.sort(this._getScoreOrder("_score"))
+		return this;
+		//console.warn(this._list);//ajouter un map pour borne inf
+	}
+
+	slice(start,end)
+	{
+		this._list = this._list.slice(start,end);
+		this.length = this._list.length;
+	}
 }
 export { InstrList };
 export default { KeywordList: InstrList };

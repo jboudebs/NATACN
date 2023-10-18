@@ -61,7 +61,7 @@ class NLPToolsParameters// extends NLPTools
 			synCN = await ConceptNet.getSynonyms(lemma);
 			let lemmakw = new Instruction(lemma);
 			lemmakw.setType('lemma')
-			synCN.push(lemmakw);
+			synCN.add(lemmakw);
 		}
 		else
 		{

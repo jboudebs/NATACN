@@ -543,8 +543,7 @@ class NatACN
 		// NLP
 		console.log(question)
 		await NLPExtraction.setAnswerInstructionFromQuestion(question);
-		console.log('_answerInstruction : ' ,NLPExtraction._answerInstruction)
-		console.log("NLPExtraction.list", NLPExtraction._orderedkwList.toString());
+		console.log('_answerInstruction : ' ,NLPExtraction._answerInstruction);
 		//this.word = this.getWordFromInterrogativeWord(this.getInterrogativeWordFromQuestion(question));
 		let instrTree = await NLPExtraction.instrTree(question, coreNLP);
 		try

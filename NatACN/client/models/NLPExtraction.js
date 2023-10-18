@@ -65,6 +65,8 @@ class NLPExtraction
 			let synset = await NLPToolsParameters.getSynonyms(NLPExtraction._answerInstruction)
 			synset = synset?synset:[];
 			kw.synset = InstrList.toInstrList(synset)
+			NLPExtraction._answerInstruction = kw;
+			return kw;
 		} else {
 			return undefined;
 		}
@@ -114,6 +116,7 @@ class NLPExtraction
 		console.log("NLPExtraction._questionType : ", NLPExtraction._questionType)
 		//cas mot interrogatif simple
 		NLPExtraction._answerInstruction = await NLPExtraction.getExpectedAnswerTypeFromSimpleInterrogativeWord(NLPExtraction._questionType);
+		console.log("Obvious NLPExtraction._answerInstruction", NLPExtraction._answerInstruction)
 		//cas mot interrogatif which/what
 		if(!NLPExtraction._answerInstruction)
 		{
@@ -151,7 +154,7 @@ class NLPExtraction
 		{
 			//console.warn(kw)
 			kw.synset = kw.type !=='NE'?
-				InstrList.toInstrList((await NLPToolsParameters.getSynonyms(kw)).concat([kw.word]))
+				InstrList.toInstrList((await NLPToolsParameters.getSynonyms(kw)).add(kw.word))
 				: undefined;//InstrList.toInstrList(kw.word);
 			//console.log(kw.word, kw.synset)
 		}
@@ -502,7 +505,7 @@ class NLPExtraction
 		{
 			//console.warn(kw)
 			kw.synset = kw.type !=='NE'?
-				InstrList.toInstrList((await NLPToolsParameters.getSynonyms(kw)).concat([kw.word]))
+				InstrList.toInstrList((await NLPToolsParameters.getSynonyms(kw)).add(kw.word))
 				: undefined;//InstrList.toInstrList(kw.word);
 			//console.log(kw.word, kw.synset)
 		}

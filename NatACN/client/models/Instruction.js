@@ -108,6 +108,8 @@ class Instruction
 	{
 		this._synset = synset;
 	}
+
+
 }
 
 export { Instruction };

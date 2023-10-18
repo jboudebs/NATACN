@@ -27,6 +27,8 @@ class SparklisAPI extends ACN
 	static MU_Instr = 0.1;
 	static _view_mode = true;
 	static labelDico = [];
+	static k_QTcandidats = 11;
+
 	//stats
 	static sparklis_call = 0
 	static last_time = 0;
@@ -159,12 +161,14 @@ class SparklisAPI extends ACN
 		let mixedQTList = new QTList([]);
 		mixedQTList.add(obviousQTList._list);
 		mixedQTList.add(constraintQTList._list);
+		console.warn("mixedQTList before filtering",mixedQTList.toString())
 		//mixedQTList.filterByScore(SparklisAPI.MU_Instr);
 
 		if(QTpath.length&&instr.getType() !== 'NE') {
 			mixedQTList = mixedQTList.filterRelation();
 		}
 		mixedQTList = mixedQTList.rankByScore();
+		mixedQTList.slice(0,SparklisAPI.k_QTcandidats)
 		//console.warn("mixedQTList before filtering",mixedQTList.toString())
 		//console.warn("mixedQTList after filtering",mixedQTList.toString())
 		return mixedQTList;
@@ -249,12 +253,10 @@ class SparklisAPI extends ACN
 				filteredQTList._list[indexqt].setScore(simList[indexqt].similarity)
 			}
 			//filtering thanks to instr
-			filteredQTList.filterByScore(SparklisAPI.MU_Instr)
+			filteredQTList.filterByScore(SparklisAPI.MU_Instr);
 			//ranking
 
 			filteredQTList.rankByScore();
-			console.trace()
-			console.log(filteredQTList);
 			//console.warn(filteredQTList);
 			return filteredQTList;
 		}

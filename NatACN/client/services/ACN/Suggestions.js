@@ -22,7 +22,7 @@ class Suggestions
 		}
 	}
 	
-	async create(constr, place, QTPath)
+	async create(constr, place, QTPath, k)
 	{
 		return await this._sugg.create(constr, place, QTPath);
 	}
@@ -53,18 +53,21 @@ class WikidataSuggestions
 	 * @returns {Promise<Array<sparklis-suggestion>>}
 	 * @private
 	 */
-	async _create_first(constr, place)
+	async _create_first(constr, place, k)
 	{
 		
 		let forest =  (await place.getConceptSuggestions(false, constr)).forest;
 		
 		forest = _preprocessConceptSuggestions(forest);
-		return _findChildSuggestionList(forest);
+
+		let suggList = _findChildSuggestionList(forest);
+
+		return suggList;
 		//return navState.resultTerms.map(term=>{ return { type: "IncrTerm", term:term} });
 	}
 	
 	
-	async create(constr, place, QTpath)
+	async create(constr, place, QTpath, k)
 	{
 		this.count = this.count?this.count+1:1
 		console.error("this count :",this.count)

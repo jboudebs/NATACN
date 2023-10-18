@@ -1,5 +1,6 @@
 import * as Utils from '../../models/Utils.js';
 import { Instruction } from "../../models/Instruction.js";
+import { InstrList } from "../../models/InstrList.js";
 
 
 class ConceptNet
@@ -7,6 +8,7 @@ class ConceptNet
 	static last_time = 0;
 	static RelatedDico = [];
 	static SynsetToAsk = ["Synonym","RelatedTo"]
+	static k_synonyms = 11;
 	
 	static async  _fetch(uri)
 	{
@@ -45,6 +47,10 @@ class ConceptNet
 	 */
 	static async getSynonyms(word)
 	{
+		if(word instanceof Instruction)
+		{
+			word = word._string;
+		}
 		const synonyms = [];
 		let edges = [];
 		for (const synset of ConceptNet.SynsetToAsk)
@@ -66,7 +72,17 @@ class ConceptNet
 				synonyms.push(edge.end.label);
 			}
 		}
-		return synonyms;
+		let instrList = new InstrList();
+
+		for (const s of synonyms) {
+			let instr = new Instruction(s);
+			instr._score = await ConceptNet.getRelatedness(s, word);
+			instrList.add(instr);
+		}
+		instrList.rankByScore();
+		instrList.slice(0,ConceptNet.k_synonyms)
+
+		return instrList;
 	}
 
 	/**
@@ -78,7 +94,14 @@ class ConceptNet
 	static async getRelatednessFetch(word1, word2)
 	{
 		//console.log(word1);
-		
+		if(word1 instanceof Instruction)
+		{
+			word1 = word1._string;
+		}
+		if(word2 instanceof Instruction)
+		{
+			word2 = word2._string;
+		}
 		const uri = "https://api.conceptnet.io/relatedness?node1=/c/en/" + Utils.snakize(Utils.uncamelize(word1.toString())).toLowerCase() + "&node2=/c/en/" + Utils.snakize(Utils.uncamelize(word2.toString())).toLowerCase();
 		
 		const JSON = await ConceptNet._fetch(uri);
@@ -95,6 +118,14 @@ class ConceptNet
 	 */
 	static async getRelatedness(word1, word2)
 	{
+		if(word1 instanceof Instruction)
+		{
+			word1 = word1._string;
+		}
+		if(word2 instanceof Instruction)
+		{
+			word2 = word2._string;
+		}
 		if(word1 === undefined || word2 === undefined)
 		{
 			return 0;
@@ -125,6 +156,14 @@ class ConceptNet
 	}
 	static getRelatedDico(word1, word2)
 	{
+		if(word1 instanceof Instruction)
+		{
+			word1 = word1._string;
+		}
+		if(word2 instanceof Instruction)
+		{
+			word2 = word2._string;
+		}
 		for (const couple of this.RelatedDico)
 		{
 			if( (couple.words[0] === word1&&couple.words[1]===word2)
@@ -139,6 +178,14 @@ class ConceptNet
 	
 	static pushRelatedDico(word1,word2,score)
 	{
+		if(word1 instanceof Instruction)
+		{
+			word1 = word1._string;
+		}
+		if(word2 instanceof Instruction)
+		{
+			word2 = word2._string;
+		}
 		this.RelatedDico.push({"words":[word1,word2],"score":score})
 	}
 

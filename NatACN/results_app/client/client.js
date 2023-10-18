@@ -6,6 +6,8 @@ import { CoreNLP } from "../../client/services/NLP/CoreNLP.js";
 import { ConceptNet } from "../../client/services/NLP/ConceptNet.js";
 import { SpaCySimilarity } from "../../client/services/NLP/SpaCySimilarity.js";
 import { sleep } from "../../client/models/Utils.js";
+import { Instruction } from "../../client/models/Instruction.js";
+import { QTList } from "../../client/models/QTList.js";
 //import { SpaCy } from "/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/client/models/Utils.js";
 //import { Doc } from '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/client/services/NLP/SpaCy/src/index.js'
 
@@ -81,15 +83,13 @@ try
 	//await sparklisAPI.changeEndpoint("https://query.wikidata.org/sparql", home_place)
 	//DB
 	//TEST UNIQUE QUESTION
-	let question = "At which school was Yayoi Kusama educated at?";
+	let question = "Who is the founder of the capital of Vietnam?";
 	//
 	//tests
-	//console.log(initial_place)
-	//const res = await natACN.natNavigation(question, home_place);
-	//console.dir(res);
-	//console.error(SparklisAPI.error_count);
-	//await sparklisAPI.setCurrentPlace(res.bestNavigation.place);
-	////console.log(res.bestNavigation.place.sparql())
+	const res = await natACN.natNavigation(question, home_place);
+	console.dir("Results : ",res);
+	console.error(SparklisAPI.error_count);
+	await sparklisAPI.setCurrentPlace(res.bestNavigation.place);
 	//TEST UNIQUE QUESTION
 
 	//TEST TREE
@@ -97,20 +97,28 @@ try
 	//TEST TREE
 
 	//Test ConceptNet Synonyms
-	// const word = "state";
-	// const synset = await ConceptNet.getSynonyms(word);
-	// console.warn("Synset of "+word)
-	// synset.map(e=>console.warn(e.toString()))
+	//const word = "state";
+	//const synset = await ConceptNet.getSynonyms(word);
+	//console.warn("Synset of "+word)
+	//console.log(synset)
+	//console.log(synset.length)
 	//Test ConceptNet Synonyms
 
 	//TEST SPACY SIM
 	//SpaCySimilarity.main();
 	//TEST SPACY SIM
 
+	//Test Suggestion limit
+	//let instr = new Instruction("educated")
+	//let QTpath = new QTList();
+	//let qtList = await sparklisAPI.getFilteredQT_Mixed(instr, home_place, QTpath);
+	//console.log(qtList)
+	//Test Suggestion limit
+
 	
 
 	//reprise
-	await getNatACN(0);
+	//await getNatACN(0);
 
 
 
