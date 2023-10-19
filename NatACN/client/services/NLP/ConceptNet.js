@@ -23,8 +23,21 @@ class ConceptNet
 		ConceptNet.last_time = time_now;
 		//console.log(time_now, ConceptNet.last_time);
 		
-		const JSON = await fetch(uri
+		let JSON
+		try{
+			JSON = await fetch(uri
 			).then((value) => { return value.json(); });
+		}
+		catch (e) {
+			//boucle infinie si ça bug
+			console.error(e);
+			console.error("Waiting for 60S");
+			Utils.sleep(6005);
+			console.error("Waited.");
+
+			return this._fetch(uri);
+		}
+
 		return JSON;
 	}
 	
@@ -41,7 +54,19 @@ class ConceptNet
 		{
 			const uri = "http://api.conceptnet.io/query?start=/c/en/"+Utils.snakize(Utils.uncamelize(word.toString()))+"&rel=/r/"+synset+"&filter=/c/en";
 			console.log("Asking for synonyms :"+uri);
-			const fetch = await ConceptNet._fetch(uri);
+			let fetch;
+			try{
+			 fetch = await ConceptNet._fetch(uri);
+			}
+			catch (e) {
+				//boucle infinie si ça bug
+				console.error(e)
+				console.error("Waiting for 60S")
+				Utils.sleep(6005)
+				console.error("Waited.")
+
+				return this.getSynonyms(word);
+			}
 			//console.log(fetch);
 			edges = edges.concat(fetch.edges);
 			//console.log(edges);

@@ -17,7 +17,7 @@ win
 ```
 mac/linux :
 ```
-python3 ./NatACN/client/services/NLP/CoreNLP_server/Spacy_server/app.py
+python3 ./NatACN/client/services/NLP/Spacy_server/NE_api.py
 ```
 
 serveur coreNLP

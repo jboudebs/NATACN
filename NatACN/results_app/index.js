@@ -30,7 +30,7 @@ app.get('/score', (req, res)=>{
 		//NatACNLib.removeDuplicates();
 		NatACNLib.score();
 		NatACNLib.resJSON2resCSV();
-		NatACNLib.toGerbil();
+		//NatACNLib.toGerbil();
 		
 	}
 	catch (e)
