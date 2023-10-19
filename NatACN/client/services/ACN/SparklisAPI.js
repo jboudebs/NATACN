@@ -32,7 +32,7 @@ class SparklisAPI extends ACN
 	//stats
 	static sparklis_call = 0
 	static last_time = 0;
-	static onEvalWait = 1000//ms
+	static onEvalWait = 0//ms
 	static home_count = 0;
 	static changeEndpoint_count = 0;
 	static endpoint_count=0;
@@ -116,8 +116,9 @@ class SparklisAPI extends ACN
 	
 	async getPlace()
 	{
-		await this.getResults();
 		SparklisAPI.currentPlace_count++
+		await new Promise(async resolve=>{
+			await sparklis.currentPlace().onEvaluated(()=>resolve(sparklis.currentPlace().results()));});
 		return (await this._sparklis()).currentPlace()
 	}
 	
@@ -148,10 +149,10 @@ class SparklisAPI extends ACN
 	}
 
 	async getFilteredQT(instr, place, QTpath) {
-		return await this.getFilteredQT_Mixed(instr, place, QTpath)
+		return await this.getFilteredQT_MixedRelTopK(instr, place, QTpath)
 	}
 	
-	async getFilteredQT_Mixed(instr, place, QTpath)
+	async getFilteredQT_MixedRelTopK(instr, place, QTpath)
 	{
 		let obviousQTList = await this.getFilteredQT_obviousQT(instr, place, QTpath);
 		console.log("obviousQTList",obviousQTList);
@@ -164,10 +165,13 @@ class SparklisAPI extends ACN
 		console.warn("mixedQTList before filtering",mixedQTList.toString())
 		//mixedQTList.filterByScore(SparklisAPI.MU_Instr);
 
-		if(QTpath.length&&instr.getType() !== 'NE') {
+		//filtrer seulement les relations
+		if(instr.getType() !== 'NE') {
 			mixedQTList = mixedQTList.filterRelation();
 		}
+		//tri par score de proximité sem avec l'instruction
 		mixedQTList = mixedQTList.rankByScore();
+		//selection des k meilleurs
 		mixedQTList.slice(0,SparklisAPI.k_QTcandidats)
 		//console.warn("mixedQTList before filtering",mixedQTList.toString())
 		//console.warn("mixedQTList after filtering",mixedQTList.toString())
@@ -183,7 +187,7 @@ class SparklisAPI extends ACN
 	 */
 	async getFilteredQT_obviousQT(instr, place, QTpath)
 	{
-		if(QTpath.length&&instr.getType() !== 'NE')
+		if(QTpath.length !==0&&instr.getType() !== 'NE')
 		{
 			let filteredQTList = new QTList([]);
 			let qtList;
@@ -465,8 +469,9 @@ class SparklisAPI extends ACN
 					
 					qt.setLabel(label);
 					//relatedness
-					const relatedness = await NLPToolsParameters.getRelatedness(qt.getLabel(),instr.getLemma())
-					console.log("Dico relatedness",qt.getLabel(),instr.toString(), relatedness)
+					let word = instr.getLemma()?instr.getLemma():instr.toString();
+					const relatedness = await NLPToolsParameters.getRelatedness(qt.getLabel(),word)
+					console.log("Dico relatedness",qt.getLabel(),word, relatedness)
 					if(relatedness>=SparklisAPI.MU_Syn)
 					{
 						qt.setScore(relatedness);
@@ -988,7 +993,7 @@ class SparklisAPI extends ACN
 	
 	static hasEmptyQuery(place)
 	{
-		return place.sparql == null;
+		return place.sparql() == null;
 	}
 	
 	

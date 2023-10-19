@@ -18,10 +18,10 @@ let length = 0;
 const currentDir = path.resolve();
 console.log(currentDir)
 
-const test_name = "02_10-relationOnlybetter123Stop-simple";
+const test_name = "19_10-RelTokF1-simple";
 console.log(test_name);
 
-const resDir = './results/septembre/'
+const resDir = './results/octobre/'
 const inputQALD = './data/qald_10-simple-questions.json';
 const outputNatACN = resDir+test_name+'-res.json';
 const scoreFile =resDir+test_name+'-score.json';

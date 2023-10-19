@@ -53,7 +53,7 @@ class WikidataSuggestions
 	 * @returns {Promise<Array<sparklis-suggestion>>}
 	 * @private
 	 */
-	async _create_first(constr, place, k)
+	async _create_first(constr, place)
 	{
 		
 		let forest =  (await place.getConceptSuggestions(false, constr)).forest;
@@ -67,7 +67,7 @@ class WikidataSuggestions
 	}
 	
 	
-	async create(constr, place, QTpath, k)
+	async create(constr, place, QTpath)
 	{
 		this.count = this.count?this.count+1:1
 		console.error("this count :",this.count)
@@ -95,7 +95,7 @@ class WikidataSuggestions
 			}
 			catch (e)
 			{
-				console.error("in create Suggestions",e)
+				console.error("in create Suggestions :",e)
 				try
 				{
 					if(this.count===WikidataSuggestions.nb_tries+1)

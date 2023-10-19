@@ -80,16 +80,16 @@ try
 	//INIT
 	//DB
 	home_place = await sparklisAPI.getPlace() ;
-	//await sparklisAPI.changeEndpoint("https://query.wikidata.org/sparql", home_place)
+	await sparklisAPI.changeEndpoint("https://query.wikidata.org/sparql", home_place)
 	//DB
 	//TEST UNIQUE QUESTION
 	let question = "Who is the founder of the capital of Vietnam?";
 	//
 	//tests
-	const res = await natACN.natNavigation(question, home_place);
-	console.dir("Results : ",res);
-	console.error(SparklisAPI.error_count);
-	await sparklisAPI.setCurrentPlace(res.bestNavigation.place);
+	// const res = await natACN.natNavigation(question, home_place);
+	// console.dir("Results : ",res);
+	// console.error(SparklisAPI.error_count);
+	// await sparklisAPI.setCurrentPlace(res.bestNavigation.place);
 	//TEST UNIQUE QUESTION
 
 	//TEST TREE
@@ -109,16 +109,17 @@ try
 	//TEST SPACY SIM
 
 	//Test Suggestion limit
-	//let instr = new Instruction("educated")
-	//let QTpath = new QTList();
-	//let qtList = await sparklisAPI.getFilteredQT_Mixed(instr, home_place, QTpath);
-	//console.log(qtList)
+	// let instr = new Instruction("educated")
+	// instr._lemma = "educate";
+	// let QTpath = new QTList();
+	// let qtList = await sparklisAPI.getFilteredQT_MixedRelTopK(instr, home_place, QTpath);
+	// console.log(qtList)
 	//Test Suggestion limit
 
 	
 
 	//reprise
-	//await getNatACN(0);
+	await getNatACN(0);
 
 
 
