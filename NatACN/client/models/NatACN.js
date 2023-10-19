@@ -355,7 +355,7 @@ class NatACN
 
 	async better(place, QTpath, instrPath, bestNavigation)
 	{
-		return await this.better12(place, QTpath, instrPath, bestNavigation);
+		return await this.betterF1(place, QTpath, instrPath, bestNavigation);
 	}
 	betterLength(place, QTpath, instrPath, bestNavigation)
 	{
@@ -445,7 +445,7 @@ class NatACN
 
 	async stopCriterion(bestNavigation)
 	{
-		return await this.stopQTPathlength(bestNavigation);
+		return await this.stopF1(bestNavigation);
 	}
 	
 	async noStop(bestNavigation){

@@ -1,4 +1,3 @@
-import * as Utils from '../../models/Utils.js';
 import { SparklisAPI } from "./SparklisAPI.js";
 
 class Suggestions
@@ -56,40 +55,11 @@ class WikidataSuggestions
 	async _create_first(constr, place)
 	{
 		
-		let forest =  (await this.getConceptSuggestions(constr, place)).forest;
+		let forest =  (await place.getConceptSuggestions(false, constr)).forest;
 		
 		forest = _preprocessConceptSuggestions(forest);
 		return _findChildSuggestionList(forest);
-	}
-	
-	async getConceptSuggestions(constr, place)
-	{
-		Suggestions.count++;
-		let sugg;
-		try
-		{
-			sugg = (await place.getConceptSuggestions(false, constr));
-		}
-		catch(e)
-		{
-			console.error("in getConceptSuggestion : ", e)
-			if(Suggestions.count<3)
-			{
-				sugg = await this.getConceptSuggestions(constr, place)
-			}
-			else
-			{
-				console.error('Waiting for 60s...')
-				await Utils.sleep(60010);
-				console.error('Waited for 60s.')
-				Suggestions.count = 0
-				sugg = (await place.getConceptSuggestions(false, constr));
-				return sugg;
-			}
-			return sugg
-		}
-		return sugg;
-		
+		//return navState.resultTerms.map(term=>{ return { type: "IncrTerm", term:term} });
 	}
 	
 	
@@ -107,8 +77,7 @@ class WikidataSuggestions
 			try
 			{
 				//console.warn("fetching wikidata entities by sparklis constraint", constr)
-				let sugg =  (await this.getConceptSuggestions(constr, place));
-				let forest = sugg.forest;
+				let forest =  (await place.getConceptSuggestions(false, constr)).forest;
 				//console.warn("fetching wikidata entities by sparklis constraint - DONE", forest)
 				//console.log(forest);
 				forest = _preprocessConceptSuggestions(forest);
@@ -119,18 +88,45 @@ class WikidataSuggestions
 			}
 			catch (e)
 			{
-				console.error(e);
-				return 'error';
+				console.error("in create Suggestions",e)
+				console.error("count error",Suggestions.count)
+				try
+				{
+					if(Suggestions.count>3)
+					{
+						console.error("Waiting for 60s ...");
+						await Utils.sleep(60010);
+						console.error("Waited for 60s.");
+						suggestionList = this.create(constr, place, QTpath);
+						Suggestions.count = 0;
+						
+						console.error("POST recovered");
+						return suggestionList;
+					}
+					else
+					{
+						console.error(e);
+						Suggestions.count++;
+						suggestionList = this.create(constr, place, QTpath);
+						return suggestionList;
+					}
+					
+				}
+				catch
+				{
+					console.error("Suggestion not handle",e);
+					return "error";
+				}
 			}
 		}
-		Suggestions.count = 0;
 		return suggestionList;
+		//return navState.resultTerms.map(term=>{ return { type: "IncrTerm", term:term} });
 	}
 	
 	async createMatch(constr, place)
 	{
 		let suggestions;
-		let forest;
+		let forest
 		try
 		{
 			forest = (await place.getTermSuggestions(false, constr)).forest;

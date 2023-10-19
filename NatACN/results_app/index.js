@@ -5,7 +5,7 @@ var cors = require('cors')
 const NatACNLib = require("./lib/testServer_lib.js");
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 NatACNLib.i = 0;
 

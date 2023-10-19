@@ -109,7 +109,7 @@ try
 	
 
 	//reprise
-	await getNatACN(2);
+	await getNatACN(16);
 
 
 
