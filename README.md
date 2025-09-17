@@ -22,6 +22,7 @@ python3 ./NatACN/client/services/NLP/Spacy_server/NE_api.py
 
 serveur coreNLP
 ```
+Note : pas de model sur le repo parce que trop lourd pour rien. mais installable depuis maven.
 cd C:\Users\julie\WebstormProjects\NatACN\NatACN\client\services\NLP\CoreNLP_server\stanford-corenlp-4.5.4 
 java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 9000 -timeout 15000
 ```
