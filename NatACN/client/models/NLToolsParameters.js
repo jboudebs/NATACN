@@ -67,6 +67,9 @@ class NLPToolsParameters// extends NLPTools
 		{
 			synCN = await ConceptNet.getSynonyms(keyword.word?keyword.word:keyword);
 		}
+		let instr = new Instruction(keyword._string?keyword._string:keyword);
+		instr.setType('instr')
+		synCN.add(instr);
 		return synCN;
 	}
 	

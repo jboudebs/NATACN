@@ -126,7 +126,7 @@ class NLPExtraction
 			console.log(NLPExtraction._answerInstruction);
 			//syn for answerInstruction
 			let kw = NLPExtraction._answerInstruction;
-			let synset = (await NLPToolsParameters.getSynonyms(kw)).concat([kw.word])
+			let synset = (await NLPToolsParameters.getSynonyms(kw)).add(kw.word)
 			console.warn(NLPExtraction._answerInstruction)
 			synset = synset?synset:[];
 

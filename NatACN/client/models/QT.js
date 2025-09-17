@@ -6,15 +6,18 @@ class QT
 		{
 			this._incr = qt._incr;
 			this._ori = qt._incr.orientation;
+			this._label = qt._label;
 		}
 		else if(typeof qt === 'string')
 		{
 			this._incr = qt;
+			this._label = qt._label;
 		}
 		else if(typeof qt === 'object')
 		{
-			this._incr = qt;
+			this._incr = qt._incr?qt._incr:qt;
 			this._ori = qt.orientation;
+			this._label = qt._label;
 		}
 	}
 	

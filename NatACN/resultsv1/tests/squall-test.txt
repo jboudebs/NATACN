@@ -1,3 +1,0 @@
-Which Painting has the highest beauty?
-Give me all Species whose livingPlace is 'Teutoburg Forest'.
-What is the releaseDateInNetherlands of 'Worst Case Scenario'?

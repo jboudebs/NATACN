@@ -207,23 +207,24 @@ class WikidataSuggestions
 
 class DefaultSuggestions
 {
-	async create(navState)
+	async create(constr, place, QTpath)
 	{
-		let forest =  (await sparklis.currentPlace().getConceptSuggestions(false, navState.getConstraint())).forest;
+		let forest =  (await place.getConceptSuggestions(false, constr)).forest;
+		console.log("test",forest);
 		forest = _preprocessConceptSuggestions(forest);
 
 		let suggestionList = _findChildSuggestionList(forest);
 
-		suggestionList = _removeAlreadyAppliedSuggestion(suggestionList, navState);
+		suggestionList = _removeAlreadyAppliedSuggestion(suggestionList, QTpath);
 
 		return suggestionList;
 	}
 	
-	async createMatch(navState)
+	async createMatch(constr, place)
 	{
 		let suggestions;
 		
-		let forest =  (await sparklis.currentPlace().getTermSuggestions(false, navState.getConstraint())).forest;
+		let forest =  (await place.getTermSuggestions(false, constr)).forest;
 		forest = _preprocessTermSuggestions(forest);
 		const suggestionList = _findChildSuggestionList(forest);
 		
@@ -233,7 +234,7 @@ class DefaultSuggestions
 		}
 		else
 		{
-			suggestions = [{type: "IncrConstr", constr: navState.getConstraint(), filterType: "Mixed"}];
+			suggestions = [{type: "IncrConstr", constr: constr, filterType: "Mixed"}];
 		}
 		
 		return  suggestions;

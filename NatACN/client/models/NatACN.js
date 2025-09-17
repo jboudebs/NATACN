@@ -322,9 +322,9 @@ class NatACN
 	async better(place, QTpath, instrPath, bestNavigation)
 	{
 		console.log("better", QTpath.toString())
-		return await this.betterSemNEQTPath(place, QTpath, instrPath, bestNavigation);
+		return await this.betterLength(place, QTpath, instrPath, bestNavigation);
 	}
-	betterLength(place, QTpath, instrPath, bestNavigation)
+	async betterLength(place, QTpath, instrPath, bestNavigation)
 	{
 		return QTpath.length>bestNavigation.QTpath.length;
 	}
@@ -542,8 +542,8 @@ class NatACN
 	{
 		// NLP
 		console.log(question)
-		await NLPExtraction.setAnswerInstructionFromQuestion(question);
-		console.log('_answerInstruction : ' ,NLPExtraction._answerInstruction);
+		//await NLPExtraction.setAnswerInstructionFromQuestion(question);
+		//console.log('_answerInstruction : ' ,NLPExtraction._answerInstruction);
 		//this.word = this.getWordFromInterrogativeWord(this.getInterrogativeWordFromQuestion(question));
 		let instrTree = await NLPExtraction.instrTree(question, coreNLP);
 		try

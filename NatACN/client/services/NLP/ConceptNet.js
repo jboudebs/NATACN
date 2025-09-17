@@ -79,6 +79,7 @@ class ConceptNet
 			instr._score = await ConceptNet.getRelatedness(s, word);
 			instrList.add(instr);
 		}
+		instrList.add(word)
 		instrList.rankByScore();
 		instrList.slice(0,ConceptNet.k_synonyms)
 

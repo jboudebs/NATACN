@@ -196,7 +196,7 @@ class SparklisAPI extends ACN
 			{
 				//get T_i
 				let suggList = await (new Suggestions()).create("True", place, QTpath);
-
+				console.log(suggList);
 				if(suggList==="error")
 				{
 					SparklisAPI.error_count++;
@@ -212,7 +212,7 @@ class SparklisAPI extends ACN
 				// 		qt.setLabel(await this._getLabelFromUri(s));
 				// 		return qt
 				// 	}));
-				qtList = await this._getLabelFromMultipleUriWiki(suggList); //les index correspondent
+				qtList = await this._getLabelFromMultipleUri(suggList); //les index correspondent
 				console.log(qtList)
 
 				//console.error("typeof ", qtList);
@@ -246,18 +246,18 @@ class SparklisAPI extends ACN
 				filteredQTList.add(synsetQTList);
 			}
 			
-			console.log(filteredQTList);
+			console.trace(filteredQTList);
 			labelList = filteredQTList.map(qt=>qt.getLabel());
 			//get Sim score
 			const simList = await NLPToolsParameters.getRelatedness(instr.getLemma(),labelList)
-			console.log(simList,filteredQTList)
+			console.log(simList,filteredQTList, labelList)
 			for(const indexqt in filteredQTList._list)
 			{
 				console.log(indexqt)
 				filteredQTList._list[indexqt].setScore(simList[indexqt].similarity)
 			}
 			//filtering thanks to instr
-			filteredQTList.filterByScore(SparklisAPI.MU_Instr);
+			//filteredQTList.filterByScore(SparklisAPI.MU_Instr);
 			//ranking
 
 			filteredQTList.rankByScore();
@@ -447,7 +447,7 @@ class SparklisAPI extends ACN
 			//fetching labels for QTs
 			let incrList = qtList.getList().map(qt=>qt.getIncr());
 			//console.warn("incrList : ", incrList)
-			qtList = await this._getLabelFromMultipleUriWiki(incrList);
+			qtList = await this._getLabelFromMultipleUri(incrList);
 			//console.warn("qtList(with labels) : ", qtList);
 			
 			//adding relatedness score for each QT
@@ -676,19 +676,19 @@ class SparklisAPI extends ACN
 		
 		return qtList;
 	}
-	async getLabelFromUri(incr)
-	{
-		let label = this.getRelatedDico(incr);
-		if(!label)
-		{
-			this.getlabelIncr?this.getlabelIncr = []:null;
-			this.getlabelIncr = this.getlabelIncr.push(incr);
-			label = await this._getLabelFromUri(incr);
-			this.pushRelatedDico(incr,label)
-		}
-		
-		return label;
-	}
+	// async getLabelFromUri(incr)
+	// {
+	// 	let label = this.getRelatedDico(incr);
+	// 	if(!label)
+	// 	{
+	// 		this.getlabelIncr?this.getlabelIncr = []:null;
+	// 		this.getlabelIncr = this.getlabelIncr.push(incr);
+	// 		label = await this._getLabelFromUri(incr);
+	// 		this.pushRelatedDico(incr,label)
+	// 	}
+	//
+	// 	return label;
+	// }
 	getRelatedDico(incr)
 	{
 		let label = undefined;
@@ -716,7 +716,7 @@ class SparklisAPI extends ACN
 		SparklisAPI.labelDico = []
 	}
 	
-	async _getLabelFromUri(incr)
+	async _getLabelFromUriDefault(incr)
 	{
 		console.log(incr)
 		SparklisAPI.endpoint_count++
@@ -815,6 +815,19 @@ class SparklisAPI extends ACN
 		).then((value) => { return value.json(); });
 		return JSON;
 	}
+	async _getLabelFromMultipleUri(incrList)
+	{
+		if(sparklis.endpoint().includes("wikidata"))
+		{
+			return await this._getLabelFromMultipleUriWiki(incrList)
+		}
+		else
+		{
+			return await this._getLabelFromMultipleUriDefault(incrList);
+		}
+		
+	}
+	
 	
 	/**
 	 *
@@ -840,7 +853,7 @@ class SparklisAPI extends ACN
 		//   FILTER (lang(?label) = "en")  # Vous pouvez spécifier la langue des labels (dans cet exemple : français)
 		// }
 		let labelQuery = "SELECT ?entity ?label WHERE {  VALUES ?entity { " + ids + "} ?entity rdfs:label ?label.    FILTER (lang(?label) = \"en\")  BIND(STRBEFORE(STR(?entity), \"://\") AS ?value)} ORDER BY ?value"
-		console.log(labelQuery)
+		console.trace(labelQuery)
 		SparklisAPI.evalSparql_count++
 		let res = (await (await this._sparklis()).evalSparql(labelQuery)).rows;
 		//console.error(res);
@@ -871,17 +884,51 @@ class SparklisAPI extends ACN
 			.replace('http://www.wikidata.org/prop/statement/', '');
 		return id
 	}
-
+	
+	
+	async _getLabelFromMultipleUriDefault(incrList)
+	{
+		let qtList = new QTList([])
+		for (const incr of incrList)
+		{
+			let qt = new QT(incr);
+			const label = await this._getLabelFromUri(incr)
+			console.log(label)
+			qt.setLabel(label)
+			qtList.add(qt)
+			
+		}
+		
+		return  qtList;
+	}
 
 
 	
-	async _getLabelFromUriMondial(incr)
+	_getLabelFromUriMondial(incr)
 	{
 		//const incr = qt.getIncr()
+		console.log(incr, incr.uri)
 		const uri = incr.uri?incr.uri:incr.pred["uri"+incr.pred.type[1]];//cas des incrPred
 		const label = uri.split('#')[1];
 
 		return label;
+	}
+	async _getLabelFromUri(incr)
+	{
+		//const incr = qt.getIncr()
+		if(incr.uri.includes("schema"))
+		{
+			return incr.uri.replace("https://schema.org/","");
+		}
+		else if(incr.uri.includes("http://www.w3.org/1999/xhtml/"))
+		{
+			return incr.uri.split('#')[1];
+		}
+		else
+		{
+			return await this._getLabelFromUriDefault(incr)
+		}
+		
 	}
 
 	async navigate(place, qt)

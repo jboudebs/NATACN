@@ -8,6 +8,7 @@ import { SpaCySimilarity } from "../../client/services/NLP/SpaCySimilarity.js";
 import { sleep } from "../../client/models/Utils.js";
 import { Instruction } from "../../client/models/Instruction.js";
 import { QTList } from "../../client/models/QTList.js";
+import { QT } from "../../client/models/QT.js";
 //import { SpaCy } from "/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/client/models/Utils.js";
 //import { Doc } from '/Users/jboudebs/WebstormProjects/NatACN_API/NatACN/client/services/NLP/SpaCy/src/index.js'
 
@@ -80,10 +81,10 @@ try
 	//INIT
 	//DB
 	home_place = await sparklisAPI.getPlace() ;
-	await sparklisAPI.changeEndpoint("https://query.wikidata.org/sparql", home_place)
+	//await sparklisAPI.changeEndpoint("https://query.wikidata.org/sparql", home_place)
 	//DB
 	//TEST UNIQUE QUESTION
-	let question = "Who is the founder of the capital of Vietnam?";
+	let question = "author";
 	//
 	//tests
 	// const res = await natACN.natNavigation(question, home_place);
@@ -96,30 +97,65 @@ try
 	//let tree = await NLPExtraction.extractTree(question);
 	//TEST TREE
 
-	//Test ConceptNet Synonyms
+	//TEST ConceptNet Synonyms
 	//const word = "state";
 	//const synset = await ConceptNet.getSynonyms(word);
 	//console.warn("Synset of "+word)
 	//console.log(synset)
 	//console.log(synset.length)
-	//Test ConceptNet Synonyms
+	//TEST ConceptNet Synonyms
 
 	//TEST SPACY SIM
 	//SpaCySimilarity.main();
 	//TEST SPACY SIM
 
-	//Test Suggestion limit
+	//TEST Suggestion limit
 	// let instr = new Instruction("educated")
 	// instr._lemma = "educate";
 	// let QTpath = new QTList();
 	// let qtList = await sparklisAPI.getFilteredQT_MixedRelTopK(instr, home_place, QTpath);
 	// console.log(qtList)
-	//Test Suggestion limit
-
+	//TEST Suggestion limit
+	
+	//test getFiltered
+	$( "#test" ).on( "click", async function( event )
+	{
+		//TEST getFiltered
+		// let instr = new Instruction("author")
+		// instr._lemma = "author";
+		// let QTpath = new QTList([new QT()]);
+		//
+		// let qtList = await sparklisAPI.getFilteredQT(instr, sparklis.currentPlace(), QTpath);
+		// console.log(instr, qtList)
+		//TEST getFiltered
+		//TEST navigate
+		// let JSON_object = {
+		// 	"_incr": {
+		// 		"type": "IncrRel",
+		// 		"uri": "http://jena.apache.org/text#analyzer",
+		// 		"orientation": "Fwd"
+		// 	},
+		// 	"_ori": "Fwd",
+		// 	"_label": "analyzer",
+		// 	"_score": 0.993
+		// }
+		// let qt = new QT(JSON_object);
+		// console.log(qt);
+		// await sparklisAPI.navigate(sparklis.currentPlace(),qt)
+		//TEST navigate
+		
+		const res = await natACN.natNavigation(question, sparklis.currentPlace());
+		console.dir("Results : ",res);
+		console.error(SparklisAPI.error_count);
+		await sparklisAPI.setCurrentPlace(res.bestNavigation.place);
+		
+	})
+	
+	
 	
 
 	//reprise
-	await getNatACN(0);
+	//await getNatACN(9);
 
 
 

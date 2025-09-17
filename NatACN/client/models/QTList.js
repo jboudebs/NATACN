@@ -43,9 +43,21 @@ class QTList
 				this.add(qtElement);
 			}
 		}
+		else if ( qt instanceof QTList)
+		{
+			//console.warn("here", qt)
+			for (let qtElement of qt._list)
+			{
+				//console.warn(qtElement)
+				this.add(new QT(qtElement));
+			}
+		}
 		else if (typeof qt === 'object')
 		{
+			
 			let qttyped = new QT(qt)
+			qttyped._ori = qt._ori
+			qttyped._label = qt._label
 			if(!this.includes(qttyped))
 			{
 				this._list.push(qttyped);
@@ -74,9 +86,9 @@ class QTList
 
 	filterConcept()
 	{
-		console.log(this);
-		const qtList =QTList.toQTList(this._list.filter(qt=>qt._incr.type === "IncrType"));
-		console.log(qtList)
+		
+		const qtList = QTList.toQTList(this._list.filter(qt=>qt._incr.type === "IncrType"));
+		
 		return qtList;
 	}
 
@@ -244,7 +256,6 @@ class QTList
 				console.error(e)
 			}
 		})
-		console.log(kwList)
 		return kwList;
 		//}
 	}
